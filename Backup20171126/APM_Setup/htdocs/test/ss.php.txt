@@ -1,0 +1,133 @@
+﻿<?
+	$dbhost = '127.0.0.1';
+	$dbuser = 'root';
+	$dbpass = 'apmsetup';
+	$dbname = 'arduino1';
+
+	$conn = mysql_connect($dbhost, $dbuser, $dbpass);
+	//mysql_select_db($dbname,$conn);
+
+	if($conn)
+	{
+		if(@mysql_select_db($dbname,$conn))
+		{
+			echo "<CENTER>==================Monitoring Page=====================</CENTER><br>";
+			echo "<br>";
+		}else{
+			echo "에러 : 데이터베이스 접속 이름 확인.<br>";
+			exit();
+		}
+	}else{
+		echo "에러 : 데이터베이스 접속 실패.<br>";
+		exit();
+	}
+
+	// 년, 월, 일 값을 입력 받아 일일 데이터 선택하여 dbdate.php로 보내기 위한 소스
+	
+
+	// DB 데이터 가져와서 변수에 넣기
+	$sqlq1 = "SELECT * FROM arduino_sensor1";
+
+//echo "111디비접속\r\n";
+	
+	$sql_1 = @mysql_query($sqlq1,$conn);
+
+//echo "222쿼리날리기\r\n";
+	
+	$counti=0;
+	while($row = @mysql_fetch_array($sql_1))
+	{
+		$sensorval[] = $row['sensor1'];		
+		$counti++;
+		//echo "\r\n";
+	}
+
+//echo "333데이터 저장\r\n";
+
+
+	for($a=0; $a < $counti; $a++)
+	{
+		//$timedata1[$a] = date("m월 d일 H시 i분 s초",strtotime($timedata[$a]));
+		//echo nl2br($timedata1[$a]);
+	}
+	
+
+?>
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highcharts Example</title>
+
+		<style type="text/css">
+#container {
+	min-width: 310px;
+	max-width: 800px;
+	height: 400px;
+	margin: 0 auto
+}
+		</style>
+	</head>
+	<body>
+<script src="http://127.0.0.1/test/code/highcharts.js"></script>
+<script src="http://127.0.0.1/test/code/modules/exporting.js"></script>
+
+<div id="container"></div>
+
+
+
+		<script type="text/javascript">
+
+Highcharts.chart('container', {
+
+    title: {
+        text: 'IoT Link 테스트'
+    },
+
+    subtitle: {
+        text: 'Source: thesolarfoundation.com'
+    },
+
+    yAxis: {
+        title: {
+            text: 'Number of Employees'
+        }
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        series: {
+            pointStart: 2010
+        }
+    },
+
+    series: [{
+        name: 'Installation',
+        data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+    }, {
+        name: 'Manufacturing',
+        data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+    }, {
+        name: 'Sales & Distribution',
+        data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
+    }, {
+        name: 'Project Development',
+        data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
+    }, {
+        name: 'Other',
+        data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
+    }]
+
+});
+		</script>
+	</body>
+</html>
