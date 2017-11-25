@@ -1,0 +1,5 @@
+D:\chapcho\IOTLink\src\trunk\IOTL\IOTLManager\ReferenceDllCopier\bin\Debug\ReferenceDllCopier.exe.config
+D:\chapcho\IOTLink\src\trunk\IOTL\IOTLManager\ReferenceDllCopier\bin\Debug\ReferenceDllCopier.exe
+D:\chapcho\IOTLink\src\trunk\IOTL\IOTLManager\ReferenceDllCopier\bin\Debug\ReferenceDllCopier.pdb
+D:\chapcho\IOTLink\src\trunk\IOTL\IOTLManager\ReferenceDllCopier\obj\Debug\ReferenceDllCopier.exe
+D:\chapcho\IOTLink\src\trunk\IOTL\IOTLManager\ReferenceDllCopier\obj\Debug\ReferenceDllCopier.pdb

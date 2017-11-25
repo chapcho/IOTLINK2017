@@ -1,0 +1,10 @@
+D:\chapcho\IOTLink\IOTL\IOTL.Common\IOTL.Common\bin\Debug\IOTL.Common.dll
+D:\chapcho\IOTLink\IOTL\IOTL.Common\IOTL.Common\bin\Debug\IOTL.Common.pdb
+D:\chapcho\IOTLink\IOTL\IOTL.Common\IOTL.Common\bin\Debug\log4net.dll
+D:\chapcho\IOTLink\IOTL\IOTL.Common\IOTL.Common\bin\Debug\MsgPack.dll
+D:\chapcho\IOTLink\IOTL\IOTL.Common\IOTL.Common\bin\Debug\MySql.Data.Entity.EF6.dll
+D:\chapcho\IOTLink\IOTL\IOTL.Common\IOTL.Common\bin\Debug\log4net.xml
+D:\chapcho\IOTLink\IOTL\bin\IOTL.Common.dll
+D:\chapcho\IOTLink\IOTL\bin\IOTL.Common.pdb
+D:\chapcho\IOTLink\IOTL\IOTL.Common\IOTL.Common\obj\Debug\IOTL.Common.dll
+D:\chapcho\IOTLink\IOTL\IOTL.Common\IOTL.Common\obj\Debug\IOTL.Common.pdb

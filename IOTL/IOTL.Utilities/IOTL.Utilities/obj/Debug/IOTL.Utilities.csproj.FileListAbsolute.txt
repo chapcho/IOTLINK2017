@@ -1,0 +1,8 @@
+D:\chapcho\IOTLink\src\trunk\IOTL\IOTLManager\IOTL.Utilities\bin\Debug\IOTL.Utilities.dll
+D:\chapcho\IOTLink\src\trunk\IOTL\IOTLManager\IOTL.Utilities\bin\Debug\IOTL.Utilities.pdb
+D:\chapcho\IOTLink\src\trunk\IOTL\IOTLManager\IOTL.Utilities\bin\Debug\IOTL.Utilities.tlb
+D:\chapcho\IOTLink\src\trunk\IOTL\IOTLManager\IOTL.Utilities\obj\Debug\IOTL.Utilities.dll
+D:\chapcho\IOTLink\src\trunk\IOTL\IOTLManager\IOTL.Utilities\obj\Debug\IOTL.Utilities.pdb
+D:\chapcho\IOTLink\src\trunk\IOTL\IOTL.Utilities\IOTL.Utilities\bin\Debug\IOTL.Utilities.dll
+D:\chapcho\IOTLink\src\trunk\IOTL\IOTL.Utilities\IOTL.Utilities\bin\Debug\IOTL.Utilities.pdb
+D:\chapcho\IOTLink\src\trunk\IOTL\IOTL.Utilities\IOTL.Utilities\bin\Debug\IOTL.Utilities.tlb

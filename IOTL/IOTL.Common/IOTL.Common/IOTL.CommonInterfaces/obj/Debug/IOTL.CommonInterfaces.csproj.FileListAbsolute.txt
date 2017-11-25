@@ -1,0 +1,7 @@
+D:\chapcho\IOTLink\src\trunk\IOTL\IOTL.Common\IOTL.Common\IOTL.CommonInterfaces\bin\Debug\IOTL.CommonInterfaces.dll
+D:\chapcho\IOTLink\src\trunk\IOTL\IOTL.Common\IOTL.Common\IOTL.CommonInterfaces\bin\Debug\IOTL.CommonInterfaces.pdb
+D:\chapcho\IOTLink\src\trunk\IOTL\IOTL.Common\IOTL.Common\IOTL.CommonInterfaces\obj\Debug\IOTL.CommonInterfaces.dll
+D:\chapcho\IOTLink\src\trunk\IOTL\IOTL.Common\IOTL.Common\IOTL.CommonInterfaces\obj\Debug\IOTL.CommonInterfaces.pdb
+D:\chapcho\IOTLink\src\trunk\IOTL\IOTL.Common\IOTL.Common\IOTL.CommonInterfaces\obj\Debug\IOTL.CommonInterfaces.csproj.CoreCompileInputs.cache
+D:\chapcho\IOTLink\src\trunk\IOTL\bin\IOTL.CommonInterfaces.dll
+D:\chapcho\IOTLink\src\trunk\IOTL\bin\IOTL.CommonInterfaces.pdb
