@@ -1,0 +1,37 @@
+c:\users\ksy(fafd)\documents\visual studio 2010\Projects\LTEMODEM_SERVER\LTEMODEM_SERVER\bin\Debug\LTEMODEM_SERVER.exe
+c:\users\ksy(fafd)\documents\visual studio 2010\Projects\LTEMODEM_SERVER\LTEMODEM_SERVER\bin\Debug\LTEMODEM_SERVER.pdb
+c:\users\ksy(fafd)\documents\visual studio 2010\Projects\LTEMODEM_SERVER\LTEMODEM_SERVER\obj\x86\Debug\LTEMODEM_SERVER.Form1.resources
+c:\users\ksy(fafd)\documents\visual studio 2010\Projects\LTEMODEM_SERVER\LTEMODEM_SERVER\obj\x86\Debug\LTEMODEM_SERVER.Properties.Resources.resources
+c:\users\ksy(fafd)\documents\visual studio 2010\Projects\LTEMODEM_SERVER\LTEMODEM_SERVER\obj\x86\Debug\LTEMODEM_SERVER.csproj.GenerateResource.Cache
+c:\users\ksy(fafd)\documents\visual studio 2010\Projects\LTEMODEM_SERVER\LTEMODEM_SERVER\obj\x86\Debug\LTEMODEM_SERVER.exe
+c:\users\ksy(fafd)\documents\visual studio 2010\Projects\LTEMODEM_SERVER\LTEMODEM_SERVER\obj\x86\Debug\LTEMODEM_SERVER.pdb
+C:\Users\KSY(FAFD)\documents\visual studio 2010\Projects\LTEMODEM_SERVER\LTEMODEM_SERVER\obj\x86\Debug\LTEMODEM_SERVER.csprojResolveAssemblyReference.cache
+C:\Users\KSY(FAFD)\Documents\Visual Studio 2010\Projects\LTEMODEM_SERVER\LTEMODEM_SERVER\bin\Debug\MySql.Data.dll
+E:\프로젝트백업\Visual Studio 2010\Projects\LTEMODEM_SERVER\LTEMODEM_SERVER\obj\x86\Debug\LTEMODEM_SERVER.exe
+E:\프로젝트백업\Visual Studio 2010\Projects\LTEMODEM_SERVER\LTEMODEM_SERVER\obj\x86\Debug\LTEMODEM_SERVER.pdb
+E:\프로젝트백업\Visual Studio 2010\Projects\LTEMODEM_SERVER\LTEMODEM_SERVER\bin\Debug\LTEMODEM_SERVER.exe
+E:\프로젝트백업\Visual Studio 2010\Projects\LTEMODEM_SERVER\LTEMODEM_SERVER\bin\Debug\LTEMODEM_SERVER.pdb
+E:\프로젝트백업\Visual Studio 2010\Projects\LTEMODEM_SERVER\LTEMODEM_SERVER\bin\Debug\MySql.Data.dll
+E:\프로젝트백업\Visual Studio 2010\Projects\LTEMODEM_SERVER\LTEMODEM_SERVER\obj\x86\Debug\LTEMODEM_SERVER.csprojResolveAssemblyReference.cache
+E:\프로젝트백업\Visual Studio 2010\Projects\LTEMODEM_SERVER\LTEMODEM_SERVER\obj\x86\Debug\LTEMODEM_SERVER.Form1.resources
+E:\프로젝트백업\Visual Studio 2010\Projects\LTEMODEM_SERVER\LTEMODEM_SERVER\obj\x86\Debug\LTEMODEM_SERVER.Properties.Resources.resources
+E:\프로젝트백업\Visual Studio 2010\Projects\LTEMODEM_SERVER\LTEMODEM_SERVER\obj\x86\Debug\LTEMODEM_SERVER.csproj.GenerateResource.Cache
+C:\Users\amin\Desktop\LTEMODEM_SERVER(C#)\LTEMODEM_SERVER\LTEMODEM_SERVER\bin\Debug\LTEMODEM_SERVER.exe
+C:\Users\amin\Desktop\LTEMODEM_SERVER(C#)\LTEMODEM_SERVER\LTEMODEM_SERVER\bin\Debug\LTEMODEM_SERVER.pdb
+C:\Users\amin\Desktop\LTEMODEM_SERVER(C#)\LTEMODEM_SERVER\LTEMODEM_SERVER\bin\Debug\MySql.Data.dll
+C:\Users\amin\Desktop\LTEMODEM_SERVER(C#)\LTEMODEM_SERVER\LTEMODEM_SERVER\obj\x86\Debug\LTEMODEM_SERVER.csprojResolveAssemblyReference.cache
+C:\Users\amin\Desktop\LTEMODEM_SERVER(C#)\LTEMODEM_SERVER\LTEMODEM_SERVER\obj\x86\Debug\LTEMODEM_SERVER.Form1.resources
+C:\Users\amin\Desktop\LTEMODEM_SERVER(C#)\LTEMODEM_SERVER\LTEMODEM_SERVER\obj\x86\Debug\LTEMODEM_SERVER.Properties.Resources.resources
+C:\Users\amin\Desktop\LTEMODEM_SERVER(C#)\LTEMODEM_SERVER\LTEMODEM_SERVER\obj\x86\Debug\LTEMODEM_SERVER.csproj.GenerateResource.Cache
+C:\Users\amin\Desktop\LTEMODEM_SERVER(C#)\LTEMODEM_SERVER\LTEMODEM_SERVER\obj\x86\Debug\LTEMODEM_SERVER.exe
+C:\Users\amin\Desktop\LTEMODEM_SERVER(C#)\LTEMODEM_SERVER\LTEMODEM_SERVER\obj\x86\Debug\LTEMODEM_SERVER.pdb
+D:\chapcho\IOTLink\iotlink_backup_20171126\LTEMODEM_SERVER(C#)\LTEMODEM_SERVER\LTEMODEM_SERVER\bin\Debug\LTEMODEM_SERVER.exe
+D:\chapcho\IOTLink\iotlink_backup_20171126\LTEMODEM_SERVER(C#)\LTEMODEM_SERVER\LTEMODEM_SERVER\bin\Debug\LTEMODEM_SERVER.pdb
+D:\chapcho\IOTLink\iotlink_backup_20171126\LTEMODEM_SERVER(C#)\LTEMODEM_SERVER\LTEMODEM_SERVER\bin\Debug\MySql.Data.dll
+D:\chapcho\IOTLink\iotlink_backup_20171126\LTEMODEM_SERVER(C#)\LTEMODEM_SERVER\LTEMODEM_SERVER\obj\x86\Debug\LTEMODEM_SERVER.csprojResolveAssemblyReference.cache
+D:\chapcho\IOTLink\iotlink_backup_20171126\LTEMODEM_SERVER(C#)\LTEMODEM_SERVER\LTEMODEM_SERVER\obj\x86\Debug\LTEMODEM_SERVER.Form1.resources
+D:\chapcho\IOTLink\iotlink_backup_20171126\LTEMODEM_SERVER(C#)\LTEMODEM_SERVER\LTEMODEM_SERVER\obj\x86\Debug\LTEMODEM_SERVER.Properties.Resources.resources
+D:\chapcho\IOTLink\iotlink_backup_20171126\LTEMODEM_SERVER(C#)\LTEMODEM_SERVER\LTEMODEM_SERVER\obj\x86\Debug\LTEMODEM_SERVER.csproj.GenerateResource.Cache
+D:\chapcho\IOTLink\iotlink_backup_20171126\LTEMODEM_SERVER(C#)\LTEMODEM_SERVER\LTEMODEM_SERVER\obj\x86\Debug\LTEMODEM_SERVER.csproj.CoreCompileInputs.cache
+D:\chapcho\IOTLink\iotlink_backup_20171126\LTEMODEM_SERVER(C#)\LTEMODEM_SERVER\LTEMODEM_SERVER\obj\x86\Debug\LTEMODEM_SERVER.exe
+D:\chapcho\IOTLink\iotlink_backup_20171126\LTEMODEM_SERVER(C#)\LTEMODEM_SERVER\LTEMODEM_SERVER\obj\x86\Debug\LTEMODEM_SERVER.pdb
