@@ -1,0 +1,14 @@
+D:\chapcho\IOTLink\GitRoot\IOTL\bin\IOTLManager.exe.config
+D:\chapcho\IOTLink\GitRoot\IOTL\bin\IOTLManager.exe
+D:\chapcho\IOTLink\GitRoot\IOTL\bin\IOTLManager.pdb
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.csprojResolveAssemblyReference.cache
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.FrmMain.resources
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.Properties.Resources.resources
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.UserControls.MySQLBackupForm.resources
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.UserControls.UCClock.resources
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.UserControls.UCSocketServer.resources
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.UserControls.UCSystemLogTable.resources
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.csproj.GenerateResource.Cache
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.csproj.CoreCompileInputs.cache
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.exe
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.pdb
