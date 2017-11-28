@@ -1,0 +1,9 @@
+diff a/IOTL/IOTLManager/IOTLManager/UserControls/UCSocketServer.cs b/IOTL/IOTLManager/IOTLManager/UserControls/UCSocketServer.cs	(rejected hunks)
+@@ -16,6 +16,7 @@
+ using IOTL.Common;
+ using IOTL.Common.Framework;
+ using IOTL.Common.Log;
++using System.Net.Sockets;
+ 
+ namespace IOTLManager.UserControls
+ {

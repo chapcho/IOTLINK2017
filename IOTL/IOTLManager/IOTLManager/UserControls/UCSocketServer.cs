@@ -41,6 +41,9 @@ namespace IOTLManager.UserControls
         {
             InitializeComponent();
 
+            //// open source 소스를 참고하여 Async Socket 을 구현했다가, 원복 처리함.
+            //// blog.naver.com/hgp33/221146608982
+
             socketServer = new claServer();
             serverPort = 3000;
 
@@ -94,10 +97,6 @@ namespace IOTLManager.UserControls
         private void SetMonitorNumBinding()
         {
             // 아래 코드가 동작하지 않는데, 원인을 좀더 찾아 봐야 겠다.
-            //txtConnected.DataBindings.Add("Text", this, "ConnectedClientCount");
-            //txtReceivePacket.DataBindings.Add("Text", this, "ReceivedPacketCount");
-            //txtSendPacket.DataBindings.Add("Text", this, "SendPacketCount");
-
             ConnectedClientCount++;
             ReceivedPacketCount++;
             SendPacketCount++;
@@ -105,8 +104,10 @@ namespace IOTLManager.UserControls
             ConnectedClientCount--;
             ReceivedPacketCount--;
             SendPacketCount--;
-
         }
+
+
+        
 
         private string GetLocalIP()
         {
@@ -127,14 +128,13 @@ namespace IOTLManager.UserControls
 
         public void InitializeSocketServer()
         {
-            if(socketServer.State == SuperSocket.SocketBase.ServerState.Initializing)
+            if (socketServer.State == SuperSocket.SocketBase.ServerState.Initializing)
             {
-                MessageBox.Show("소켓서버가 이미 초기화 되었습니다.","Error");
+                MessageBox.Show("소켓서버가 이미 초기화 되었습니다.", "Error");
                 UpdateSystemMessage("SocketServer", "소켓서버가 이미 초기화 되었습니다.");
                 return;
             }
 
-            // IPAddress ipaddr = Dns.GetHostEntry(Dns.GetHostName()).AddressList[0];
             string ipAddress = GetLocalIP();
 
             ServerConfig serverConfig = new ServerConfig
@@ -162,7 +162,7 @@ namespace IOTLManager.UserControls
 
             if (socketServer.State == SuperSocket.SocketBase.ServerState.NotStarted)
             {
-                if(btnSeverStart.Enabled)
+                if (btnSeverStart.Enabled)
                 {
                     try
                     {
@@ -239,7 +239,7 @@ namespace IOTLManager.UserControls
 
         private void btnServerStop_Click(object sender, EventArgs e)
         {
-            if(socketServer.State == SuperSocket.SocketBase.ServerState.Running)
+            if (socketServer.State == SuperSocket.SocketBase.ServerState.Running)
             {
                 socketServer.Stop();
                 UpdateSystemMessage("SocketServer", "소켓서버 종료");
@@ -249,6 +249,18 @@ namespace IOTLManager.UserControls
                 UpdateSystemMessage("SocketServer", "서버 기동 상태 확인이 필요합니다.");
                 MessageBox.Show("서버 기동 상태 확인이 필요합니다.", "Warnning");
             }
+
+            //if(m_ServerSocket.IsBound)
+            //{
+            //    m_ServerSocket.Close();
+            //    m_ServerSocket = null;
+            //    UpdateSystemMessage("SocketServer", "소켓서버 종료");
+            //}
+            //else
+            //{
+            //    UpdateSystemMessage("SocketServer", "서버 기동 상태 확인이 필요합니다.");
+            //    MessageBox.Show("서버 기동 상태 확인이 필요합니다.", "Warnning");
+            //}
 
             btnSeverStart.Enabled = true;
             btnServerStop.Enabled = false;

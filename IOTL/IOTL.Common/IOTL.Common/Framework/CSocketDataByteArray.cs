@@ -41,6 +41,7 @@ namespace IOTL.Common.Framework
         {
             System.Array.Clear(_receiveData, 0, MAX_SOCKET_DATA_LENGTH);
             string hexData;
+
             StringBuilder sb = new StringBuilder();
 
             for(int i = 0; i < sData.Length;i++)

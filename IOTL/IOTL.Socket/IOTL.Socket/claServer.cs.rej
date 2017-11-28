@@ -1,0 +1,9 @@
+diff a/IOTL/IOTL.Socket/IOTL.Socket/claServer.cs b/IOTL/IOTL.Socket/IOTL.Socket/claServer.cs	(rejected hunks)
+@@ -68,7 +68,6 @@
+         protected override void OnSessionClosed(claClientSession session, CloseReason reason)
+         {
+             //로그아웃 처리를 하여 유저가 끊김을 알린다.
+-            OnLogoutUser(session, null);
+             OnLogoutUser?.Invoke(session, null);
+             base.OnSessionClosed(session, reason);
+         }
