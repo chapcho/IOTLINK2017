@@ -7,7 +7,7 @@ using IOTL.Common.Remote;
 
 namespace IOTL.WCF.EventHandler
 {
-    public class MyServiceCallBack : ServiceCallBack, IMyServiceCallBack
+    public class MyServiceCallBack : WcfServiceCallBack, IMyServiceCallBack
     {
 
         #region Member Variables

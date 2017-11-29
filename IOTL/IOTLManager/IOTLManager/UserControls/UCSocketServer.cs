@@ -41,9 +41,6 @@ namespace IOTLManager.UserControls
         {
             InitializeComponent();
 
-            //// open source 소스를 참고하여 Async Socket 을 구현했다가, 원복 처리함.
-            //// blog.naver.com/hgp33/221146608982
-
             socketServer = new claServer();
             serverPort = 3000;
 
@@ -216,14 +213,15 @@ namespace IOTLManager.UserControls
             UEventFileLog?.Invoke(emFileLogType, emFileLogDepth, sLogMessage);
         }
 
-        private void SaveLogToMonitor(String clientID, IReceiveData objReceiveData)
+        private void SaveLogToMonitor(String clientID, LocalMessageEventArgs objReceiveData)
         {
             if (UEventMachineStateTimeLog != null)
             {
-                CTimeLog log = new CTimeLog(clientID, "EmptyDescription", EMDataType.StringData);
+                CTimeLog log = new CTimeLog(clientID, "EmptyDescription");
                 // 로그를 수신한 시간을 기록한다. 설비에서 보낸 시간은 데이터에 기록되어야 한다.
                 log.LogTime = DateTime.Now;
-                log.SetReceiveData = objReceiveData;
+
+                log.ReceiveData = objReceiveData.receiveData;
 
                 // 설비의 상태를 받아서 전달할 수 있다면 상태를 바꾸어서 전달해야 합니다.
                 UEventMachineStateTimeLog(EMMachineStateLogType.NormalStateLog, log);
@@ -250,18 +248,6 @@ namespace IOTLManager.UserControls
                 MessageBox.Show("서버 기동 상태 확인이 필요합니다.", "Warnning");
             }
 
-            //if(m_ServerSocket.IsBound)
-            //{
-            //    m_ServerSocket.Close();
-            //    m_ServerSocket = null;
-            //    UpdateSystemMessage("SocketServer", "소켓서버 종료");
-            //}
-            //else
-            //{
-            //    UpdateSystemMessage("SocketServer", "서버 기동 상태 확인이 필요합니다.");
-            //    MessageBox.Show("서버 기동 상태 확인이 필요합니다.", "Warnning");
-            //}
-
             btnSeverStart.Enabled = true;
             btnServerStop.Enabled = false;
             btnSeverStart.Text = "서버시작";
@@ -287,7 +273,7 @@ namespace IOTLManager.UserControls
             SaveLogToFile(EMFileLogType.CommunicationLog, EMFileLogDepth.Info, e.Message);
 
             // Monitor에게 보내는 메시지(DB저장등 App에서 해야 할 처리)
-            SaveLogToMonitor(session.UserID, objReceiveData);
+            SaveLogToMonitor(session.UserID, e);
         }
 
         private void SocketServer_OnLogoutUser(claClientSession session, LocalMessageEventArgs e)

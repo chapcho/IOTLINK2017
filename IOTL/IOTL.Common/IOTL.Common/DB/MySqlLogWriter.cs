@@ -526,9 +526,9 @@ namespace IOTL.Common.DB
             {
                 if (dbConnected)
                 {
-                    CTimeLog cLog = new CTimeLog(timeLog.Key, timeLog.Description, EMDataType.BytesData);
+                    CTimeLog cLog = new CTimeLog(timeLog.Key, timeLog.Description);
 
-                    cLog.SetReceiveData = timeLog.GetReceiveData;
+                    cLog.ReceiveData = timeLog.ReceiveData;
 
                     // 수신한 클래스의 데이터 내용을 기록하기 좋은 방식으로 변경해야 합니다. 2017.11.25
 
@@ -554,8 +554,16 @@ namespace IOTL.Common.DB
                     dbComm.Parameters["curState"].Value = "Normal";
                     dbComm.Parameters["curState"].Direction = ParameterDirection.Input;
 
+                    StringBuilder sb = new StringBuilder();
+                    foreach(byte data in (byte[])cLog.ReceiveData)
+                    {
+                        sb.Append(data);
+                    }
+
                     dbComm.Parameters.Add("machineData", MySql.Data.MySqlClient.MySqlDbType.VarChar, 200);
-                    dbComm.Parameters["machineData"].Value = cLog.GetReceiveData.ReceiveData.ToString();
+                    // dbComm.Parameters["machineData"].Value = cLog.ReceiveData.ReceiveData.ToString();
+                    // dbComm.Parameters["machineData"].Value = sb.ToString();
+                    dbComm.Parameters["machineData"].Value = cLog.GetReceiveDataToHex();
                     dbComm.Parameters["machineData"].Direction = ParameterDirection.Input;
 
                     dbComm.Parameters.Add("updatedDt", MySql.Data.MySqlClient.MySqlDbType.Decimal, 17);
@@ -625,7 +633,10 @@ namespace IOTL.Common.DB
                         cLog = cLogS[i];
 
                         // 수신한 데이터
-                        IReceiveData receiveData = cLog.GetReceiveData;
+                        
+                        StringBuilder sb = new StringBuilder();
+                        foreach (byte data in cLog.ReceiveData)
+                            sb.Append(data);
 
                         // MachineName
                         // LastEventTime
@@ -634,12 +645,12 @@ namespace IOTL.Common.DB
                         // UpdateDt
                         // Description
 
-                        sQuery = @"CALL IOTLINK.spUpdateMachineState ";
+                        sQuery = @"call iotlink.spUpdateMachineState ";
                         sDataSet = @"('"
                                         + cLog.Key + "','"
                                         + ToTimeString(cLog.LogTime) + "','"
                                         + "NORMAL" + "','"
-                                        + receiveData.ToString() + "',"
+                                        + sb.ToString() + "',"
                                         + ToTimeString(DateTime.Now) + ",'"
                                         + cLog.Description  + "')";
 

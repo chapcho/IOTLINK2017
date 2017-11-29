@@ -78,7 +78,9 @@ namespace IOTL.Socket
         /// <param name="e"></param>
         void session_OnMessaged(claClientSession session, LocalMessageEventArgs e)
         {
-            //OnMessaged(e);	
+            if (OnMessaged != null)
+                OnMessaged(session, e);
+            throw new Exception("claServer.cs session_OnMessaged 구현되지 않은 로직에 접근!!!");
         }
 
         /// <summary>
@@ -95,7 +97,7 @@ namespace IOTL.Socket
             if(OnMessaged != null)
                 OnMessaged(session, e);
 
-            //사용자 클래스에서 넘어온 데이터 처리
+            // 사용자 클래스에서 넘어온 데이터 처리
             MsgAnalysis(session, requestInfo.Key);
         }
 
@@ -162,9 +164,8 @@ namespace IOTL.Socket
             //메시지 완성
             sbMsg.Append(sMsg);
 
-            // 전체 유저에게 메시지 전송
-            // SendMsg_All(sbMsg.ToString());
-
+            //전체 유저에게 메시지 전송
+             SendMsg_All(sbMsg.ToString());
         }
 
 
@@ -180,18 +181,18 @@ namespace IOTL.Socket
         {
             bool sendResult = false;
 
-            //StringBuilder sbMsg = new StringBuilder();
-            //// 명령어 부착
-            //sbMsg.Append(claCommand.Command.Msg.GetHashCode().ToString());
-            //// 구분자 부착
-            //foreach (byte data in sendData)
-            //    sbMsg.Append(data);
+            StringBuilder sbMsg = new StringBuilder();
+            // 명령어 부착
+            sbMsg.Append(claCommand.Command.Msg.GetHashCode().ToString());
+            // 구분자 부착
+            foreach (byte data in sendData)
+                sbMsg.Append(data);
 
-            foreach(claClientSession insUserTemp in this.GetAllSessions())
+            foreach (claClientSession insUserTemp in this.GetAllSessions())
             {
                 if(insUserTemp.UserID.CompareTo(socketClientID) == 0)
                 {
-                    insUserTemp.Send(sendData,0,sendData.Length);
+                    SendMsgToClient(socketClientID, sbMsg.ToString());
                     sendResult = true;
                     break;
                 }

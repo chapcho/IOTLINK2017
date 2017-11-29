@@ -1,4 +1,5 @@
-﻿using IOTL.WCF.EventHandler;
+﻿using IOTL.Common.Remote;
+using IOTL.WCF.EventHandler;
 using System;
 using System.Linq;
 using System.ServiceModel;
@@ -6,7 +7,7 @@ using System.ServiceModel;
 namespace IOTL.WCF
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
-    public class CMyService : Service, IMyService
+    public class CMyService : WcfService, IMyService
     {
 
         #region Member Variables
@@ -288,6 +289,16 @@ namespace IOTL.WCF
                 Console.WriteLine("CMyService SendToClient Error: {0}", ex.Message);
                 Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name); ex.Data.Clear();
             }
+        }
+
+        public void Connect(string sClient)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Disconnect(string sClient)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

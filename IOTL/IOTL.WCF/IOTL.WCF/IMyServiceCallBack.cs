@@ -1,8 +1,9 @@
-﻿using System.ServiceModel;
+﻿using IOTL.Common.Remote;
+using System.ServiceModel;
 
 namespace IOTL.WCF
 {
-    public interface IMyServiceCallBack : Common.Remote.IWcfServiceCallBack
+    public interface IMyServiceCallBack : IWcfServiceCallBack
     {
 
         #region Public Properties
