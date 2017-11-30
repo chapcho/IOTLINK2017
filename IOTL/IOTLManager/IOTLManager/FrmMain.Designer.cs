@@ -73,18 +73,25 @@
             this.tabMonitoring = new System.Windows.Forms.TabPage();
             this.tabConfig = new System.Windows.Forms.TabPage();
             this.tabLogConfig = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tabDatabase = new System.Windows.Forms.TabPage();
             this.tabSocketServer = new System.Windows.Forms.TabPage();
             this.ucClock1 = new IOTLManager.UserControls.UCClock();
             this.ucSocketServer1 = new IOTLManager.UserControls.UCSocketServer();
             this.ucSystemLogTable = new IOTLManager.UserControls.UCSystemLogTable();
-            this.button2 = new System.Windows.Forms.Button();
+            this.tabIotlCompSvr = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.ucClock2 = new IOTLManager.UserControls.UCClock();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.mainTabControl.SuspendLayout();
             this.tabLogConfig.SuspendLayout();
             this.tabSocketServer.SuspendLayout();
+            this.tabIotlCompSvr.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -93,7 +100,7 @@
             this.toolStripProgressBar1,
             this.toolStripSplitButton1,
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 573);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 606);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1032, 22);
             this.statusStrip1.TabIndex = 0;
@@ -410,11 +417,12 @@
             this.mainTabControl.Controls.Add(this.tabLogConfig);
             this.mainTabControl.Controls.Add(this.tabDatabase);
             this.mainTabControl.Controls.Add(this.tabSocketServer);
+            this.mainTabControl.Controls.Add(this.tabIotlCompSvr);
             this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainTabControl.Location = new System.Drawing.Point(0, 24);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(1032, 549);
+            this.mainTabControl.Size = new System.Drawing.Size(1032, 582);
             this.mainTabControl.TabIndex = 2;
             // 
             // tabMonitoring
@@ -422,7 +430,7 @@
             this.tabMonitoring.Location = new System.Drawing.Point(4, 22);
             this.tabMonitoring.Name = "tabMonitoring";
             this.tabMonitoring.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMonitoring.Size = new System.Drawing.Size(1024, 523);
+            this.tabMonitoring.Size = new System.Drawing.Size(1024, 556);
             this.tabMonitoring.TabIndex = 0;
             this.tabMonitoring.Text = "Monitoring";
             this.tabMonitoring.UseVisualStyleBackColor = true;
@@ -432,7 +440,7 @@
             this.tabConfig.Location = new System.Drawing.Point(4, 22);
             this.tabConfig.Name = "tabConfig";
             this.tabConfig.Padding = new System.Windows.Forms.Padding(3);
-            this.tabConfig.Size = new System.Drawing.Size(1024, 523);
+            this.tabConfig.Size = new System.Drawing.Size(1024, 556);
             this.tabConfig.TabIndex = 1;
             this.tabConfig.Text = "Configure";
             this.tabConfig.UseVisualStyleBackColor = true;
@@ -443,10 +451,20 @@
             this.tabLogConfig.Controls.Add(this.button1);
             this.tabLogConfig.Location = new System.Drawing.Point(4, 22);
             this.tabLogConfig.Name = "tabLogConfig";
-            this.tabLogConfig.Size = new System.Drawing.Size(1024, 523);
+            this.tabLogConfig.Size = new System.Drawing.Size(1024, 556);
             this.tabLogConfig.TabIndex = 2;
             this.tabLogConfig.Text = "System Log";
             this.tabLogConfig.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(413, 129);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(115, 68);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -462,7 +480,7 @@
             // 
             this.tabDatabase.Location = new System.Drawing.Point(4, 22);
             this.tabDatabase.Name = "tabDatabase";
-            this.tabDatabase.Size = new System.Drawing.Size(1024, 523);
+            this.tabDatabase.Size = new System.Drawing.Size(1024, 556);
             this.tabDatabase.TabIndex = 3;
             this.tabDatabase.Text = "DataBase";
             this.tabDatabase.UseVisualStyleBackColor = true;
@@ -474,7 +492,7 @@
             this.tabSocketServer.Location = new System.Drawing.Point(4, 22);
             this.tabSocketServer.Name = "tabSocketServer";
             this.tabSocketServer.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSocketServer.Size = new System.Drawing.Size(1024, 523);
+            this.tabSocketServer.Size = new System.Drawing.Size(1024, 556);
             this.tabSocketServer.TabIndex = 4;
             this.tabSocketServer.Text = "SocketServer";
             this.tabSocketServer.UseVisualStyleBackColor = true;
@@ -489,36 +507,80 @@
             // ucSocketServer1
             // 
             this.ucSocketServer1.ConnectedClientCount = 0;
-            this.ucSocketServer1.Location = new System.Drawing.Point(451, 17);
+            this.ucSocketServer1.Location = new System.Drawing.Point(356, 56);
             this.ucSocketServer1.Name = "ucSocketServer1";
             this.ucSocketServer1.ReceivedPacketCount = 0;
             this.ucSocketServer1.SendPacketCount = 0;
-            this.ucSocketServer1.Size = new System.Drawing.Size(353, 214);
+            this.ucSocketServer1.Size = new System.Drawing.Size(514, 214);
             this.ucSocketServer1.TabIndex = 5;
             // 
             // ucSystemLogTable
             // 
             this.ucSystemLogTable.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ucSystemLogTable.Location = new System.Drawing.Point(0, 374);
+            this.ucSystemLogTable.Location = new System.Drawing.Point(0, 464);
             this.ucSystemLogTable.Name = "ucSystemLogTable";
-            this.ucSystemLogTable.Size = new System.Drawing.Size(1032, 199);
+            this.ucSystemLogTable.Size = new System.Drawing.Size(1032, 142);
             this.ucSystemLogTable.TabIndex = 4;
             // 
-            // button2
+            // tabIotlCompSvr
             // 
-            this.button2.Location = new System.Drawing.Point(413, 129);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(115, 68);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.tabIotlCompSvr.Controls.Add(this.groupBox1);
+            this.tabIotlCompSvr.Location = new System.Drawing.Point(4, 22);
+            this.tabIotlCompSvr.Name = "tabIotlCompSvr";
+            this.tabIotlCompSvr.Padding = new System.Windows.Forms.Padding(3);
+            this.tabIotlCompSvr.Size = new System.Drawing.Size(1024, 556);
+            this.tabIotlCompSvr.TabIndex = 5;
+            this.tabIotlCompSvr.Text = "Compressor Data Manager";
+            this.tabIotlCompSvr.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.tableLayoutPanel1);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1018, 409);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Compressor Data Manager";
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 5;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.ucClock2, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 17);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 5;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1012, 389);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // ucClock2
+            // 
+            this.ucClock2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.ucClock2, 2);
+            this.ucClock2.Location = new System.Drawing.Point(3, 3);
+            this.ucClock2.Name = "ucClock2";
+            this.ucClock2.Size = new System.Drawing.Size(398, 71);
+            this.ucClock2.TabIndex = 0;
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1032, 595);
+            this.ClientSize = new System.Drawing.Size(1032, 628);
             this.Controls.Add(this.ucSystemLogTable);
             this.Controls.Add(this.mainTabControl);
             this.Controls.Add(this.statusStrip1);
@@ -534,6 +596,9 @@
             this.mainTabControl.ResumeLayout(false);
             this.tabLogConfig.ResumeLayout(false);
             this.tabSocketServer.ResumeLayout(false);
+            this.tabIotlCompSvr.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -592,5 +657,9 @@
         private System.Windows.Forms.ToolStripMenuItem menuBackupDatabase;
         private System.Windows.Forms.ToolStripMenuItem menuRestoreDatabase;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TabPage tabIotlCompSvr;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private UserControls.UCClock ucClock2;
     }
 }

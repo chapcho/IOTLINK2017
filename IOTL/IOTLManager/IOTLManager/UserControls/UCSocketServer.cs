@@ -27,7 +27,6 @@ namespace IOTLManager.UserControls
     {
         public const int MAX_REQUEST_LENGTH = 4096;
         private claServer socketServer;
-        private int serverPort;
 
         private int connectedClientCount = 0;
         private int receivedPacketCount = 0;
@@ -42,7 +41,6 @@ namespace IOTLManager.UserControls
             InitializeComponent();
 
             socketServer = new claServer();
-            serverPort = 3000;
 
             btnServerStop.Enabled = false;
 
@@ -137,9 +135,13 @@ namespace IOTLManager.UserControls
             ServerConfig serverConfig = new ServerConfig
             {
                 Ip = ipAddress,
-                Port = serverPort,
+                Port = Int32.Parse(txtServerPort.Text),
                 MaxRequestLength = MAX_REQUEST_LENGTH,
             };
+
+            txtServerPort.Enabled = false;
+
+
 
             // 소켓 서버에 대한 초기화는 1번만...
             try
@@ -333,6 +335,15 @@ namespace IOTLManager.UserControls
         private void UCSocketServer_Load(object sender, EventArgs e)
         {
             SetMonitorNumBinding();
+            txtServerIPAddress.Text = GetLocalIP();
+            InitialClientListLayout();
+        }
+
+        private void InitialClientListLayout()
+        {
+            lvClientList.Columns.Add("ClientID", 100,HorizontalAlignment.Center);
+            lvClientList.Columns.Add("Type", 100,HorizontalAlignment.Center);
+            lvClientList.Columns.Add("Time", 100,HorizontalAlignment.Right);
         }
 
         protected delegate void UpdateTextCallBack(string sSender, string sMessage);
