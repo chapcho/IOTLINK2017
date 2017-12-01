@@ -293,13 +293,13 @@ namespace IOTLManager
         private void btnClientStatusRefresh_Click(object sender, EventArgs e)
         {
             DataTable dt = DBReader.GetQueryResult("Select * From machinestate");
-            dgvClientStatus.DataSource = dt;
+            dataGridReport.DataSource = dt;
         }
 
         private void btnClientHistoryRefresh_Click(object sender, EventArgs e)
         {
             DataTable dt = DBReader.GetQueryResult("Select * From machinestatelog order by LastEventTime desc Limit 100 offset 100");
-            dgvClientStatusHistory.DataSource = dt;
+            dataGridReport.DataSource = dt;
         }
     }
 }
