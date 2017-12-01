@@ -131,6 +131,45 @@ namespace IOTL.Common.DB
 
         #endregion
 
+        public DataTable GetQueryResult(string queryString)
+        {
+            DataSet dbSet = null;
+            DataTable dbTable = null;
+            MySqlDataAdapter dbAdapter = null;
+            string sQuery = queryString;
+            try
+            {
+                if (m_bConnected)
+                {
+                    dbAdapter = new MySqlDataAdapter(sQuery, m_dbCon);
+                    dbTable = new DataTable();
+                    dbTable.Locale = System.Globalization.CultureInfo.InvariantCulture;
+                    dbAdapter.Fill(dbTable);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name); ex.Data.Clear();
+            }
+            finally
+            {
+                if (dbAdapter != null)
+                {
+                    dbAdapter.Dispose();
+                    dbAdapter = null;
+                }
+
+                if (dbSet != null)
+                {
+                    dbSet.Clear();
+                    dbSet.Dispose();
+                    dbSet = null;
+                }
+            }
+
+            return dbTable;
+        }
+
         /// <summary>
         /// 적당한 로직의 위치가 아님. 우선 커멘트 처리해둠.
         /// </summary>
@@ -661,8 +700,8 @@ namespace IOTL.Common.DB
             return dtTime;
         }
         */
-        #endregion     
-   
+        #endregion
+
         #region Monitor Log Table
 
         //private CMonitorLogS DataSetToMonitorHistoryLogS(DataSet dbSet)

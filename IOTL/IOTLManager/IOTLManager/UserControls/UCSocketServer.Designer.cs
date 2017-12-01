@@ -153,7 +153,7 @@
             this.tableLayoutPanel1.Controls.Add(this.txtServerPort, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnSeverStart, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.btnServerStop, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox2, 3, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 17);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -165,6 +165,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(536, 252);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
@@ -214,22 +215,31 @@
             // 
             // groupBox2
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.groupBox2, 3);
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.groupBox2, 2);
             this.groupBox2.Controls.Add(this.lvClientList);
-            this.groupBox2.Location = new System.Drawing.Point(3, 133);
+            this.groupBox2.Location = new System.Drawing.Point(269, 93);
             this.groupBox2.Name = "groupBox2";
-            this.tableLayoutPanel1.SetRowSpan(this.groupBox2, 3);
-            this.groupBox2.Size = new System.Drawing.Size(260, 116);
+            this.tableLayoutPanel1.SetRowSpan(this.groupBox2, 4);
+            this.groupBox2.Size = new System.Drawing.Size(264, 156);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Client List";
             // 
             // lvClientList
             // 
+            this.lvClientList.BackColor = System.Drawing.SystemColors.Info;
+            this.lvClientList.CheckBoxes = true;
             this.lvClientList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvClientList.FullRowSelect = true;
+            this.lvClientList.GridLines = true;
+            this.lvClientList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvClientList.Location = new System.Drawing.Point(3, 17);
+            this.lvClientList.MultiSelect = false;
             this.lvClientList.Name = "lvClientList";
-            this.lvClientList.Size = new System.Drawing.Size(254, 96);
+            this.lvClientList.Size = new System.Drawing.Size(258, 136);
             this.lvClientList.TabIndex = 0;
             this.lvClientList.UseCompatibleStateImageBehavior = false;
             // 

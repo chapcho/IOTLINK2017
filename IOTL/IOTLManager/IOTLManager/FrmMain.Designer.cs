@@ -79,19 +79,26 @@
             this.tabSocketServer = new System.Windows.Forms.TabPage();
             this.ucClock1 = new IOTLManager.UserControls.UCClock();
             this.ucSocketServer1 = new IOTLManager.UserControls.UCSocketServer();
-            this.ucSystemLogTable = new IOTLManager.UserControls.UCSystemLogTable();
             this.tabIotlCompSvr = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.ucClock2 = new IOTLManager.UserControls.UCClock();
+            this.ucSystemLogTable = new IOTLManager.UserControls.UCSystemLogTable();
+            this.dgvClientStatus = new System.Windows.Forms.DataGridView();
+            this.btnClientStatusRefresh = new System.Windows.Forms.Button();
+            this.btnClientHistoryRefresh = new System.Windows.Forms.Button();
+            this.dgvClientStatusHistory = new System.Windows.Forms.DataGridView();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.mainTabControl.SuspendLayout();
             this.tabLogConfig.SuspendLayout();
+            this.tabDatabase.SuspendLayout();
             this.tabSocketServer.SuspendLayout();
             this.tabIotlCompSvr.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClientStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClientStatusHistory)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -478,6 +485,10 @@
             // 
             // tabDatabase
             // 
+            this.tabDatabase.Controls.Add(this.dgvClientStatusHistory);
+            this.tabDatabase.Controls.Add(this.btnClientHistoryRefresh);
+            this.tabDatabase.Controls.Add(this.btnClientStatusRefresh);
+            this.tabDatabase.Controls.Add(this.dgvClientStatus);
             this.tabDatabase.Location = new System.Drawing.Point(4, 22);
             this.tabDatabase.Name = "tabDatabase";
             this.tabDatabase.Size = new System.Drawing.Size(1024, 556);
@@ -507,20 +518,12 @@
             // ucSocketServer1
             // 
             this.ucSocketServer1.ConnectedClientCount = 0;
-            this.ucSocketServer1.Location = new System.Drawing.Point(356, 56);
+            this.ucSocketServer1.Location = new System.Drawing.Point(286, 16);
             this.ucSocketServer1.Name = "ucSocketServer1";
             this.ucSocketServer1.ReceivedPacketCount = 0;
             this.ucSocketServer1.SendPacketCount = 0;
             this.ucSocketServer1.Size = new System.Drawing.Size(514, 214);
             this.ucSocketServer1.TabIndex = 5;
-            // 
-            // ucSystemLogTable
-            // 
-            this.ucSystemLogTable.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ucSystemLogTable.Location = new System.Drawing.Point(0, 464);
-            this.ucSystemLogTable.Name = "ucSystemLogTable";
-            this.ucSystemLogTable.Size = new System.Drawing.Size(1032, 142);
-            this.ucSystemLogTable.TabIndex = 4;
             // 
             // tabIotlCompSvr
             // 
@@ -576,6 +579,52 @@
             this.ucClock2.Size = new System.Drawing.Size(398, 71);
             this.ucClock2.TabIndex = 0;
             // 
+            // ucSystemLogTable
+            // 
+            this.ucSystemLogTable.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ucSystemLogTable.Location = new System.Drawing.Point(0, 464);
+            this.ucSystemLogTable.Name = "ucSystemLogTable";
+            this.ucSystemLogTable.Size = new System.Drawing.Size(1032, 142);
+            this.ucSystemLogTable.TabIndex = 4;
+            // 
+            // dgvClientStatus
+            // 
+            this.dgvClientStatus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvClientStatus.Location = new System.Drawing.Point(8, 19);
+            this.dgvClientStatus.Name = "dgvClientStatus";
+            this.dgvClientStatus.RowTemplate.Height = 23;
+            this.dgvClientStatus.Size = new System.Drawing.Size(630, 121);
+            this.dgvClientStatus.TabIndex = 0;
+            // 
+            // btnClientStatusRefresh
+            // 
+            this.btnClientStatusRefresh.Location = new System.Drawing.Point(645, 21);
+            this.btnClientStatusRefresh.Name = "btnClientStatusRefresh";
+            this.btnClientStatusRefresh.Size = new System.Drawing.Size(146, 40);
+            this.btnClientStatusRefresh.TabIndex = 1;
+            this.btnClientStatusRefresh.Text = "상태 갱신";
+            this.btnClientStatusRefresh.UseVisualStyleBackColor = true;
+            this.btnClientStatusRefresh.Click += new System.EventHandler(this.btnClientStatusRefresh_Click);
+            // 
+            // btnClientHistoryRefresh
+            // 
+            this.btnClientHistoryRefresh.Location = new System.Drawing.Point(649, 165);
+            this.btnClientHistoryRefresh.Name = "btnClientHistoryRefresh";
+            this.btnClientHistoryRefresh.Size = new System.Drawing.Size(142, 48);
+            this.btnClientHistoryRefresh.TabIndex = 3;
+            this.btnClientHistoryRefresh.Text = "이력확인";
+            this.btnClientHistoryRefresh.UseVisualStyleBackColor = true;
+            this.btnClientHistoryRefresh.Click += new System.EventHandler(this.btnClientHistoryRefresh_Click);
+            // 
+            // dgvClientStatusHistory
+            // 
+            this.dgvClientStatusHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvClientStatusHistory.Location = new System.Drawing.Point(13, 165);
+            this.dgvClientStatusHistory.Name = "dgvClientStatusHistory";
+            this.dgvClientStatusHistory.RowTemplate.Height = 23;
+            this.dgvClientStatusHistory.Size = new System.Drawing.Size(624, 238);
+            this.dgvClientStatusHistory.TabIndex = 4;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -595,10 +644,13 @@
             this.menuStrip1.PerformLayout();
             this.mainTabControl.ResumeLayout(false);
             this.tabLogConfig.ResumeLayout(false);
+            this.tabDatabase.ResumeLayout(false);
             this.tabSocketServer.ResumeLayout(false);
             this.tabIotlCompSvr.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClientStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClientStatusHistory)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -661,5 +713,9 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private UserControls.UCClock ucClock2;
+        private System.Windows.Forms.Button btnClientStatusRefresh;
+        private System.Windows.Forms.DataGridView dgvClientStatus;
+        private System.Windows.Forms.Button btnClientHistoryRefresh;
+        private System.Windows.Forms.DataGridView dgvClientStatusHistory;
     }
 }

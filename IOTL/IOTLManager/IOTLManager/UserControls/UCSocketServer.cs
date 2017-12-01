@@ -101,9 +101,6 @@ namespace IOTLManager.UserControls
             SendPacketCount--;
         }
 
-
-        
-
         private string GetLocalIP()
         {
             IPHostEntry getIpInfo = Dns.GetHostEntry(Dns.GetHostName());
@@ -140,8 +137,6 @@ namespace IOTLManager.UserControls
             };
 
             txtServerPort.Enabled = false;
-
-
 
             // 소켓 서버에 대한 초기화는 1번만...
             try
@@ -293,6 +288,7 @@ namespace IOTLManager.UserControls
         private void socketServer_SessionClosed(claClientSession session, SuperSocket.SocketBase.CloseReason value)
         {
             ConnectedClientCount--;
+            UpdateClientList(false,session.SessionID,session.SecureProtocol.ToString());
 
             UpdateSystemMessage("SocketServer", "Session Closed :" + session.UserID);
 
@@ -307,7 +303,8 @@ namespace IOTLManager.UserControls
         private void socketServer_NewSessionConnected(claClientSession session)
         {
             ConnectedClientCount++;
-            
+            UpdateClientList(true, session.SessionID, session.SecureProtocol.ToString());
+
             // 수펴소켓에서 제공하는 세션ID를 이용해서 특정단말에 데이터를 전송할 수 있다.
             UpdateSystemMessage("SocketServer", "Session Connected!! : " + session.SessionID);
         }
@@ -341,9 +338,16 @@ namespace IOTLManager.UserControls
 
         private void InitialClientListLayout()
         {
-            lvClientList.Columns.Add("ClientID", 100,HorizontalAlignment.Center);
-            lvClientList.Columns.Add("Type", 100,HorizontalAlignment.Center);
-            lvClientList.Columns.Add("Time", 100,HorizontalAlignment.Right);
+            lvClientList.BeginUpdate();
+            lvClientList.Columns.Add("SessionID", 50,HorizontalAlignment.Left);
+            lvClientList.Columns.Add("Type", 50,HorizontalAlignment.Center);
+            lvClientList.Columns.Add("Time", 200,HorizontalAlignment.Left);
+
+            lvClientList.View = View.Details;
+            lvClientList.GridLines = true;
+            lvClientList.FullRowSelect = true;
+            lvClientList.CheckBoxes = false;
+            lvClientList.EndUpdate();
         }
 
         protected delegate void UpdateTextCallBack(string sSender, string sMessage);
@@ -403,6 +407,40 @@ namespace IOTLManager.UserControls
             catch (System.Exception ex)
             {
                 Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name); ex.Data.Clear();
+            }
+        }
+
+        protected delegate void UpdateClientListCallBack(bool bIn, string sessionId, string clientType);
+
+        public void UpdateClientList(bool bIsConnection, string sessionId, string clientType)
+        {
+            if(this.InvokeRequired)
+            {
+                UpdateClientListCallBack deleCallback = new UpdateClientListCallBack(UpdateClientList);
+                this.Invoke(deleCallback, new object[] { bIsConnection, sessionId,clientType });
+            }
+            else
+            {
+                lvClientList.BeginUpdate();
+                switch(bIsConnection)
+                {
+                    case true:
+                        string eventDt = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss.fff");
+                        String[] newRecord = { sessionId, clientType, eventDt };
+                        ListViewItem newItem = new ListViewItem(newRecord);
+                        this.lvClientList.Items.Add(newItem);
+                        break;
+                    case false:
+                        foreach(ListViewItem item in lvClientList.Items)
+                        {
+                            if (item.SubItems[0].Text.Equals(sessionId))
+                            {
+                                lvClientList.Items.Remove(item);
+                            }
+                        }
+                        break;
+                }
+                lvClientList.EndUpdate();
             }
         }
     }

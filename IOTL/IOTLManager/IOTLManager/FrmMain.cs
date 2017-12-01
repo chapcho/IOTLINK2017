@@ -14,6 +14,7 @@ using IOTL.Common.Framework;
 using MySql.Data.MySqlClient;
 using IOTL.Common.Util;
 using IOTLManager.UserControls;
+using System.Data;
 
 namespace IOTLManager
 {
@@ -59,6 +60,16 @@ namespace IOTLManager
                     UpdateSystemMessage("Main", "DB Writer 시작 실패");
                     // return bOK;
                 }
+            }
+
+            DBReader.Connect();
+            if(DBReader.IsConnected)
+            {
+                UpdateSystemMessage("Main", "DB Reader Connected!");
+            }
+            else
+            {
+                UpdateSystemMessage("Main", "DB Reader NotConnected!");
             }
 
         }
@@ -277,6 +288,18 @@ namespace IOTLManager
         private void button2_Click(object sender, EventArgs e)
         {
             SplashWnd.SplashClose(this);
+        }
+
+        private void btnClientStatusRefresh_Click(object sender, EventArgs e)
+        {
+            DataTable dt = DBReader.GetQueryResult("Select * From machinestate");
+            dgvClientStatus.DataSource = dt;
+        }
+
+        private void btnClientHistoryRefresh_Click(object sender, EventArgs e)
+        {
+            DataTable dt = DBReader.GetQueryResult("Select * From machinestatelog order by LastEventTime desc Limit 100 offset 100");
+            dgvClientStatusHistory.DataSource = dt;
         }
     }
 }
