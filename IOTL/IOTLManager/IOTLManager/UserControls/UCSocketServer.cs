@@ -214,14 +214,14 @@ namespace IOTLManager.UserControls
         {
             if (UEventMachineStateTimeLog != null)
             {
-                CTimeLog log = new CTimeLog(clientID, "EmptyDescription");
+                CTimeLog log = new CTimeLog(clientID, objReceiveData.Message.Substring(0,20));
                 // 로그를 수신한 시간을 기록한다. 설비에서 보낸 시간은 데이터에 기록되어야 한다.
                 log.LogTime = DateTime.Now;
 
                 log.ReceiveData = objReceiveData.receiveData;
 
                 // 설비의 상태를 받아서 전달할 수 있다면 상태를 바꾸어서 전달해야 합니다.
-                UEventMachineStateTimeLog(EMMachineStateLogType.NormalStateLog, log);
+                UEventMachineStateTimeLog(log);
             }
         }
 
@@ -230,6 +230,7 @@ namespace IOTLManager.UserControls
         private void btnSeverStart_Click(object sender, EventArgs e)
         {
             StartServerSocket();
+            socketServer.DummySocketServer = chkSocketTransparent.Checked;
         }
 
         private void btnServerStop_Click(object sender, EventArgs e)
@@ -257,18 +258,10 @@ namespace IOTLManager.UserControls
         private void socketServer_OnMessaged(claClientSession session, LocalMessageEventArgs e)
         {
             ReceivedPacketCount++;
-
             // 수신한 내용을 화면에 표시(데이터량이 많으면 표시 할수 없다.)
             UpdateSystemMessage("SocketServer", session.UserID + " : " + e.Message);
-
-            // 모니터에게 보낼 데이터를 생성
-            IReceiveData objReceiveData = new CSocketDataByteArray();
-
-            objReceiveData.ReceiveData = e.receiveData;
-
             // 처리전에 로그에 기록
             SaveLogToFile(EMFileLogType.CommunicationLog, EMFileLogDepth.Info, e.Message);
-
             // Monitor에게 보내는 메시지(DB저장등 App에서 해야 할 처리)
             SaveLogToMonitor(session.UserID, e);
         }

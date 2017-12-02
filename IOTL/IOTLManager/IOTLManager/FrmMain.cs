@@ -81,7 +81,7 @@ namespace IOTLManager
         /// </summary>
         /// <param name="emLogType"></param>
         /// <param name="cLog"></param>
-        private void UcSocketServer1_UEventMachineStateTimeLog(EMMachineStateLogType emLogType, CTimeLog cLog)
+        private void UcSocketServer1_UEventMachineStateTimeLog(CTimeLog cLog)
         {
             if (logProcessor != null)
                 logProcessor.EnQue(cLog);
@@ -150,9 +150,6 @@ namespace IOTLManager
             
             // 이 스플레쉬 윈도우의 타이틀을 로딩시에 바꿀수 있도록 해야 겠다.
             SplashWnd.SplashShow();
-
-
-             
 
         }
 
@@ -292,14 +289,92 @@ namespace IOTLManager
 
         private void btnClientStatusRefresh_Click(object sender, EventArgs e)
         {
-            DataTable dt = DBReader.GetQueryResult("Select * From machinestate");
-            dataGridReport.DataSource = dt;
+            string strQuery = "Select * From machinestate";
+            DisplayToDataGridReportWithQuery(strQuery);
         }
 
         private void btnClientHistoryRefresh_Click(object sender, EventArgs e)
         {
-            DataTable dt = DBReader.GetQueryResult("Select * From machinestatelog order by LastEventTime desc Limit 100 offset 100");
-            dataGridReport.DataSource = dt;
+            string strQuery = "Select * From machinestatelog order by LastEventTime desc Limit 100 offset 100";
+            DisplayToDataGridReportWithQuery(strQuery);
+        }
+
+        private void btnMachineList_Click(object sender, EventArgs e)
+        {
+            string strQuery = "Select * From machineInfo";
+            DisplayToDataGridReportWithQuery(strQuery);
+        }
+
+        private void DisplayToDataGridReportWithTableName(string tableName)
+        {
+            string strQuery = string.Empty;
+
+            switch(tableName.ToLower())
+            {
+                case "machinestatelog":
+                    strQuery = "Select * From machinestatelog order by LastEventTime desc Limit 100 offset 100";
+                    break;
+                default:
+                    strQuery = string.Format("select * From {0}", tableName);
+                    break;
+
+            }
+            System.Console.WriteLine(strQuery);
+
+            DisplayToDataGridReportWithQuery(strQuery);
+        }
+
+        private void DisplayToDataGridReportWithQuery(string sqlQuery)
+        {
+            try
+            {
+                dataGridReport.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+                DataTable dt = DBReader.GetQueryResult(sqlQuery);
+                dataGridReport.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name); ex.Data.Clear();
+                UpdateSystemMessage("Main", "데이터 표시에 문제가 있습니다.");
+            }
+        }
+
+        private void LoadIotlTableListInTreeView()
+        {
+            try
+            {
+                DataTable dt = DBReader.GetQueryResult("SELECT Table_Name FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA = 'iotlink'");
+
+                tvIotlTable.BeginUpdate();
+
+                tvIotlTable.Nodes.Clear();
+                tvIotlTable.Nodes.Add("Iotlink");
+                tvIotlTable.Nodes[0].Nodes.Add("Tables");
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    tvIotlTable.Nodes[0].Nodes[0].Nodes.Add(dr.Field<string>(0));
+                }
+                tvIotlTable.EndUpdate();
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name); ex.Data.Clear();
+                UpdateSystemMessage("Main", "데이터 표시에 문제가 있습니다.");
+            }
+        }
+
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+            LoadIotlTableListInTreeView();
+        }
+
+        private void tvIotlTable_DoubleClick(object sender, EventArgs e)
+        {
+            DisplayToDataGridReportWithTableName(tvIotlTable.SelectedNode.Text);
         }
     }
 }

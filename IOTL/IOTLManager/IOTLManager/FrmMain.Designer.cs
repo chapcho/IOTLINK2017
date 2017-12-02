@@ -76,34 +76,34 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tabDatabase = new System.Windows.Forms.TabPage();
-            this.btnClientHistoryRefresh = new System.Windows.Forms.Button();
-            this.btnClientStatusRefresh = new System.Windows.Forms.Button();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridReport = new System.Windows.Forms.DataGridView();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnClientStatusRefresh = new System.Windows.Forms.Button();
+            this.btnClientHistoryRefresh = new System.Windows.Forms.Button();
+            this.btnMachineList = new System.Windows.Forms.Button();
+            this.tvIotlTable = new System.Windows.Forms.TreeView();
             this.tabSocketServer = new System.Windows.Forms.TabPage();
-            this.ucClock1 = new IOTLManager.UserControls.UCClock();
-            this.ucSocketServer1 = new IOTLManager.UserControls.UCSocketServer();
             this.tabIotlCompSvr = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.ucClock2 = new IOTLManager.UserControls.UCClock();
             this.ucSystemLogTable = new IOTLManager.UserControls.UCSystemLogTable();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.ucClock1 = new IOTLManager.UserControls.UCClock();
+            this.ucSocketServer1 = new IOTLManager.UserControls.UCSocketServer();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.mainTabControl.SuspendLayout();
             this.tabLogConfig.SuspendLayout();
             this.tabDatabase.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridReport)).BeginInit();
-            this.tabSocketServer.SuspendLayout();
-            this.tabIotlCompSvr.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridReport)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
+            this.tabSocketServer.SuspendLayout();
+            this.tabIotlCompSvr.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -498,35 +498,93 @@
             this.tabDatabase.Text = "DataBase";
             this.tabDatabase.UseVisualStyleBackColor = true;
             // 
-            // btnClientHistoryRefresh
+            // splitContainer1
             // 
-            this.btnClientHistoryRefresh.Location = new System.Drawing.Point(3, 42);
-            this.btnClientHistoryRefresh.Name = "btnClientHistoryRefresh";
-            this.btnClientHistoryRefresh.Size = new System.Drawing.Size(142, 48);
-            this.btnClientHistoryRefresh.TabIndex = 3;
-            this.btnClientHistoryRefresh.Text = "이력확인";
-            this.btnClientHistoryRefresh.UseVisualStyleBackColor = true;
-            this.btnClientHistoryRefresh.Click += new System.EventHandler(this.btnClientHistoryRefresh_Click);
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
             // 
-            // btnClientStatusRefresh
+            // splitContainer1.Panel1
             // 
-            this.btnClientStatusRefresh.Location = new System.Drawing.Point(3, 3);
-            this.btnClientStatusRefresh.Name = "btnClientStatusRefresh";
-            this.btnClientStatusRefresh.Size = new System.Drawing.Size(146, 33);
-            this.btnClientStatusRefresh.TabIndex = 1;
-            this.btnClientStatusRefresh.Text = "상태 갱신";
-            this.btnClientStatusRefresh.UseVisualStyleBackColor = true;
-            this.btnClientStatusRefresh.Click += new System.EventHandler(this.btnClientStatusRefresh_Click);
+            this.splitContainer1.Panel1.Controls.Add(this.dataGridReport);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel2);
+            this.splitContainer1.Size = new System.Drawing.Size(1024, 412);
+            this.splitContainer1.SplitterDistance = 607;
+            this.splitContainer1.TabIndex = 4;
             // 
             // dataGridReport
             // 
+            this.dataGridReport.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dataGridReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridReport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridReport.Location = new System.Drawing.Point(0, 0);
             this.dataGridReport.Name = "dataGridReport";
             this.dataGridReport.RowTemplate.Height = 23;
-            this.dataGridReport.Size = new System.Drawing.Size(514, 412);
+            this.dataGridReport.Size = new System.Drawing.Size(607, 412);
             this.dataGridReport.TabIndex = 0;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 59.8063F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.1937F));
+            this.tableLayoutPanel2.Controls.Add(this.tvIotlTable, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.btnClientHistoryRefresh, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.btnClientStatusRefresh, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.btnMachineList, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 4;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(413, 412);
+            this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // btnClientStatusRefresh
+            // 
+            this.btnClientStatusRefresh.Location = new System.Drawing.Point(3, 33);
+            this.btnClientStatusRefresh.Name = "btnClientStatusRefresh";
+            this.btnClientStatusRefresh.Size = new System.Drawing.Size(146, 24);
+            this.btnClientStatusRefresh.TabIndex = 1;
+            this.btnClientStatusRefresh.Text = "machineState";
+            this.btnClientStatusRefresh.UseVisualStyleBackColor = true;
+            this.btnClientStatusRefresh.Click += new System.EventHandler(this.btnClientStatusRefresh_Click);
+            // 
+            // btnClientHistoryRefresh
+            // 
+            this.btnClientHistoryRefresh.Location = new System.Drawing.Point(3, 63);
+            this.btnClientHistoryRefresh.Name = "btnClientHistoryRefresh";
+            this.btnClientHistoryRefresh.Size = new System.Drawing.Size(146, 24);
+            this.btnClientHistoryRefresh.TabIndex = 3;
+            this.btnClientHistoryRefresh.Text = "machineStateHistory";
+            this.btnClientHistoryRefresh.UseVisualStyleBackColor = true;
+            this.btnClientHistoryRefresh.Click += new System.EventHandler(this.btnClientHistoryRefresh_Click);
+            // 
+            // btnMachineList
+            // 
+            this.btnMachineList.Location = new System.Drawing.Point(3, 3);
+            this.btnMachineList.Name = "btnMachineList";
+            this.btnMachineList.Size = new System.Drawing.Size(146, 24);
+            this.btnMachineList.TabIndex = 3;
+            this.btnMachineList.Text = "machineList";
+            this.btnMachineList.UseVisualStyleBackColor = true;
+            this.btnMachineList.Click += new System.EventHandler(this.btnMachineList_Click);
+            // 
+            // tvIotlTable
+            // 
+            this.tvIotlTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvIotlTable.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tvIotlTable.Location = new System.Drawing.Point(3, 93);
+            this.tvIotlTable.Name = "tvIotlTable";
+            this.tvIotlTable.Size = new System.Drawing.Size(241, 316);
+            this.tvIotlTable.TabIndex = 4;
+            this.tvIotlTable.DoubleClick += new System.EventHandler(this.tvIotlTable_DoubleClick);
             // 
             // tabSocketServer
             // 
@@ -539,23 +597,6 @@
             this.tabSocketServer.TabIndex = 4;
             this.tabSocketServer.Text = "SocketServer";
             this.tabSocketServer.UseVisualStyleBackColor = true;
-            // 
-            // ucClock1
-            // 
-            this.ucClock1.Location = new System.Drawing.Point(8, 6);
-            this.ucClock1.Name = "ucClock1";
-            this.ucClock1.Size = new System.Drawing.Size(272, 69);
-            this.ucClock1.TabIndex = 6;
-            // 
-            // ucSocketServer1
-            // 
-            this.ucSocketServer1.ConnectedClientCount = 0;
-            this.ucSocketServer1.Location = new System.Drawing.Point(286, 16);
-            this.ucSocketServer1.Name = "ucSocketServer1";
-            this.ucSocketServer1.ReceivedPacketCount = 0;
-            this.ucSocketServer1.SendPacketCount = 0;
-            this.ucSocketServer1.Size = new System.Drawing.Size(514, 214);
-            this.ucSocketServer1.TabIndex = 5;
             // 
             // tabIotlCompSvr
             // 
@@ -587,7 +628,6 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.ucClock2, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 17);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -600,17 +640,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1012, 389);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // ucClock2
-            // 
-            this.ucClock2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.SetColumnSpan(this.ucClock2, 2);
-            this.ucClock2.Location = new System.Drawing.Point(3, 3);
-            this.ucClock2.Name = "ucClock2";
-            this.ucClock2.Size = new System.Drawing.Size(398, 71);
-            this.ucClock2.TabIndex = 0;
-            // 
             // ucSystemLogTable
             // 
             this.ucSystemLogTable.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -619,39 +648,22 @@
             this.ucSystemLogTable.Size = new System.Drawing.Size(1032, 142);
             this.ucSystemLogTable.TabIndex = 4;
             // 
-            // splitContainer1
+            // ucClock1
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
+            this.ucClock1.Location = new System.Drawing.Point(8, 6);
+            this.ucClock1.Name = "ucClock1";
+            this.ucClock1.Size = new System.Drawing.Size(272, 79);
+            this.ucClock1.TabIndex = 6;
             // 
-            // splitContainer1.Panel1
+            // ucSocketServer1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.dataGridReport);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel2);
-            this.splitContainer1.Size = new System.Drawing.Size(1024, 412);
-            this.splitContainer1.SplitterDistance = 514;
-            this.splitContainer1.TabIndex = 4;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.62791F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.37209F));
-            this.tableLayoutPanel2.Controls.Add(this.btnClientStatusRefresh, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnClientHistoryRefresh, 0, 1);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 3;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.09346F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 89.90654F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(506, 412);
-            this.tableLayoutPanel2.TabIndex = 0;
+            this.ucSocketServer1.ConnectedClientCount = 0;
+            this.ucSocketServer1.Location = new System.Drawing.Point(286, 16);
+            this.ucSocketServer1.Name = "ucSocketServer1";
+            this.ucSocketServer1.ReceivedPacketCount = 0;
+            this.ucSocketServer1.SendPacketCount = 0;
+            this.ucSocketServer1.Size = new System.Drawing.Size(514, 309);
+            this.ucSocketServer1.TabIndex = 5;
             // 
             // FrmMain
             // 
@@ -666,6 +678,7 @@
             this.Name = "FrmMain";
             this.Text = "IOTLink Data Manager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMain_FormClosing);
+            this.Load += new System.EventHandler(this.FrmMain_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -673,16 +686,15 @@
             this.mainTabControl.ResumeLayout(false);
             this.tabLogConfig.ResumeLayout(false);
             this.tabDatabase.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridReport)).EndInit();
-            this.tabSocketServer.ResumeLayout(false);
-            this.tabIotlCompSvr.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridReport)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.tabSocketServer.ResumeLayout(false);
+            this.tabIotlCompSvr.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -744,11 +756,12 @@
         private System.Windows.Forms.TabPage tabIotlCompSvr;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private UserControls.UCClock ucClock2;
         private System.Windows.Forms.Button btnClientStatusRefresh;
         private System.Windows.Forms.DataGridView dataGridReport;
         private System.Windows.Forms.Button btnClientHistoryRefresh;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Button btnMachineList;
+        private System.Windows.Forms.TreeView tvIotlTable;
     }
 }

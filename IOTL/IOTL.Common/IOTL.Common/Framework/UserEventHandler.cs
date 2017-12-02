@@ -16,7 +16,7 @@ namespace IOTL.Common
     /// <param name="emLogType"></param>
     /// <param name="cLogS"></param>
     public delegate void UEventHandlerMachineStateTimeLogS(EMMachineStateLogType emLogType, CTimeLogS cLogS);
-    public delegate void UEventHandlerMachineStateTimeLog(EMMachineStateLogType emLogType, CTimeLog cLog);
+    public delegate void UEventHandlerMachineStateTimeLog(CTimeLog cLog);
     /// <summary>
     /// 장비의 로그를 전달하기 위한 델리게이트 추가(아직 용도는 없음)
     /// </summary>

@@ -44,6 +44,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lvClientList = new System.Windows.Forms.ListView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkSocketTransparent = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -154,6 +155,7 @@
             this.tableLayoutPanel1.Controls.Add(this.btnSeverStart, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.btnServerStop, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.groupBox2, 3, 3);
+            this.tableLayoutPanel1.Controls.Add(this.chkSocketTransparent, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 17);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -255,10 +257,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "TCP Socket Server";
             // 
+            // chkSocketTransparent
+            // 
+            this.chkSocketTransparent.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.chkSocketTransparent.AutoSize = true;
+            this.chkSocketTransparent.Location = new System.Drawing.Point(3, 67);
+            this.chkSocketTransparent.Name = "chkSocketTransparent";
+            this.chkSocketTransparent.Size = new System.Drawing.Size(92, 16);
+            this.chkSocketTransparent.TabIndex = 3;
+            this.chkSocketTransparent.Text = "Transparent";
+            this.chkSocketTransparent.UseVisualStyleBackColor = true;
+            // 
             // UCSocketServer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Aquamarine;
             this.Controls.Add(this.groupBox1);
             this.Name = "UCSocketServer";
             this.Size = new System.Drawing.Size(542, 272);
@@ -288,5 +302,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ListView lvClientList;
+        private System.Windows.Forms.CheckBox chkSocketTransparent;
     }
 }

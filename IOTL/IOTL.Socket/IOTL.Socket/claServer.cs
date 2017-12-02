@@ -47,10 +47,13 @@ namespace IOTL.Socket
         /// </summary>
         private claCommand m_insCommand = new claCommand();
 
+        public bool DummySocketServer { get; set; }
+
+
         public claServer()
             : base(new DefaultReceiveFilterFactory<claReceiveFilter, BinaryRequestInfo>())
         {
-
+            DummySocketServer = false;
         }
 
         /// <summary>
@@ -97,8 +100,12 @@ namespace IOTL.Socket
             if(OnMessaged != null)
                 OnMessaged(session, e);
 
-            // 사용자 클래스에서 넘어온 데이터 처리
-            MsgAnalysis(session, requestInfo.Key);
+            if(!DummySocketServer) // Chatting 서버인 경우
+            {
+                // 사용자 클래스에서 넘어온 데이터 처리
+                MsgAnalysis(session, requestInfo.Key);
+            }
+
         }
 
         /// <summary>
