@@ -269,9 +269,6 @@ namespace IOTL.Common.UserControls
             {
                 UpdateSystemMessage("SocketServer", "SuperSocket Chatting Mode!");
             }
-            
-
-
         }
 
         #endregion

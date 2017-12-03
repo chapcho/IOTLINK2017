@@ -87,6 +87,12 @@
     <Compile Include="UserControls\UCClock.Designer.cs">
       <DependentUpon>UCClock.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UCCompressorDataManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCCompressorDataManager.Designer.cs">
+      <DependentUpon>UCCompressorDataManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UCSystemLogTable.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -111,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCClock.resx">
       <DependentUpon>UCClock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCCompressorDataManager.resx">
+      <DependentUpon>UCCompressorDataManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCSystemLogTable.resx">
       <DependentUpon>UCSystemLogTable.cs</DependentUpon>

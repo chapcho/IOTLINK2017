@@ -1,0 +1,74 @@
+﻿namespace IOTLManager.UserControls
+{
+    partial class UCCompressorDataManager
+    {
+        /// <summary> 
+        /// 필수 디자이너 변수입니다.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// 사용 중인 모든 리소스를 정리합니다.
+        /// </summary>
+        /// <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region 구성 요소 디자이너에서 생성한 코드
+
+        /// <summary> 
+        /// 디자이너 지원에 필요한 메서드입니다. 
+        /// 이 메서드의 내용을 코드 편집기로 수정하지 마세요.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.ucSocketServer1 = new IOTL.Common.UserControls.UCSocketServer();
+            this.button1 = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // ucSocketServer1
+            // 
+            this.ucSocketServer1.BackColor = System.Drawing.Color.Aquamarine;
+            this.ucSocketServer1.ConnectedClientCount = 0;
+            this.ucSocketServer1.Location = new System.Drawing.Point(3, 3);
+            this.ucSocketServer1.Name = "ucSocketServer1";
+            this.ucSocketServer1.ReceivedPacketCount = 0;
+            this.ucSocketServer1.SendPacketCount = 0;
+            this.ucSocketServer1.Size = new System.Drawing.Size(542, 272);
+            this.ucSocketServer1.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(551, 26);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(178, 40);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // UCCompressorDataManager
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.ucSocketServer1);
+            this.Name = "UCCompressorDataManager";
+            this.Size = new System.Drawing.Size(732, 346);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private IOTL.Common.UserControls.UCSocketServer ucSocketServer1;
+        private System.Windows.Forms.Button button1;
+    }
+}
