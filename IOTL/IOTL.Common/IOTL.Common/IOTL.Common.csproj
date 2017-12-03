@@ -52,6 +52,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\MySQL\MySQL Connector Net 6.9.7\Assemblies\v4.5\MySql.Data.Entity.EF6.dll</HintPath>
     </Reference>
+    <Reference Include="SuperSocket.SocketBase, Version=1.6.3.0, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\External\SuperSocket\SuperSocket.SocketBase.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -125,6 +129,12 @@
     <Compile Include="Thread\ThreadBase.cs" />
     <Compile Include="Thread\ThreadQue.cs" />
     <Compile Include="Thread\ThreadWithQueBase.cs" />
+    <Compile Include="UserControls\UCSocketServer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCSocketServer.Designer.cs">
+      <DependentUpon>UCSocketServer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Util\ByteArrayUtil.cs" />
     <Compile Include="Util\ConnectionInfo.cs" />
     <Compile Include="Util\EnumHelper.cs" />
@@ -157,12 +167,21 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSocketServer.resx">
+      <DependentUpon>UCSocketServer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Util\SplashForm.resx">
       <DependentUpon>SplashForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\LoadingImage\animatedTurningCircle.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\IOTL.Socket\IOTL.Socket\IOTL.Socket.csproj">
+      <Project>{F78972A4-0264-4C97-A4A6-B7E2CC2F3700}</Project>
+      <Name>IOTL.Socket</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

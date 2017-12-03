@@ -9,6 +9,7 @@ namespace IOTL.Common.Framework
         public const string DATETIME_FORMAT = "yyyy-MM-dd hh:mm:ss";
         public const string DATE_FORMAT = "yyyy-MM-dd";
         public const string DATETIMEMS_FORMAT = "yyyy-MM-dd hh:mm:ss.fff";
+        public const string NIY = "Not Initialized Yet!";
 
         public const string IOTL_ICEMACHINE_CLIENT = "IOTL Ice Machine Client";
 

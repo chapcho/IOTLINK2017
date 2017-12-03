@@ -1,23 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using IOTL.Common.Framework;
+using IOTL.Common.Log;
 using IOTL.Socket;
-using System.Net;
-using SuperSocket.SocketBase.Config;
-using IOTL.Common.Util;
 using IOTL.Socket.ClientSession;
 using IOTL.Socket.CustomEventArgs;
-using IOTL.Common;
-using IOTL.Common.Framework;
-using IOTL.Common.Log;
+using SuperSocket.SocketBase.Config;
+using System;
+using System.Net;
+using System.Windows.Forms;
 
-namespace IOTLManager.UserControls
+namespace IOTL.Common.UserControls
 {
     /// <summary>
     /// 소켓 서버를 위한 컨트롤
@@ -39,17 +30,6 @@ namespace IOTLManager.UserControls
         public UCSocketServer()
         {
             InitializeComponent();
-
-            socketServer = new claServer();
-
-            btnServerStop.Enabled = false;
-
-            socketServer.NewSessionConnected += socketServer_NewSessionConnected;
-            socketServer.SessionClosed += socketServer_SessionClosed;
-
-            socketServer.OnLoginUser += socketServer_OnLoginUser;
-            socketServer.OnLogoutUser += SocketServer_OnLogoutUser;
-            socketServer.OnMessaged += socketServer_OnMessaged;
         }
 
         public int ConnectedClientCount
@@ -150,9 +130,58 @@ namespace IOTLManager.UserControls
             }
         }
 
+        public claServer ServerSocket
+        {
+            get { return socketServer; }
+        }
+
+        private void UpdateSystemMessage(string sSender, string sMessage)
+        {
+            //Event 생성
+            UEventMessage?.Invoke(sSender, sMessage);
+        }
+
+        private void SaveLogToFile(EMFileLogType emFileLogType, EMFileLogDepth emFileLogDepth, string sLogMessage)
+        {
+            UEventFileLog?.Invoke(emFileLogType, emFileLogDepth, sLogMessage);
+        }
+
+        private void SaveLogToMonitor(String clientID, LocalMessageEventArgs objReceiveData)
+        {
+            if (UEventMachineStateTimeLog != null)
+            {
+                CTimeLog log = new CTimeLog(clientID, ConstantDef.NIY);
+                // 로그를 수신한 시간을 기록한다. 설비에서 보낸 시간은 데이터에 기록되어야 한다.
+                log.LogTime = DateTime.Now;
+
+                log.ReceiveData = objReceiveData.receiveData;
+
+                // 설비의 상태를 받아서 전달할 수 있다면 상태를 바꾸어서 전달해야 합니다.
+                UEventMachineStateTimeLog(log);
+            }
+        }
+
+        #region Form Event area
+
         public bool StartServerSocket()
         {
+            if(socketServer != null)
+            {
+                UpdateSystemMessage("SocketServer", "소켓서버를 초기화 될수 없습니다.");
+                return false;
+            }
+
+            socketServer = new claServer();
             if (socketServer.State == SuperSocket.SocketBase.ServerState.NotInitialized) InitializeSocketServer();
+
+            btnServerStop.Enabled = false;
+
+            socketServer.NewSessionConnected += socketServer_NewSessionConnected;
+            socketServer.SessionClosed += socketServer_SessionClosed;
+
+            socketServer.OnLoginUser += socketServer_OnLoginUser;
+            socketServer.OnLogoutUser += SocketServer_OnLogoutUser;
+            socketServer.OnMessaged += socketServer_OnMessaged;
 
             if (socketServer.State == SuperSocket.SocketBase.ServerState.NotStarted)
             {
@@ -165,7 +194,8 @@ namespace IOTLManager.UserControls
                             btnSeverStart.Enabled = false;
                             btnServerStop.Enabled = true;
                             btnSeverStart.Text = "Starting...";
-                            UpdateSystemMessage("SocketServer", "소켓서버가 시작되었습니다.");
+
+                            UpdateSystemMessage("SocketServer", string.Format("IP:{0} , Port:{1} , Socket Server Starting!", GetLocalIP(), txtServerPort.Text));
                             return true;
                         }
                     }
@@ -194,39 +224,6 @@ namespace IOTLManager.UserControls
             return false;
         }
 
-        public claServer ServerSocket
-        {
-            get { return socketServer; }
-        }
-
-        private void UpdateSystemMessage(string sSender, string sMessage)
-        {
-            //Event 생성
-            UEventMessage?.Invoke(sSender, sMessage);
-        }
-
-        private void SaveLogToFile(EMFileLogType emFileLogType, EMFileLogDepth emFileLogDepth, string sLogMessage)
-        {
-            UEventFileLog?.Invoke(emFileLogType, emFileLogDepth, sLogMessage);
-        }
-
-        private void SaveLogToMonitor(String clientID, LocalMessageEventArgs objReceiveData)
-        {
-            if (UEventMachineStateTimeLog != null)
-            {
-                CTimeLog log = new CTimeLog(clientID, objReceiveData.Message.Substring(0,20));
-                // 로그를 수신한 시간을 기록한다. 설비에서 보낸 시간은 데이터에 기록되어야 한다.
-                log.LogTime = DateTime.Now;
-
-                log.ReceiveData = objReceiveData.receiveData;
-
-                // 설비의 상태를 받아서 전달할 수 있다면 상태를 바꾸어서 전달해야 합니다.
-                UEventMachineStateTimeLog(log);
-            }
-        }
-
-        #region Form Event area
-
         private void btnSeverStart_Click(object sender, EventArgs e)
         {
             StartServerSocket();
@@ -237,7 +234,18 @@ namespace IOTLManager.UserControls
         {
             if (socketServer.State == SuperSocket.SocketBase.ServerState.Running)
             {
+
+                socketServer.NewSessionConnected -= socketServer_NewSessionConnected;
+                socketServer.SessionClosed -= socketServer_SessionClosed;
+
+                socketServer.OnLoginUser -= socketServer_OnLoginUser;
+                socketServer.OnLogoutUser -= SocketServer_OnLogoutUser;
+                socketServer.OnMessaged -= socketServer_OnMessaged;
+
                 socketServer.Stop();
+                socketServer = null;
+
+                txtServerPort.Enabled = true;
                 UpdateSystemMessage("SocketServer", "소켓서버 종료");
             }
             else
@@ -249,6 +257,21 @@ namespace IOTLManager.UserControls
             btnSeverStart.Enabled = true;
             btnServerStop.Enabled = false;
             btnSeverStart.Text = "서버시작";
+        }
+
+        private void chkSocketTransparent_CheckedChanged(object sender, EventArgs e)
+        {
+            if(this.chkSocketTransparent.Checked)
+            {
+                UpdateSystemMessage("SocketServer", "Transparent Mode Socket!");
+            }
+            else
+            {
+                UpdateSystemMessage("SocketServer", "SuperSocket Chatting Mode!");
+            }
+            
+
+
         }
 
         #endregion
@@ -436,5 +459,7 @@ namespace IOTLManager.UserControls
                 lvClientList.EndUpdate();
             }
         }
+
+
     }
 }

@@ -6,7 +6,6 @@ D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.Fr
 D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.Properties.Resources.resources
 D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.UserControls.MySQLBackupForm.resources
 D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.UserControls.UCClock.resources
-D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.UserControls.UCSocketServer.resources
 D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.UserControls.UCSystemLogTable.resources
 D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.csproj.GenerateResource.Cache
 D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.csproj.CoreCompileInputs.cache

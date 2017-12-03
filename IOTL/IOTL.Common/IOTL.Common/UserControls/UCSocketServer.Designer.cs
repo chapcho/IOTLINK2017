@@ -1,4 +1,4 @@
-﻿namespace IOTLManager.UserControls
+﻿namespace IOTL.Common.UserControls
 {
     partial class UCSocketServer
     {
@@ -43,8 +43,8 @@
             this.txtServerPort = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lvClientList = new System.Windows.Forms.ListView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkSocketTransparent = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -245,6 +245,18 @@
             this.lvClientList.TabIndex = 0;
             this.lvClientList.UseCompatibleStateImageBehavior = false;
             // 
+            // chkSocketTransparent
+            // 
+            this.chkSocketTransparent.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.chkSocketTransparent.AutoSize = true;
+            this.chkSocketTransparent.Location = new System.Drawing.Point(3, 67);
+            this.chkSocketTransparent.Name = "chkSocketTransparent";
+            this.chkSocketTransparent.Size = new System.Drawing.Size(92, 16);
+            this.chkSocketTransparent.TabIndex = 3;
+            this.chkSocketTransparent.Text = "Transparent";
+            this.chkSocketTransparent.UseVisualStyleBackColor = true;
+            this.chkSocketTransparent.CheckedChanged += new System.EventHandler(this.chkSocketTransparent_CheckedChanged);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.tableLayoutPanel1);
@@ -256,17 +268,6 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "TCP Socket Server";
-            // 
-            // chkSocketTransparent
-            // 
-            this.chkSocketTransparent.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.chkSocketTransparent.AutoSize = true;
-            this.chkSocketTransparent.Location = new System.Drawing.Point(3, 67);
-            this.chkSocketTransparent.Name = "chkSocketTransparent";
-            this.chkSocketTransparent.Size = new System.Drawing.Size(92, 16);
-            this.chkSocketTransparent.TabIndex = 3;
-            this.chkSocketTransparent.Text = "Transparent";
-            this.chkSocketTransparent.UseVisualStyleBackColor = true;
             // 
             // UCSocketServer
             // 

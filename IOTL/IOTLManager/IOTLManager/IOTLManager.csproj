@@ -87,12 +87,6 @@
     <Compile Include="UserControls\UCClock.Designer.cs">
       <DependentUpon>UCClock.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\UCSocketServer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\UCSocketServer.Designer.cs">
-      <DependentUpon>UCSocketServer.cs</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\UCSystemLogTable.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -117,9 +111,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCClock.resx">
       <DependentUpon>UCClock.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCSocketServer.resx">
-      <DependentUpon>UCSocketServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCSystemLogTable.resx">
       <DependentUpon>UCSystemLogTable.cs</DependentUpon>
