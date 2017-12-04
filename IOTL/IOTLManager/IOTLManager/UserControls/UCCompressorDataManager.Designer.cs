@@ -28,9 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.btnStartStop = new System.Windows.Forms.Button();
             this.ucSocketServer1 = new IOTL.Common.UserControls.UCSocketServer();
-            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // btnStartStop
+            // 
+            this.btnStartStop.Location = new System.Drawing.Point(551, 4);
+            this.btnStartStop.Name = "btnStartStop";
+            this.btnStartStop.Size = new System.Drawing.Size(178, 40);
+            this.btnStartStop.TabIndex = 1;
+            this.btnStartStop.Text = "Monitor Start";
+            this.btnStartStop.UseVisualStyleBackColor = true;
+            this.btnStartStop.Click += new System.EventHandler(this.btnStartStop_Click);
             // 
             // ucSocketServer1
             // 
@@ -40,17 +50,9 @@
             this.ucSocketServer1.Name = "ucSocketServer1";
             this.ucSocketServer1.ReceivedPacketCount = 0;
             this.ucSocketServer1.SendPacketCount = 0;
+            this.ucSocketServer1.ServerCaption = "TCP Socket Server";
             this.ucSocketServer1.Size = new System.Drawing.Size(542, 272);
             this.ucSocketServer1.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(551, 26);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(178, 40);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // UCCompressorDataManager
             // 
@@ -58,7 +60,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnStartStop);
             this.Controls.Add(this.ucSocketServer1);
             this.Name = "UCCompressorDataManager";
             this.Size = new System.Drawing.Size(732, 346);
@@ -69,6 +71,6 @@
         #endregion
 
         private IOTL.Common.UserControls.UCSocketServer ucSocketServer1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnStartStop;
     }
 }

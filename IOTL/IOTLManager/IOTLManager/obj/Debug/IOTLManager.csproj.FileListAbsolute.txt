@@ -11,3 +11,4 @@ D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.cs
 D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.csproj.CoreCompileInputs.cache
 D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.exe
 D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.pdb
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.UserControls.UCCompressorDataManager.resources

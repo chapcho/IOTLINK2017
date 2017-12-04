@@ -81,12 +81,14 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tvIotlTable = new System.Windows.Forms.TreeView();
             this.tabSocketServer = new System.Windows.Forms.TabPage();
+            this.ucSocketServer1 = new IOTL.Common.UserControls.UCSocketServer();
             this.ucClock1 = new IOTLManager.UserControls.UCClock();
             this.tabIotlCompSvr = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.ucCompressorDataManager1 = new IOTLManager.UserControls.UCCompressorDataManager();
             this.ucSystemLogTable = new IOTLManager.UserControls.UCSystemLogTable();
-            this.ucSocketServer1 = new IOTL.Common.UserControls.UCSocketServer();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.mainTabControl.SuspendLayout();
@@ -101,6 +103,11 @@
             this.tabSocketServer.SuspendLayout();
             this.tabIotlCompSvr.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -428,10 +435,10 @@
             this.mainTabControl.Controls.Add(this.tabSocketServer);
             this.mainTabControl.Controls.Add(this.tabIotlCompSvr);
             this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainTabControl.Location = new System.Drawing.Point(0, 24);
+            this.mainTabControl.Location = new System.Drawing.Point(0, 0);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(1032, 582);
+            this.mainTabControl.Size = new System.Drawing.Size(1032, 399);
             this.mainTabControl.TabIndex = 2;
             // 
             // tabMonitoring
@@ -563,6 +570,18 @@
             this.tabSocketServer.Text = "SocketServer";
             this.tabSocketServer.UseVisualStyleBackColor = true;
             // 
+            // ucSocketServer1
+            // 
+            this.ucSocketServer1.BackColor = System.Drawing.Color.Aquamarine;
+            this.ucSocketServer1.ConnectedClientCount = 0;
+            this.ucSocketServer1.Location = new System.Drawing.Point(286, 16);
+            this.ucSocketServer1.Name = "ucSocketServer1";
+            this.ucSocketServer1.ReceivedPacketCount = 0;
+            this.ucSocketServer1.SendPacketCount = 0;
+            this.ucSocketServer1.ServerCaption = "TCP Socket Server";
+            this.ucSocketServer1.Size = new System.Drawing.Size(542, 272);
+            this.ucSocketServer1.TabIndex = 7;
+            // 
             // ucClock1
             // 
             this.ucClock1.Location = new System.Drawing.Point(8, 6);
@@ -576,7 +595,7 @@
             this.tabIotlCompSvr.Location = new System.Drawing.Point(4, 22);
             this.tabIotlCompSvr.Name = "tabIotlCompSvr";
             this.tabIotlCompSvr.Padding = new System.Windows.Forms.Padding(3);
-            this.tabIotlCompSvr.Size = new System.Drawing.Size(1024, 556);
+            this.tabIotlCompSvr.Size = new System.Drawing.Size(1024, 373);
             this.tabIotlCompSvr.TabIndex = 5;
             this.tabIotlCompSvr.Text = "Compressor Data Manager";
             this.tabIotlCompSvr.UseVisualStyleBackColor = true;
@@ -594,50 +613,61 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 5;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.59289F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.40711F));
+            this.tableLayoutPanel1.Controls.Add(this.ucCompressorDataManager1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 17);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 5;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 76.09254F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.90746F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1012, 389);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
+            // ucCompressorDataManager1
+            // 
+            this.ucCompressorDataManager1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.ucCompressorDataManager1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ucCompressorDataManager1.Location = new System.Drawing.Point(3, 3);
+            this.ucCompressorDataManager1.Name = "ucCompressorDataManager1";
+            this.ucCompressorDataManager1.Size = new System.Drawing.Size(759, 289);
+            this.ucCompressorDataManager1.TabIndex = 0;
+            // 
             // ucSystemLogTable
             // 
-            this.ucSystemLogTable.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ucSystemLogTable.Location = new System.Drawing.Point(0, 464);
+            this.ucSystemLogTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucSystemLogTable.Location = new System.Drawing.Point(0, 0);
             this.ucSystemLogTable.Name = "ucSystemLogTable";
-            this.ucSystemLogTable.Size = new System.Drawing.Size(1032, 142);
+            this.ucSystemLogTable.Size = new System.Drawing.Size(1032, 179);
             this.ucSystemLogTable.TabIndex = 4;
             // 
-            // ucSocketServer1
+            // splitContainer2
             // 
-            this.ucSocketServer1.BackColor = System.Drawing.Color.Aquamarine;
-            this.ucSocketServer1.ConnectedClientCount = 0;
-            this.ucSocketServer1.Location = new System.Drawing.Point(286, 16);
-            this.ucSocketServer1.Name = "ucSocketServer1";
-            this.ucSocketServer1.ReceivedPacketCount = 0;
-            this.ucSocketServer1.SendPacketCount = 0;
-            this.ucSocketServer1.Size = new System.Drawing.Size(542, 272);
-            this.ucSocketServer1.TabIndex = 7;
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 24);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.mainTabControl);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.ucSystemLogTable);
+            this.splitContainer2.Size = new System.Drawing.Size(1032, 582);
+            this.splitContainer2.SplitterDistance = 399;
+            this.splitContainer2.TabIndex = 5;
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1032, 628);
-            this.Controls.Add(this.ucSystemLogTable);
-            this.Controls.Add(this.mainTabControl);
+            this.Controls.Add(this.splitContainer2);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -661,6 +691,11 @@
             this.tabSocketServer.ResumeLayout(false);
             this.tabIotlCompSvr.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -726,5 +761,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TreeView tvIotlTable;
         private IOTL.Common.UserControls.UCSocketServer ucSocketServer1;
+        private UserControls.UCCompressorDataManager ucCompressorDataManager1;
+        public System.Windows.Forms.SplitContainer splitContainer2;
     }
 }

@@ -69,6 +69,16 @@ namespace IOTL.Common.UserControls
             }
         }
 
+        public string ServerCaption
+        {
+            get
+            {
+                string title = groupBox1.Text;
+                return title;
+            }
+            set { groupBox1.Text = value; }
+        }
+
         private void SetMonitorNumBinding()
         {
             // 아래 코드가 동작하지 않는데, 원인을 좀더 찾아 봐야 겠다.

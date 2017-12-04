@@ -110,5 +110,10 @@ namespace IOTLManager.UserControls
             MessageBox.Show(receiveTime + " : " + dataMessage, caller, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
+
+        private void clearToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clear();
+        }
     }
 }

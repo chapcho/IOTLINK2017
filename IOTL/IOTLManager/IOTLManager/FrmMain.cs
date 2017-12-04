@@ -40,9 +40,9 @@ namespace IOTLManager
             LOG.AppLog.appendInfoLog("Starting...");
 
             // UserControl에서 Form에 보내는 메시지
-            ucSocketServer1.UEventMessage += UcSocketServer1_UEventMessage;
-            ucSocketServer1.UEventFileLog += UcSocketServer1_UEventFileLog;
-            ucSocketServer1.UEventMachineStateTimeLog += UcSocketServer1_UEventMachineStateTimeLog;
+            ucSocketServer1.UEventMessage += UpdateSystemMessage;
+            ucSocketServer1.UEventFileLog += WriteMessageToLogfile;
+            ucSocketServer1.UEventMachineStateTimeLog += EventHandler_UEventMachineStateTimeLog;
             // Socket Control에서 Form에 보내는 수신 데이터.
 
             // Log(DataBase) 기록을 시작한다.
@@ -51,7 +51,7 @@ namespace IOTLManager
                 bool bOK = false;
 
                 logProcessor = new LogProcessor();
-                logProcessor.UEventIOTLMessage += LogProcessor_UEventIOTLMessage;
+                logProcessor.UEventIOTLMessage += UpdateSystemMessage;
                 logProcessor.UEventFileLog += WriteMessageToLogfile;
                 
                 bOK = logProcessor.Run();
@@ -72,6 +72,10 @@ namespace IOTLManager
                 UpdateSystemMessage("Main", "DB Reader NotConnected!");
             }
 
+            // Compressor Monitor에서 발생하는 이벤트 처리자 연결.
+            ucCompressorDataManager1.UEventMessage += UpdateSystemMessage;
+            ucCompressorDataManager1.UEventFileLog += WriteMessageToLogfile;
+
         }
 
         /// <summary>
@@ -81,7 +85,7 @@ namespace IOTLManager
         /// </summary>
         /// <param name="emLogType"></param>
         /// <param name="cLog"></param>
-        private void UcSocketServer1_UEventMachineStateTimeLog(CTimeLog cLog)
+        private void EventHandler_UEventMachineStateTimeLog(CTimeLog cLog)
         {
             if (logProcessor != null)
                 logProcessor.EnQue(cLog);
@@ -131,12 +135,6 @@ namespace IOTLManager
             // UpdateSystemMessage(emFileLogType.ToString(), sLogMessage);
         }
 
-        private void UcSocketServer1_UEventFileLog(EMFileLogType emFileLogType, EMFileLogDepth emFileLogDepth, string logMessage)
-        {
-            WriteMessageToLogfile(emFileLogType, emFileLogDepth,logMessage);
-            // throw new NotImplementedException();
-        }
-
         private void 정보ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("IOTL DataManager Ver 1.0");
@@ -155,7 +153,10 @@ namespace IOTLManager
 
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            ucSocketServer1.UEventMessage -= UcSocketServer1_UEventMessage;
+            ucSocketServer1.UEventMessage -= UpdateSystemMessage;
+            ucSocketServer1.UEventFileLog -= WriteMessageToLogfile;
+            ucSocketServer1.UEventMachineStateTimeLog -= EventHandler_UEventMachineStateTimeLog;
+
             LOG.AppLog.appendInfoLog("Normal Closed!!!");
 
             if (logProcessor != null)
@@ -168,11 +169,6 @@ namespace IOTLManager
 
                 LOG.AppLog.appendInfoLog("DB Writer Closed.");
             }
-        }
-
-        private void LogProcessor_UEventIOTLMessage(string sender, string message)
-        {
-            UpdateSystemMessage(sender, message);
         }
 
         protected void UpdateSystemMessage(string sSender, string sMessage)
@@ -244,10 +240,6 @@ namespace IOTLManager
             UpdateSystemMessage(Application.ProductName, "IOTLink Manager DB 생성 완료");
         }
 
-        private void UcSocketServer1_UEventMessage(string sender, string message)
-        {
-            UpdateSystemMessage(sender, message);
-        }
 
         private void CreateDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
