@@ -52,5 +52,11 @@ namespace IOTLManager.UserControls
             Font fontValue = new Font(fontFamily, nFontSize * 25f, FontStyle.Bold);
             lblTime.Font = fontValue;
         }
+
+        protected override void OnHandleDestroyed(EventArgs e)
+        {
+            timer1.Stop();
+            base.OnHandleDestroyed(e);
+        }
     }
 }

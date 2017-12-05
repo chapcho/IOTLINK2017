@@ -27,6 +27,12 @@ namespace IOTLManager.UserControls
             InitializeComponent();
         }
 
+
+        private void UCCompressorDataManager_Load(object sender, EventArgs e)
+        {
+
+        }
+
         public void InitCompressorDataManager()
         {
             if (logProcessor == null)
@@ -103,6 +109,34 @@ namespace IOTLManager.UserControls
 
                 btnStartStop.Text = "Monitor Start";
             }
+        }
+
+        protected override void OnHandleDestroyed(EventArgs e)
+        {
+            if (btnStartStop.Text.ToUpper().Equals("MONITOR STOP"))
+            {
+                ucSocketServer1.UEventMessage -= UpdateSystemMessage;
+                ucSocketServer1.UEventFileLog -= WriteMessageToLogfile;
+                ucSocketServer1.UEventMachineStateTimeLog -= UcSocketServer1_UEventMachineStateTimeLog;
+
+                if (logProcessor != null)
+                {
+                    logProcessor.UEventIOTLMessage -= UpdateSystemMessage;
+                    logProcessor.UEventFileLog -= WriteMessageToLogfile;
+
+                    logProcessor.Stop();
+                    while (logProcessor.IsRunning)
+                    {
+                        System.Threading.Thread.Sleep(10);
+                    }
+
+                    logProcessor = null;
+                }
+
+                btnStartStop.Text = "Monitor Start";
+            }
+
+            base.OnHandleDestroyed(e);
         }
     }
 }

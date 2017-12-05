@@ -115,5 +115,32 @@ namespace IOTLManager.UserControls
         {
             Clear();
         }
+
+        private void copyClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataGridViewSelectedRowCollection rows = exDataGrid.SelectedRows;
+            StringBuilder sb = new StringBuilder();
+
+            try
+            {
+                foreach (DataGridViewRow dr in rows)
+                {
+                    string addMessage = string.Empty;
+                    for (int i = 0; i < dr.Cells.Count; i++)
+                    {
+                        addMessage = string.Format(" {0},", dr.Cells[i].Value.ToString());
+                        sb.Append(addMessage);
+                    }
+                    addMessage = string.Format("\r\n");
+                    sb.Append(addMessage);
+                }
+
+                Clipboard.SetText(sb.ToString());
+            }
+            catch(Exception ex)
+            {
+                ex.Data.Clear();
+            }
+        }
     }
 }

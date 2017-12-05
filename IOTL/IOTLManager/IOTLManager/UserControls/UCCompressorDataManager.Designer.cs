@@ -51,7 +51,7 @@
             this.ucSocketServer1.ReceivedPacketCount = 0;
             this.ucSocketServer1.SendPacketCount = 0;
             this.ucSocketServer1.ServerCaption = "TCP Socket Server";
-            this.ucSocketServer1.Size = new System.Drawing.Size(542, 272);
+            this.ucSocketServer1.Size = new System.Drawing.Size(542, 300);
             this.ucSocketServer1.TabIndex = 0;
             // 
             // UCCompressorDataManager
@@ -64,6 +64,7 @@
             this.Controls.Add(this.ucSocketServer1);
             this.Name = "UCCompressorDataManager";
             this.Size = new System.Drawing.Size(732, 346);
+            this.Load += new System.EventHandler(this.UCCompressorDataManager_Load);
             this.ResumeLayout(false);
 
         }
