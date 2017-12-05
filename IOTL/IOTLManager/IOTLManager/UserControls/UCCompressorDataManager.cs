@@ -20,7 +20,7 @@ namespace IOTLManager.UserControls
         public event UIEventHandlerCompressMonitoringEvent UEventCompressMonitor = null;
 
         // Compressor Monitoring 이벤트를 처리하는 처리자.
-        private LogProcessor logProcessor;
+        private IOTLCompressorLogWriter compressorLogWriter;
 
         public UCCompressorDataManager()
         {
@@ -35,15 +35,15 @@ namespace IOTLManager.UserControls
 
         public void InitCompressorDataManager()
         {
-            if (logProcessor == null)
+            if (compressorLogWriter == null)
             {
                 bool bOK = false;
 
-                logProcessor = new LogProcessor();
-                logProcessor.UEventIOTLMessage += UpdateSystemMessage;
-                logProcessor.UEventFileLog += WriteMessageToLogfile;
+                compressorLogWriter = new IOTLCompressorLogWriter();
+                compressorLogWriter.UEventIOTLMessage += UpdateSystemMessage;
+                compressorLogWriter.UEventFileLog += WriteMessageToLogfile;
 
-                bOK = logProcessor.Run();
+                bOK = compressorLogWriter.Run();
                 if (bOK == false)
                 {
                     UpdateSystemMessage("Compressor Monitor", "DB Writer 시작 실패");
@@ -62,27 +62,21 @@ namespace IOTLManager.UserControls
             ucSocketServer1.ServerCaption = "IOTL Compressor Monitor";
         }
 
-        private void UcSocketServer1_UEventMachineStateTimeLog(CTimeLog cLog)
-        {
-            if (logProcessor != null)
-                logProcessor.EnQue(cLog);
-        }
-
         private void WriteMessageToLogfile(EMFileLogType emFileLogType, EMFileLogDepth emFileLogDepth, string logMessage)
         {
-            if(UEventFileLog != null)
+            if (UEventFileLog != null)
                 UEventFileLog(emFileLogType, emFileLogDepth, logMessage);
         }
 
         private void UpdateSystemMessage(string sender, string message)
         {
-            if(UEventMessage != null)
+            if (UEventMessage != null)
                 UEventMessage(sender, message);
         }
 
         private void btnStartStop_Click(object sender, EventArgs e)
         {
-            if(btnStartStop.Text.ToUpper().Equals("MONITOR START"))
+            if (btnStartStop.Text.ToUpper().Equals("MONITOR START"))
             {
                 InitCompressorDataManager();
                 btnStartStop.Text = "Monitor Stop";
@@ -93,18 +87,18 @@ namespace IOTLManager.UserControls
                 ucSocketServer1.UEventFileLog -= WriteMessageToLogfile;
                 ucSocketServer1.UEventMachineStateTimeLog -= UcSocketServer1_UEventMachineStateTimeLog;
 
-                if (logProcessor != null)
+                if (compressorLogWriter != null)
                 {
-                    logProcessor.UEventIOTLMessage -= UpdateSystemMessage;
-                    logProcessor.UEventFileLog -= WriteMessageToLogfile;
+                    compressorLogWriter.UEventIOTLMessage -= UpdateSystemMessage;
+                    compressorLogWriter.UEventFileLog -= WriteMessageToLogfile;
 
-                    logProcessor.Stop();
-                    while (logProcessor.IsRunning)
+                    compressorLogWriter.Stop();
+                    while (compressorLogWriter.IsRunning)
                     {
                         System.Threading.Thread.Sleep(10);
                     }
 
-                    logProcessor = null;
+                    compressorLogWriter = null;
                 }
 
                 btnStartStop.Text = "Monitor Start";
@@ -119,18 +113,18 @@ namespace IOTLManager.UserControls
                 ucSocketServer1.UEventFileLog -= WriteMessageToLogfile;
                 ucSocketServer1.UEventMachineStateTimeLog -= UcSocketServer1_UEventMachineStateTimeLog;
 
-                if (logProcessor != null)
+                if (compressorLogWriter != null)
                 {
-                    logProcessor.UEventIOTLMessage -= UpdateSystemMessage;
-                    logProcessor.UEventFileLog -= WriteMessageToLogfile;
+                    compressorLogWriter.UEventIOTLMessage -= UpdateSystemMessage;
+                    compressorLogWriter.UEventFileLog -= WriteMessageToLogfile;
 
-                    logProcessor.Stop();
-                    while (logProcessor.IsRunning)
+                    compressorLogWriter.Stop();
+                    while (compressorLogWriter.IsRunning)
                     {
                         System.Threading.Thread.Sleep(10);
                     }
 
-                    logProcessor = null;
+                    compressorLogWriter = null;
                 }
 
                 btnStartStop.Text = "Monitor Start";
@@ -138,5 +132,12 @@ namespace IOTLManager.UserControls
 
             base.OnHandleDestroyed(e);
         }
+
+        private void UcSocketServer1_UEventMachineStateTimeLog(CTimeLog cLog)
+        {
+            if (compressorLogWriter != null)
+                compressorLogWriter.EnQue(cLog);
+        }
+
     }
 }

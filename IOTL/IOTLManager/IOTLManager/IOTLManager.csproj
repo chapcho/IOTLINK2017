@@ -99,6 +99,7 @@
     <Compile Include="UserControls\UCSystemLogTable.Designer.cs">
       <DependentUpon>UCSystemLogTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Util\IOTLCompressorLogWriter.cs" />
     <Compile Include="Util\LogProcessor.cs" />
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>

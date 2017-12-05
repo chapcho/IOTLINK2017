@@ -39,6 +39,12 @@ namespace IOTL.Common.DB
             dbConnectionInfo = new ConfigMariaDB();
         }
 
+        public MySqlLogWriter(string databaseName)
+        {
+            dbConnectionInfo = new ConfigMariaDB();
+            dbConnectionInfo.InitialDatabaseName = databaseName;
+        }
+
         public MySqlLogWriter(ConfigMariaDB connectionInfo)
         {
             dbConnectionInfo = connectionInfo;
