@@ -15,9 +15,9 @@ namespace IOTLManager.Util
         public event UEventHandlerIOTLMessage UEventIOTLMessage = null;
         public event UEventHandlerFileLog UEventFileLog = null;
 
-        public IOTLCompressorLogWriter()
+        public IOTLCompressorLogWriter(String initialDataBaseName)
         {
-            m_cLogDBWriter = new MySqlLogWriter("compdata");
+            m_cLogDBWriter = new MySqlLogWriter(initialDataBaseName);
             m_cLogDBWriter.UEventFileLog += UpdateFileLog; ;
         }
 
@@ -128,7 +128,8 @@ namespace IOTLManager.Util
                     }
                     else if(oData.GetType() == typeof(CTimeLog))
                     {
-                        bOK = LogDBWriter.WriteTimeLog((CTimeLog)oData);
+                        // bOK = LogDBWriter.WriteTimeLog((CTimeLog)oData);
+                        bOK = LogDBWriter.WriteIOTLCompDataSingle((CTimeLog)oData);
                     }
                     //else if (oData.GetType() == typeof(CCycleInfo))
                     //{

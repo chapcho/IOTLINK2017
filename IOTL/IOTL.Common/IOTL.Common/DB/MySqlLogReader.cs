@@ -124,6 +124,11 @@ namespace IOTL.Common.DB
             return bOK;
         }
 
+        public MySqlConnection GetMySqlConnection()
+        {
+            return m_dbCon;
+        }
+
         public string GetDbConnection()
         {
             return dbConnectionInfo.GetDBConnectionString();

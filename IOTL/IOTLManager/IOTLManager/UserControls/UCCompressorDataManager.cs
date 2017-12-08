@@ -17,7 +17,7 @@ namespace IOTLManager.UserControls
     {
         public event UEventHandlerFileLog UEventFileLog = null;
         public event UEventHandlerIOTLMessage UEventMessage = null;
-        public event UIEventHandlerCompressMonitoringEvent UEventCompressMonitor = null;
+        // public event UIEventHandlerCompressMonitoringEvent UEventCompressMonitor = null;
 
         // Compressor Monitoring 이벤트를 처리하는 처리자.
         private IOTLCompressorLogWriter compressorLogWriter;
@@ -39,7 +39,7 @@ namespace IOTLManager.UserControls
             {
                 bool bOK = false;
 
-                compressorLogWriter = new IOTLCompressorLogWriter();
+                compressorLogWriter = new IOTLCompressorLogWriter("compdata");
                 compressorLogWriter.UEventIOTLMessage += UpdateSystemMessage;
                 compressorLogWriter.UEventFileLog += WriteMessageToLogfile;
 
@@ -57,6 +57,8 @@ namespace IOTLManager.UserControls
             // UserControl에서 Form에 보내는 메시지
             ucSocketServer1.UEventMessage += UpdateSystemMessage;
             ucSocketServer1.UEventFileLog += WriteMessageToLogfile;
+
+            // Comp에서 수신한 데이터를 기록 대기 합니다.
             ucSocketServer1.UEventMachineStateTimeLog += UcSocketServer1_UEventMachineStateTimeLog;
 
             ucSocketServer1.ServerCaption = "IOTL Compressor Monitor";
@@ -138,6 +140,5 @@ namespace IOTLManager.UserControls
             if (compressorLogWriter != null)
                 compressorLogWriter.EnQue(cLog);
         }
-
     }
 }

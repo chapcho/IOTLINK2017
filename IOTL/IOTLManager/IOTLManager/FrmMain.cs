@@ -303,15 +303,13 @@ namespace IOTLManager
 
             switch(tableName.ToLower())
             {
-                case "machinestatelog":
-                    strQuery = "Select * From machinestatelog order by LastEventTime desc Limit 100 offset 100";
+                case "iotlink.machinestatelog":
+                    strQuery = "Select * From iotlink.machinestatelog order by LastEventTime desc Limit 100 offset 100;";
                     break;
                 default:
-                    strQuery = string.Format("select * From {0}", tableName);
+                    strQuery = string.Format("select * From {0};", tableName);
                     break;
-
             }
-            System.Console.WriteLine(strQuery);
 
             DisplayToDataGridReportWithQuery(strQuery);
         }
@@ -324,6 +322,8 @@ namespace IOTLManager
 
                 DataTable dt = DBReader.GetQueryResult(sqlQuery);
                 dataGridReport.DataSource = dt;
+
+                txtQueryString.Text = sqlQuery;
             }
             catch (Exception ex)
             {
@@ -332,25 +332,45 @@ namespace IOTLManager
             }
         }
 
+        private string GetDatabaseNames()
+        {
+            string databaseNames = string.Empty;
+
+            DataTable dt = DBReader.GetQueryResult("SHOW DATABASES;");
+            foreach (DataRow dr in dt.Rows)
+            {
+                databaseNames += dr.Field<string>(0) + ",";
+            }
+            return databaseNames;
+        }
+
         private void LoadIotlTableListInTreeView()
         {
             try
             {
-                DataTable dt = DBReader.GetQueryResult("SELECT Table_Name FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA = 'iotlink'");
+
+                string databaseNames = GetDatabaseNames();
+
+                string[] arrDatabase = databaseNames.Split(',');
 
                 tvIotlTable.BeginUpdate();
-
                 tvIotlTable.Nodes.Clear();
-                tvIotlTable.Nodes.Add("Iotlink");
-                tvIotlTable.Nodes[0].Nodes.Add("Tables");
 
-                foreach (DataRow dr in dt.Rows)
+                int iDbIndex = 0;
+                foreach (string dbName in databaseNames.Split(','))
                 {
-                    tvIotlTable.Nodes[0].Nodes[0].Nodes.Add(dr.Field<string>(0));
+                    string queryString = string.Format("SELECT Table_Name FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA = '{0}'", dbName);
+                    tvIotlTable.Nodes.Add(dbName);
+                    tvIotlTable.Nodes[iDbIndex].Nodes.Add("Tables");
+                    DataTable dt = DBReader.GetQueryResult(queryString);
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        tvIotlTable.Nodes[iDbIndex].Nodes[0].Nodes.Add(dr.Field<string>(0));
+                    }
+                    iDbIndex++;
                 }
+ 
                 tvIotlTable.EndUpdate();
-
-
             }
             catch (Exception ex)
             {
@@ -366,7 +386,26 @@ namespace IOTLManager
 
         private void tvIotlTable_DoubleClick(object sender, EventArgs e)
         {
-            DisplayToDataGridReportWithTableName(tvIotlTable.SelectedNode.Text);
+            string dbName = "iotlink";
+
+            TreeNode node = tvIotlTable.SelectedNode;
+            if(node.Parent != null && node.Parent.GetType() == typeof(TreeNode))
+            {
+                if(node.Parent.Text.Equals("Tables"))
+                {
+                    dbName = node.Parent.Parent.Text;
+                }
+            }
+
+            DisplayToDataGridReportWithTableName(dbName+"." +tvIotlTable.SelectedNode.Text);
+        }
+
+        private void tvIotlTable_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (e.Node.Parent != null && e.Node.Parent.GetType() == typeof(TreeNode))
+            {
+                Console.WriteLine("parrent : " + tvIotlTable.SelectedNode.Parent.Text);
+            }
         }
     }
 }
