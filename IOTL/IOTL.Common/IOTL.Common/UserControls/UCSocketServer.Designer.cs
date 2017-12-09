@@ -44,6 +44,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lvClientList = new System.Windows.Forms.ListView();
             this.chkSocketTransparent = new System.Windows.Forms.CheckBox();
+            this.chkEchoMode = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -115,9 +116,10 @@
             // 
             // btnSeverStart
             // 
+            this.btnSeverStart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSeverStart.Location = new System.Drawing.Point(3, 93);
             this.btnSeverStart.Name = "btnSeverStart";
-            this.btnSeverStart.Size = new System.Drawing.Size(113, 34);
+            this.btnSeverStart.Size = new System.Drawing.Size(117, 34);
             this.btnSeverStart.TabIndex = 1;
             this.btnSeverStart.Text = "서버시작";
             this.btnSeverStart.UseVisualStyleBackColor = true;
@@ -125,10 +127,10 @@
             // 
             // btnServerStop
             // 
-            this.btnServerStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnServerStop.Location = new System.Drawing.Point(142, 93);
+            this.btnServerStop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnServerStop.Location = new System.Drawing.Point(126, 93);
             this.btnServerStop.Name = "btnServerStop";
-            this.btnServerStop.Size = new System.Drawing.Size(99, 34);
+            this.btnServerStop.Size = new System.Drawing.Size(115, 34);
             this.btnServerStop.TabIndex = 1;
             this.btnServerStop.Text = "서버중지";
             this.btnServerStop.UseVisualStyleBackColor = true;
@@ -156,6 +158,7 @@
             this.tableLayoutPanel1.Controls.Add(this.btnServerStop, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.groupBox2, 3, 3);
             this.tableLayoutPanel1.Controls.Add(this.chkSocketTransparent, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.chkEchoMode, 1, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 17);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -247,9 +250,9 @@
             // 
             // chkSocketTransparent
             // 
-            this.chkSocketTransparent.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.chkSocketTransparent.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.chkSocketTransparent.AutoSize = true;
-            this.chkSocketTransparent.Location = new System.Drawing.Point(3, 67);
+            this.chkSocketTransparent.Location = new System.Drawing.Point(28, 67);
             this.chkSocketTransparent.Name = "chkSocketTransparent";
             this.chkSocketTransparent.Size = new System.Drawing.Size(92, 16);
             this.chkSocketTransparent.TabIndex = 3;
@@ -257,8 +260,22 @@
             this.chkSocketTransparent.UseVisualStyleBackColor = true;
             this.chkSocketTransparent.CheckedChanged += new System.EventHandler(this.chkSocketTransparent_CheckedChanged);
             // 
+            // chkEchoMode
+            // 
+            this.chkEchoMode.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.chkEchoMode.AutoSize = true;
+            this.chkEchoMode.BackColor = System.Drawing.Color.Aquamarine;
+            this.chkEchoMode.Location = new System.Drawing.Point(153, 67);
+            this.chkEchoMode.Name = "chkEchoMode";
+            this.chkEchoMode.Size = new System.Drawing.Size(88, 16);
+            this.chkEchoMode.TabIndex = 3;
+            this.chkEchoMode.Text = "echo mode";
+            this.chkEchoMode.UseVisualStyleBackColor = false;
+            this.chkEchoMode.CheckedChanged += new System.EventHandler(this.chkEchoMode_CheckedChanged);
+            // 
             // groupBox1
             // 
+            this.groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.groupBox1.Controls.Add(this.tableLayoutPanel1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -278,6 +295,7 @@
             this.Name = "UCSocketServer";
             this.Size = new System.Drawing.Size(542, 272);
             this.Load += new System.EventHandler(this.UCSocketServer_Load);
+            this.ParentChanged += new System.EventHandler(this.UCSocketServer_ParentChanged);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -304,5 +322,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ListView lvClientList;
         private System.Windows.Forms.CheckBox chkSocketTransparent;
+        private System.Windows.Forms.CheckBox chkEchoMode;
     }
 }

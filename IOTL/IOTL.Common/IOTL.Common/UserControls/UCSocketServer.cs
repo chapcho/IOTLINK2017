@@ -30,6 +30,20 @@ namespace IOTL.Common.UserControls
         public UCSocketServer()
         {
             InitializeComponent();
+            SocketServerIsStarted = false;
+        }
+
+        public bool SocketServerIsStarted
+        {
+            get;set;
+        }
+
+        private void UCSocketServer_ParentChanged(object sender, EventArgs e)
+        {
+            if (SocketServerIsStarted)
+            {
+                btnServerStop_Click(null, null);
+            }
         }
 
         public int ConnectedClientCount
@@ -40,7 +54,7 @@ namespace IOTL.Common.UserControls
                 if (value != connectedClientCount)
                 {
                     connectedClientCount = value;
-                    UpdateConnectedClientCount("Client", value.ToString());
+                    UpdateSocketUsageCount("Client", value.ToString());
                 }
             }
         }
@@ -52,7 +66,7 @@ namespace IOTL.Common.UserControls
                 if (value != receivedPacketCount)
                 {
                     receivedPacketCount = value;
-                    UpdateReceivePacketCount("ReceivePacket", value.ToString());
+                    UpdateSocketUsageCount("ReceivePacket", value.ToString());
                 }
             }
         }
@@ -64,7 +78,7 @@ namespace IOTL.Common.UserControls
                 if (value != sendPacketCount)
                 {
                     sendPacketCount = value;
-                    UpdateSendPacketCount("SendPacket", value.ToString());
+                    UpdateSocketUsageCount("SendPacket", value.ToString());
                 }
             }
         }
@@ -145,32 +159,6 @@ namespace IOTL.Common.UserControls
             get { return socketServer; }
         }
 
-        private void UpdateSystemMessage(string sSender, string sMessage)
-        {
-            //Event 생성
-            UEventMessage?.Invoke(sSender, sMessage);
-        }
-
-        private void SaveLogToFile(EMFileLogType emFileLogType, EMFileLogDepth emFileLogDepth, string sLogMessage)
-        {
-            UEventFileLog?.Invoke(emFileLogType, emFileLogDepth, sLogMessage);
-        }
-
-        private void SaveLogToMonitor(String clientID, LocalMessageEventArgs objReceiveData)
-        {
-            if (UEventMachineStateTimeLog != null)
-            {
-                CTimeLog log = new CTimeLog(clientID, ConstantDef.NIY);
-                // 로그를 수신한 시간을 기록한다. 설비에서 보낸 시간은 데이터에 기록되어야 한다.
-                log.LogTime = DateTime.Now;
-
-                log.ReceiveData = objReceiveData.receiveData;
-
-                // 설비의 상태를 받아서 전달할 수 있다면 상태를 바꾸어서 전달해야 합니다.
-                UEventMachineStateTimeLog(log);
-            }
-        }
-
         #region Form Event area
 
         public bool StartServerSocket()
@@ -206,6 +194,8 @@ namespace IOTL.Common.UserControls
                             btnSeverStart.Text = "Starting...";
 
                             UpdateSystemMessage("SocketServer", string.Format("IP:{0} , Port:{1} , Socket Server Starting!", GetLocalIP(), txtServerPort.Text));
+
+                            SocketServerIsStarted = true;
                             return true;
                         }
                     }
@@ -271,6 +261,7 @@ namespace IOTL.Common.UserControls
 
         private void chkSocketTransparent_CheckedChanged(object sender, EventArgs e)
         {
+
             if(this.chkSocketTransparent.Checked)
             {
                 UpdateSystemMessage("SocketServer", "Transparent Mode Socket!");
@@ -278,6 +269,20 @@ namespace IOTL.Common.UserControls
             else
             {
                 UpdateSystemMessage("SocketServer", "SuperSocket Chatting Mode!");
+            }
+            socketServer.DummySocketServer = chkSocketTransparent.Checked;
+
+        }
+
+        private void chkEchoMode_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.chkEchoMode.Checked)
+            {   // Echo 모드에서는 수신한 데이터를 재 전송합니다.
+                UpdateSystemMessage("SocketServer", "Echo Mode Socket!");
+            }
+            else
+            {
+                UpdateSystemMessage("SocketServer", "No Echo Mode!");
             }
         }
 
@@ -293,7 +298,7 @@ namespace IOTL.Common.UserControls
             // 처리전에 로그에 기록
             SaveLogToFile(EMFileLogType.CommunicationLog, EMFileLogDepth.Info, e.Message);
             // Monitor에게 보내는 메시지(DB저장등 App에서 해야 할 처리)
-            SaveLogToMonitor(session.UserID, e);
+            SaveLogToMonitor(session.SessionID, session.UserID, e);
         }
 
         private void SocketServer_OnLogoutUser(claClientSession session, LocalMessageEventArgs e)
@@ -318,6 +323,39 @@ namespace IOTL.Common.UserControls
             SaveLogToFile(EMFileLogType.CommunicationLog, EMFileLogDepth.Info, session.UserID + "Session Closed!");
         }
 
+        private void UpdateSystemMessage(string sSender, string sMessage)
+        {
+            //Event 생성
+            UEventMessage?.Invoke(sSender, sMessage);
+        }
+
+        private void SaveLogToFile(EMFileLogType emFileLogType, EMFileLogDepth emFileLogDepth, string sLogMessage)
+        {
+            UEventFileLog?.Invoke(emFileLogType, emFileLogDepth, sLogMessage);
+        }
+
+        private void SaveLogToMonitor(String sessionID, String clientID, LocalMessageEventArgs objReceiveData)
+        {
+            if (UEventMachineStateTimeLog != null)
+            {
+                // Chatting에서 보낸 클라이언트 아이디를 사용하고 있음.
+                // 프로토콜 상의 구분자로 변경할 필요가 있음.
+                CTimeLog log = new CTimeLog(clientID, ConstantDef.NIY);
+                // 로그를 수신한 시간을 기록한다. 설비에서 보낸 시간은 데이터에 기록되어야 한다.
+                log.LogTime = DateTime.Now;
+
+                log.ReceiveData = objReceiveData.receiveData;
+
+                // 설비의 상태를 받아서 전달할 수 있다면 상태를 바꾸어서 전달해야 합니다.
+                UEventMachineStateTimeLog(log);
+            }
+
+            if (this.chkEchoMode.Checked)
+            {
+                SendMessageToClient(sessionID, clientID, objReceiveData.receiveData);
+            }
+        }
+
         /// <summary>
         /// 새로운 소켓 세션 연결
         /// 
@@ -333,14 +371,14 @@ namespace IOTL.Common.UserControls
         }
         #endregion
 
-        public bool SendMessageToClient(string clientId, string message)
+        public bool SendMessageToClient(string sessionID, string clientId, byte[] message)
         {
             bool bRet = false;
             SendPacketCount++;
 
             try
             {
-                bRet = socketServer.SendMsgToClient(clientId, message);
+                bRet = socketServer.SendBytesToSocketClient(sessionID, message);
             }
             catch(Exception ex)
             {
@@ -375,18 +413,29 @@ namespace IOTL.Common.UserControls
 
         protected delegate void UpdateTextCallBack(string sSender, string sMessage);
 
-        public void UpdateReceivePacketCount(object sSender, string sMessage)
+        public void UpdateSocketUsageCount(object sSender, string sMessage)
         {
             try
             {
                 if (this.InvokeRequired)
                 {
-                    UpdateTextCallBack cbUpdateText = new UpdateTextCallBack(UpdateReceivePacketCount);
+                    UpdateTextCallBack cbUpdateText = new UpdateTextCallBack(UpdateSocketUsageCount);
                     this.Invoke(cbUpdateText, new object[] { sSender, sMessage });
                 }
                 else
                 {
-                    txtReceivePacket.Text = sMessage;
+                    switch(sSender.ToString())
+                    {
+                        case "ReceivePacket":
+                            txtReceivePacket.Text = sMessage;
+                            break;
+                        case "Client":
+                            txtConnected.Text = sMessage;
+                            break;
+                        case "SendPacket":
+                            txtSendPacket.Text = sMessage;
+                            break;
+                    }
                 }
             }
             catch (System.Exception ex)
@@ -394,44 +443,7 @@ namespace IOTL.Common.UserControls
                 Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name); ex.Data.Clear();
             }
         }
-        public void UpdateConnectedClientCount(object sSender, string sMessage)
-        {
-            try
-            {
-                if (this.InvokeRequired)
-                {
-                    UpdateTextCallBack cbUpdateText = new UpdateTextCallBack(UpdateConnectedClientCount);
-                    this.Invoke(cbUpdateText, new object[] { sSender, sMessage });
-                }
-                else
-                {
-                    txtConnected.Text = sMessage;
-                }
-            }
-            catch (System.Exception ex)
-            {
-                Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name); ex.Data.Clear();
-            }
-        }
-        public void UpdateSendPacketCount(object sSender, string sMessage)
-        {
-            try
-            {
-                if (this.InvokeRequired)
-                {
-                    UpdateTextCallBack cbUpdateText = new UpdateTextCallBack(UpdateSendPacketCount);
-                    this.Invoke(cbUpdateText, new object[] { sSender, sMessage });
-                }
-                else
-                {
-                    txtSendPacket.Text = sMessage;
-                }
-            }
-            catch (System.Exception ex)
-            {
-                Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name); ex.Data.Clear();
-            }
-        }
+
 
         protected delegate void UpdateClientListCallBack(bool bIn, string sessionId, string clientType);
 

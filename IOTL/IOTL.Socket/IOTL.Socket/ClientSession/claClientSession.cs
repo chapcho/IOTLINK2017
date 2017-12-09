@@ -66,5 +66,14 @@ namespace IOTL.Socket.ClientSession
             //this.Send(md.GetData());
             this.Send(md.Data, 0, md.DataLength);
         }
+
+        public void SendData_Client(byte[] arrData)
+        {
+            MessageData md = new MessageData();
+            md.SetData(arrData);
+
+            //this.Send(md.GetData());
+            this.Send(md.Data, 0, md.DataLength);
+        }
     }
 }

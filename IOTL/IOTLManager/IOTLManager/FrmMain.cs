@@ -153,6 +153,8 @@ namespace IOTLManager
 
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // 사용자가 상태 변경 해야 하는 서비스가 중지 되었는지 확인
+
             ucSocketServer1.UEventMessage -= UpdateSystemMessage;
             ucSocketServer1.UEventFileLog -= WriteMessageToLogfile;
             ucSocketServer1.UEventMachineStateTimeLog -= EventHandler_UEventMachineStateTimeLog;
@@ -318,6 +320,8 @@ namespace IOTLManager
         {
             try
             {
+                dataGridReport.Columns.Clear();
+
                 dataGridReport.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
                 DataTable dt = DBReader.GetQueryResult(sqlQuery);

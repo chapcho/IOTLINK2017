@@ -69,6 +69,7 @@
             this.menuRestoreDatabase = new System.Windows.Forms.ToolStripMenuItem();
             this.구성ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuServerConfig = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.tabMonitoring = new System.Windows.Forms.TabPage();
             this.tabConfig = new System.Windows.Forms.TabPage();
@@ -82,16 +83,19 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tvIotlTable = new System.Windows.Forms.TreeView();
             this.tabSocketServer = new System.Windows.Forms.TabPage();
-            this.ucSocketServer1 = new IOTL.Common.UserControls.UCSocketServer();
-            this.ucClock1 = new IOTLManager.UserControls.UCClock();
             this.tabIotlCompSvr = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.ucSocketServer1 = new IOTL.Common.UserControls.UCSocketServer();
+            this.ucClock1 = new IOTLManager.UserControls.UCClock();
             this.ucCompressorDataManager1 = new IOTLManager.UserControls.UCCompressorDataManager();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.ucSystemLogTable = new IOTLManager.UserControls.UCSystemLogTable();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             this.mainTabControl.SuspendLayout();
             this.tabLogConfig.SuspendLayout();
             this.tabDatabase.SuspendLayout();
@@ -105,10 +109,6 @@
             this.tabIotlCompSvr.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -427,6 +427,24 @@
             this.menuServerConfig.Text = "환경설정";
             this.menuServerConfig.Click += new System.EventHandler(this.menuServerConfig_Click);
             // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 24);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.mainTabControl);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.ucSystemLogTable);
+            this.splitContainer2.Size = new System.Drawing.Size(1032, 582);
+            this.splitContainer2.SplitterDistance = 399;
+            this.splitContainer2.TabIndex = 5;
+            // 
             // mainTabControl
             // 
             this.mainTabControl.Controls.Add(this.tabMonitoring);
@@ -536,11 +554,10 @@
             // 
             this.dataGridReport.AllowUserToAddRows = false;
             this.dataGridReport.AllowUserToDeleteRows = false;
-            this.dataGridReport.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.dataGridReport.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
             this.dataGridReport.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dataGridReport.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            this.dataGridReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridReport.ColumnHeadersHeight = 20;
+            this.dataGridReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridReport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridReport.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridReport.Location = new System.Drawing.Point(0, 0);
@@ -592,25 +609,6 @@
             this.tabSocketServer.Text = "SocketServer";
             this.tabSocketServer.UseVisualStyleBackColor = true;
             // 
-            // ucSocketServer1
-            // 
-            this.ucSocketServer1.BackColor = System.Drawing.Color.Aquamarine;
-            this.ucSocketServer1.ConnectedClientCount = 0;
-            this.ucSocketServer1.Location = new System.Drawing.Point(286, 16);
-            this.ucSocketServer1.Name = "ucSocketServer1";
-            this.ucSocketServer1.ReceivedPacketCount = 0;
-            this.ucSocketServer1.SendPacketCount = 0;
-            this.ucSocketServer1.ServerCaption = "TCP Socket Server";
-            this.ucSocketServer1.Size = new System.Drawing.Size(542, 272);
-            this.ucSocketServer1.TabIndex = 7;
-            // 
-            // ucClock1
-            // 
-            this.ucClock1.Location = new System.Drawing.Point(8, 6);
-            this.ucClock1.Name = "ucClock1";
-            this.ucClock1.Size = new System.Drawing.Size(272, 79);
-            this.ucClock1.TabIndex = 6;
-            // 
             // tabIotlCompSvr
             // 
             this.tabIotlCompSvr.Controls.Add(this.groupBox1);
@@ -643,38 +641,41 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 17);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 76.09254F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.90746F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 83.03342F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.96658F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1012, 389);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // ucSocketServer1
+            // 
+            this.ucSocketServer1.BackColor = System.Drawing.Color.Aquamarine;
+            this.ucSocketServer1.ConnectedClientCount = 0;
+            this.ucSocketServer1.Location = new System.Drawing.Point(286, 16);
+            this.ucSocketServer1.Name = "ucSocketServer1";
+            this.ucSocketServer1.ReceivedPacketCount = 0;
+            this.ucSocketServer1.SendPacketCount = 0;
+            this.ucSocketServer1.ServerCaption = "TCP Socket Server";
+            this.ucSocketServer1.Size = new System.Drawing.Size(542, 272);
+            this.ucSocketServer1.SocketServerIsStarted = false;
+            this.ucSocketServer1.TabIndex = 7;
+            // 
+            // ucClock1
+            // 
+            this.ucClock1.Location = new System.Drawing.Point(8, 6);
+            this.ucClock1.Name = "ucClock1";
+            this.ucClock1.Size = new System.Drawing.Size(272, 79);
+            this.ucClock1.TabIndex = 6;
             // 
             // ucCompressorDataManager1
             // 
             this.ucCompressorDataManager1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ucCompressorDataManager1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ucCompressorDataManager1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucCompressorDataManager1.Location = new System.Drawing.Point(3, 3);
             this.ucCompressorDataManager1.Name = "ucCompressorDataManager1";
-            this.ucCompressorDataManager1.Size = new System.Drawing.Size(759, 289);
+            this.ucCompressorDataManager1.Size = new System.Drawing.Size(759, 316);
             this.ucCompressorDataManager1.TabIndex = 0;
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 24);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.mainTabControl);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.ucSystemLogTable);
-            this.splitContainer2.Size = new System.Drawing.Size(1032, 582);
-            this.splitContainer2.SplitterDistance = 399;
-            this.splitContainer2.TabIndex = 5;
             // 
             // ucSystemLogTable
             // 
@@ -701,6 +702,10 @@
             this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
             this.mainTabControl.ResumeLayout(false);
             this.tabLogConfig.ResumeLayout(false);
             this.tabDatabase.ResumeLayout(false);
@@ -715,10 +720,6 @@
             this.tabIotlCompSvr.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

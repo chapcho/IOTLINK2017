@@ -51,7 +51,7 @@
             this.ucSocketServer1.ReceivedPacketCount = 0;
             this.ucSocketServer1.SendPacketCount = 0;
             this.ucSocketServer1.ServerCaption = "TCP Socket Server";
-            this.ucSocketServer1.Size = new System.Drawing.Size(542, 300);
+            this.ucSocketServer1.Size = new System.Drawing.Size(542, 315);
             this.ucSocketServer1.TabIndex = 0;
             // 
             // UCCompressorDataManager
