@@ -77,18 +77,18 @@
             this.button1 = new System.Windows.Forms.Button();
             this.tabDatabase = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.txtQueryString = new System.Windows.Forms.TextBox();
             this.dataGridReport = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tvIotlTable = new System.Windows.Forms.TreeView();
             this.tabSocketServer = new System.Windows.Forms.TabPage();
             this.ucSocketServer1 = new IOTL.Common.UserControls.UCSocketServer();
+            this.ucClock1 = new IOTLManager.UserControls.UCClock();
             this.tabIotlCompSvr = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.txtQueryString = new System.Windows.Forms.TextBox();
-            this.ucClock1 = new IOTLManager.UserControls.UCClock();
             this.ucCompressorDataManager1 = new IOTLManager.UserControls.UCCompressorDataManager();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.ucSystemLogTable = new IOTLManager.UserControls.UCSystemLogTable();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -521,14 +521,33 @@
             this.splitContainer1.SplitterDistance = 607;
             this.splitContainer1.TabIndex = 4;
             // 
+            // txtQueryString
+            // 
+            this.txtQueryString.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.txtQueryString.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtQueryString.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtQueryString.Location = new System.Drawing.Point(0, 0);
+            this.txtQueryString.Name = "txtQueryString";
+            this.txtQueryString.ReadOnly = true;
+            this.txtQueryString.Size = new System.Drawing.Size(607, 22);
+            this.txtQueryString.TabIndex = 1;
+            // 
             // dataGridReport
             // 
+            this.dataGridReport.AllowUserToAddRows = false;
+            this.dataGridReport.AllowUserToDeleteRows = false;
+            this.dataGridReport.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dataGridReport.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
             this.dataGridReport.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dataGridReport.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dataGridReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridReport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridReport.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridReport.Location = new System.Drawing.Point(0, 0);
             this.dataGridReport.Name = "dataGridReport";
+            this.dataGridReport.ReadOnly = true;
             this.dataGridReport.RowTemplate.Height = 23;
+            this.dataGridReport.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridReport.Size = new System.Drawing.Size(607, 412);
             this.dataGridReport.TabIndex = 0;
             // 
@@ -585,6 +604,13 @@
             this.ucSocketServer1.Size = new System.Drawing.Size(542, 272);
             this.ucSocketServer1.TabIndex = 7;
             // 
+            // ucClock1
+            // 
+            this.ucClock1.Location = new System.Drawing.Point(8, 6);
+            this.ucClock1.Name = "ucClock1";
+            this.ucClock1.Size = new System.Drawing.Size(272, 79);
+            this.ucClock1.TabIndex = 6;
+            // 
             // tabIotlCompSvr
             // 
             this.tabIotlCompSvr.Controls.Add(this.groupBox1);
@@ -623,6 +649,15 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1012, 389);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
+            // ucCompressorDataManager1
+            // 
+            this.ucCompressorDataManager1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.ucCompressorDataManager1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ucCompressorDataManager1.Location = new System.Drawing.Point(3, 3);
+            this.ucCompressorDataManager1.Name = "ucCompressorDataManager1";
+            this.ucCompressorDataManager1.Size = new System.Drawing.Size(759, 289);
+            this.ucCompressorDataManager1.TabIndex = 0;
+            // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -640,33 +675,6 @@
             this.splitContainer2.Size = new System.Drawing.Size(1032, 582);
             this.splitContainer2.SplitterDistance = 399;
             this.splitContainer2.TabIndex = 5;
-            // 
-            // txtQueryString
-            // 
-            this.txtQueryString.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.txtQueryString.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtQueryString.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtQueryString.Location = new System.Drawing.Point(0, 0);
-            this.txtQueryString.Name = "txtQueryString";
-            this.txtQueryString.ReadOnly = true;
-            this.txtQueryString.Size = new System.Drawing.Size(607, 22);
-            this.txtQueryString.TabIndex = 1;
-            // 
-            // ucClock1
-            // 
-            this.ucClock1.Location = new System.Drawing.Point(8, 6);
-            this.ucClock1.Name = "ucClock1";
-            this.ucClock1.Size = new System.Drawing.Size(272, 79);
-            this.ucClock1.TabIndex = 6;
-            // 
-            // ucCompressorDataManager1
-            // 
-            this.ucCompressorDataManager1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.ucCompressorDataManager1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ucCompressorDataManager1.Location = new System.Drawing.Point(3, 3);
-            this.ucCompressorDataManager1.Name = "ucCompressorDataManager1";
-            this.ucCompressorDataManager1.Size = new System.Drawing.Size(759, 289);
-            this.ucCompressorDataManager1.TabIndex = 0;
             // 
             // ucSystemLogTable
             // 
