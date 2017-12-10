@@ -378,5 +378,23 @@ namespace IOTL.Socket
             return bRet;
         }
 
+        public bool SendBytesToAllSocketClient(byte[] sendData)
+        {
+            bool bRet = false;
+            try
+            {
+                foreach (claClientSession insUserTemp in this.GetAllSessions())
+                {
+                    insUserTemp.SendData_Client(sendData);
+                }
+                bRet = true;
+            }
+            catch(Exception ex)
+            {
+                ex.Data.Clear();
+                bRet = false;
+            }
+            return bRet;
+        }
     }
 }

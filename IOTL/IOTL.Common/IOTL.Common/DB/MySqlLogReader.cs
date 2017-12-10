@@ -39,6 +39,12 @@ namespace IOTL.Common.DB
             dbConnectionInfo = connectionInfo;
         }
 
+        public MySqlLogReader(string databaseName)
+        {
+            dbConnectionInfo = new ConfigMariaDB();
+            dbConnectionInfo.InitialDatabaseName = databaseName;
+        }
+
         public void Dispose()
         {
 
@@ -173,6 +179,34 @@ namespace IOTL.Common.DB
             }
 
             return dbTable;
+        }
+
+        public bool ExecUpdateQuery(string queryString)
+        {
+            bool bOK = false;
+
+            using (MySqlCommand updateCommand = new MySqlCommand())
+            {
+                try
+                {
+                    if (m_bConnected)
+                    {
+                        updateCommand.Connection = m_dbCon;
+                        updateCommand.CommandText = queryString;
+                        updateCommand.ExecuteNonQuery();
+
+                        bOK = true;
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                    ex.Data.Clear();
+                    bOK = false;
+                }
+            }
+
+            return bOK;
         }
 
         /// <summary>

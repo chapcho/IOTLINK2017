@@ -20,7 +20,6 @@ namespace IOTL.Common.Framework
     {
         private string strName;
         private int numValue;
-        public event EventHandler UnitChanged; // or via the "Events" list
 
         public NumericBingingWrapper(string sName)
         {

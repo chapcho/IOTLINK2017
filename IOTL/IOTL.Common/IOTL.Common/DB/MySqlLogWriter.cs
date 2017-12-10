@@ -116,7 +116,6 @@ namespace IOTL.Common.DB
             return bOK;
         }
 
-
         public bool Disconnect()
         {
             bool bOK = true;
@@ -136,6 +135,34 @@ namespace IOTL.Common.DB
             {
                 Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name); ex.Data.Clear();
                 bOK = false;
+            }
+
+            return bOK;
+        }
+
+        public bool ExecUpdateQuery(string queryString)
+        {
+            bool bOK = false;
+
+            using (MySqlCommand updateCommand = new MySqlCommand())
+            {
+                try
+                {
+                    if (dbConnected)
+                    {
+                        updateCommand.Connection = dbConnection;
+                        updateCommand.CommandText = queryString;
+                        updateCommand.ExecuteNonQuery();
+
+                        bOK = true;
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                    ex.Data.Clear();
+                    bOK = false;
+                }
             }
 
             return bOK;

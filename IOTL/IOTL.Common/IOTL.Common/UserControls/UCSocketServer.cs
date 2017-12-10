@@ -371,6 +371,25 @@ namespace IOTL.Common.UserControls
         }
         #endregion
 
+        public bool SendMessageToAllClients(byte[] message)
+        {
+            bool bRet = false;
+            SendPacketCount++;
+
+            try
+            {
+                bRet = socketServer.SendBytesToAllSocketClient(message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name); ex.Data.Clear();
+                // 단말로의 데이어 전송이 실패한 여러가지 경우 단말 접속정보를 삭제할것인지 검토 필요
+                ex.Data.Clear();
+            }
+
+            return bRet;
+        }
+
         public bool SendMessageToClient(string sessionID, string clientId, byte[] message)
         {
             bool bRet = false;

@@ -83,11 +83,10 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tvIotlTable = new System.Windows.Forms.TreeView();
             this.tabSocketServer = new System.Windows.Forms.TabPage();
-            this.tabIotlCompSvr = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.ucSocketServer1 = new IOTL.Common.UserControls.UCSocketServer();
             this.ucClock1 = new IOTLManager.UserControls.UCClock();
+            this.tabIotlCompSvr = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ucCompressorDataManager1 = new IOTLManager.UserControls.UCCompressorDataManager();
             this.ucSystemLogTable = new IOTLManager.UserControls.UCSystemLogTable();
             this.statusStrip1.SuspendLayout();
@@ -108,7 +107,6 @@
             this.tabSocketServer.SuspendLayout();
             this.tabIotlCompSvr.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -609,44 +607,6 @@
             this.tabSocketServer.Text = "SocketServer";
             this.tabSocketServer.UseVisualStyleBackColor = true;
             // 
-            // tabIotlCompSvr
-            // 
-            this.tabIotlCompSvr.Controls.Add(this.groupBox1);
-            this.tabIotlCompSvr.Location = new System.Drawing.Point(4, 22);
-            this.tabIotlCompSvr.Name = "tabIotlCompSvr";
-            this.tabIotlCompSvr.Padding = new System.Windows.Forms.Padding(3);
-            this.tabIotlCompSvr.Size = new System.Drawing.Size(1024, 373);
-            this.tabIotlCompSvr.TabIndex = 5;
-            this.tabIotlCompSvr.Text = "Compressor Data Manager";
-            this.tabIotlCompSvr.UseVisualStyleBackColor = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1018, 409);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Compressor Data Manager";
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.59289F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.40711F));
-            this.tableLayoutPanel1.Controls.Add(this.ucCompressorDataManager1, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 17);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 83.03342F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.96658F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1012, 389);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
             // ucSocketServer1
             // 
             this.ucSocketServer1.BackColor = System.Drawing.Color.Aquamarine;
@@ -667,14 +627,36 @@
             this.ucClock1.Size = new System.Drawing.Size(272, 79);
             this.ucClock1.TabIndex = 6;
             // 
+            // tabIotlCompSvr
+            // 
+            this.tabIotlCompSvr.Controls.Add(this.groupBox1);
+            this.tabIotlCompSvr.Location = new System.Drawing.Point(4, 22);
+            this.tabIotlCompSvr.Name = "tabIotlCompSvr";
+            this.tabIotlCompSvr.Padding = new System.Windows.Forms.Padding(3);
+            this.tabIotlCompSvr.Size = new System.Drawing.Size(1024, 373);
+            this.tabIotlCompSvr.TabIndex = 5;
+            this.tabIotlCompSvr.Text = "Compressor Data Manager";
+            this.tabIotlCompSvr.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.ucCompressorDataManager1);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1018, 409);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Compressor Data Manager";
+            // 
             // ucCompressorDataManager1
             // 
             this.ucCompressorDataManager1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ucCompressorDataManager1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ucCompressorDataManager1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucCompressorDataManager1.Location = new System.Drawing.Point(3, 3);
+            this.ucCompressorDataManager1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ucCompressorDataManager1.Location = new System.Drawing.Point(3, 17);
             this.ucCompressorDataManager1.Name = "ucCompressorDataManager1";
-            this.ucCompressorDataManager1.Size = new System.Drawing.Size(759, 316);
+            this.ucCompressorDataManager1.Size = new System.Drawing.Size(738, 389);
             this.ucCompressorDataManager1.TabIndex = 0;
             // 
             // ucSystemLogTable
@@ -719,7 +701,6 @@
             this.tabSocketServer.ResumeLayout(false);
             this.tabIotlCompSvr.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -779,7 +760,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TabPage tabIotlCompSvr;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.DataGridView dataGridReport;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
