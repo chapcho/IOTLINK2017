@@ -11,7 +11,7 @@ namespace IOTL.SWLockLicense
 
 		#region Member Variables
 
-        private static string _PassWord = "udmt000";
+        private static string _PassWord = "APPt000";
 
 		#endregion
 

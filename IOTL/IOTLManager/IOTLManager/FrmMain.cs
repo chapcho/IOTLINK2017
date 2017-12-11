@@ -15,6 +15,7 @@ using MySql.Data.MySqlClient;
 using IOTL.Common.Util;
 using IOTLManager.UserControls;
 using System.Data;
+using System.Collections.Generic;
 
 namespace IOTLManager
 {
@@ -336,32 +337,26 @@ namespace IOTLManager
             }
         }
 
-        private string GetDatabaseNames()
+        private IEnumerable<string>  GetDatabaseNames()
         {
             string databaseNames = string.Empty;
 
             DataTable dt = DBReader.GetQueryResult("SHOW DATABASES;");
             foreach (DataRow dr in dt.Rows)
             {
-                databaseNames += dr.Field<string>(0) + ",";
+                yield return dr.Field<string>(0);
             }
-            return databaseNames;
         }
 
         private void LoadIotlTableListInTreeView()
         {
             try
             {
-
-                string databaseNames = GetDatabaseNames();
-
-                string[] arrDatabase = databaseNames.Split(',');
-
                 tvIotlTable.BeginUpdate();
                 tvIotlTable.Nodes.Clear();
 
                 int iDbIndex = 0;
-                foreach (string dbName in databaseNames.Split(','))
+                foreach (string dbName in this.GetDatabaseNames())
                 {
                     string queryString = string.Format("SELECT Table_Name FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA = '{0}'", dbName);
                     tvIotlTable.Nodes.Add(dbName);

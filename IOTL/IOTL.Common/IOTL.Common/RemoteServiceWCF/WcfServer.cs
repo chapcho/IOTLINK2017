@@ -20,7 +20,7 @@ namespace IOTL.Common.Remote
         #region Member Variables
 
         protected bool m_bRun = false;
-        protected string m_sServiceName = "UDMService";
+        protected string m_sServiceName = "APPService";
         protected int m_iPort = 8731;
 
         protected T m_cService = default(T);

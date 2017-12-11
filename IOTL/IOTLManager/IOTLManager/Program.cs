@@ -30,20 +30,30 @@ namespace IOTLManager
 
             bool bOK;
 
-            try
-            {
-                bOK = cLicense.CheckLicense();
-            }
-            catch (Exception ex)
-            {
-                bOK = false; Console.WriteLine("License Exception... Key Checking Please.." + ex);
-                MessageBox.Show("License Exception... Key Checking Please..");
-            }
+            //try
+            //{
+            //    bOK = cLicense.CheckLicense();
+            //}
+            //catch (Exception ex)
+            //{
+            //    bOK = false; Console.WriteLine("License Exception... Key Checking Please.." + ex);
+            //    MessageBox.Show("License Exception... Key Checking Please..");
+            //}
 
             // if (bOK)
-            Application.Run(new FrmMain());
+            // Application.Run(new FrmMain());
             // else
             //    Application.Exit();
+
+            try
+            {
+                Application.Run(new FrmMain());
+            }
+            catch(Exception ex)
+            {
+                ex.Data.Clear();
+                // MessageBox.Show("License Exception... Key Checking Please..");
+            }
         }
     }
 }

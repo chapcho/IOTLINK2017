@@ -14,7 +14,7 @@ namespace IOTL.SWLockLicense
 
         #region Member Variables
 
-        private byte[] m_arBytes = ASCIIEncoding.ASCII.GetBytes("UDMTek00");
+        private byte[] m_arBytes = ASCIIEncoding.ASCII.GetBytes("APP0000");
 
         #endregion
 

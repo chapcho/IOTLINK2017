@@ -445,12 +445,12 @@
             // 
             // mainTabControl
             // 
+            this.mainTabControl.Controls.Add(this.tabIotlCompSvr);
+            this.mainTabControl.Controls.Add(this.tabDatabase);
+            this.mainTabControl.Controls.Add(this.tabSocketServer);
             this.mainTabControl.Controls.Add(this.tabMonitoring);
             this.mainTabControl.Controls.Add(this.tabConfig);
             this.mainTabControl.Controls.Add(this.tabLogConfig);
-            this.mainTabControl.Controls.Add(this.tabDatabase);
-            this.mainTabControl.Controls.Add(this.tabSocketServer);
-            this.mainTabControl.Controls.Add(this.tabIotlCompSvr);
             this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainTabControl.Location = new System.Drawing.Point(0, 0);
             this.mainTabControl.Name = "mainTabControl";
@@ -629,6 +629,7 @@
             // 
             // tabIotlCompSvr
             // 
+            this.tabIotlCompSvr.AutoScroll = true;
             this.tabIotlCompSvr.Controls.Add(this.groupBox1);
             this.tabIotlCompSvr.Location = new System.Drawing.Point(4, 22);
             this.tabIotlCompSvr.Name = "tabIotlCompSvr";
@@ -644,7 +645,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1018, 409);
+            this.groupBox1.Size = new System.Drawing.Size(1001, 409);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Compressor Data Manager";

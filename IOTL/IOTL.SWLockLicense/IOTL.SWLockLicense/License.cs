@@ -87,7 +87,7 @@ namespace IOTL.SWLockLicense
 				bOK = CompareHardware(m_cLicenseInfo);
 			    if (bOK == false)
 			    {
-                    MessageBox.Show("Hardware License is incorrect!!", "UDM License", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Hardware License is incorrect!!", "APP License", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			        return false;
 			    }
 
@@ -102,15 +102,15 @@ namespace IOTL.SWLockLicense
                         int RemainsDays = m_cLicenseInfo.DemoDays - m_cLicenseInfo.UsingDays;
 
                         if (RemainsDays==0)
-                            MessageBox.Show("Demo License be exhausted....Please Request the Package in due form.. ", "UDM License", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Demo License be exhausted....Please Request the Package in due form.. ", "APP License", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        //MessageBox.Show(RemainsDays.ToString() + " Day(s) Remains for Trial License !!", "UDM License", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //MessageBox.Show(RemainsDays.ToString() + " Day(s) Remains for Trial License !!", "APP License", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					}
 					else
 					{
 						m_cLicenseInfo.IsLicensed = false;
 
-						MessageBox.Show("Trial License is Expired!!", "UDM License", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						MessageBox.Show("Trial License is Expired!!", "APP License", MessageBoxButtons.OK, MessageBoxIcon.Error);
 						bOK = false;
 					}
 				}

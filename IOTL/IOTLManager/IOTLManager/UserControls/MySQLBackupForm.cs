@@ -82,7 +82,20 @@ namespace IOTLManager.UserControls
 
         private void btnDbBackup_Click(object sender, EventArgs e)
         {
-            string file = this.txtTargetPath.Text + "\\IOTLDBBackup" + DateTime.Now.ToString("yyyyMMddhhmm") + ".sql";
+            string[] arrParams = conString.Split(';');
+            string backupDatabaseName = string.Empty;
+
+            foreach(string initialCatalog in arrParams)
+            {
+                if(initialCatalog.Contains("INITIAL CATALOG"))
+                {
+                    string[] dbNames = initialCatalog.Split('=');
+                    backupDatabaseName = dbNames[1];
+                    break;
+                }
+            }
+
+            string file = this.txtTargetPath.Text + "\\IOTLDBBackup_"+ backupDatabaseName + "_" + DateTime.Now.ToString("yyyyMMddhhmm") + ".sql";
 
             try
             {

@@ -79,12 +79,12 @@ namespace IOTL.SWLockLicense
 
                 if (m_cInfo.IsDemo)
                 {
-                    MessageBox.Show("[" + txtProduct.Text + "] Trial License Activated!!", "UDM License", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
+                    MessageBox.Show("[" + txtProduct.Text + "] Trial License Activated!!", "APP License", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("[" + txtProduct.Text + "] Full License Activated!!", "UDM License", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
+                    MessageBox.Show("[" + txtProduct.Text + "] Full License Activated!!", "APP License", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
                     this.Close();
                 }
             }
@@ -96,7 +96,7 @@ namespace IOTL.SWLockLicense
             {
                 m_iTrialCount = 0;
 
-                MessageBox.Show("[" + txtProduct.Text + "] License  Failed to Activate!!", "UDM License", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                MessageBox.Show("[" + txtProduct.Text + "] License  Failed to Activate!!", "APP License", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
                 this.Close();
             }
             else

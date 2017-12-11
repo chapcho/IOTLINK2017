@@ -20,7 +20,7 @@ namespace IOTL.Common.Remote
         protected bool m_bConnected = false;
 
         protected string m_sName = "Test";
-        protected string m_sServiceName = "UDMService";
+        protected string m_sServiceName = "APPService";
         protected int m_iPort = 8731;
 
         protected IT m_cService = default(IT);

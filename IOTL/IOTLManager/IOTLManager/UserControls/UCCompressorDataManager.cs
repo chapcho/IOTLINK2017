@@ -187,12 +187,12 @@ namespace IOTLManager.UserControls
             if (controlVars == "1")
             {
                 SendData = Encoding.ASCII.GetBytes("C,1,E" + "\r\n");
-                UpdateSystemMessage("Compress Manager", "웹에서 운전 실행 명령 전송");
+                UpdateSystemMessage("Compress Manager", "웹에서 운전 실행 명령 전송 : " + System.Text.Encoding.Default.GetString(SendData));
             }
             else if (controlVars == "2")
             {
                 SendData = Encoding.ASCII.GetBytes("C,2,E" + "\r\n");
-                UpdateSystemMessage("Compress Manager", "웹에서 정지 실행 명령 전송");
+                UpdateSystemMessage("Compress Manager", "웹에서 정지 실행 명령 전송 : " + System.Text.Encoding.Default.GetString(SendData));
             }
             else
             {
@@ -231,7 +231,7 @@ namespace IOTLManager.UserControls
 
         private void ResetWebCntlCmd()
         {
-            string query = "update compdata.controls set cmd = '0'";
+            string query = "update compdata.controls set cmd = '0' where 1 = 1;";
 
             if(!DBReader.ExecUpdateQuery(query))
             {
