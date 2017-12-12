@@ -1,0 +1,4 @@
+D:\00.개발\OPTRA\App\UDMXperience\Module\bin\UDM.General.Serializer.dll
+D:\00.개발\OPTRA\App\UDMXperience\Module\bin\UDM.General.Serializer.pdb
+D:\00.개발\OPTRA\App\UDMXperience\Module\UDM.General\UDM.General.Serializer\obj\Debug\UDM.General.Serializer.dll
+D:\00.개발\OPTRA\App\UDMXperience\Module\UDM.General\UDM.General.Serializer\obj\Debug\UDM.General.Serializer.pdb

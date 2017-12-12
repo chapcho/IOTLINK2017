@@ -1,0 +1,123 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Text;
+using System.Linq;
+using System.Windows.Forms;
+using DevExpress.XtraEditors;
+
+namespace UDMProfiler
+{
+    public partial class UCSystemLogTable : DevExpress.XtraEditors.XtraUserControl
+    {
+        #region Member Variables
+
+        private DataTable m_dbTable = new DataTable();
+        private int m_iMaxRow = 50;
+        private delegate void AddMessageCallBack(DateTime dtTime, string sSender, string sMessage);
+
+        #endregion
+
+
+        #region Initialize/Dispose
+
+        public UCSystemLogTable()
+        {
+            InitializeComponent();
+
+            CreateTableScheme();
+
+            grdMessage.DataSource = m_dbTable;
+        }
+
+        #endregion
+
+
+        #region Public Methods
+
+        public void AddMessage(DateTime dtTime, string sSender, string sMessage)
+        {
+            try
+            {
+                if (this.InvokeRequired)
+                {
+                    AddMessageCallBack cbAddMessage = new AddMessageCallBack(AddMessage);
+                    this.Invoke(cbAddMessage, new object[] { dtTime, sSender, sMessage });
+                }
+                else
+                {
+                    if (m_dbTable != null)
+                    {
+                        string sTime = dtTime.ToString("yy/MM/dd HH:mm:ss.fff");
+
+                        DataRow dbRow = m_dbTable.NewRow();
+                        dbRow[colTime.FieldName] = (string)sTime;
+                        dbRow[colsender.FieldName] = (string)sSender;
+                        dbRow[colMessage.FieldName] = (string)sMessage;
+
+                        m_dbTable.Rows.Add(dbRow);
+
+                        if (m_dbTable.Rows.Count > m_iMaxRow)
+                            m_dbTable.Rows.RemoveAt(0);
+                        else
+                            grvMessage.MakeRowVisible(m_dbTable.Rows.Count);
+
+                        grdMessage.Refresh();
+                    }
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name); ex.Data.Clear();
+            }
+        }
+
+        public void Clear()
+        {
+            if (m_dbTable != null)
+                m_dbTable.Clear();
+
+            grdMessage.Refresh();
+        }
+
+        #endregion
+
+
+        #region Private Methods
+
+        private void CreateTableScheme()
+        {
+            if (m_dbTable == null)
+                m_dbTable = new DataTable();
+
+            m_dbTable.Rows.Clear();
+            m_dbTable.Columns.Clear();
+
+            string sField;
+            for (int i = 0; i < grvMessage.Columns.Count; i++)
+            {
+                sField = grvMessage.Columns[i].FieldName;
+                m_dbTable.Columns.Add(sField);
+            }
+        }
+
+        #endregion
+
+
+        #region Event Methods
+
+        private void UCMessageLog_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mnuClearAll_Click(object sender, EventArgs e)
+        {
+            Clear();
+        }
+
+        #endregion
+    }
+}

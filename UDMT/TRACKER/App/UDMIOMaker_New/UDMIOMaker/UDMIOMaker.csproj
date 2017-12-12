@@ -1,0 +1,586 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DAE8E392-CEDF-4254-9E51-425C656BC30F}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UDMIOMaker</RootNamespace>
+    <AssemblyName>UDMIOMaker</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>게시\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>demoicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.BonusSkins.v15.1" />
+    <Reference Include="DevExpress.Charts.v15.1.Core, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v15.1" />
+    <Reference Include="DevExpress.DataAccess.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.DataAccess.v15.1.UI, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v15.1.Core, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v15.1.Core, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v15.1.Drawing, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v15.1.Core" />
+    <Reference Include="DevExpress.RichEdit.v15.1.Core, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Spreadsheet.v15.1.Core, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v15.1" />
+    <Reference Include="DevExpress.Utils.v15.1.UI, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v15.1" />
+    <Reference Include="DevExpress.Sparkline.v15.1.Core" />
+    <Reference Include="DevExpress.XtraCharts.v15.1.Wizard, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraEditors.v15.1" />
+    <Reference Include="DevExpress.XtraGrid.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraNavBar.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPdfViewer.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraRichEdit.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraSpreadsheet.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\DevDll\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UDM.LicenseSW, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\UDM.LicenseSW.dll</HintPath>
+    </Reference>
+    <Reference Include="UDM.UDL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\bin\UDM.UDL.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class\CBlock.cs" />
+    <Compile Include="Class\CBlockS.cs" />
+    <Compile Include="Class\CBlockUnit.cs" />
+    <Compile Include="Class\CBlockUnitS.cs" />
+    <Compile Include="Class\CConvertUnit.cs" />
+    <Compile Include="Class\CConvertUnitS.cs" />
+    <Compile Include="Class\CErrorFilter.cs" />
+    <Compile Include="Class\CErrorFilterS.cs" />
+    <Compile Include="Class\CHMITag.cs" />
+    <Compile Include="Class\CHMITagS.cs" />
+    <Compile Include="Class\CLevel.cs" />
+    <Compile Include="Class\CPlcLogicData.cs" />
+    <Compile Include="Class\CPlcLogicDataS.cs" />
+    <Compile Include="Class\CProject.cs" />
+    <Compile Include="Class\CProjectManager.cs" />
+    <Compile Include="Class\CStd.cs" />
+    <Compile Include="Class\CStdS.cs" />
+    <Compile Include="Class\CStdTag.cs" />
+    <Compile Include="Class\CStdTagS.cs" />
+    <Compile Include="Class\CTagItem.cs" />
+    <Compile Include="Class\CTagItemS.cs" />
+    <Compile Include="Class\CVerifTag.cs" />
+    <Compile Include="Class\Enum\Enumeration.cs" />
+    <Compile Include="Class\Export PLC\CLSExport.cs" />
+    <Compile Include="Class\Export PLC\CMelsecExport.cs" />
+    <Compile Include="Class\Export PLC\CSiemensExport.cs" />
+    <Compile Include="Class\HMI\GroupExtractHMI.cs" />
+    <Compile Include="Class\HMI\HeaderHMI.cs" />
+    <Compile Include="Class\HMI\HeaderIOList.cs" />
+    <Compile Include="Class\HMI\InfoHMI.cs" />
+    <Compile Include="Class\HMI\InsertBit.cs" />
+    <Compile Include="Class\HMI\ModuleHMI.cs" />
+    <Compile Include="Class\HMI\Module\CXPBuilder.cs" />
+    <Compile Include="Class\HMI\OpenHMI.cs" />
+    <Compile Include="Class\HMI\Util\CommonReader.cs" />
+    <Compile Include="Class\HMI\Util\CommonTypeConverter.cs" />
+    <Compile Include="Class\IO List Extract\ABClassETC.cs" />
+    <Compile Include="Class\IO List Extract\ABTag.cs" />
+    <Compile Include="Class\IO List Extract\ABTagS.cs" />
+    <Compile Include="Class\IO List Extract\IOListABSheetFormat.cs" />
+    <Compile Include="Class\IO List Extract\IOListExport.cs" />
+    <Compile Include="Class\IO List Extract\PLCVerificationExport.cs" />
+    <Compile Include="Class\IO List Extract\TagCellNumber.cs" />
+    <Compile Include="Class\IO List Extract\VerificationList.cs" />
+    <Compile Include="Class\CVerifTagS.cs" />
+    <Compile Include="CStepExtract.cs" />
+    <Compile Include="CUtil.cs" />
+    <Compile Include="FrmAddPLC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAddPLC.Designer.cs">
+      <DependentUpon>FrmAddPLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAddressRangeSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAddressRangeSetting.Designer.cs">
+      <DependentUpon>FrmAddressRangeSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAreaInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAreaInformation.Designer.cs">
+      <DependentUpon>FrmAreaInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmErrorListProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmErrorListProperty.Designer.cs">
+      <DependentUpon>FrmErrorListProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmInputDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmInputDialog.Designer.cs">
+      <DependentUpon>FrmInputDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmIOExportProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmIOExportProperty.Designer.cs">
+      <DependentUpon>FrmIOExportProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLadderView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLadderView.Designer.cs">
+      <DependentUpon>FrmLadderView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Design.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMain.Help.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.HMIVerification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Mapping.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Standardization.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Verification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMakerSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMakerSelector.Designer.cs">
+      <DependentUpon>FrmMakerSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMappingChecker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMappingChecker.Designer.cs">
+      <DependentUpon>FrmMappingChecker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMappingOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMappingOption.Designer.cs">
+      <DependentUpon>FrmMappingOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMappingRecommend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMappingRecommend.Designer.cs">
+      <DependentUpon>FrmMappingRecommend.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMode.Designer.cs">
+      <DependentUpon>FrmMode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmModuleSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmModuleSetting.Designer.cs">
+      <DependentUpon>FrmModuleSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmParsingOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmParsingOption.Designer.cs">
+      <DependentUpon>FrmParsingOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRedundancyChecker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRedundancyChecker.Designer.cs">
+      <DependentUpon>FrmRedundancyChecker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRedundancyHMI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRedundancyHMI.Designer.cs">
+      <DependentUpon>FrmRedundancyHMI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmReplace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmReplace.Designer.cs">
+      <DependentUpon>FrmReplace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmReportElementSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmReportElementSetting.Designer.cs">
+      <DependentUpon>FrmReportElementSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmStartSplash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmStartSplash.Designer.cs">
+      <DependentUpon>FrmStartSplash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmStdAddProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmStdAddProperty.Designer.cs">
+      <DependentUpon>FrmStdAddProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmStdSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmStdSetting.Designer.cs">
+      <DependentUpon>FrmStdSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmStepSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmStepSelector.Designer.cs">
+      <DependentUpon>FrmStepSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSymbolAddProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSymbolAddProperty.Designer.cs">
+      <DependentUpon>FrmSymbolAddProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSymbolNameEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSymbolNameEdit.Designer.cs">
+      <DependentUpon>FrmSymbolNameEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmTagExportProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTagExportProperty.Designer.cs">
+      <DependentUpon>FrmTagExportProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmWaitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmWaitForm.designer.cs">
+      <DependentUpon>FrmWaitForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User Control\UCABAddressArea.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\UCABAddressArea.Designer.cs">
+      <DependentUpon>UCABAddressArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\UCErrorFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\UCErrorFilter.Designer.cs">
+      <DependentUpon>UCErrorFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\UCIOModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\UCIOModule.Designer.cs">
+      <DependentUpon>UCIOModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\UCLSAddressArea.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\UCLSAddressArea.Designer.cs">
+      <DependentUpon>UCLSAddressArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\UCMelsecAddressArea.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\UCMelsecAddressArea.Designer.cs">
+      <DependentUpon>UCMelsecAddressArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\UCSiemensAddressArea.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\UCSiemensAddressArea.Designer.cs">
+      <DependentUpon>UCSiemensAddressArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\UCVerifyTree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\UCVerifyTree.Designer.cs">
+      <DependentUpon>UCVerifyTree.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FrmAddPLC.resx">
+      <DependentUpon>FrmAddPLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAddressRangeSetting.resx">
+      <DependentUpon>FrmAddressRangeSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAreaInformation.resx">
+      <DependentUpon>FrmAreaInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmErrorListProperty.resx">
+      <DependentUpon>FrmErrorListProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmInputDialog.resx">
+      <DependentUpon>FrmInputDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmIOExportProperty.resx">
+      <DependentUpon>FrmIOExportProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLadderView.resx">
+      <DependentUpon>FrmLadderView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMakerSelector.resx">
+      <DependentUpon>FrmMakerSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMappingChecker.resx">
+      <DependentUpon>FrmMappingChecker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMappingOption.resx">
+      <DependentUpon>FrmMappingOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMappingRecommend.resx">
+      <DependentUpon>FrmMappingRecommend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMode.resx">
+      <DependentUpon>FrmMode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmModuleSetting.resx">
+      <DependentUpon>FrmModuleSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmParsingOption.resx">
+      <DependentUpon>FrmParsingOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRedundancyChecker.resx">
+      <DependentUpon>FrmRedundancyChecker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRedundancyHMI.resx">
+      <DependentUpon>FrmRedundancyHMI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmReplace.resx">
+      <DependentUpon>FrmReplace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmReportElementSetting.resx">
+      <DependentUpon>FrmReportElementSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmStartSplash.resx">
+      <DependentUpon>FrmStartSplash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmStdAddProperty.resx">
+      <DependentUpon>FrmStdAddProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmStdSetting.resx">
+      <DependentUpon>FrmStdSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmStepSelector.resx">
+      <DependentUpon>FrmStepSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSymbolAddProperty.resx">
+      <DependentUpon>FrmSymbolAddProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSymbolNameEdit.resx">
+      <DependentUpon>FrmSymbolNameEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTagExportProperty.resx">
+      <DependentUpon>FrmTagExportProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmWaitForm.resx">
+      <DependentUpon>FrmWaitForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="User Control\UCABAddressArea.resx">
+      <DependentUpon>UCABAddressArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\UCErrorFilter.resx">
+      <DependentUpon>UCErrorFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\UCIOModule.resx">
+      <DependentUpon>UCIOModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\UCLSAddressArea.resx">
+      <DependentUpon>UCLSAddressArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\UCMelsecAddressArea.resx">
+      <DependentUpon>UCMelsecAddressArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\UCSiemensAddressArea.resx">
+      <DependentUpon>UCSiemensAddressArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\UCVerifyTree.resx">
+      <DependentUpon>UCVerifyTree.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Class\HMI\AB\" />
+    <Folder Include="Class\HMI\Base\" />
+    <Folder Include="Class\HMI\Core\" />
+    <Folder Include="Class\HMI\Siemens\" />
+    <Folder Include="Event Handler\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Module\UDM.Common\UDM.Common.csproj">
+      <Project>{2b0d80eb-6675-423b-9297-5788b4baa631}</Project>
+      <Name>UDM.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Module\UDM.Export\UDM.Export\UDM.Export.csproj">
+      <Project>{fef887a9-0bc0-4e29-ba17-889ff6c5e47d}</Project>
+      <Name>UDM.Export</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Module\UDM.General\UDM.General.csproj">
+      <Project>{2a26f0e1-8612-46c2-b1c7-cdeac49d86cf}</Project>
+      <Name>UDM.General</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Module\UDM.Ladder\UDM.Ladder.csproj">
+      <Project>{cd8c4636-abb7-4288-be2d-3a43c9a5b594}</Project>
+      <Name>UDM.Ladder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Module\UDM.Log\UDM.Log.csproj">
+      <Project>{570516df-4d94-418c-be1b-984173e98f65}</Project>
+      <Name>UDM.Log</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Module\UDM.UDLogic\UDM.UDLImport\UDM.UDLImport.csproj">
+      <Project>{5a1df1ce-8e70-4c36-af5c-527c75cfce7e}</Project>
+      <Name>UDM.UDLImport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Module\UDM.UI\UDM.UI.csproj">
+      <Project>{53b5d464-3aab-4d2e-bffc-be9bbe3f693c}</Project>
+      <Name>UDM.UI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="demoicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4%28x86 및 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

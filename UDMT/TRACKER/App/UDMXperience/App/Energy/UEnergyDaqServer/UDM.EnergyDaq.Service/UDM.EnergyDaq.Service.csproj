@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D6950B24-7A8D-4217-8BEB-2AAF0B833E61}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UDM.EnergyDaq.Service</RootNamespace>
+    <AssemblyName>UDM.EnergyDaq.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UDM.EnergyDaq.Config, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\bin\UDM.EnergyDaq.Config.dll</HintPath>
+    </Reference>
+    <Reference Include="UDM.EnergyDaq.Monitor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\bin\UDM.EnergyDaq.Monitor.dll</HintPath>
+    </Reference>
+    <Reference Include="UDM.General.RemoteService">
+      <HintPath>..\..\..\..\Module\bin\UDM.General.RemoteService.dll</HintPath>
+    </Reference>
+    <Reference Include="UDM.General.ThreadEx">
+      <HintPath>..\..\..\..\Module\bin\UDM.General.ThreadEx.dll</HintPath>
+    </Reference>
+    <Reference Include="UDM.Log.Energy">
+      <HintPath>..\..\..\..\Module\bin\UDM.Log.Energy.dll</HintPath>
+    </Reference>
+    <Reference Include="UDM.Monitor.Energy">
+      <HintPath>..\..\..\..\..\..\bin\UDM.Monitor.Energy.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Client\CEnergyDaqClient.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Server\CEnergyDaqServer.cs" />
+    <Compile Include="Service\CEnergyDaqServiceCallBack.cs" />
+    <Compile Include="Service\EventHandler\EventHandlerEnergyDaqService.cs" />
+    <Compile Include="Service\IEnergyDaqServiceCallBack.cs" />
+    <Compile Include="Service\IEnergyDaqService.cs" />
+    <Compile Include="Service\CEnergyDaqService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Client\Enumeration\" />
+    <Folder Include="Client\EventHandler\" />
+    <Folder Include="Server\Enumeration\" />
+    <Folder Include="Server\EventHandler\" />
+    <Folder Include="Service\Enumeration\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

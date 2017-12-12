@@ -1,0 +1,746 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{77B87838-DC69-4C06-837B-DAD30F76A5A8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NewIOMaker</RootNamespace>
+    <AssemblyName>NewIOMaker</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Charts.v15.1.Core, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.Data.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v15.1.UI, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.Docs.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.Images.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.Office.v15.1.Core, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.Pdf.v15.1.Core, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.Pdf.v15.1.Drawing, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v15.1.Core, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.Sparkline.v15.1.Core, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.Spreadsheet.v15.1.Core, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.Utils.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.Utils.v15.1.UI, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v15.1.Wizard, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.XtraPdfViewer.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v15.1.Extensions, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.XtraSpreadsheet.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\DevDll\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UDM.Converter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\UDM.Converter.dll</HintPath>
+    </Reference>
+    <Reference Include="UDM.General, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\UDM.General.dll</HintPath>
+    </Reference>
+    <Reference Include="UDM.Import">
+      <HintPath>..\..\..\bin\UDM.Import.dll</HintPath>
+    </Reference>
+    <Reference Include="UDM.Ladder">
+      <HintPath>..\..\..\bin\UDM.Ladder.dll</HintPath>
+    </Reference>
+    <Reference Include="UDM.LicenseSW, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\UDM.LicenseSW.dll</HintPath>
+    </Reference>
+    <Reference Include="UDM.Log">
+      <HintPath>..\..\..\bin\UDM.Log.dll</HintPath>
+    </Reference>
+    <Reference Include="UDM.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\UDM.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UIAutomationClient" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\ClassIOMaker\ABTreeConvertor.cs" />
+    <Compile Include="Classes\ClassIOMaker\ABTagS.cs" />
+    <Compile Include="Classes\ClassIOMaker\ABClassETC.cs" />
+    <Compile Include="Classes\ClassIOMaker\ABTag.cs" />
+    <Compile Include="Classes\ClassCommon\Util\CommonLogger.cs" />
+    <Compile Include="Classes\ClassTagGenerator\AB\CABL5KConvertor.cs" />
+    <Compile Include="Classes\ClassTagGenerator\AB\CABL5KSorting.cs" />
+    <Compile Include="Classes\ClassTagGenerator\AB\CABL5KTAG.cs" />
+    <Compile Include="Enums\EMPLCColums.cs" />
+    <Compile Include="Enums\EMPLCVerificationMenu.cs" />
+    <Compile Include="Enums\EMIOListType.cs" />
+    <Compile Include="Enums\EMCommonLogType.cs" />
+    <Compile Include="Enums\EMCommonPageInfo.cs" />
+    <Compile Include="Form\FormCommon\Convertor\ControlABConvertor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\FormCommon\Convertor\ControlABConvertor.Designer.cs">
+      <DependentUpon>ControlABConvertor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormCommon\Convertor\ControlTrackerConvertor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\FormCommon\Convertor\ControlTrackerConvertor.Designer.cs">
+      <DependentUpon>ControlTrackerConvertor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormCommon\UserControl\ControlBackupGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\FormCommon\UserControl\ControlBackupGrid.Designer.cs">
+      <DependentUpon>ControlBackupGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormIOMaker\IOGridLog.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\FormIOMaker\IOGridLog.Designer.cs">
+      <DependentUpon>IOGridLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormIOMaker\WaitForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FormIOMaker\WaitForm1.Designer.cs">
+      <DependentUpon>WaitForm1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormTagGenerator\FormAlarm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FormTagGenerator\FormAlarm.Designer.cs">
+      <DependentUpon>FormAlarm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ClassIOMaker\IOListExport.cs" />
+    <Compile Include="Classes\ClassIOMaker\IOListABSheetFormat.cs" />
+    <Compile Include="Form\FormIOMaker\IOPLCVerification.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\FormIOMaker\IOPLCVerification.Designer.cs">
+      <DependentUpon>IOPLCVerification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ClassIOMaker\PLCVerificationExport.cs" />
+    <Compile Include="Classes\ClassIOMaker\TagCellNumber.cs" />
+    <Compile Include="UserAttribute\CommonAttributeClass.cs" />
+    <Compile Include="UserAttribute\CommonAttributeEnum.cs" />
+    <Compile Include="UserAttribute\CommonAttributeInterface.cs" />
+    <Compile Include="UserAttribute\CommonAttributeMethod.cs" />
+    <Compile Include="Classes\ClassCommon\ClassTest.cs" />
+    <Compile Include="Classes\ClassCommon\Util\CommonProject.cs" />
+    <Compile Include="Classes\ClassCommon\Util\CommonSerializer.cs" />
+    <Compile Include="Classes\ClassCommon\Util\CommonWaitForm.cs" />
+    <Compile Include="Classes\ClassCommon\Util\CommonWriteCSV.cs" />
+    <Compile Include="Classes\ClassCommon\Util\CommonMessage.cs" />
+    <Compile Include="Classes\ClassCommon\Util\ComonBaseClass.cs" />
+    <Compile Include="Classes\ClassCommon\Util\CommonTypeConverter.cs" />
+    <Compile Include="Classes\ClassCommon\Util\CommonReader.cs" />
+    <Compile Include="Classes\ClassIOMaker\IOListHeader.cs" />
+    <Compile Include="Classes\ClassMultiCopy\CMultiCopyData.cs" />
+    <Compile Include="Classes\ClassMultiCopy\CMultiCopySave.cs" />
+    <Compile Include="Classes\ClassMultiCopy\CMultiCopyConvert.cs" />
+    <Compile Include="Classes\ClassMultiCopy\CMultiCopyWorking.cs" />
+    <Compile Include="Classes\ClassMultiCopy\CMultiCopyLogic.cs" />
+    <Compile Include="Classes\ClassMultiCopy\CMultiCopyInput.cs" />
+    <Compile Include="Classes\ClassMultiCopy\CMultiCopyCombination.cs" />
+    <Compile Include="Classes\ClassMultiCopy\CMultiCopyUserKey.cs" />
+    <Compile Include="Classes\ClassTagGenerator\CellColor.cs" />
+    <Compile Include="Classes\ClassTagGenerator\GroupExtractHMI.cs" />
+    <Compile Include="Classes\ClassTagGenerator\OpenHMI.cs" />
+    <Compile Include="Classes\ClassTagGenerator\OpenPLC.cs" />
+    <Compile Include="Classes\ClassTagGenerator\HeaderHMI.cs" />
+    <Compile Include="Classes\ClassTagGenerator\HeaderIOList.cs" />
+    <Compile Include="Classes\ClassTagGenerator\HeaderPLC.cs" />
+    <Compile Include="Classes\ClassTagGenerator\InfoHMI.cs" />
+    <Compile Include="Classes\ClassTagGenerator\InfoPLC.cs" />
+    <Compile Include="Classes\ClassTagGenerator\InsertBit.cs" />
+    <Compile Include="Classes\ClassTagGenerator\ModuleHMI.cs" />
+    <Compile Include="Classes\ClassTagGenerator\ModulePLC.cs" />
+    <Compile Include="Classes\ClassTagGenerator\Siemens\MODAdress.cs" />
+    <Compile Include="Classes\ClassTagGenerator\TagsConvertor.cs" />
+    <Compile Include="Enums\EMCommonFileState.cs" />
+    <Compile Include="Enums\EMCommonCsvType.cs" />
+    <Compile Include="Enums\EMCommonHMIConfig.cs" />
+    <Compile Include="Enums\EMCommonHMIPrograms.cs" />
+    <Compile Include="Enums\EMCommonPLCPrograms.cs" />
+    <Compile Include="Enums\EMCommonHMI.cs" />
+    <Compile Include="Enums\EMCommonPLC.cs" />
+    <Compile Include="Enums\EMCommonPrograms.cs" />
+    <Compile Include="Enums\EMMultiCopyFuntionKey.cs" />
+    <Compile Include="Enums\EMMultiCopyInputKey.cs" />
+    <Compile Include="Enums\EMMultiCopyUpDown.cs" />
+    <Compile Include="Enums\EMMultiCopyUserKey.cs" />
+    <Compile Include="Enums\EMTagGeneratorAssign.cs" />
+    <Compile Include="Enums\EMTagGeneratorPLCColumns.cs" />
+    <Compile Include="Enums\EMTagGeneratorPLCExtensions.cs" />
+    <Compile Include="Enums\EMTagGeneratorMappingType.cs" />
+    <Compile Include="Enums\EMTagGeneratorPLCHeader.cs" />
+    <Compile Include="Event\EventIOMakerDelegator.cs" />
+    <Compile Include="Event\EventIOMakerEventArgs.cs" />
+    <Compile Include="Event\EventMenuDelegator.cs" />
+    <Compile Include="Event\EventMenuEventArgs.cs" />
+    <Compile Include="Event\EventMultiCopyDelegator.cs" />
+    <Compile Include="Event\EventMultiCopyEventArgs.cs" />
+    <Compile Include="Event\EventTagGeneratorDelegator.cs" />
+    <Compile Include="Event\EventTagGeneratorEventArgs.cs" />
+    <Compile Include="Form\FormCommon\FormPDF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FormCommon\FormPDF.Designer.cs">
+      <DependentUpon>FormPDF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormCommon\Splash\SplashScreen1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FormCommon\Splash\SplashScreen1.Designer.cs">
+      <DependentUpon>SplashScreen1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormCommon\UserControl\ControlInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\FormCommon\UserControl\ControlInfo.Designer.cs">
+      <DependentUpon>ControlInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormCommon\UserControl\ControlOption.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\FormCommon\UserControl\ControlOption.Designer.cs">
+      <DependentUpon>ControlOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormCommon\UserControl\ControlTool.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\FormCommon\UserControl\ControlTool.Designer.cs">
+      <DependentUpon>ControlTool.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormCommon\UserControl\ControlVideo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\FormCommon\UserControl\ControlVideo.Designer.cs">
+      <DependentUpon>ControlVideo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormCommon\UserControl\DOC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\FormCommon\UserControl\DOC.Designer.cs">
+      <DependentUpon>DOC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormCommon\UserControl\ControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\FormCommon\UserControl\ControlBase.Designer.cs">
+      <DependentUpon>ControlBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormCommon\UserControl\Sheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\FormCommon\UserControl\Sheet.Designer.cs">
+      <DependentUpon>Sheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormCommon\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FormCommon\FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormIOMaker\IOMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\FormIOMaker\IOMenu.Designer.cs">
+      <DependentUpon>IOMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormIOMaker\IOGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\FormIOMaker\IOGrid.Designer.cs">
+      <DependentUpon>IOGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormMultiCopy\MCKey.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\FormMultiCopy\MCKey.Designer.cs">
+      <DependentUpon>MCKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormMultiCopy\MCKeyList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\FormMultiCopy\MCKeyList.Designer.cs">
+      <DependentUpon>MCKeyList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormMultiCopy\MCMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\FormMultiCopy\MCMenu.Designer.cs">
+      <DependentUpon>MCMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormMultiCopy\MCOP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\FormMultiCopy\MCOP.Designer.cs">
+      <DependentUpon>MCOP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormMultiCopy\MCTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\FormMultiCopy\MCTextBox.Designer.cs">
+      <DependentUpon>MCTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormTagGenerator\TagGridAlarm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\FormTagGenerator\TagGridAlarm.Designer.cs">
+      <DependentUpon>TagGridAlarm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormTagGenerator\TagGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\FormTagGenerator\TagGrid.Designer.cs">
+      <DependentUpon>TagGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormTagGenerator\TagGridLog.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\FormTagGenerator\TagGridLog.Designer.cs">
+      <DependentUpon>TagGridLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormTagGenerator\TagMain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\FormTagGenerator\TagMain.Designer.cs">
+      <DependentUpon>TagMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ClassCommon\Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Classes\ClassIOMaker\VerificationList.cs" />
+    <EmbeddedResource Include="Form\FormCommon\Convertor\ControlABConvertor.resx">
+      <DependentUpon>ControlABConvertor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormCommon\Convertor\ControlTrackerConvertor.resx">
+      <DependentUpon>ControlTrackerConvertor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormCommon\FormPDF.resx">
+      <DependentUpon>FormPDF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormCommon\Splash\SplashScreen1.resx">
+      <DependentUpon>SplashScreen1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormCommon\UserControl\ControlBackupGrid.resx">
+      <DependentUpon>ControlBackupGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormCommon\UserControl\ControlInfo.resx">
+      <DependentUpon>ControlInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormCommon\UserControl\ControlOption.resx">
+      <DependentUpon>ControlOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormCommon\UserControl\ControlTool.resx">
+      <DependentUpon>ControlTool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormCommon\UserControl\ControlVideo.resx">
+      <DependentUpon>ControlVideo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormCommon\UserControl\DOC.resx">
+      <DependentUpon>DOC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormCommon\UserControl\ControlBase.resx">
+      <DependentUpon>ControlBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormCommon\UserControl\Sheet.resx">
+      <DependentUpon>Sheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormCommon\FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormIOMaker\IOGridLog.resx">
+      <DependentUpon>IOGridLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormIOMaker\IOMenu.resx">
+      <DependentUpon>IOMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormIOMaker\IOGrid.resx">
+      <DependentUpon>IOGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormIOMaker\WaitForm1.resx">
+      <DependentUpon>WaitForm1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormMultiCopy\MCKey.resx">
+      <DependentUpon>MCKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormMultiCopy\MCKeyList.resx">
+      <DependentUpon>MCKeyList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormMultiCopy\MCMenu.resx">
+      <DependentUpon>MCMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormMultiCopy\MCOP.resx">
+      <DependentUpon>MCOP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormMultiCopy\MCTextBox.resx">
+      <DependentUpon>MCTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormTagGenerator\TagGridAlarm.resx">
+      <DependentUpon>TagGridAlarm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormTagGenerator\TagGrid.resx">
+      <DependentUpon>TagGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormTagGenerator\TagGridLog.resx">
+      <DependentUpon>TagGridLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormTagGenerator\TagMain.resx">
+      <DependentUpon>TagMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormTagGenerator\FormAlarm.resx">
+      <DependentUpon>FormAlarm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormIOMaker\IOPLCVerification.resx">
+      <DependentUpon>IOPLCVerification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Classes\AppConfiguration\App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Classes\ClassCommon\License\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\article_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\format_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\issue_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\template_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\recurrence_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\recurrence_16x161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pagesetup_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\colors_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\redwhite_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\whitegreen_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bluewhitered_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\findcustomers_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exporttopdf_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hideproduct_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\export_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exportfile_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exportfile_16x161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exportfile_16x162.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exportfile_16x163.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exportfile_16x164.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paste_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paste_16x161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paste_16x162.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paste_16x163.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paste_16x164.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newcontact_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exporttoxls_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exporttoxls_16x161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxWMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\1443965638_floppy-disk.png" />
+    <Content Include="Resources\images.jpg" />
+    <Content Include="Resources\sub_visual_03.jpg" />
+    <Content Include="Resources\Tag.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Module\UDM.Common\UDM.Common.csproj">
+      <Project>{2b0d80eb-6675-423b-9297-5788b4baa631}</Project>
+      <Name>UDM.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Module\UDM.Export\UDM.Export\UDM.Export.csproj">
+      <Project>{fef887a9-0bc0-4e29-ba17-889ff6c5e47d}</Project>
+      <Name>UDM.Export</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Module\UDM.UDLogic\UDM.UDLImport\UDM.UDLImport.csproj">
+      <Project>{5a1df1ce-8e70-4c36-af5c-527c75cfce7e}</Project>
+      <Name>UDM.UDLImport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Module\UDM.UDLogic\UDM.UDL\UDM.UDL.csproj">
+      <Project>{011eed10-2118-4e11-a2c7-c561c585a26e}</Project>
+      <Name>UDM.UDL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

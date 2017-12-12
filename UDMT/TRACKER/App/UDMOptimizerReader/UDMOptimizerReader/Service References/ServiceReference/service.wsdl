@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CMyService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_IMyService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1">
+        </msb:BinaryEncoding>
+        <wsaw:UsingAddressing>
+        </wsaw:UsingAddressing>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IMyService_Connect_InputMessage">
+    <wsdl:part name="parameters" element="tns:Connect" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_Disconnect_InputMessage">
+    <wsdl:part name="parameters" element="tns:Disconnect" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_Terminate_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:Terminate" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_SendTimeLogSToServer_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendTimeLogSToServer" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_SendEmergTimeLogSToServer_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendEmergTimeLogSToServer" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_SendErrorTagListToServer_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendErrorTagListToServer" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_SendStatusToServer_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendStatusToServer" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_SendMessageToServer_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessageToServer" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_ReceiveCommStart_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveCommStart" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_ReceiveCommStop_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveCommStop" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_ReceiveTagList_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveTagList" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_ReceiveEmergTagList_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveEmergTagList" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_ReceiveCollectorList_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveCollectorList" />
+  </wsdl:message>
+  <wsdl:portType name="IMyService">
+    <wsdl:operation name="Connect">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/Connect" message="tns:IMyService_Connect_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Disconnect">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/Disconnect" message="tns:IMyService_Disconnect_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Terminate">
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/Terminate" message="tns:IMyService_Terminate_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendTimeLogSToServer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMyService/SendTimeLogSToServer" message="tns:IMyService_SendTimeLogSToServer_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendEmergTimeLogSToServer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMyService/SendEmergTimeLogSToServer" message="tns:IMyService_SendEmergTimeLogSToServer_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendErrorTagListToServer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMyService/SendErrorTagListToServer" message="tns:IMyService_SendErrorTagListToServer_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendStatusToServer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMyService/SendStatusToServer" message="tns:IMyService_SendStatusToServer_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageToServer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMyService/SendMessageToServer" message="tns:IMyService_SendMessageToServer_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveCommStart">
+      <wsdl:output wsaw:Action="http://tempuri.org/IMyService/ReceiveCommStart" message="tns:IMyService_ReceiveCommStart_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveCommStop">
+      <wsdl:output wsaw:Action="http://tempuri.org/IMyService/ReceiveCommStop" message="tns:IMyService_ReceiveCommStop_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveTagList">
+      <wsdl:output wsaw:Action="http://tempuri.org/IMyService/ReceiveTagList" message="tns:IMyService_ReceiveTagList_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveEmergTagList">
+      <wsdl:output wsaw:Action="http://tempuri.org/IMyService/ReceiveEmergTagList" message="tns:IMyService_ReceiveEmergTagList_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveCollectorList">
+      <wsdl:output wsaw:Action="http://tempuri.org/IMyService/ReceiveCollectorList" message="tns:IMyService_ReceiveCollectorList_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_IMyService" type="tns:IMyService">
+    <wsp:PolicyReference URI="#NetTcpBinding_IMyService_policy">
+    </wsp:PolicyReference>
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="Connect">
+      <soap12:operation soapAction="http://tempuri.org/IService/Connect" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="Disconnect">
+      <soap12:operation soapAction="http://tempuri.org/IService/Disconnect" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="Terminate">
+      <soap12:operation soapAction="http://tempuri.org/IService/Terminate" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendTimeLogSToServer">
+      <soap12:operation soapAction="http://tempuri.org/IMyService/SendTimeLogSToServer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SendEmergTimeLogSToServer">
+      <soap12:operation soapAction="http://tempuri.org/IMyService/SendEmergTimeLogSToServer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SendErrorTagListToServer">
+      <soap12:operation soapAction="http://tempuri.org/IMyService/SendErrorTagListToServer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SendStatusToServer">
+      <soap12:operation soapAction="http://tempuri.org/IMyService/SendStatusToServer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageToServer">
+      <soap12:operation soapAction="http://tempuri.org/IMyService/SendMessageToServer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveCommStart">
+      <soap12:operation soapAction="http://tempuri.org/IMyService/ReceiveCommStart" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveCommStop">
+      <soap12:operation soapAction="http://tempuri.org/IMyService/ReceiveCommStop" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveTagList">
+      <soap12:operation soapAction="http://tempuri.org/IMyService/ReceiveTagList" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveEmergTagList">
+      <soap12:operation soapAction="http://tempuri.org/IMyService/ReceiveEmergTagList" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveCollectorList">
+      <soap12:operation soapAction="http://tempuri.org/IMyService/ReceiveCollectorList" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CMyService">
+    <wsdl:port name="NetTcpBinding_IMyService" binding="tns:NetTcpBinding_IMyService">
+      <soap12:address location="net.tcp://localhost:8731/UDMService/" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8731/UDMService/</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

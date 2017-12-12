@@ -1,0 +1,562 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DAB41F22-EEE2-4521-96EA-5A908DEB0E95}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UDMTracker</RootNamespace>
+    <AssemblyName>UDMTracker</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetZone>LocalIntranet</TargetZone>
+    <GenerateManifests>false</GenerateManifests>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar2, Version=10.7.0.2, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\ExDll\DevComponents.DotNetBar2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.TreeGX, Version=10.7.0.2, Culture=neutral, PublicKeyToken=055db68f670cfeab, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\ExDll\DevComponents.TreeGX.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.BonusSkins.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Charts.v15.1.Core, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Office.v15.1.Core, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v15.1.Core, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v15.1.Core, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v15.1.Core, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v15.1.UI, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v15.1.Extensions, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v15.1.UI, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v15.1.Wizard, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v15.1.Core, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v15.1.Win, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraNavBar.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v15.1.Extensions, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="exontrol.exg2antt, Version=6.0.4772.28964, Culture=neutral, PublicKeyToken=00765aac3596c012, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\ExDll\exontrol.exg2antt.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.OPCAutomation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\bin\Interop.OPCAutomation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UDM.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\UDM.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="UDM.Converter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\UDM.Converter.dll</HintPath>
+    </Reference>
+    <Reference Include="UDM.DDEA, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\UDM.DDEA.dll</HintPath>
+    </Reference>
+    <Reference Include="UDM.Import, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\UDM.Import.dll</HintPath>
+    </Reference>
+    <Reference Include="UDM.Log, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\UDM.Log.dll</HintPath>
+    </Reference>
+    <Reference Include="UDM.TimeChart, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\UDM.TimeChart.dll</HintPath>
+    </Reference>
+    <Reference Include="UDM.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\UDM.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CCollectTag.cs" />
+    <Compile Include="CCyclePresentOption.cs" />
+    <Compile Include="CCyclePresentUnit.cs" />
+    <Compile Include="CCyclePresentResult.cs" />
+    <Compile Include="CCyclePresentResultS.cs" />
+    <Compile Include="CStepExtract.cs" />
+    <Compile Include="FrmGroupProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGroupProperty.Designer.cs">
+      <DependentUpon>FrmGroupProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmInputDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmInputDialog.Designer.cs">
+      <DependentUpon>FrmInputDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLsPlcConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLsPlcConfig.Designer.cs">
+      <DependentUpon>FrmLsPlcConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMonitorHistoryViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMonitorHistoryViewer.Designer.cs">
+      <DependentUpon>FrmMonitorHistoryViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmOPCProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmOPCProperty.Designer.cs">
+      <DependentUpon>FrmOPCProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRunningTimeDifferenceReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRunningTimeDifferenceReport.Designer.cs">
+      <DependentUpon>FrmRunningTimeDifferenceReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmStatisticsChartViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmStatisticsChartViewer.Designer.cs">
+      <DependentUpon>FrmStatisticsChartViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmTrendProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTrendProperty.Designer.cs">
+      <DependentUpon>FrmTrendProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmWaitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmWaitForm.Designer.cs">
+      <DependentUpon>FrmWaitForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EventHandler\UEventHandlerTracker.cs" />
+    <Compile Include="FrmAlertViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAlertViewer.Designer.cs">
+      <DependentUpon>FrmAlertViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDDEAProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDDEAProperty.designer.cs">
+      <DependentUpon>FrmDDEAProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmErrorAnalysisViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmErrorAnalysisViewer.Designer.cs">
+      <DependentUpon>FrmErrorAnalysisViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmStatisticsViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmStatisticsViewer.Designer.cs">
+      <DependentUpon>FrmStatisticsViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmProductFlowChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProductFlowChart.Designer.cs">
+      <DependentUpon>FrmProductFlowChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLogicDiagram.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLogicDiagram.Designer.cs">
+      <DependentUpon>FrmLogicDiagram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPatternItemUpdater.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPatternItemUpdater.Designer.cs">
+      <DependentUpon>FrmPatternItemUpdater.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmProcessTimeChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProcessTimeChart.Designer.cs">
+      <DependentUpon>FrmProcessTimeChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmStepSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmStepSelector.Designer.cs">
+      <DependentUpon>FrmStepSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSymbolLogViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSymbolLogViewer.Designer.cs">
+      <DependentUpon>FrmSymbolLogViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMain.Monitor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Model.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMain.Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMasterPatternEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMasterPatternEditor.Designer.cs">
+      <DependentUpon>FrmMasterPatternEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMasterPatternUpdater.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMasterPatternUpdater.Designer.cs">
+      <DependentUpon>FrmMasterPatternUpdater.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCycleLogViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCycleLogViewer.Designer.cs">
+      <DependentUpon>FrmCycleLogViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CTracker.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmGroupProperty.resx">
+      <DependentUpon>FrmGroupProperty.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmInputDialog.resx">
+      <DependentUpon>FrmInputDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLsPlcConfig.resx">
+      <DependentUpon>FrmLsPlcConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMonitorHistoryViewer.resx">
+      <DependentUpon>FrmMonitorHistoryViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmOPCProperty.resx">
+      <DependentUpon>FrmOPCProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRunningTimeDifferenceReport.resx">
+      <DependentUpon>FrmRunningTimeDifferenceReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmStatisticsChartViewer.resx">
+      <DependentUpon>FrmStatisticsChartViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTrendProperty.resx">
+      <DependentUpon>FrmTrendProperty.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmWaitForm.resx">
+      <DependentUpon>FrmWaitForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAlertViewer.resx">
+      <DependentUpon>FrmAlertViewer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDDEAProperty.resx">
+      <DependentUpon>FrmDDEAProperty.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmErrorAnalysisViewer.resx">
+      <DependentUpon>FrmErrorAnalysisViewer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmStatisticsViewer.resx">
+      <DependentUpon>FrmStatisticsViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmProductFlowChart.resx">
+      <DependentUpon>FrmProductFlowChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLogicDiagram.resx">
+      <DependentUpon>FrmLogicDiagram.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPatternItemUpdater.resx">
+      <DependentUpon>FrmPatternItemUpdater.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmProcessTimeChart.resx">
+      <DependentUpon>FrmProcessTimeChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmStepSelector.resx">
+      <DependentUpon>FrmStepSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSymbolLogViewer.resx">
+      <DependentUpon>FrmSymbolLogViewer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMasterPatternEditor.resx">
+      <DependentUpon>FrmMasterPatternEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMasterPatternUpdater.resx">
+      <DependentUpon>FrmMasterPatternUpdater.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCycleLogViewer.resx">
+      <DependentUpon>FrmCycleLogViewer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UserControls\UCCheckNavBarControl.resx">
+      <DependentUpon>UCCheckNavBarControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCCyclePresentOptionProperty.resx">
+      <DependentUpon>UCCyclePresentOptionProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\DataSources\ComDailyReportViewer.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\RemoteServer\Arrays.xsd" />
+    <None Include="Service References\RemoteServer\service.wsdl" />
+    <None Include="Service References\RemoteServer\service.xsd" />
+    <None Include="Service References\RemoteServer\service1.xsd" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Service References\RemoteServer\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCCheckNavBarControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCCheckNavBarControl.Designer.cs">
+      <DependentUpon>UCCheckNavBarControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCCyclePresentOptionProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCCyclePresentOptionProperty.Designer.cs">
+      <DependentUpon>UCCyclePresentOptionProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Util\CTrackerHelper.cs" />
+    <Compile Include="FrmMain.View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Module\UDM.Flow\UDM.Flow.csproj">
+      <Project>{BE73D63C-AEDD-4916-BB6C-7D02B9E7D984}</Project>
+      <Name>UDM.Flow</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Module\UDM.General\UDM.General.csproj">
+      <Project>{2A26F0E1-8612-46C2-B1C7-CDEAC49D86CF}</Project>
+      <Name>UDM.General</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Module\UDM.LicenseSW\UDM.LicenseSW.csproj">
+      <Project>{d7f511e8-25b5-4e40-963b-0d3a2f69b116}</Project>
+      <Name>UDM.LicenseSW</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Module\UDM.LogicViewer\UDM.LogicViewer.csproj">
+      <Project>{bb41ef2f-3f60-409b-aa07-16a335aa0794}</Project>
+      <Name>UDM.LogicViewer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Module\UDM.Monitor.Plc\UDM.Monitor.Plc.csproj">
+      <Project>{54fba596-cbde-45b9-b2cb-0961d0d83564}</Project>
+      <Name>UDM.Monitor.Plc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Module\UDM.Project\UDM.Project.csproj">
+      <Project>{483B58D0-1278-48D3-97DA-6FE33DA33211}</Project>
+      <Name>UDM.Project</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Module\UDM.UDLogic\UDM.UDLImport\UDM.UDLImport.csproj">
+      <Project>{5a1df1ce-8e70-4c36-af5c-527c75cfce7e}</Project>
+      <Name>UDM.UDLImport</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\RemoteServer\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RemoteServer\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RemoteServer\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0%28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0%28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Enumeration\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,364 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E1347DDC-83F1-46BE-91D8-4D9F697CAFCC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UDMEnergyViewer</RootNamespace>
+    <AssemblyName>UDMEnergyViewer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemGroup>
+    <Reference Include="DevExpress.BonusSkins.v15.1" />
+    <Reference Include="DevExpress.Charts.v15.1.Core, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v15.1" />
+    <Reference Include="DevExpress.Printing.v15.1.Core" />
+    <Reference Include="DevExpress.Spreadsheet.v15.1.Core, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.Utils.v15.1" />
+    <Reference Include="DevExpress.XtraBars.v15.1" />
+    <Reference Include="DevExpress.Sparkline.v15.1.Core" />
+    <Reference Include="DevExpress.XtraCharts.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v15.1.UI, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v15.1.Wizard, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraEditors.v15.1" />
+    <Reference Include="DevExpress.XtraGrid.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPrinting.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraSpreadsheet.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="MathNet.Numerics, Version=3.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MathNet.Numerics.3.8.0\lib\net40\MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CFit.cs" />
+    <Compile Include="CMonitorTask.cs" />
+    <Compile Include="FrmAnalysis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAnalysis.Designer.cs">
+      <DependentUpon>FrmAnalysis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmBaseEnergySelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmBaseEnergySelector.Designer.cs">
+      <DependentUpon>FrmBaseEnergySelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCalibration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCalibration.Designer.cs">
+      <DependentUpon>FrmCalibration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRegressionUnitView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRegressionUnitView.Designer.cs">
+      <DependentUpon>FrmRegressionUnitView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmTagRecommand.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTagRecommand.designer.cs">
+      <DependentUpon>FrmTagRecommand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MeterMonitor\CMeterData.cs" />
+    <Compile Include="MeterMonitor\CMeterConfig.cs" />
+    <Compile Include="MeterMonitor\CMeterLogger.cs" />
+    <Compile Include="MeterMonitor\CMeterLogWriter.cs" />
+    <Compile Include="MeterMonitor\CMeterReader.cs" />
+    <Compile Include="FrmChartViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmChartViewer.Designer.cs">
+      <DependentUpon>FrmChartViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmClassifySymbol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmClassifySymbol.Designer.cs">
+      <DependentUpon>FrmClassifySymbol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmInputDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmInputDialog.designer.cs">
+      <DependentUpon>FrmInputDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMain.View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Model.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmWaitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmWaitForm.designer.cs">
+      <DependentUpon>FrmWaitForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MeterLog\CMeterItemS.cs" />
+    <Compile Include="MeterLog\CMeterUnit.cs" />
+    <Compile Include="MeterLog\CMeterLogReader.cs" />
+    <Compile Include="MeterLog\CMeterItem.cs" />
+    <Compile Include="MeterMonitor\CMeterMonitor.cs" />
+    <Compile Include="MeterMonitor\CMeterThreadStatus.cs" />
+    <Compile Include="MeterMonitor\cModBusTCPIPWrapper.cs" />
+    <Compile Include="MeterMonitor\cSocketWrapper.cs" />
+    <Compile Include="MeterMonitor\cValueHelper.cs" />
+    <Compile Include="MeterMonitor\emFunctionCode.cs" />
+    <Compile Include="MeterMonitor\EventHandler\UEventHandlerMeterMonitor.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Project\CLogConfig.cs" />
+    <Compile Include="Project\CProject.cs" />
+    <Compile Include="Project\CProjectManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Regression Data\CRegressionUnit.cs" />
+    <Compile Include="Regression Data\CRegressionUnitS.cs" />
+    <Compile Include="TagLog\CTagLogReader.cs" />
+    <Compile Include="TagLog\CTagItemS.cs" />
+    <Compile Include="TagLog\CTagItem.cs" />
+    <Compile Include="UserControls\EventHandler\UEventHandlerSymbolTable.cs" />
+    <Compile Include="UserControls\EventHandler\UEventHandlerTagTable.cs" />
+    <Compile Include="UserControls\UCClock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCClock.designer.cs">
+      <DependentUpon>UCClock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCMonitorStatus.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCMonitorStatus.designer.cs">
+      <DependentUpon>UCMonitorStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCSymbolTable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCSymbolTable.designer.cs">
+      <DependentUpon>UCSymbolTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCSystemLogTable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCSystemLogTable.designer.cs">
+      <DependentUpon>UCSystemLogTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCTagTable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCTagTable.designer.cs">
+      <DependentUpon>UCTagTable.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FrmAnalysis.resx">
+      <DependentUpon>FrmAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmBaseEnergySelector.resx">
+      <DependentUpon>FrmBaseEnergySelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCalibration.resx">
+      <DependentUpon>FrmCalibration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmChartViewer.resx">
+      <DependentUpon>FrmChartViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmClassifySymbol.resx">
+      <DependentUpon>FrmClassifySymbol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmInputDialog.resx">
+      <DependentUpon>FrmInputDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRegressionUnitView.resx">
+      <DependentUpon>FrmRegressionUnitView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTagRecommand.resx">
+      <DependentUpon>FrmTagRecommand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmWaitForm.resx">
+      <DependentUpon>FrmWaitForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UserControls\UCClock.resx">
+      <DependentUpon>UCClock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMonitorStatus.resx">
+      <DependentUpon>UCMonitorStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSymbolTable.resx">
+      <DependentUpon>UCSymbolTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSystemLogTable.resx">
+      <DependentUpon>UCSystemLogTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCTagTable.resx">
+      <DependentUpon>UCTagTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Module\UDM.Common\UDM.Common.csproj">
+      <Project>{2b0d80eb-6675-423b-9297-5788b4baa631}</Project>
+      <Name>UDM.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Module\UDM.DDEA\UDM.DDEA.csproj">
+      <Project>{97221d46-3ed9-435a-9c0c-8cdd9957ca9d}</Project>
+      <Name>UDM.DDEA</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Module\UDM.General\UDM.General.csproj">
+      <Project>{2a26f0e1-8612-46c2-b1c7-cdeac49d86cf}</Project>
+      <Name>UDM.General</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Module\UDM.Log\UDM.Log.csproj">
+      <Project>{570516df-4d94-418c-be1b-984173e98f65}</Project>
+      <Name>UDM.Log</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Module\UDM.Monitor.Plc\UDM.Monitor.Plc.csproj">
+      <Project>{54fba596-cbde-45b9-b2cb-0961d0d83564}</Project>
+      <Name>UDM.Monitor.Plc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Module\UDM.UDLogic\UDM.UDLImport\UDM.UDLImport.csproj">
+      <Project>{5a1df1ce-8e70-4c36-af5c-527c75cfce7e}</Project>
+      <Name>UDM.UDLImport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Module\UDM.UI\UDM.UI.csproj">
+      <Project>{53b5d464-3aab-4d2e-bffc-be9bbe3f693c}</Project>
+      <Name>UDM.UI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

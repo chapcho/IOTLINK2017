@@ -1,0 +1,91 @@
+160901171109	Converting Start.
+160901171109	[Function : CreateGlobalTagS] 	 Total 12 GlobalTagS Created.
+160901171109	[Function : CreateLocalTagS] 	 Total 0 DB TagS and 0 Local Tags had Creat.
+160901171109	[Function : GetStepS] 	 Start Analysis Block [MITSUBISHI Project]
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [SM413], StepKey: [MAIN.0], Unit Index: [0].
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [M1200], StepKey: [MAIN.0], Unit Index: [1].
+160901171109	[Function : GetCoil] 	 Create Coil. Coil Address: [Z1], StepKey: [MAIN.0], Unit Index: [2].
+160901171109	[Function : GetStepS] 	 Step MAIN.0 had analysis. There are 2 Contacts and 1 Coils in this step.
+ 
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [K20,Z1], StepKey: [MAIN.3], Unit Index: [0].
+160901171109	[Function : GetCoil] 	 Create Coil. Coil Address: [Y101], StepKey: [MAIN.3], Unit Index: [1].
+160901171109	[Function : GetStepS] 	 Step MAIN.3 had analysis. There are 1 Contacts and 1 Coils in this step.
+ 
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [K20,Z2], StepKey: [MAIN.6], Unit Index: [0].
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [K30,Z2], StepKey: [MAIN.6], Unit Index: [1].
+160901171109	[Function : GetCoil] 	 Create Coil. Coil Address: [Y100], StepKey: [MAIN.6], Unit Index: [2].
+160901171109	[Function : GetStepS] 	 Step MAIN.6 had analysis. There are 2 Contacts and 1 Coils in this step.
+ 
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [Y101], StepKey: [MAIN.11], Unit Index: [0].
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [M1200], StepKey: [MAIN.11], Unit Index: [1].
+160901171109	[Function : GetCoil] 	 Create Coil. Coil Address: [K1234,D2], StepKey: [MAIN.11], Unit Index: [2].
+160901171109	[Function : GetStepS] 	 Step MAIN.11 had analysis. There are 2 Contacts and 1 Coils in this step.
+ 
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [Y101], StepKey: [MAIN.15], Unit Index: [0].
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [K60,Z1], StepKey: [MAIN.15], Unit Index: [1].
+160901171109	[Function : GetCoil] 	 Create Coil. Coil Address: [Z1], StepKey: [MAIN.15], Unit Index: [2].
+160901171109	[Function : GetStepS] 	 Step MAIN.15 had analysis. There are 2 Contacts and 1 Coils in this step.
+ 
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [Y101], StepKey: [MAIN.20], Unit Index: [0].
+160901171109	[Function : GetCoil] 	 Create Coil. Coil Address: [Z2], StepKey: [MAIN.20], Unit Index: [1].
+160901171109	[Function : GetStepS] 	 Step MAIN.20 had analysis. There are 1 Contacts and 1 Coils in this step.
+ 
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [K600,Z2], StepKey: [MAIN.22], Unit Index: [0].
+160901171109	[Function : GetCoil] 	 Create Coil. Coil Address: [Z2], StepKey: [MAIN.22], Unit Index: [1].
+160901171109	[Function : GetStepS] 	 Step MAIN.22 had analysis. There are 1 Contacts and 1 Coils in this step.
+ 
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [K25,Z2], StepKey: [MAIN.26], Unit Index: [0].
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [K75,Z2], StepKey: [MAIN.26], Unit Index: [1].
+160901171109	[Function : GetCoil] 	 Create Coil. Coil Address: [Y102], StepKey: [MAIN.26], Unit Index: [2].
+160901171109	[Function : GetStepS] 	 Step MAIN.26 had analysis. There are 2 Contacts and 1 Coils in this step.
+ 
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [K100,Z2], StepKey: [MAIN.31], Unit Index: [0].
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [K170,Z2], StepKey: [MAIN.31], Unit Index: [1].
+160901171109	[Function : GetCoil] 	 Create Coil. Coil Address: [Y103], StepKey: [MAIN.31], Unit Index: [2].
+160901171109	[Function : GetStepS] 	 Step MAIN.31 had analysis. There are 2 Contacts and 1 Coils in this step.
+ 
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [K200,Z2], StepKey: [MAIN.36], Unit Index: [0].
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [K270,Z2], StepKey: [MAIN.36], Unit Index: [1].
+160901171109	[Function : GetCoil] 	 Create Coil. Coil Address: [Y104], StepKey: [MAIN.36], Unit Index: [2].
+160901171109	[Function : GetStepS] 	 Step MAIN.36 had analysis. There are 2 Contacts and 1 Coils in this step.
+ 
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [K350,Z2], StepKey: [MAIN.41], Unit Index: [0].
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [K400,Z2], StepKey: [MAIN.41], Unit Index: [1].
+160901171109	[Function : GetCoil] 	 Create Coil. Coil Address: [Y105], StepKey: [MAIN.41], Unit Index: [2].
+160901171109	[Function : GetStepS] 	 Step MAIN.41 had analysis. There are 2 Contacts and 1 Coils in this step.
+ 
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [K500,Z2], StepKey: [MAIN.46], Unit Index: [0].
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [K550,Z2], StepKey: [MAIN.46], Unit Index: [1].
+160901171109	[Function : GetCoil] 	 Create Coil. Coil Address: [Y106], StepKey: [MAIN.46], Unit Index: [2].
+160901171109	[Function : GetStepS] 	 Step MAIN.46 had analysis. There are 2 Contacts and 1 Coils in this step.
+ 
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [Y102], StepKey: [MAIN.51], Unit Index: [0].
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [Y103], StepKey: [MAIN.51], Unit Index: [1].
+160901171109	[Function : GetCoil] 	 Create Coil. Coil Address: [Y107], StepKey: [MAIN.51], Unit Index: [2].
+160901171109	[Function : GetStepS] 	 Step MAIN.51 had analysis. There are 2 Contacts and 1 Coils in this step.
+ 
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [Y104], StepKey: [MAIN.54], Unit Index: [0].
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [Y105], StepKey: [MAIN.54], Unit Index: [1].
+160901171109	[Function : GetCoil] 	 Create Coil. Coil Address: [Y108], StepKey: [MAIN.54], Unit Index: [2].
+160901171109	[Function : GetStepS] 	 Step MAIN.54 had analysis. There are 2 Contacts and 1 Coils in this step.
+ 
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [Y103], StepKey: [MAIN.57], Unit Index: [0].
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [Y106], StepKey: [MAIN.57], Unit Index: [1].
+160901171109	[Function : GetCoil] 	 Create Coil. Coil Address: [Y109], StepKey: [MAIN.57], Unit Index: [2].
+160901171109	[Function : GetStepS] 	 Step MAIN.57 had analysis. There are 2 Contacts and 1 Coils in this step.
+ 
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [Y107], StepKey: [MAIN.60], Unit Index: [0].
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [Y108], StepKey: [MAIN.60], Unit Index: [1].
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [Y109], StepKey: [MAIN.60], Unit Index: [2].
+160901171109	[Function : GetCoil] 	 Create Coil. Coil Address: [Y110], StepKey: [MAIN.60], Unit Index: [3].
+160901171109	[Function : GetStepS] 	 Step MAIN.60 had analysis. There are 3 Contacts and 1 Coils in this step.
+ 
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [Y107], StepKey: [MAIN.64], Unit Index: [0].
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [Y109], StepKey: [MAIN.64], Unit Index: [1].
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [Y106], StepKey: [MAIN.64], Unit Index: [2].
+160901171109	[Function : GetContact] 	 Create contact. Contact Address: [Y109], StepKey: [MAIN.64], Unit Index: [3].
+160901171109	[Function : GetCoil] 	 Create Coil. Coil Address: [Y111], StepKey: [MAIN.64], Unit Index: [4].
+160901171109	[Function : GetStepS] 	 Step MAIN.64 had analysis. There are 4 Contacts and 1 Coils in this step.
+ 
+160901171109	[Function : GetStepS] 	 Finish Analysis Block [MITSUBISHI Project]. Total create 17 steps
+160901171109	Converting End.

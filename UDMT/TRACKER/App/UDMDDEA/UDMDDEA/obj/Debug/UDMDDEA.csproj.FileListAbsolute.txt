@@ -1,0 +1,13 @@
+D:\UDMTEK\SRC\Optra\bin\UDMDDEA.exe.config
+D:\UDMTEK\SRC\Optra\bin\UDMDDEA.exe
+D:\UDMTEK\SRC\Optra\bin\UDMDDEA.pdb
+D:\UDMTEK\SRC\Optra\App\UDMDDEA\UDMDDEA\obj\Debug\UDMDDEA.csprojResolveAssemblyReference.cache
+D:\UDMTEK\SRC\Optra\App\UDMDDEA\UDMDDEA\obj\Debug\UDMDDEA.FrmDDEAProperty.resources
+D:\UDMTEK\SRC\Optra\App\UDMDDEA\UDMDDEA\obj\Debug\UDMDDEA.FrmDetailView.resources
+D:\UDMTEK\SRC\Optra\App\UDMDDEA\UDMDDEA\obj\Debug\UDMDDEA.FrmMain.resources
+D:\UDMTEK\SRC\Optra\App\UDMDDEA\UDMDDEA\obj\Debug\UDMDDEA.FrmOpcConfig.resources
+D:\UDMTEK\SRC\Optra\App\UDMDDEA\UDMDDEA\obj\Debug\UDMDDEA.Properties.Resources.resources
+D:\UDMTEK\SRC\Optra\App\UDMDDEA\UDMDDEA\obj\Debug\UDMDDEA.UCSystemLogTable.resources
+D:\UDMTEK\SRC\Optra\App\UDMDDEA\UDMDDEA\obj\Debug\UDMDDEA.csproj.GenerateResource.Cache
+D:\UDMTEK\SRC\Optra\App\UDMDDEA\UDMDDEA\obj\Debug\UDMDDEA.exe
+D:\UDMTEK\SRC\Optra\App\UDMDDEA\UDMDDEA\obj\Debug\UDMDDEA.pdb
