@@ -1,0 +1,614 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="FTOPApp.UCClientLog" Collapsed="true">
+    <Position X="15.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAiABggACAAAAAABBCgAAAKACAAAACAAAAQEACCAEA=</HashCode>
+      <FileName>Form\Client\ClientLog\UCClientLog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.UCClientStatusDB" Collapsed="true">
+    <Position X="4.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAABAAACAAAAAAAACBAAACAACAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Form\Client\ClientStatus\UCClientStatusDB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.UCClientStatusOPC" Collapsed="true">
+    <Position X="6.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAACAAgAAAAACBAAACAACAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Form\Client\ClientStatus\UCClientStatusOPC.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.UCOpcViewer" Collapsed="true">
+    <Position X="11.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAACAAAAAAAACQAAACAAAGAACAAAAAAAAAIAA=</HashCode>
+      <FileName>Form\Client\OPC\UCOpcViewer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.FrmOPCSetting" Collapsed="true">
+    <Position X="13.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAACAAAAUAAACAACACAAMAAAAAgAAQIAAAAAA=</HashCode>
+      <FileName>Form\Client\Register\FrmOPCSetting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.FrmTest" Collapsed="true">
+    <Position X="15.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>GQAAAAAEACAAAJQCAADAAAACAAAAACAAiCQgABCABQA=</HashCode>
+      <FileName>Form\Client\Register\FrmTest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.UCPLCRegister" Collapsed="true">
+    <Position X="13.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAgWSgABACAAAABACASQgAQihIIAAACiABAoAJABAgE=</HashCode>
+      <FileName>Form\Client\Register\UCPLCRegister.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.UCClient" Collapsed="true">
+    <Position X="13.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YgBJUIhAgOAAgGAg4ACQJAQGIQgBWBACYAABCACQABU=</HashCode>
+      <FileName>Form\Client\UCClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.UCClientSetting" Collapsed="true">
+    <Position X="3" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Form\Client\UCClientSetting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.UCEventChartAbnormal" Collapsed="true">
+    <Position X="3" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAASAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Form\Common\Chart\UCEventChartAbnormal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.UCEventChartNormal" Collapsed="true">
+    <Position X="4.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAASAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Form\Common\Chart\UCEventChartNormal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.UCEventChartTotal" Collapsed="true">
+    <Position X="6.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAASAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Form\Common\Chart\UCEventChartTotal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.UCDBConnect" Collapsed="true">
+    <Position X="11.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQCACJAEACQAgAQgAASAgKACEMAAAEAAgAAAAQAAgAA=</HashCode>
+      <FileName>Form\Common\DB\UCDBConnect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.UCCPSViewer" Collapsed="true">
+    <Position X="8.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAIQCAAAAAAAACAAAACAAAAAABAAAAAAAAACCA=</HashCode>
+      <FileName>Form\Common\Rate\UCCPSViewer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.UCCpuViewer" Collapsed="true">
+    <Position X="10" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAASAAAAAAAACgAAACAAAAIABAAAAAAAAAAAA=</HashCode>
+      <FileName>Form\Common\Rate\UCCpuViewer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.UCDBViewer" Collapsed="true">
+    <Position X="15.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAIQCAAAAAAAACAAAACAAAAAABAAAAAAAAACCA=</HashCode>
+      <FileName>Form\Common\Rate\UCDBViewer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.UCMESViewer" Collapsed="true">
+    <Position X="8.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAIQCAAAAAAAACAAAACAAAAAABAAAAAAAAACCA=</HashCode>
+      <FileName>Form\Common\Rate\UCMESViewer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.UCNetworkViewer" Collapsed="true">
+    <Position X="10" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Form\Common\Rate\UCNetworkViewer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.FrmMain" Collapsed="true">
+    <Position X="11.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACJAAAEAACAGAEAAQAKEAAACJEAAAQAAAQgAAABAEAA=</HashCode>
+      <FileName>Form\FrmMain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.UCDBSender" Collapsed="true">
+    <Position X="13.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAACAACAAAAASABAACIIACAAACICAAAAAAkQI=</HashCode>
+      <FileName>Form\Server\Sender\UCDBSender.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.UCServerLog" Collapsed="true">
+    <Position X="3" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAACAAAAAAABCAAAAKAAAAAAAAAAAAAACCAAA=</HashCode>
+      <FileName>Form\Server\ServerLog\UCServerLog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.UCServerStatusCPS" Collapsed="true">
+    <Position X="6.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgCAAAAAAAACAAAACAACAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Form\Server\ServerStatus\UCServerStatusCPS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.UCServerStatusDB" Collapsed="true">
+    <Position X="8.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgCAAAAAAAACAAAACAACAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Form\Server\ServerStatus\UCServerStatusDB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.UCServerStatusMES">
+    <Position X="19" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgCAAAAAAAACAAAACAACAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Form\Server\ServerStatus\UCServerStatusMES.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.UCServer" Collapsed="true">
+    <Position X="15.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QgBVUohAsOAAEGAgQACQJAAGIAQBUAQCcCABCAGAAB8=</HashCode>
+      <FileName>Form\Server\UCServer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.UCServerSetting" Collapsed="true">
+    <Position X="4.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Form\Server\UCServerSetting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.Program" Collapsed="true">
+    <Position X="15.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.ClientWorker" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAQKAAEACAABAAgQAAAIADAAAAAAAAAIIEQAAAAABI=</HashCode>
+      <FileName>Worker\Client\ClientWorker.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FTOPApp.COPCConfig" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACEAAACAQAAAAAGAQAAMIAAAAAAARAAAAAA=</HashCode>
+      <FileName>Worker\Client\OPC\COPCConfig.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FTOPApp.COPCGroup" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAIoAAACICAAAQCQIAAAAAIEABAAAAAAqIAAQABAAAI=</HashCode>
+      <FileName>Worker\Client\OPC\COPCGroup.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FTOPApp.COPCGroupS" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACACAAAQAQIAAAAAIAAAAAAQAAqIAAQABAAAI=</HashCode>
+      <FileName>Worker\Client\OPC\COPCGroupS.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FTOPApp.COPCItem" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAQAAQAKBAAAQAAAQAAAAEQAACAEBAAgAgAAAwAAE=</HashCode>
+      <FileName>Worker\Client\OPC\COPCItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FTOPApp.COPCItemS" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAASACAAAUAQAAABCAAgAAEAAAAACIAAQEBBIAA=</HashCode>
+      <FileName>Worker\Client\OPC\COPCItemS.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FTOPApp.COPCServer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAkIiAigAAAAAIAAAAIKAACAAAAAAoIAITABAAAI=</HashCode>
+      <FileName>Worker\Client\OPC\COPCServer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FTOPApp.CThreadBase" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAIACgAAAAAACACQAAAAAAAAAAAIAAAAAgAAAI=</HashCode>
+      <FileName>Worker\Client\Thread\CThreadBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FTOPApp.CThreadQue&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAIAAAAAAQgAAAAAAAAAAEAAABIAAA=</HashCode>
+      <FileName>Worker\Client\Thread\CThreadQue.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FTOPApp.CThreadWithQueBase&lt;T&gt;" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAIAAAAIADgAAAAIACACQAAAAAAAAAAAIAAAAQgAAAI=</HashCode>
+      <FileName>Worker\Client\Thread\CThreadWithQueBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FTOPApp.CThreadWorker" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <InheritanceLine Type="FTOPApp.CThreadWithQueBase&lt;T&gt;" FixedFromPoint="true">
+      <Path>
+        <Point X="2" Y="1.062" />
+        <Point X="2.375" Y="1.062" />
+        <Point X="2.375" Y="2.096" />
+        <Point X="2" Y="2.096" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAIACAABAAAACACAAAAAACBgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Worker\Client\Thread\CThreadWorker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.FTOPTag" BaseTypeListCollapsed="true">
+    <Position X="21.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QgEAAAQBACBAAAQiQILpAAhGADAAAAAAAAgAgCAIABA=</HashCode>
+      <FileName>Worker\Common\Data\FTOPTag.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FTOPApp.MESTag" BaseTypeListCollapsed="true">
+    <Position X="17.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAQAAAAAAAAAAAAAAAAAAAAgAAAAARA=</HashCode>
+      <FileName>Worker\Common\Data\MESTag.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="1.115" Collapsed="true" />
+  </Class>
+  <Class Name="FTOPApp.Serializer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAgAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Worker\Common\Data\Serializer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FTOPApp.DBWorker" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17.75" Y="3" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>IAEEAAIEACAAQAACAAAAAIIgAEAAAABgBAAgQBAAAQA=</HashCode>
+      <FileName>Worker\Common\DB\DBWorker.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FTOPApp.MariaDBReader" Collapsed="true">
+    <Position X="4.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQIAAAAAAAAAABAACAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Worker\Common\DB\MariaDBReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.MariaDBWriter" Collapsed="true">
+    <Position X="6.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Worker\Common\DB\MariaDBWriter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.MSSqlReader" Collapsed="true">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAABAICAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Worker\Common\DB\MSSqlReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.MySqlLogReader" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UCQQQIAAJKAKAABCBAgCAIAAxAkAAAAAAAEEABAgCAA=</HashCode>
+      <FileName>Worker\Common\DB\MySqlLogReader.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FTOPApp.MySqlLogWriter" Collapsed="true">
+    <Position X="13.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAQAAAAAACASIgBCABgAAIAAAAAAAQIAAEAAAYVRggA=</HashCode>
+      <FileName>Worker\Common\DB\MySqlLogWriter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.ClientLog" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAoAAAAAE=</HashCode>
+      <FileName>Worker\Common\Log\ClientLog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.ClientLogDB" Collapsed="true">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAQAIAAAQAQAAAACACAAAAgAAAAQA=</HashCode>
+      <FileName>Worker\Common\Log\ClientLogDB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.ClientLogOPC" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAQAIAAAQAQAAAACACAAAAgAAAAQA=</HashCode>
+      <FileName>Worker\Common\Log\ClientLogOPC.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.ServerLog" Collapsed="true">
+    <Position X="6.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Worker\Common\Log\ServerLog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.SoapWorker">
+    <Position X="17.75" Y="3.75" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Worker\Server\Connect\SoapWorker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.ServerWorker" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAACAgBAAiAAAAAAQAAAAAAAAAIAEQAAQAAAI=</HashCode>
+      <FileName>Worker\Server\ServerWorker.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FTOPApp.Properties.Resources" Collapsed="true">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FTOPApp.Properties.Settings" Collapsed="true">
+    <Position X="10" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="FTOPApp.ICPS" Collapsed="true">
+    <Position X="3" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Worker\Common\Interfaces\ICPS.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="FTOPApp.IMES" Collapsed="true">
+    <Position X="4.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAEAAAQAAAAAAAACAABgAABAAAAAAAAAAAgAgCAIAAA=</HashCode>
+      <FileName>Worker\Common\Interfaces\IMES.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="FTOPApp.IObject" Collapsed="true">
+    <Position X="6.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Worker\Common\Interfaces\IObject.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="FTOPApp.IOPC" Collapsed="true">
+    <Position X="8.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Worker\Common\Interfaces\IOPC.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="FTOPApp.IPLC" Collapsed="true">
+    <Position X="10" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAQgQIAAAAgAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Worker\Common\Interfaces\IPLC.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="FTOPApp.IWorker" Collapsed="true">
+    <Position X="16.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAIAAAAAAAAAI=</HashCode>
+      <FileName>Worker\Common\Interfaces\IWorker.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="FTOPApp.EMConnectType" Collapsed="true">
+    <Position X="3" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Worker\Common\Enumeration\EMConnectType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FTOPApp.EMServerMenu" Collapsed="true">
+    <Position X="8.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAI=</HashCode>
+      <FileName>Worker\Common\Enumeration\EMConnectType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FTOPApp.EMDataPushType" Collapsed="true">
+    <Position X="4.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAgAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Worker\Common\Enumeration\EMConnectType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FTOPApp.EMTarget" Collapsed="true">
+    <Position X="11.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAQAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Worker\Common\Enumeration\EMConnectType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FTOPApp.EMDeviceMenu" Collapsed="true">
+    <Position X="6.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAIAAABAAACAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Worker\Common\Enumeration\EMDeviceMenu.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FTOPApp.EMFTOP100Columns" Collapsed="true">
+    <Position X="8.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAEACAYAAAAAAACCAQBhEABAABAAAAAAAAgAgCAAAAA=</HashCode>
+      <FileName>Worker\Common\Enumeration\EMFTOPColumns.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FTOPApp.EMFTOP110Columns" Collapsed="true">
+    <Position X="10" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QEAAAAIAAAAEAAAABAABEAAAARAAAEIAACgRgCAAAAA=</HashCode>
+      <FileName>Worker\Common\Enumeration\EMFTOPColumns.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FTOPApp.EMFTOP200Columns" Collapsed="true">
+    <Position X="11.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEIAAAAAAAAAIAABAAhAABAAAAAAAAgEgiQAAAA=</HashCode>
+      <FileName>Worker\Common\Enumeration\EMFTOPColumns.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FTOPApp.EMFTOP300Columns" Collapsed="true">
+    <Position X="13.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEIAAAAAAAAAIAABAAhAABAAAAAAAAgEgiQAAAA=</HashCode>
+      <FileName>Worker\Common\Enumeration\EMFTOPColumns.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FTOPApp.EMFTOPTable" Collapsed="true">
+    <Position X="15.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAkAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Worker\Common\Enumeration\EMFTOPColumns.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FTOPApp.EMMESResponseMessage" Collapsed="true">
+    <Position X="3" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAQAAAQEAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Worker\Common\Enumeration\EMMESResponseMessage.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FTOPApp.EMOPCType" Collapsed="true">
+    <Position X="4.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Worker\Common\Enumeration\EMOPCType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FTOPApp.EMPLCDataType" Collapsed="true">
+    <Position X="6.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAEEAAQEAAAAAAAgQIIQACAABYAAACERAAAAIAEEASA=</HashCode>
+      <FileName>Worker\Common\Enumeration\EMPLCDataType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FTOPApp.EMStatusIndex" Collapsed="true">
+    <Position X="10" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAACAAAAAAAIAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Worker\Common\Enumeration\EMStatusIndex.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="FTOPApp.UEventHandlerOPCItemValueChanged" Collapsed="true">
+    <Position X="10" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAIABAAAAAEAAAQAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Worker\Common\Delegators\ApplicationEventHandler.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="FTOPApp.UEventHandlerOPCServerInitialized" Collapsed="true">
+    <Position X="11.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Worker\Common\Delegators\ApplicationEventHandler.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="FTOPApp.UEventHandlerValueChanged" Collapsed="true">
+    <Position X="3" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Worker\Common\Delegators\ApplicationEventHandler.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="FTOPApp.UEventHandlerThreadDequeEvent" Collapsed="true">
+    <Position X="13.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Worker\Common\Delegators\ApplicationEventHandler.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="FTOPApp.UEventHandlerMESSendedEvent" Collapsed="true">
+    <Position X="8.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Worker\Common\Delegators\ApplicationEventHandler.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="FTOPApp.UEventHandlerThreadDequeServerEvent" Collapsed="true">
+    <Position X="15.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Worker\Common\Delegators\ApplicationEventHandler.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="FTOPApp.UEventHandlerDBReadedDelegator" Collapsed="true">
+    <Position X="4.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Worker\Common\Delegators\ApplicationEventHandler.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="FTOPApp.UEventHandlerMessage" Collapsed="true">
+    <Position X="6.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Worker\Common\Delegators\ApplicationEventHandler.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="FTOPApp.UEventHandlerConnectEvent" Collapsed="true">
+    <Position X="3" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Worker\Common\Delegators\ApplicationEventHandler.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Malgun Gothic" Size="9" />
+</ClassDiagram>

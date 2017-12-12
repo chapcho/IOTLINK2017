@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Get_LogDataCnt">
+        <s:complexType />
+      </s:element>
+      <s:element name="Get_LogDataCntResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_LogDataCntResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Set_LogData2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="corp_cd" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="gtr_id" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="log_data" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Set_LogData2Response">
+        <s:complexType />
+      </s:element>
+      <s:element name="Set_LogData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="corp_cd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="gtr_id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="log_data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Set_LogDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Set_LogDataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_CommonCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="corp_cd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="type" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="code_type" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_CommonCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_CommonCodeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_PLANTCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="corp_cd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_PLANTCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_PLANTCodeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_LINECode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="corp_cd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_LINECodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_LINECodeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_OPCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="corp_cd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_OPCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_OPCodeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_EQMCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="corp_cd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_EQMCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_EQMCodeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_ItemMst">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="corp_cd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_ItemMstResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_ItemMstResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_ItemDetail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="corp_cd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_ItemDetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_ItemDetailResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_GTRCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="corp_cd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_GTRCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_GTRCodeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="Get_LogDataCntSoapIn">
+    <wsdl:part name="parameters" element="tns:Get_LogDataCnt" />
+  </wsdl:message>
+  <wsdl:message name="Get_LogDataCntSoapOut">
+    <wsdl:part name="parameters" element="tns:Get_LogDataCntResponse" />
+  </wsdl:message>
+  <wsdl:message name="Set_LogData2SoapIn">
+    <wsdl:part name="parameters" element="tns:Set_LogData2" />
+  </wsdl:message>
+  <wsdl:message name="Set_LogData2SoapOut">
+    <wsdl:part name="parameters" element="tns:Set_LogData2Response" />
+  </wsdl:message>
+  <wsdl:message name="Set_LogDataSoapIn">
+    <wsdl:part name="parameters" element="tns:Set_LogData" />
+  </wsdl:message>
+  <wsdl:message name="Set_LogDataSoapOut">
+    <wsdl:part name="parameters" element="tns:Set_LogDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="Get_CommonCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:Get_CommonCode" />
+  </wsdl:message>
+  <wsdl:message name="Get_CommonCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:Get_CommonCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="Get_PLANTCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:Get_PLANTCode" />
+  </wsdl:message>
+  <wsdl:message name="Get_PLANTCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:Get_PLANTCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="Get_LINECodeSoapIn">
+    <wsdl:part name="parameters" element="tns:Get_LINECode" />
+  </wsdl:message>
+  <wsdl:message name="Get_LINECodeSoapOut">
+    <wsdl:part name="parameters" element="tns:Get_LINECodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="Get_OPCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:Get_OPCode" />
+  </wsdl:message>
+  <wsdl:message name="Get_OPCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:Get_OPCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="Get_EQMCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:Get_EQMCode" />
+  </wsdl:message>
+  <wsdl:message name="Get_EQMCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:Get_EQMCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="Get_ItemMstSoapIn">
+    <wsdl:part name="parameters" element="tns:Get_ItemMst" />
+  </wsdl:message>
+  <wsdl:message name="Get_ItemMstSoapOut">
+    <wsdl:part name="parameters" element="tns:Get_ItemMstResponse" />
+  </wsdl:message>
+  <wsdl:message name="Get_ItemDetailSoapIn">
+    <wsdl:part name="parameters" element="tns:Get_ItemDetail" />
+  </wsdl:message>
+  <wsdl:message name="Get_ItemDetailSoapOut">
+    <wsdl:part name="parameters" element="tns:Get_ItemDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="Get_GTRCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:Get_GTRCode" />
+  </wsdl:message>
+  <wsdl:message name="Get_GTRCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:Get_GTRCodeResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DYP_WebserviceSoap">
+    <wsdl:operation name="Get_LogDataCnt">
+      <wsdl:input message="tns:Get_LogDataCntSoapIn" />
+      <wsdl:output message="tns:Get_LogDataCntSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Set_LogData2">
+      <wsdl:input message="tns:Set_LogData2SoapIn" />
+      <wsdl:output message="tns:Set_LogData2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Set_LogData">
+      <wsdl:input message="tns:Set_LogDataSoapIn" />
+      <wsdl:output message="tns:Set_LogDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_CommonCode">
+      <wsdl:input message="tns:Get_CommonCodeSoapIn" />
+      <wsdl:output message="tns:Get_CommonCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_PLANTCode">
+      <wsdl:input message="tns:Get_PLANTCodeSoapIn" />
+      <wsdl:output message="tns:Get_PLANTCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_LINECode">
+      <wsdl:input message="tns:Get_LINECodeSoapIn" />
+      <wsdl:output message="tns:Get_LINECodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_OPCode">
+      <wsdl:input message="tns:Get_OPCodeSoapIn" />
+      <wsdl:output message="tns:Get_OPCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_EQMCode">
+      <wsdl:input message="tns:Get_EQMCodeSoapIn" />
+      <wsdl:output message="tns:Get_EQMCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_ItemMst">
+      <wsdl:input message="tns:Get_ItemMstSoapIn" />
+      <wsdl:output message="tns:Get_ItemMstSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_ItemDetail">
+      <wsdl:input message="tns:Get_ItemDetailSoapIn" />
+      <wsdl:output message="tns:Get_ItemDetailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_GTRCode">
+      <wsdl:input message="tns:Get_GTRCodeSoapIn" />
+      <wsdl:output message="tns:Get_GTRCodeSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DYP_WebserviceSoap" type="tns:DYP_WebserviceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Get_LogDataCnt">
+      <soap:operation soapAction="http://tempuri.org/Get_LogDataCnt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Set_LogData2">
+      <soap:operation soapAction="http://tempuri.org/Set_LogData2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Set_LogData">
+      <soap:operation soapAction="http://tempuri.org/Set_LogData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_CommonCode">
+      <soap:operation soapAction="http://tempuri.org/Get_CommonCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_PLANTCode">
+      <soap:operation soapAction="http://tempuri.org/Get_PLANTCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_LINECode">
+      <soap:operation soapAction="http://tempuri.org/Get_LINECode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_OPCode">
+      <soap:operation soapAction="http://tempuri.org/Get_OPCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_EQMCode">
+      <soap:operation soapAction="http://tempuri.org/Get_EQMCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_ItemMst">
+      <soap:operation soapAction="http://tempuri.org/Get_ItemMst" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_ItemDetail">
+      <soap:operation soapAction="http://tempuri.org/Get_ItemDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_GTRCode">
+      <soap:operation soapAction="http://tempuri.org/Get_GTRCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DYP_WebserviceSoap12" type="tns:DYP_WebserviceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Get_LogDataCnt">
+      <soap12:operation soapAction="http://tempuri.org/Get_LogDataCnt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Set_LogData2">
+      <soap12:operation soapAction="http://tempuri.org/Set_LogData2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Set_LogData">
+      <soap12:operation soapAction="http://tempuri.org/Set_LogData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_CommonCode">
+      <soap12:operation soapAction="http://tempuri.org/Get_CommonCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_PLANTCode">
+      <soap12:operation soapAction="http://tempuri.org/Get_PLANTCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_LINECode">
+      <soap12:operation soapAction="http://tempuri.org/Get_LINECode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_OPCode">
+      <soap12:operation soapAction="http://tempuri.org/Get_OPCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_EQMCode">
+      <soap12:operation soapAction="http://tempuri.org/Get_EQMCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_ItemMst">
+      <soap12:operation soapAction="http://tempuri.org/Get_ItemMst" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_ItemDetail">
+      <soap12:operation soapAction="http://tempuri.org/Get_ItemDetail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_GTRCode">
+      <soap12:operation soapAction="http://tempuri.org/Get_GTRCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DYP_Webservice">
+    <wsdl:port name="DYP_WebserviceSoap" binding="tns:DYP_WebserviceSoap">
+      <soap:address location="http://172.18.8.24:8070/DYP_Webservice.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DYP_WebserviceSoap12" binding="tns:DYP_WebserviceSoap12">
+      <soap12:address location="http://172.18.8.24:8070/DYP_Webservice.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

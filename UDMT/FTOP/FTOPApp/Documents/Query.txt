@@ -1,0 +1,60 @@
+==============================================================================================================================================================================================================
+--Report--  ( FTOP 100에서 조회후 내용 가져오기 )
+
+SELECT
+A.PLANT_NM,
+A.LINE_NM,
+A.OP_NM,
+A.EQM_NM,
+A.ITEM_DETAIL_NM,
+A.GTR_ID,
+C.VALUE_DATA,
+C.MAKE_TIME
+FROM dbo.FTOP100 as A
+INNER JOIN dbo.FTOP110 as B
+ON A.CORP_CD = B.CORP_CD AND A.GTR_ID = B.GTR_ID
+INNER JOIN dbo.FTOP200 as C
+ON A.GTR_ID = C.GTR_ID
+WHERE C.MAKE_TIME IS NOT NULL ORDER BY LINE_NM ,EQM_NM , MAKE_TIME
+
+
+==============================================================================================================================================================================================================
+MemoryMap Insert
+==============================================================================================================================================================================================================
+
+INSERT INTO dbo.FTOP110 (CORP_CD , GTR_ID ,PLC_NM , PLC_CHNL , PLC_ADDR , PLC_TYPE , EQM_IP_ADDR , EQM_IP_PORT , DATA_TYPE ,IF_TARGET , ADDR_TAG , DESCR, REG_USER ,REG_DATE , UPD_USER , UPD_DATE ,USE_YN )
+SELECT F2, F11 , 'Device' ,F19 ,
+		CASE 
+			WHEN F21 ='bool' THEN REPLACE(F20,'M0','MX') ELSE CONCAT(REPLACE(F20,'M','MW'),':F') 
+		END,
+		F18 ,F19 , '4350' , F21 , 'MES' , 'FTOPClient1' , 		   
+		CASE 
+			WHEN (CAST(REPLACE(F19,'.','') AS INT) % 2 LIKE 0) THEN 'FTOPClient2' 
+			ELSE 'FTOPClient1' 
+		END,
+		'migration',GETDATE(),'migration',GETDATE(), 'N' 
+FROM dbo.G WHERE F2 = 'A0001';
+
+INSERT INTO dbo.FTOP100 (CORP_CD , GTR_ID ,EQM_CD , ITEM_CD , ITEM_DETAIL_CD , ITEM_DETAIL_NM , EQM_NM , PLANT_CD , PLANT_NM ,LINE_CD , LINE_NM ,OP_CD, OP_NM,DESCR, REG_USER ,REG_DATE , UPD_USER , UPD_DATE ,USE_YN )
+SELECT F2 , F11, F10 , F13 ,F15 , F16 , F9 , F4 ,F3 , F6, F5 ,F8 ,F7 ,F16, 'migration',GETDATE(), 'migration',GETDATE(),'N'
+FROM dbo.G WHERE F2 = 'A0001';
+
+==============================================================================================================================================================================================================
+백업 후 7일 이후 데이터 삭제
+==============================================================================================================================================================================================================
+SET ROWCOUNT 10000
+DECLARE @CondMakeTime VARCHAR(30), @CondCount INT
+-- 루프를 시작하기 위한 초기값.
+SET @CondCount = 1
+SELECT @CondMakeTime = Replace(Replace(Replace(Replace(Convert(VARCHAR(30), DateAdd(dd,-7,GetDate()), 121),'-',''),':',''),'.',''),' ','')
+
+WHILE @CondCount > 0
+BEGIN
+	-- PRINT @CondMakeTime 
+	DELETE FROM DYPFTOP.dbo.FTOP310 WHERE MAKE_TIME < @CondMakeTime;
+	-- SELECT @CondCount = COUNT(*) FROM DYPFTOP.dbo.FTOP310 WHERE MAKE_TIME < @CondMakeTime;
+	SELECT @CondCount = @@ROWCOUNT
+	-- 데이터를 삭제하는 루프동작에서 1초씩 지연.
+	WAITFOR DELAY '00:00:01'
+END
+SET ROWCOUNT 0

@@ -1,0 +1,12 @@
+http://stackoverflow.com/questions/706361/getting-return-value-from-stored-procedure-in-c-sharp
+
+SqlParameter retval = sqlcomm.Parameters.Add("@b", SqlDbType.VarChar);
+retval.Direction = ParameterDirection.ReturnValue;
+sqlcomm.ExecuteNonQuery(); // MISSING
+string retunvalue = (string)sqlcomm.Parameters["@b"].Value;
+
+
+
+
+
+

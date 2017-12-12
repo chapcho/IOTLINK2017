@@ -1,0 +1,53 @@
+USE [DYPFTOP]
+GO
+/****** Object:  StoredProcedure [dbo].[usp_FTOP300_C_001]    Script Date: 2016-11-28 오후 2:59:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER Procedure [dbo].[usp_FTOP300_C_001]
+(
+	@gtrId nvarchar(10),
+	@makeTime nvarchar(30),
+	@valueData nvarchar(8)
+)
+AS
+
+BEGIN
+ -- 처리결과 도메인 체크(전송성공=0, 타켓시스템처리거부=1, 전송대기=8, 재전송필요시=9) 
+
+ -- MakeTime Key 기준으로 중복된 키를 체크하여 FTOP300 Write...
+ IF NOT EXISTS (SELECT * FROM dbo.FTOP300 WHERE MAKE_TIME = @makeTime AND GTR_ID = @gtrId)
+   BEGIN
+	INSERT dbo.FTOP300(CORP_CD, GTR_ID, MAKE_TIME, VALUE_DATA, IF_MES_YN, IF_MES_RSLT, IF_MES_TIME, IF_CPS_YN, IF_CPS_RSLT, IF_CPS_TIME, REG_USER, REG_DATE,UPD_USER,UPD_DATE) 
+	SELECT CORP_CD, GTR_ID, @makeTime, @valueData,
+	 CASE WHEN IF_TARGET = 'MES' OR IF_TARGET = 'ALL' THEN 'Y' ELSE 'N' END,
+	 CASE WHEN dbo.FTOP110.DATA_TYPE = 'Bit' OR dbo.FTOP110.DATA_TYPE = 'Bool' THEN '8' ELSE '6' END, 
+	 null ,
+	 CASE WHEN IF_TARGET = 'CPS' OR IF_TARGET = 'ALL' THEN 'Y' ELSE 'N' END,
+	 CASE WHEN dbo.FTOP110.DATA_TYPE = 'Bit' OR dbo.FTOP110.DATA_TYPE = 'Bool' THEN '8' ELSE '6' END,
+	 null , 
+	 'FTOPCLIENT',GETDATE(),'FTOPCLIENT',GETDATE()
+	FROM dbo.FTOP110 WHERE GTR_ID = @gtrId ;
+   END
+
+   -- GRT ID Key 기준으로 중복키 확인 후 업데이트 또는 생성
+	IF EXISTS(SELECT * FROM dbo.FTOP200 WHERE GTR_ID = @gtrId)
+		UPDATE dbo.FTOP200
+		SET MAKE_TIME = @makeTime , VALUE_DATA = @valueData , UPD_USER ='FTOPCLIENT' , UPD_DATE = GETDATE()
+		WHERE GTR_ID = @gtrId
+	ELSE
+		INSERT dbo.FTOP200(GTR_ID, MAKE_TIME, VALUE_DATA,UPD_USER,UPD_DATE)
+		VALUES (@gtrId , @makeTime, @valueData ,'FTOPCLIENT' , GETDATE());
+
+	IF @@ERROR <> 0
+	BEGIN
+		SELECT ERROR_NUMBER() as ErrorNumber, ERROR_SEVERITY() as ErrorSeverity ,ERROR_STATE() as ErrorState ,ERROR_PROCEDURE() as ErrorProcedure , ERROR_LINE() as ErrorLine , ERROR_MESSAGE() as ErrorMessage;
+		RETURN -1;
+	END
+	ELSE
+	BEGIN
+		SELECT 0 as ErrorNumber, 0 as ErrorSeverity ,0 as ErrorState ,0 as ErrorProcedure , 0 as ErrorLine , 0 as ErrorMessage;
+		RETURN -1;	
+	END
+END

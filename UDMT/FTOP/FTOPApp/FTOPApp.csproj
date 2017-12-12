@@ -1,0 +1,644 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E7326024-307D-4C06-A944-448A6154824D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FTOPApp</RootNamespace>
+    <AssemblyName>FTOPApp</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resource\MainIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="CbCpsIotDataManager120, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\CbCpsIotDataManager120.dll</HintPath>
+    </Reference>
+    <Reference Include="CoFAS.Core">
+      <HintPath>..\DLL\CoFAS.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v15.1.Core, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.Charts.v15.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Dashboard.v15.1.Core, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.Dashboard.v15.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Dashboard.v15.1.Win, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.Dashboard.v15.1.Win.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.Data.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.DataAccess.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v15.1.UI, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.DataAccess.v15.1.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Map.v15.1.Core, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.Map.v15.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Office.v15.1.Core, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.Office.v15.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.PivotGrid.v15.1.Core, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.PivotGrid.v15.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.Printing.v15.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v15.1.Core, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.RichEdit.v15.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Sparkline.v15.1.Core, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.Sparkline.v15.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.Utils.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v15.1.UI, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.Utils.v15.1.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.Xpo.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.XtraBars.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.XtraCharts.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v15.1.Extensions, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.XtraCharts.v15.1.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v15.1.UI, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.XtraCharts.v15.1.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.XtraEditors.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGauges.v15.1.Core, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.XtraGauges.v15.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGauges.v15.1.Presets, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.XtraGauges.v15.1.Presets.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGauges.v15.1.Win, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.XtraGauges.v15.1.Win.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.XtraGrid.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.XtraLayout.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraMap.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.XtraMap.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPivotGrid.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.XtraPivotGrid.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.XtraPrinting.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.XtraRichEdit.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v15.1.Extensions, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.XtraRichEdit.v15.1.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DevExpress.XtraTreeList.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="FtopManager">
+      <HintPath>..\FtopManager\FtopManager\FtopManager\bin\Debug\FtopManager.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.OPCAutomation">
+      <HintPath>..\DLL\Interop.OPCAutomation.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\MySql.Data.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UDM.Common">
+      <HintPath>..\DLL\UDM.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="UDM.General">
+      <HintPath>..\DLL\UDM.General.dll</HintPath>
+    </Reference>
+    <Reference Include="UDM.Log">
+      <HintPath>..\DLL\UDM.Log.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form\Client\WaitForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Client\WaitForm1.Designer.cs">
+      <DependentUpon>WaitForm1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Server\FrmServerOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Server\FrmServerOption.Designer.cs">
+      <DependentUpon>FrmServerOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\SplashScreen1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Common\SplashScreen1.Designer.cs">
+      <DependentUpon>SplashScreen1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Observer\UCObserver.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Observer\UCObserver.Designer.cs">
+      <DependentUpon>UCObserver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Observer\FrmObserverDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Observer\FrmObserverDetail.Designer.cs">
+      <DependentUpon>FrmObserverDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Observer\FrmObserver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Observer\FrmObserver.Designer.cs">
+      <DependentUpon>FrmObserver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Observer\FrmPLCPingTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Observer\FrmPLCPingTest.Designer.cs">
+      <DependentUpon>FrmPLCPingTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDcomSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDcomSetting.Designer.cs">
+      <DependentUpon>FrmDcomSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\DYPServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Worker\Common\DB\SQLCommander.cs" />
+    <Compile Include="Worker\Common\Enumeration\EMFTOPServerSendMode.cs" />
+    <Compile Include="Worker\OPCWorker.cs" />
+    <Compile Include="Worker\Common\Data\OPCTag.cs" />
+    <Compile Include="Worker\Common\Enumeration\EMClientNumber.cs" />
+    <Compile Include="Worker\Common\Data\ProcedureTag.cs" />
+    <Compile Include="Worker\Common\Enumeration\EMFTOPProcedure.cs" />
+    <Compile Include="Worker\Common\Enumeration\EMAppType.cs" />
+    <Compile Include="Worker\Common\Data\FTag.cs" />
+    <Compile Include="Worker\Common\Enumeration\EMMESResponseMessage.cs" />
+    <Compile Include="Worker\Common\Interfaces\IWorker.cs" />
+    <Compile Include="Worker\Common\Enumeration\EMPLCDataType.cs" />
+    <Compile Include="Worker\Common\Interfaces\IOPC.cs" />
+    <Compile Include="Worker\Common\Interfaces\ICPS.cs" />
+    <Compile Include="Worker\Common\Enumeration\EMFTOPPLCMaker.cs" />
+    <Compile Include="Worker\Common\Interfaces\IObject.cs" />
+    <Compile Include="Worker\Common\Interfaces\IPLC.cs" />
+    <Compile Include="Worker\Common\Interfaces\IMES.cs" />
+    <Compile Include="Worker\Common\Data\FTagFull.cs" />
+    <Compile Include="Worker\Common\DB\MSSqlReader.cs" />
+    <Compile Include="Worker\Common\Enumeration\EMStatusIndex.cs" />
+    <Compile Include="Worker\Common\Enumeration\EMConnectType.cs" />
+    <Compile Include="Worker\Common\Enumeration\EMConnectStatus.cs" />
+    <Compile Include="Worker\Common\Enumeration\EMFTOPColumns.cs" />
+    <Compile Include="Form\Server\UCDBSender.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Server\UCDBSender.Designer.cs">
+      <DependentUpon>UCDBSender.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Client\UCClientSetting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Client\UCClientSetting.Designer.cs">
+      <DependentUpon>UCClientSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Server\UCServerSetting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Server\UCServerSetting.Designer.cs">
+      <DependentUpon>UCServerSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Worker\ServerWorker.cs" />
+    <Compile Include="Worker\ClientWorker.cs" />
+    <Compile Include="Worker\Common\Log\ClientLogDB.cs" />
+    <Compile Include="Worker\Common\Log\ClientLogOPC.cs" />
+    <Compile Include="Worker\Common\Log\ClientLog.cs" />
+    <Compile Include="Worker\Common\Data\Serializer.cs" />
+    <Compile Include="Worker\Common\Log\ServerLog.cs" />
+    <Compile Include="Worker\Common\Thread\CThreadWorker.cs" />
+    <Compile Include="Worker\Common\Enumeration\EMDeviceMenu.cs" />
+    <Compile Include="Form\Client\FrmOPCSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Client\FrmOPCSetting.Designer.cs">
+      <DependentUpon>FrmOPCSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Worker\Common\Thread\CThreadBase.cs" />
+    <Compile Include="Worker\Common\Thread\CThreadQue.cs" />
+    <Compile Include="Worker\Common\Thread\CThreadWithQueBase.cs" />
+    <Compile Include="Worker\Common\OPC\COPCConfig.cs" />
+    <Compile Include="Worker\Common\OPC\COPCGroup.cs" />
+    <Compile Include="Worker\Common\OPC\COPCGroupS.cs" />
+    <Compile Include="Worker\Common\OPC\COPCItem.cs" />
+    <Compile Include="Worker\Common\OPC\COPCItemS.cs" />
+    <Compile Include="Worker\Common\OPC\COPCServer.cs" />
+    <Compile Include="Worker\DBWorker.cs" />
+    <Compile Include="Worker\Common\Delegators\ApplicationEventHandler.cs" />
+    <Compile Include="Worker\Common\Enumeration\EMOPCType.cs" />
+    <Compile Include="Worker\Common\Enumeration\EMDBCommand.cs" />
+    <Compile Include="Form\FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Worker\Common\DB\MariaDBReader.cs" />
+    <Compile Include="Worker\Common\DB\MariaDBWriter.cs" />
+    <Compile Include="Worker\Common\DB\MySqlLogReader.cs" />
+    <Compile Include="Worker\Common\DB\MySqlLogWriter.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Form\Client\UCPLCRegister.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Client\UCPLCRegister.Designer.cs">
+      <DependentUpon>UCPLCRegister.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Worker\Common\Connect\WebWorker.cs" />
+    <Compile Include="Form\Common\UCDBConnect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Common\UCDBConnect.Designer.cs">
+      <DependentUpon>UCDBConnect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\UCCpuViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Common\UCCpuViewer.Designer.cs">
+      <DependentUpon>UCCpuViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\UCNetworkViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Common\UCNetworkViewer.Designer.cs">
+      <DependentUpon>UCNetworkViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\UCCPSViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Common\UCCPSViewer.Designer.cs">
+      <DependentUpon>UCCPSViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\UCMESViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Common\UCMESViewer.Designer.cs">
+      <DependentUpon>UCMESViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\UCEventChartAbnormal.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Common\UCEventChartAbnormal.Designer.cs">
+      <DependentUpon>UCEventChartAbnormal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\UCEventChartNormal.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Common\UCEventChartNormal.Designer.cs">
+      <DependentUpon>UCEventChartNormal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\UCEventChartTotal.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Common\UCEventChartTotal.Designer.cs">
+      <DependentUpon>UCEventChartTotal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\UCDBViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Common\UCDBViewer.Designer.cs">
+      <DependentUpon>UCDBViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Client\UCOpcViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Client\UCOpcViewer.Designer.cs">
+      <DependentUpon>UCOpcViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Client\UCClient.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Client\UCClient.Designer.cs">
+      <DependentUpon>UCClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Client\UCClientStatusDB.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Client\UCClientStatusDB.Designer.cs">
+      <DependentUpon>UCClientStatusDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Client\UCClientStatusOPC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Client\UCClientStatusOPC.Designer.cs">
+      <DependentUpon>UCClientStatusOPC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Client\UCClientLog.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Client\UCClientLog.Designer.cs">
+      <DependentUpon>UCClientLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Server\UCServer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Server\UCServer.Designer.cs">
+      <DependentUpon>UCServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Server\UCServerLog.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Server\UCServerLog.Designer.cs">
+      <DependentUpon>UCServerLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Server\UCServerStatusCPS.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Server\UCServerStatusCPS.Designer.cs">
+      <DependentUpon>UCServerStatusCPS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Server\UCServerStatusDB.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Server\UCServerStatusDB.Designer.cs">
+      <DependentUpon>UCServerStatusDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Server\UCServerStatusMES.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Server\UCServerStatusMES.Designer.cs">
+      <DependentUpon>UCServerStatusMES.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form\Client\UCClientStatusDB.resx">
+      <DependentUpon>UCClientStatusDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Client\UCClientStatusOPC.resx">
+      <DependentUpon>UCClientStatusOPC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Client\WaitForm1.resx">
+      <DependentUpon>WaitForm1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Client\FrmOPCSetting.resx">
+      <DependentUpon>FrmOPCSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Client\UCOpcViewer.resx">
+      <DependentUpon>UCOpcViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Client\UCPLCRegister.resx">
+      <DependentUpon>UCPLCRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Server\FrmServerOption.resx">
+      <DependentUpon>FrmServerOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Server\UCServerStatusCPS.resx">
+      <DependentUpon>UCServerStatusCPS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Server\UCServerStatusDB.resx">
+      <DependentUpon>UCServerStatusDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Server\UCServerStatusMES.resx">
+      <DependentUpon>UCServerStatusMES.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Server\UCServerSetting.resx">
+      <DependentUpon>UCServerSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\SplashScreen1.resx">
+      <DependentUpon>SplashScreen1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Observer\FrmObserverDetail.resx">
+      <DependentUpon>FrmObserverDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Observer\FrmObserver.resx">
+      <DependentUpon>FrmObserver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Observer\FrmPLCPingTest.resx">
+      <DependentUpon>FrmPLCPingTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDcomSetting.resx">
+      <DependentUpon>FrmDcomSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Form\Common\UCDBConnect.resx">
+      <DependentUpon>UCDBConnect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\UCCpuViewer.resx">
+      <DependentUpon>UCCpuViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\UCNetworkViewer.resx">
+      <DependentUpon>UCNetworkViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\UCCPSViewer.resx">
+      <DependentUpon>UCCPSViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\UCMESViewer.resx">
+      <DependentUpon>UCMESViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\UCEventChartAbnormal.resx">
+      <DependentUpon>UCEventChartAbnormal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\UCEventChartNormal.resx">
+      <DependentUpon>UCEventChartNormal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\UCEventChartTotal.resx">
+      <DependentUpon>UCEventChartTotal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\UCDBViewer.resx">
+      <DependentUpon>UCDBViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Client\UCClient.resx">
+      <DependentUpon>UCClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Client\UCClientLog.resx">
+      <DependentUpon>UCClientLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Server\UCServer.resx">
+      <DependentUpon>UCServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Server\UCServerLog.resx">
+      <DependentUpon>UCServerLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Server\UCDBSender.resx">
+      <DependentUpon>UCDBSender.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Client\UCClientSetting.resx">
+      <DependentUpon>UCClientSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Observer\UCObserver.resx">
+      <DependentUpon>UCObserver.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Documents\Memory Map_작성중_11.24회신.xlsx" />
+    <None Include="FDiagram.cd" />
+    <None Include="Properties\DataSources\System.Data.DataTable.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Service References\DYPServiceReference\DYP_Webservice.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Documents\CientProcedure.txt" />
+    <Content Include="Documents\Develop-ISSUE.txt" />
+    <Content Include="Documents\FTOPDataSample.txt" />
+    <Content Include="Documents\FTOPSCRIPT1114ByPark.sql" />
+    <Content Include="Documents\FTOPScript1121.sql" />
+    <Content Include="Documents\FTOPScript20161214.sql" />
+    <Content Include="Documents\FTOP_DB_CREATE_Query20161026.SQL" />
+    <Content Include="Documents\FTOP_DB_CREATE_Query20161028.SQL" />
+    <Content Include="Documents\FTOP_DB_CREATE_Query20161031.SQL" />
+    <Content Include="Documents\OPC Reference.txt" />
+    <Content Include="Documents\OPC WorkX Reference.txt" />
+    <Content Include="Documents\PLC_IP.txt" />
+    <Content Include="Documents\Query.txt" />
+    <Content Include="Documents\ServerProcedure.txt" />
+    <Content Include="Documents\SQLReference.txt" />
+    <Content Include="Documents\string.format.txt" />
+    <Content Include="Resource\DCOM.ico" />
+    <Content Include="Resource\DCOM.png" />
+    <Content Include="Resource\MainIcon.ico" />
+    <Content Include="Resource\smart_factory.jpg" />
+    <Content Include="Resource\smart_factory2.jpg" />
+    <Content Include="Resource\udmtek.gif" />
+    <None Include="Service References\DYPServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\DYPServiceReference\configuration.svcinfo" />
+    <None Include="Service References\DYPServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\DYPServiceReference\DYP_Webservice.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\DYPServiceReference\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

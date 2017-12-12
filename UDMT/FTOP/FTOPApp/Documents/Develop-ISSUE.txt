@@ -1,0 +1,19 @@
+================================================================================================================================
+https://documentation.devexpress.com/#WindowsForms/CustomDocument3265
+Data Grid Limited Rows.... Solution -> Server Mode 
+
+-How to: Bind a GridControl to a Database in Server Mode-
+
+This topic provides step-by-step instructions on how to bind a GridControl to a data source in server mode. 
+For general information and theoretical aspects of binding controls in a server mode, please refer to the Server Mode section. 
+
+http://db2.coever.co.kr:8070/DYP_Webservice.asmx
+================================================================================================================================
+http://stackoverflow.com/questions/1265725/how-web-service-and-handling-client-timeouts-in-the-web-service
+1.Web Service and handling Client Timeouts in the Web Service?
+
+-I would expect each Web Service call to be a request/response. In the event of an error such as the service being unavailable or timeouts I would expect an exception to be thrown.
+So is it possible to surround the call with a try catch?
+
+http://stackoverflow.com/questions/330496/how-do-i-test-connectivity-to-an-unknown-web-service-in-c
+2.How do I test connectivity to an unknown web service in C#?

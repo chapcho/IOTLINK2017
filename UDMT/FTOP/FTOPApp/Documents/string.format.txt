@@ -1,0 +1,58 @@
+http://stackoverflow.com/questions/91362/how-to-escape-braces-curly-brackets-in-a-format-string-in-net
+String Format for Int [C#]
+
+Integer numbers can be formatted in .NET in many ways. You can use static method String.Format or instance method int.ToString. 
+Following examples shows how to align numbers (with spaces or zeroes), how to format negative numbers or how to do custom formatting like phone numbers.
+
+
+String.Format("{0:00000}", 15);          // "00015"
+String.Format("{0:00000}", -15);         // "-00015"
+
+String.Format("{0,5}", 15);              // "   15"
+String.Format("{0,-5}", 15);             // "15   "
+String.Format("{0,5:000}", 15);          // "  015"
+String.Format("{0,-5:000}", 15);         // "015  "
+
+String.Format("{0:#;minus #}", 15);      // "15"
+String.Format("{0:#;minus #}", -15);     // "minus 15"
+String.Format("{0:#;minus #;zero}", 0);  // "zero"
+
+String.Format("{0:+### ### ### ###}", 447900123456); // "+447 900 123 456"
+String.Format("{0:##-####-####}", 8958712551);       // "89-5871-2551"
+
+String.Format("{0:0.00}", 123.4567);      // "123.46"
+String.Format("{0:0.00}", 123.4);         // "123.40"
+String.Format("{0:0.00}", 123.0);         // "123.00"
+
+String.Format("{0:0.##}", 123.4567);      // "123.46"
+String.Format("{0:0.##}", 123.4);         // "123.4"
+String.Format("{0:0.##}", 123.0);         // "123"
+
+String.Format("{0:00.0}", 123.4567);      // "123.5"
+String.Format("{0:00.0}", 23.4567);       // "23.5"
+String.Format("{0:00.0}", 3.4567);        // "03.5"
+String.Format("{0:00.0}", -3.4567);       // "-03.5"
+
+String.Format("{0:0,0.0}", 12345.67);     // "12,345.7"
+String.Format("{0:0,0}", 12345.67);       // "12,346"
+
+String.Format("{0:0.0}", 0.0);            // "0.0"
+String.Format("{0:0.#}", 0.0);            // "0"
+String.Format("{0:#.0}", 0.0);            // ".0"
+String.Format("{0:#.#}", 0.0);            // ""
+
+////////////////////////////////////////////////////////////////////////////////////
+http://stackoverflow.com/questions/3025361/c-sharp-datetime-to-yyyymmddhhmmss-format
+////////////////////////////////////////////////////////////////////////////////////
+
+DateTime Format
+string s = string.Format("The date/time is: {0:yyyyMMddHHmmss}", dt);
+
+
+
+
+
+
+
+
+

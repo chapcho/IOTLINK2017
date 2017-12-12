@@ -1,0 +1,17 @@
+// OPC WorkX -> Project Formmat 
+
+
+<?xml version="1.0" encoding="euc-kr"?>
+<!--**********************************************************************
+** $File: OPCWorkX project File
+** $Descrip: Value is CASE-SENSITIVE
+** ******************************************************************* -->
+
+<OPCWorkX ProductVer="1, 2, 1, 2">
+	<Channel ChannelName="A0001" LibraryName="XGT_K_Enet(LS)" ChType="1" Property="192.168.3.10">
+		<Device DeviceName="B0001" Property="0,50	192.168.3.150,2004,500,0,4350,2	512,5,10,0,50">
+		</Device>
+	</Channel>
+</OPCWorkX>
+
+
