@@ -1,0 +1,5 @@
+D:\UDMTEK\SRC\Optra\Module\UDM.Monitor.Plc\obj\Debug\UDM.Monitor.Plc.csprojResolveAssemblyReference.cache
+D:\UDMTEK\SRC\Optra\bin\UDM.Monitor.Plc.dll
+D:\UDMTEK\SRC\Optra\bin\UDM.Monitor.Plc.pdb
+D:\UDMTEK\SRC\Optra\Module\UDM.Monitor.Plc\obj\Debug\UDM.Monitor.Plc.dll
+D:\UDMTEK\SRC\Optra\Module\UDM.Monitor.Plc\obj\Debug\UDM.Monitor.Plc.pdb

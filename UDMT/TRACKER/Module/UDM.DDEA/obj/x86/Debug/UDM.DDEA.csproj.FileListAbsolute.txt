@@ -1,0 +1,10 @@
+D:\UDMTEK\SRC\Optra\Module\UDM.DDEA\obj\x86\Debug\UDM.DDEA.Properties.Resources.resources
+D:\UDMTEK\SRC\Optra\Module\UDM.DDEA\obj\x86\Debug\UDM.DDEA.UCConnectSetMxCom4.resources
+D:\UDMTEK\SRC\Optra\Module\UDM.DDEA\obj\x86\Debug\UDM.DDEA.UCConnectSetting.resources
+D:\UDMTEK\SRC\Optra\Module\UDM.DDEA\obj\x86\Debug\UDM.DDEA.UCConnectionTest.resources
+D:\UDMTEK\SRC\Optra\Module\UDM.DDEA\obj\x86\Debug\UDM.DDEA.csproj.GenerateResource.Cache
+D:\UDMTEK\SRC\Optra\Module\UDM.DDEA\obj\x86\Debug\UDM.DDEA.csprojResolveAssemblyReference.cache
+D:\UDMTEK\SRC\Optra\bin\UDM.DDEA.dll
+D:\UDMTEK\SRC\Optra\bin\UDM.DDEA.pdb
+D:\UDMTEK\SRC\Optra\Module\UDM.DDEA\obj\x86\Debug\UDM.DDEA.dll
+D:\UDMTEK\SRC\Optra\Module\UDM.DDEA\obj\x86\Debug\UDM.DDEA.pdb

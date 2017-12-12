@@ -1,0 +1,5 @@
+D:\UDMTEK\SRC\Optra\Module\UDM.Converter\obj\Debug\UDM.Converter.csprojResolveAssemblyReference.cache
+D:\UDMTEK\SRC\Optra\bin\UDM.Converter.dll
+D:\UDMTEK\SRC\Optra\bin\UDM.Converter.pdb
+D:\UDMTEK\SRC\Optra\Module\UDM.Converter\obj\Debug\UDM.Converter.dll
+D:\UDMTEK\SRC\Optra\Module\UDM.Converter\obj\Debug\UDM.Converter.pdb

@@ -1,0 +1,4 @@
+D:\UDMTEK\SRC\Optra\bin\UDM.Statistics.dll
+D:\UDMTEK\SRC\Optra\bin\UDM.Statistics.pdb
+D:\UDMTEK\SRC\Optra\Module\UDM.Statistics\obj\Debug\UDM.Statistics.dll
+D:\UDMTEK\SRC\Optra\Module\UDM.Statistics\obj\Debug\UDM.Statistics.pdb

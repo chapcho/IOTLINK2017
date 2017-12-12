@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{61B283E2-DFA0-420C-9969-B59A77A50953}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UDM.Monitor.Energy</RootNamespace>
+    <AssemblyName>UDM.Monitor.Energy</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CMonitor.cs" />
+    <Compile Include="CMonitorLogger.cs" />
+    <Compile Include="CMonitorStatus.cs" />
+    <Compile Include="CMonitorViewer.cs" />
+    <Compile Include="Config\CDataBlock.cs" />
+    <Compile Include="Config\CEnergyConfig.cs" />
+    <Compile Include="Config\CEthernetConfig.cs" />
+    <Compile Include="Config\CSerialDeviceConfig.cs" />
+    <Compile Include="Config\CSerialPortConfig.cs" />
+    <Compile Include="Enumeration\EMConnectType.cs" />
+    <Compile Include="Enumeration\EMMeterModule.cs" />
+    <Compile Include="Enumeration\EMModbusFunctionCode.cs" />
+    <Compile Include="EventHandler\EventHandlerMonitor.cs" />
+    <Compile Include="MeterValueAnalysis\CAccura3300SDataTranslator.cs" />
+    <Compile Include="MeterValueAnalysis\CAcuRev2000DataTranslator.cs" />
+    <Compile Include="MeterValueAnalysis\CMeterValueTranslator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Source\CEhternetRead.cs" />
+    <Compile Include="Source\CMeterData.cs" />
+    <Compile Include="Source\CMeterLogger.cs" />
+    <Compile Include="Source\CModbusRTUConnecter.cs" />
+    <Compile Include="Source\CModbusSerialPortConnecter.cs" />
+    <Compile Include="Source\CMonitorSource.cs" />
+    <Compile Include="Source\CSerialPortRead.cs" />
+    <Compile Include="Util\CMeterDataConvertor.cs" />
+    <Compile Include="Util\CModbusCRC16Checker.cs" />
+    <Compile Include="Util\CValueHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UDM.Common\UDM.Common.csproj">
+      <Project>{2b0d80eb-6675-423b-9297-5788b4baa631}</Project>
+      <Name>UDM.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UDM.General\UDM.General.csproj">
+      <Project>{2a26f0e1-8612-46c2-b1c7-cdeac49d86cf}</Project>
+      <Name>UDM.General</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UDM.Log\UDM.Log.csproj">
+      <Project>{570516df-4d94-418c-be1b-984173e98f65}</Project>
+      <Name>UDM.Log</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

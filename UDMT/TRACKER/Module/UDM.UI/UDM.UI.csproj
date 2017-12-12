@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{53B5D464-3AAB-4D2E-BFFC-BE9BBE3F693C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UDM.UI</RootNamespace>
+    <AssemblyName>UDM.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="exontrol.exg2antt, Version=6.0.4772.28964, Culture=neutral, PublicKeyToken=00765aac3596c012, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ExDll\exontrol.exg2antt.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UDM.General, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BackGroundThread\BackgroundThread.cs" />
+    <Compile Include="BackGroundThread\FrmProcess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackGroundThread\FrmProcess.designer.cs">
+      <DependentUpon>FrmProcess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DevExpressOveride\MySplitContainerControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ExGanttChart\CGanttLink.cs" />
+    <Compile Include="DevGrid\EventHandler\EventHandlerDevGridDoubleClick.cs" />
+    <Compile Include="DevGrid\UCGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DevGrid\UCGrid.designer.cs">
+      <DependentUpon>UCGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExGanttChart\CGanttBar.cs" />
+    <Compile Include="ExGanttChart\CGanttHeader.cs" />
+    <Compile Include="ExGanttChart\CGanttHeaderS.cs" />
+    <Compile Include="ExGanttChart\CGanttItem.cs" />
+    <Compile Include="ExGanttChart\CGanttLinkS.cs" />
+    <Compile Include="ExGanttChart\CGanttObject.cs" />
+    <Compile Include="ExGanttChart\CGanttTimeZone.cs" />
+    <Compile Include="ExGanttChart\CGanttTimeZoneS.cs" />
+    <Compile Include="ExGanttChart\CGanttBarS.cs" />
+    <Compile Include="ExGanttChart\Enumeration\EMGanttLinkType.cs" />
+    <Compile Include="ExGanttChart\Enumeration\EMGanttBarType.cs" />
+    <Compile Include="ExGanttChart\Enumeration\EMGanttEdgeType.cs" />
+    <Compile Include="ExGanttChart\Enumeration\EMGanttUnitScale.cs" />
+    <Compile Include="ExGanttChart\EventHandler\EventHandlerGanttChart.cs" />
+    <Compile Include="ExGanttChart\FrmLinkProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExGanttChart\FrmLinkProperty.designer.cs">
+      <DependentUpon>FrmLinkProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExGanttChart\FrmBarProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExGanttChart\FrmBarProperty.designer.cs">
+      <DependentUpon>FrmBarProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExGanttChart\UCGanttChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExGanttChart\UCGanttChart.Designer.cs">
+      <DependentUpon>UCGanttChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExGanttChart\CGanttTimeIndicator.cs" />
+    <Compile Include="ExGanttChart\CGanttTimeIndicatorS.cs" />
+    <Compile Include="ExGanttChart\CGanttItemS.cs" />
+    <Compile Include="MessageBox\FrmMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MessageBox\FrmMessage.designer.cs">
+      <DependentUpon>FrmMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TimeChart\BaseControls\CGanttViewItemInfo.cs" />
+    <Compile Include="TimeChart\BaseControls\CGanttViewItemInfoS.cs" />
+    <Compile Include="TimeChart\BaseControls\CGanttViewLinkInfo.cs" />
+    <Compile Include="TimeChart\BaseControls\CGanttViewLinkInfoS.cs" />
+    <Compile Include="TimeChart\BaseControls\CSeriesViewItemInfo.cs" />
+    <Compile Include="TimeChart\BaseControls\CSeriesViewItemInfoS.cs" />
+    <Compile Include="TimeChart\BaseControls\Enumeration\EMActionType.cs" />
+    <Compile Include="TimeChart\BaseControls\EventHandler\UEventHandlerCanvas.cs" />
+    <Compile Include="TimeChart\BaseControls\EventHandler\UEventHandlerGanttChart.cs" />
+    <Compile Include="TimeChart\BaseControls\EventHandler\UEventHandlerItemTree.cs" />
+    <Compile Include="TimeChart\BaseControls\EventHandler\UEventHandlerSeriesChart.cs" />
+    <Compile Include="TimeChart\BaseControls\EventHandler\UEventHandlerTimeLine.cs" />
+    <Compile Include="TimeChart\BaseControls\UCAxisScrollBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TimeChart\BaseControls\UCAxisScrollBar.Designer.cs">
+      <DependentUpon>UCAxisScrollBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TimeChart\BaseControls\UCCanvas.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TimeChart\BaseControls\UCCanvas.Designer.cs">
+      <DependentUpon>UCCanvas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TimeChart\BaseControls\UCGanttChart.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TimeChart\BaseControls\UCGanttChart.Designer.cs">
+      <DependentUpon>UCGanttChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TimeChart\BaseControls\UCGanttTree.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TimeChart\BaseControls\UCGanttTree.Designer.cs">
+      <DependentUpon>UCGanttTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TimeChart\BaseControls\UCItemScrollBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TimeChart\BaseControls\UCItemScrollBar.Designer.cs">
+      <DependentUpon>UCItemScrollBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TimeChart\BaseControls\UCItemTree.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TimeChart\BaseControls\UCItemTree.Designer.cs">
+      <DependentUpon>UCItemTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TimeChart\BaseControls\UCSeriesChart.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TimeChart\BaseControls\UCSeriesChart.Designer.cs">
+      <DependentUpon>UCSeriesChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TimeChart\BaseControls\UCSeriesTree.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TimeChart\BaseControls\UCSeriesTree.Designer.cs">
+      <DependentUpon>UCSeriesTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TimeChart\BaseControls\UCTimeLine.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TimeChart\BaseControls\UCTimeLine.Designer.cs">
+      <DependentUpon>UCTimeLine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TimeChart\BaseControls\UCTimeScrollBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TimeChart\BaseControls\UCTimeScrollBar.Designer.cs">
+      <DependentUpon>UCTimeScrollBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TimeChart\BaseControls\Util\CTimeChartUtil.cs" />
+    <Compile Include="TimeChart\BaseControls\Util\CBaseMouseWheelControlHelper.cs" />
+    <Compile Include="TimeChart\CColumnItem.cs" />
+    <Compile Include="TimeChart\CColumnItemS.cs" />
+    <Compile Include="TimeChart\CGanttBar.cs" />
+    <Compile Include="TimeChart\CGanttBarS.cs" />
+    <Compile Include="TimeChart\CGanttItem.cs" />
+    <Compile Include="TimeChart\CGanttLink.cs" />
+    <Compile Include="TimeChart\CGanttLinkS.cs" />
+    <Compile Include="TimeChart\CRowItem.cs" />
+    <Compile Include="TimeChart\CRowItemS.cs" />
+    <Compile Include="TimeChart\CSeriesAxis.cs" />
+    <Compile Include="TimeChart\CSeriesItem.cs" />
+    <Compile Include="TimeChart\CSeriesPoint.cs" />
+    <Compile Include="TimeChart\CSeriesPointS.cs" />
+    <Compile Include="TimeChart\CTemp.cs" />
+    <Compile Include="TimeChart\CTimeIndicator.cs" />
+    <Compile Include="TimeChart\CTimeIndicatorS.cs" />
+    <Compile Include="TimeChart\CTimeRange.cs" />
+    <Compile Include="TimeChart\CTimeZone.cs" />
+    <Compile Include="TimeChart\CTimeZoneS.cs" />
+    <Compile Include="TimeChart\Enumeration\EMGanttLinkCapType.cs" />
+    <Compile Include="TimeChart\Enumeration\EMGanttLinkLineType.cs" />
+    <Compile Include="TimeChart\Enumeration\EMGanttLinkPointType.cs" />
+    <Compile Include="TimeChart\Enumeration\EMSeriesChartType.cs" />
+    <Compile Include="TimeChart\Enumeration\EMTimeLineType.cs" />
+    <Compile Include="TimeChart\EventHandler\UEventHandlerTimeChart.cs" />
+    <Compile Include="TimeChart\UCTimeChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TimeChart\UCTimeChart.Designer.cs">
+      <DependentUpon>UCTimeChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TimeChart\UCTimeSeriesChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TimeChart\UCTimeSeriesChart.Designer.cs">
+      <DependentUpon>UCTimeSeriesChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TimeChart\Util\CGanttBarComparer.cs" />
+    <Compile Include="TimeChart\Util\CSeriesPointComparer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BackGroundThread\FrmProcess.resx">
+      <DependentUpon>FrmProcess.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DevGrid\UCGrid.resx">
+      <DependentUpon>UCGrid.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExGanttChart\FrmLinkProperty.resx">
+      <DependentUpon>FrmLinkProperty.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExGanttChart\FrmBarProperty.resx">
+      <DependentUpon>FrmBarProperty.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExGanttChart\UCGanttChart.resx">
+      <DependentUpon>UCGanttChart.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MessageBox\FrmMessage.resx">
+      <DependentUpon>FrmMessage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TimeChart\BaseControls\UCAxisScrollBar.resx">
+      <DependentUpon>UCAxisScrollBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TimeChart\BaseControls\UCItemScrollBar.resx">
+      <DependentUpon>UCItemScrollBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TimeChart\BaseControls\UCItemTree.resx">
+      <DependentUpon>UCItemTree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TimeChart\BaseControls\UCSeriesChart.resx">
+      <DependentUpon>UCSeriesChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TimeChart\BaseControls\UCSeriesTree.resx">
+      <DependentUpon>UCSeriesTree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TimeChart\BaseControls\UCTimeScrollBar.resx">
+      <DependentUpon>UCTimeScrollBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TimeChart\UCGridArea.resx" />
+    <EmbeddedResource Include="TimeChart\UCTimeChart.resx">
+      <DependentUpon>UCTimeChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TimeChart\UCTimeSeriesChart.resx">
+      <DependentUpon>UCTimeSeriesChart.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

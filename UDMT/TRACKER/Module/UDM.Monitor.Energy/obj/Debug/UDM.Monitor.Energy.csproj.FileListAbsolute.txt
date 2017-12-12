@@ -1,0 +1,14 @@
+D:\UDMTEK\SRC\Optra\Module\UDM.Monitor.Energy\obj\Debug\UDM.Monitor.Energy.csprojResolveAssemblyReference.cache
+D:\UDMTEK\SRC\Optra\Module\UDM.Monitor.Energy\bin\Debug\UDM.Monitor.Energy.dll
+D:\UDMTEK\SRC\Optra\Module\UDM.Monitor.Energy\bin\Debug\UDM.Monitor.Energy.pdb
+D:\UDMTEK\SRC\Optra\Module\UDM.Monitor.Energy\bin\Debug\UDM.Common.dll
+D:\UDMTEK\SRC\Optra\Module\UDM.Monitor.Energy\bin\Debug\UDM.General.dll
+D:\UDMTEK\SRC\Optra\Module\UDM.Monitor.Energy\bin\Debug\UDM.Log.dll
+D:\UDMTEK\SRC\Optra\Module\UDM.Monitor.Energy\bin\Debug\MsgPack.dll
+D:\UDMTEK\SRC\Optra\Module\UDM.Monitor.Energy\bin\Debug\Npgsql.dll
+D:\UDMTEK\SRC\Optra\Module\UDM.Monitor.Energy\bin\Debug\MySql.Data.dll
+D:\UDMTEK\SRC\Optra\Module\UDM.Monitor.Energy\bin\Debug\UDM.Common.pdb
+D:\UDMTEK\SRC\Optra\Module\UDM.Monitor.Energy\bin\Debug\UDM.General.pdb
+D:\UDMTEK\SRC\Optra\Module\UDM.Monitor.Energy\bin\Debug\UDM.Log.pdb
+D:\UDMTEK\SRC\Optra\Module\UDM.Monitor.Energy\obj\Debug\UDM.Monitor.Energy.dll
+D:\UDMTEK\SRC\Optra\Module\UDM.Monitor.Energy\obj\Debug\UDM.Monitor.Energy.pdb

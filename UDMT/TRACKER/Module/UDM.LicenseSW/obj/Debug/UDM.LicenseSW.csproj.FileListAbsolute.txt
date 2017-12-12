@@ -1,0 +1,7 @@
+D:\UDMTEK\SRC\Optra\bin\UDM.LicenseSW.dll
+D:\UDMTEK\SRC\Optra\bin\UDM.LicenseSW.pdb
+D:\UDMTEK\SRC\Optra\Module\UDM.LicenseSW\obj\Debug\UDM.LicenseSW.FrmLicense.resources
+D:\UDMTEK\SRC\Optra\Module\UDM.LicenseSW\obj\Debug\UDM.LicenseSW.csproj.GenerateResource.Cache
+D:\UDMTEK\SRC\Optra\Module\UDM.LicenseSW\obj\Debug\UDM.LicenseSW.dll
+D:\UDMTEK\SRC\Optra\Module\UDM.LicenseSW\obj\Debug\UDM.LicenseSW.pdb
+D:\UDMTEK\SRC\Optra\Module\UDM.LicenseSW\obj\Debug\UDM.LicenseSW.csprojResolveAssemblyReference.cache

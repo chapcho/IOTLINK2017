@@ -1,0 +1,15 @@
+E:\SVN\OPTRA\bTracker_20160510\Module\UDM.PLCActionPattern\PLCActionPattern\bin\Debug\PLCActionPattern.dll
+E:\SVN\OPTRA\bTracker_20160510\Module\UDM.PLCActionPattern\PLCActionPattern\bin\Debug\PLCActionPattern.pdb
+E:\SVN\OPTRA\bTracker_20160510\Module\UDM.PLCActionPattern\PLCActionPattern\bin\Debug\UDM.Common.dll
+E:\SVN\OPTRA\bTracker_20160510\Module\UDM.PLCActionPattern\PLCActionPattern\bin\Debug\UDM.Common.pdb
+E:\SVN\OPTRA\bTracker_20160510\Module\UDM.PLCActionPattern\PLCActionPattern\obj\Debug\PLCActionPattern.dll
+E:\SVN\OPTRA\bTracker_20160510\Module\UDM.PLCActionPattern\PLCActionPattern\obj\Debug\PLCActionPattern.pdb
+E:\SVN\OPTRA\bTracker_20160510\Module\UDM.PLCActionPattern\PLCActionPattern\bin\Debug\UDM.General.dll
+E:\SVN\OPTRA\bTracker_20160510\Module\UDM.PLCActionPattern\PLCActionPattern\bin\Debug\MsgPack.dll
+E:\SVN\OPTRA\bTracker_20160510\Module\UDM.PLCActionPattern\PLCActionPattern\bin\Debug\UDM.General.pdb
+E:\SVN\OPTRA\bTracker_20160510\Module\UDM.PLCActionPattern\PLCActionPattern\obj\Debug\UDM.PLCActionPattern.csprojResolveAssemblyReference.cache
+D:\UDMTEK\SRC\Optra\Module\UDM.PLCActionPattern\PLCActionPattern\bin\Debug\PLCActionPattern.dll
+D:\UDMTEK\SRC\Optra\Module\UDM.PLCActionPattern\PLCActionPattern\bin\Debug\PLCActionPattern.pdb
+D:\UDMTEK\SRC\Optra\Module\UDM.PLCActionPattern\PLCActionPattern\obj\Debug\PLCActionPattern.dll
+D:\UDMTEK\SRC\Optra\Module\UDM.PLCActionPattern\PLCActionPattern\obj\Debug\PLCActionPattern.pdb
+D:\UDMTEK\SRC\Optra\Module\UDM.PLCActionPattern\PLCActionPattern\obj\Debug\UDM.PLCActionPattern.csprojResolveAssemblyReference.cache

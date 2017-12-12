@@ -1,0 +1,4 @@
+D:\UDMTEK\SRC\Optra\bin\UDM.Import.dll
+D:\UDMTEK\SRC\Optra\bin\UDM.Import.pdb
+D:\UDMTEK\SRC\Optra\Module\UDM.Import\obj\Debug\UDM.Import.dll
+D:\UDMTEK\SRC\Optra\Module\UDM.Import\obj\Debug\UDM.Import.pdb

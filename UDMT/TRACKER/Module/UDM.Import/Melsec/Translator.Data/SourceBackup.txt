@@ -1,0 +1,1580 @@
+﻿// #define INDIRECT_CONSIST
+// #define STEPINCREASE_DEVICE
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.IO;
+using System.Xml.Serialization;
+using System.Xml.Linq;
+using System.Net;
+using System.Net.NetworkInformation;
+using System.ComponentModel;
+using UDM.Import.ME.DataStruct;
+using System.Diagnostics;
+using UDM.Import.ME.Translator.Define;
+using UDM.Import.ME.Translator.Data;
+
+namespace UDM.Import.ME
+{
+    public sealed class UDMGXDevelopLadderTracer : LadderTranslator, ILadderTranslator, IDisposable
+    {
+
+        #region ladder translator variable define
+
+        public PlcCommandS _dicPlcCommand;
+        public Dictionary<String, PLCLadderSymbol> dicPlcCommand;
+        public Dictionary<String, PLCDeviceComment> dicPlcComment;
+        public PLCLadderNodeS plcLadderNodsS;
+        private PlcLadderNode nextProgramLine;
+        public PlcLadderTracerRunningState ladderTraceState { get; private set; }
+        public PlcLaddeInitialState ladderTraceInitialState { get; private set; }
+        private string lastestLadderCommand { get; set; }
+        private string plcLadderProjectPath { get; set; }
+        private byte[] _srcFileByteDumpArray;
+        private int _idxFileReadPosition;
+        private Int32 plcProgramFileHeadLength;
+        private Int32 plcProgramLineNum;
+        private int remainParamCount;
+        private PLCDeviceComment plcComment;
+        private string bitPositionIndicator;
+        private int m_iPlcCommandPacketConsistCount;
+        private string ladderProgramOutputFilePath { get; set; }
+
+        private string m_sBitDirector = String.Empty;                 // 비트지정자
+        private string m_sIndexDirector = String.Empty;          // 간접지정자
+        private string m_sIndirectDirector = String.Empty;            // 특수레지스터지정자
+        private string m_sPointDirector = String.Empty;             // 포인터지정자
+        private string m_sSpecialDeviceDirector = String.Empty; // 특수 디바이스 지정자
+        private string m_sLinkDeviceDirector = String.Empty;         // 링크 다이렉트 디바이스
+        private string m_sSerialDeviceDirector = String.Empty;       // 연번 액세스 파일 레지스터
+
+
+        private readonly int __PlcLangParameterArraySize = 10;
+        private readonly int __GXDevelopAliasLength = 8;
+        private readonly int __GXDevelopDeveiceTypeLength = 2;
+        private readonly int __GXDevelopCommentLength = 32;
+        private readonly int __GXDevelopCommentHeadLength = 72;
+
+        public UDMGXDevelopLadderTracer()
+        {
+            ladderTraceInitialState = PlcLaddeInitialState.Init;
+            dicPlcCommand = new Dictionary<String, PLCLadderSymbol>();
+            dicPlcComment = new Dictionary<String, PLCDeviceComment>();
+            plcLadderNodsS = new PLCLadderNodeS();
+
+            _dicPlcCommand = new PlcCommandS();
+
+            // listPlcProgramLanguage = new List<PlcLadderNode>();
+
+            plcComment = new PLCDeviceComment();
+            remainParamCount = 0;
+            plcProgramLineNum = 0;
+            lastestLadderCommand = "";
+            bitPositionIndicator = String.Empty;
+        }
+
+        public void Dispose()
+        {
+            this.dicPlcCommand.Clear();
+            this.dicPlcComment.Clear();
+            this.plcLadderNodsS.Clear();
+        }
+
+        #endregion
+
+        public int PlcCommandPacketConsistCount
+        {
+            get { return m_iPlcCommandPacketConsistCount; }
+            set { m_iPlcCommandPacketConsistCount = value; }
+        }
+
+        #region ladderTranslator interface realize
+
+        public void SetLadderProgramOutputFilePath(string outputFilePath)
+        {
+            ladderProgramOutputFilePath = outputFilePath;
+        }
+
+        public void TranslatorReportSave()
+        {
+            switch (GetTranslatorState())
+            {
+                case PlcLadderTracerRunningState.EndRead:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public PlcLadderTracerRunningState GetTranslatorState()
+        {
+            return ladderTraceState;
+        }
+
+        #endregion
+
+        #region ladder translator functions
+        public String GetFileDataWithIndex(int idx)
+        {
+            if (_srcFileByteDumpArray == null || _srcFileByteDumpArray.Length == 0) return String.Empty;
+
+            if (idx > _srcFileByteDumpArray.Length) return String.Empty;
+            else
+            {
+                string fmt = String.Format("{0:X2}", _srcFileByteDumpArray[idx]);
+                if (fmt.Length < 2) fmt = UDMImportCommon.Pad(fmt, 2);
+
+                return fmt;
+            }
+        }
+
+        public String GetFileDataWithIndex(int idx, int count)
+        {
+            if (_srcFileByteDumpArray == null || _srcFileByteDumpArray.Length == 0)
+            {
+                return String.Empty;
+            }
+
+            if (_srcFileByteDumpArray.Length == 0) return String.Empty;
+
+            if (idx + count > _srcFileByteDumpArray.Length)
+            {
+#if __DEBUG
+                String strMessage = String.Format("File Size {0} , Start {1}, ReadCnt {2}", plcProgramFileByteDump.Length, idx, count);
+                Console.WriteLine(strMessage);
+#endif
+                return String.Empty;
+            }
+            else
+            {
+                return Encoding.Default.GetString(_srcFileByteDumpArray, idx, count);
+            }
+        }
+
+        public String GetFileDataHexDumpWithIndex(int idx, int count)
+        {
+            string message = "";
+            if (_srcFileByteDumpArray == null || _srcFileByteDumpArray.Length == 0)
+            {
+                return String.Empty;
+            }
+
+            if (_srcFileByteDumpArray.Length == 0) return String.Empty;
+
+            if (idx + count > _srcFileByteDumpArray.Length)
+            {
+#if __DEBUG
+                String strMessage = String.Format("File Size {0} , Start {1}, ReadCnt {2}", plcProgramFileByteDump.Length, idx, count);
+                Console.WriteLine(strMessage);
+#endif
+                return String.Empty;
+            }
+            else
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    String fmt = String.Format("{0:X2}", _srcFileByteDumpArray[idx + i]);
+                    if (fmt.Length < 2) fmt = UDMImportCommon.Pad(fmt, 2);
+                    message += fmt + " ";
+                }
+            }
+            return message;
+        }
+        private String GetDeviceRadix(String addressPacket, out int radix)
+        {
+            PLCLadderSymbol plcSymbol;
+
+            if (dicPlcCommand.TryGetValue(addressPacket.Substring(0, 2), out plcSymbol))
+            {
+                radix = plcSymbol.stepCnt;   // Device stepCnt is Radix
+
+#if STEPINCREASE_DEVICE
+                switch(plcSymbol.command)
+                {
+                    case "ZR": // 스탭수가 증가하는 디바이스
+                    case "J":
+                    case "G":
+                        plcProgramLineNum++;
+                        break;
+                }
+#endif
+                return plcSymbol.command;
+            }
+            else
+            {
+                radix = 0;
+                System.Console.WriteLine(" U.A.P : [" + addressPacket + "]");
+                return addressPacket;
+            }
+        }
+        private String ReGenHexDecimalAddress(String deviceAddress)
+        {
+            if (deviceAddress.Length < 1)
+            {
+                return "0";
+            }
+            else
+            {
+                if (deviceAddress[0] >= 'A' && deviceAddress[0] <= 'F')
+                {
+                    deviceAddress = "0" + deviceAddress;
+                }
+                else
+                {
+                    if (deviceAddress.Length >1 && deviceAddress[0] == '0' && (deviceAddress[1] >= '0' && deviceAddress[1] <= '9'))
+                    {
+                        deviceAddress = deviceAddress.Substring(1);
+                    }
+                }
+            }
+            return deviceAddress.ToUpper();
+        }
+        #endregion
+
+        #region ladder translator body
+
+        public void LoadHeadLength(int headerLength)
+        {
+            if (headerLength > 0)
+            {
+                plcProgramFileHeadLength = headerLength;
+                ladderTraceInitialState |= PlcLaddeInitialState.HeaderLengthRead;
+            }
+        }
+
+        public void _LoadPlcSymbolFromXml(String plcPatternFilePath)
+        {
+            FileStream fs = new FileStream(plcPatternFilePath, FileMode.Open);
+            XmlSerializer xmlSer = new XmlSerializer(typeof(PLCSymbolS));
+
+            PLCSymbolS plcSymbolS = (PLCSymbolS)xmlSer.Deserialize(fs);
+            fs.Close();
+
+            foreach (PLCLadderSymbol symbol in plcSymbolS)
+            {
+                PlcCommand n = new PlcCommand();
+
+                n.HexPrint = symbol.printedHex;
+                n.ParameterTypes = symbol.paramTypeString;
+                n.SymbolType = symbol.paramTypeString.Length > 0 && symbol.paramTypeString[0] == 'D' ? LanguageSymbolType.DEVICEADDRESS : LanguageSymbolType.RESERVESYMBOL;
+                n.Radix = n.SymbolType == LanguageSymbolType.DEVICEADDRESS ? symbol.stepCnt : 0;
+                n.Step = n.SymbolType == LanguageSymbolType.DEVICEADDRESS ? 0 : symbol.stepCnt == 0 ? symbol.paramTypeString.Length:symbol.stepCnt;
+                n.DrawType = (StepDrawType)symbol.ndor;
+                n.Description = UDMImportCommon.FromEntity(symbol.command);
+                n.Producer = PlcProducer.MELSEC;
+                n.Version = "1.0";
+
+                _dicPlcCommand.ReplaceCommand(n);
+            }
+
+            ladderTraceInitialState |= PlcLaddeInitialState.SymbolFileRead;
+        }
+
+        public string LoadPlcSymbolFromXml(String plcPatternFilePath)
+        {
+            try
+            {
+                FileStream fs = new FileStream(plcPatternFilePath, FileMode.Open);
+                XmlSerializer xmlSer = new XmlSerializer(typeof(PLCSymbolS));
+
+                PLCSymbolS plcSymbolS = (PLCSymbolS)xmlSer.Deserialize(fs);
+                fs.Close();
+
+                foreach (var key in dicPlcCommand.Keys.ToList())
+                {
+                    dicPlcCommand.Remove(key);
+                }
+
+                foreach (PLCLadderSymbol plcSymbol in plcSymbolS)
+                {
+                    PLCLadderSymbol n = new PLCLadderSymbol();
+
+                    n.command = UDMImportCommon.FromEntity(plcSymbol.command);
+                    n.ndor = plcSymbol.ndor;
+                    n.wordWidth = plcSymbol.wordWidth;
+                    n.printedHex = plcSymbol.printedHex;
+                    n.description = UDMImportCommon.FromEntity(plcSymbol.description);
+                    n.paramTypeString = plcSymbol.paramTypeString;
+                    if (plcSymbol.stepCnt != 0)
+                    {
+                        n.stepCnt = plcSymbol.stepCnt;
+                    }
+                    else
+                    {
+                        n.stepCnt = plcSymbol.paramTypeString.Length != 0 ? plcSymbol.paramTypeString.Length : 1;
+                    }
+
+                    try
+                    {
+                        dicPlcCommand.Add(n.printedHex, n);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name); ex.Data.Clear();
+                        return n.printedHex + " : Ladder Symbol Duplication";
+                    }
+                }
+
+                ladderTraceInitialState |= PlcLaddeInitialState.SymbolFileRead;
+
+                _LoadPlcSymbolFromXml( plcPatternFilePath );
+
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name); ex.Data.Clear();
+            }
+
+            return String.Empty;
+
+        }
+
+        private string GeneratorCommentDictionary(string programPath)
+        {   // UDMImportCommon
+            int addressRadix;
+            int commentBlockCount;
+            List<PLCDeviceCommentBlock> listPlcCommentBlock = new List<PLCDeviceCommentBlock>();
+
+            int idx = programPath.IndexOf("Resource");
+            String strCommentFilePath = programPath.Substring(0, idx) + "Resource\\Others\\COMMENT.wcd";
+
+            if (dicPlcComment.Count > 0) dicPlcComment.Clear();
+
+            if (_srcFileByteDumpArray != null) _srcFileByteDumpArray.Initialize();
+            _srcFileByteDumpArray = File.ReadAllBytes(strCommentFilePath);
+            _idxFileReadPosition = 0;
+
+            // Skip Comment HeadPosition 
+            _idxFileReadPosition += __GXDevelopCommentHeadLength;
+
+            commentBlockCount = (Int32)UDMImportCommon.Hex2Int(GetFileDataHexDumpWithIndex(_idxFileReadPosition, 2).Replace(" ", ""), true);
+
+            // Make Comment Block Info List
+            for (int i = 0; i < commentBlockCount; i++)
+            {
+                PLCDeviceCommentBlock plcCommentBlock = new PLCDeviceCommentBlock();
+
+                _idxFileReadPosition += 2;  // Skip Comment Block Count Info
+
+                String deviceAddressHexMapping = GetFileDataWithIndex(_idxFileReadPosition);
+                String deviceAddress = GetDeviceRadix(deviceAddressHexMapping, out addressRadix);
+                if (addressRadix == 0)
+                {
+                    Console.WriteLine(String.Format("Comment Generator ..[{0}]. UnKnown Address Error!!!!", deviceAddressHexMapping));
+                    return deviceAddressHexMapping + ".Comment Address";
+                }
+                else
+                {
+                    plcCommentBlock.DeviceName = deviceAddress;
+                    deviceAddressHexMapping = GetFileDataWithIndex(_idxFileReadPosition + 1);
+                    switch (deviceAddressHexMapping)
+                    {
+                        case "F8":
+                            deviceAddress = "U" + ReGenHexDecimalAddress(GetFileDataWithIndex(_idxFileReadPosition + 4)) + "\\" + deviceAddress;
+                            plcCommentBlock.DeviceName = deviceAddress;
+                            plcCommentBlock.Radix = addressRadix;
+                            _idxFileReadPosition += __GXDevelopDeveiceTypeLength;  // Skip Device Type
+                            plcCommentBlock.StartAddress = (Int32)UDMImportCommon.Hex2Int(GetFileDataHexDumpWithIndex(_idxFileReadPosition, 2).Replace(" ", ""), true);
+                            break;
+                        case "F9":
+                            deviceAddress = "J" + ReGenHexDecimalAddress(GetFileDataWithIndex(_idxFileReadPosition + 4)) + "\\" + deviceAddress;
+                            plcCommentBlock.DeviceName = deviceAddress;
+                            plcCommentBlock.Radix = addressRadix;
+                            _idxFileReadPosition += __GXDevelopDeveiceTypeLength;  // Skip Device Type
+                            plcCommentBlock.StartAddress = (Int32)UDMImportCommon.Hex2Int(GetFileDataHexDumpWithIndex(_idxFileReadPosition, 2).Replace(" ", ""), true);
+                            break;
+                        default:
+                            plcCommentBlock.Radix = addressRadix;
+                            _idxFileReadPosition += __GXDevelopDeveiceTypeLength;  // Skip Device Type
+                            plcCommentBlock.StartAddress = (Int32)UDMImportCommon.Hex2Int(GetFileDataHexDumpWithIndex(_idxFileReadPosition, 4).Replace(" ", ""), true);
+                            break;
+                    }
+
+                    _idxFileReadPosition += 2;  // Skip Strat Address
+                    _idxFileReadPosition += 2;  // Skip Strat Address
+                    plcCommentBlock.NumOfComment = (Int32)UDMImportCommon.Hex2Int(GetFileDataHexDumpWithIndex(_idxFileReadPosition, 2).Replace(" ", ""), true);
+                    _idxFileReadPosition += 2;  // Skip Num of Comment
+                    try
+                    {
+                        listPlcCommentBlock.Add(plcCommentBlock);
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Console.WriteLine("Comment Block Generator Error : {0}", ex.Message);
+                    }
+                }
+            }
+
+            _idxFileReadPosition += 2;  // Skip Num of Comment
+            // Make Comment , Alias Dictionary
+            foreach (PLCDeviceCommentBlock commentBlock in listPlcCommentBlock)
+            {
+                Int64 startAddress = commentBlock.StartAddress;
+
+                for (int i = 0; i < commentBlock.NumOfComment; i++)
+                {
+                    String commentAddress;
+                    PLCDeviceComment plcComment = new PLCDeviceComment();
+
+                    switch (commentBlock.Radix)
+                    {
+                        case 10:
+                            commentAddress = String.Format("{0}{1:G}", commentBlock.DeviceName, startAddress);
+                            break;
+                        case 16:
+                            commentAddress = String.Format("{0:X}", startAddress);
+                            commentAddress = ReGenHexDecimalAddress(commentAddress);
+                            commentAddress = String.Format("{0}{1}", commentBlock.DeviceName, commentAddress);
+                            break;
+                        default:
+                            commentAddress = "";
+                            return "undefined device m_sAddress";
+                    }
+
+                    plcComment.Address = commentAddress;
+                    plcComment.Alias = GetFileDataWithIndex(_idxFileReadPosition, __GXDevelopAliasLength);
+                    _idxFileReadPosition += __GXDevelopAliasLength;
+                    plcComment.Comment = GetFileDataWithIndex(_idxFileReadPosition, __GXDevelopCommentLength);
+                    _idxFileReadPosition += __GXDevelopCommentLength;
+                    startAddress++;
+
+                    try
+                    {
+                        dicPlcComment.Add(plcComment.Address, plcComment);
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Console.WriteLine("Comment Generator Error : {0}", ex.Message);
+                        return "Comment Dictionary Key Duplicate Key Error! ";
+                    }
+                }
+            }
+
+            return String.Empty;
+        }
+        private string OpenDataFile(string strPath)
+        {
+            if (strPath == String.Empty) return "Path Error!";
+            if (_srcFileByteDumpArray != null) _srcFileByteDumpArray.Initialize();
+            _srcFileByteDumpArray = File.ReadAllBytes(strPath);
+            _idxFileReadPosition = 0;
+            plcProgramLineNum = 0;
+            ladderTraceState = PlcLadderTracerRunningState.Wait;
+            ladderTraceInitialState |= PlcLaddeInitialState.SourceFilePathRead;
+
+            return String.Empty;
+        }
+
+        public override string LadderTracerInitialize(string symbolFilePath, string sourceFilePath, Int32 headBlockLength)
+        {
+            string strResult = String.Empty;
+
+            LoadHeadLength(headBlockLength);
+            strResult = LoadPlcSymbolFromXml(symbolFilePath);
+            if (strResult == String.Empty)
+            {
+                String outPutFileName = UDMImportCommon.GetFileName(sourceFilePath);
+
+                strResult = GeneratorCommentDictionary(sourceFilePath);
+                if (strResult == String.Empty) ExportCommentCSVFormat(outPutFileName + "_comment.csv");
+            }
+
+            return strResult;
+        }
+
+        public override string LadderTracer(string sourceFilePath)
+        {
+            string returnPacket = "";
+            int plcCommandLength;
+
+            returnPacket = OpenDataFile(sourceFilePath);
+            if (!returnPacket.Equals("")) return returnPacket;
+
+            if (IsTranslatorRunnable_GxDevelop(out returnPacket) == false)
+            {
+                return returnPacket;
+            }
+
+            SetLadderProgramOutputFilePath(".");
+            plcLadderProjectPath = sourceFilePath;
+            plcLadderNodsS.Clear();
+
+            // 상태를 초기화 하고.
+            // 해드 길이 만큼 건너뛴 후에
+            _idxFileReadPosition += plcProgramFileHeadLength;
+            // 한 패킷씩 읽어서 분석한다.
+            // 분석을 완료하거나, 
+
+            while (_idxFileReadPosition < _srcFileByteDumpArray.Length)
+            {
+                plcCommandLength = (int)UDMImportCommon.Hex2Int(GetFileDataWithIndex(_idxFileReadPosition));
+                if (plcCommandLength < 2)
+                {
+                    String strDump = GetFileDataHexDumpWithIndex(_idxFileReadPosition, 20);
+                    Console.WriteLine("Command Length is Less Than 3[" + strDump + "]");
+                    return "Command Length Error !! [" + strDump + "]";
+                }
+
+                if (plcCommandLength == 2) // NOP 처리
+                {
+                    nextProgramLine = new PlcLadderNode();
+                    PlcCommandPacketConsistCount = 0;
+                    nextProgramLine.Parameters = new String[__PlcLangParameterArraySize];
+                    nextProgramLine.PlcCommand = "NOP";
+                    nextProgramLine.PlcCommandHexDump = "0X00";
+                    nextProgramLine.Note += GetFileDataHexDumpWithIndex(_idxFileReadPosition, plcCommandLength);
+                    nextProgramLine.LineNo = plcProgramLineNum;
+                    plcProgramLineNum += 1;
+                    plcLadderNodsS.Add(nextProgramLine);
+                    // 파일 번역 위치를 변경하고
+                    _idxFileReadPosition += plcCommandLength;
+                }
+                else
+                {
+                    try
+                    {
+                        returnPacket = PlcLanguageTranslator_GxDevelop(plcCommandLength);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name); ex.Data.Clear();
+                        _idxFileReadPosition = _srcFileByteDumpArray.Length;
+                    }
+                }
+            }
+
+            return returnPacket;
+        }
+
+        #endregion
+
+        #region translator body
+
+        private void GetTargetPacket(int packetLength, out PlcTranslationBlock ds)
+        {
+            PlcTranslationBlock src = new PlcTranslationBlock();
+            src.HexPrint = GetFileDataHexDumpWithIndex(_idxFileReadPosition+1, packetLength-2).Replace(" ", "");
+            src.ReadIndex = _idxFileReadPosition;
+            src.ParseType = (ladderTraceState == PlcLadderTracerRunningState.Wait) ? LanguageParseType.COMMAND : LanguageParseType.PARAMETER;
+            src.DefinePacketDataType( src.ParseType );
+
+            ds = src;
+        }
+
+        bool _PlcCommandPacketProcessor(PlcTranslationBlock srcBlock)
+        {
+            PlcCommand srcCommand = new PlcCommand();
+
+
+            if (!_dicPlcCommand.TryGetValue(srcBlock.HexPrint, out srcCommand))
+            // if (!_dicPlcCommand.TryGetValue(srcBlock.HexPrint, out srcCommand))
+            {
+                return false;
+            }
+
+            nextProgramLine = new PlcLadderNode();
+            PlcCommandPacketConsistCount = 0;
+
+            nextProgramLine.Parameters = new String[__PlcLangParameterArraySize];
+            nextProgramLine.PlcCommand = srcCommand.Description;
+            nextProgramLine.PlcCommandHexDump = srcBlock.HexPrint;
+            nextProgramLine.Note += GetFileDataHexDumpWithIndex( srcBlock.ReadIndex, srcBlock.HexPrint.Length/2 + 2 );
+
+            // 읽어들여야 하는 파라미터의 수를 정하고..
+            nextProgramLine.LineNo = plcProgramLineNum;
+            plcProgramLineNum += srcCommand.Step;
+            nextProgramLine.No = plcLadderNodsS.Count;
+            nextProgramLine.Note += String.Format("({0})", srcCommand.Step);
+
+            if(srcCommand.ParameterTypes.Length == 0)
+            {
+                plcLadderNodsS.Add(nextProgramLine);
+
+                ladderTraceState = srcCommand.Description == "END" ? PlcLadderTracerRunningState.EndRead : PlcLadderTracerRunningState.Wait;
+
+                return true;
+            }
+
+            remainParamCount = srcCommand.ParameterTypes.Length;
+            ladderTraceState = PlcLadderTracerRunningState.ParameterWait;
+
+            return true;
+        }
+
+        private void InitializeParameterDirector()
+        {
+            m_sBitDirector = String.Empty;
+            m_sIndexDirector = String.Empty;
+            m_sIndirectDirector = String.Empty;
+            m_sPointDirector = String.Empty;
+            m_sSpecialDeviceDirector = String.Empty;
+            m_sLinkDeviceDirector = String.Empty;
+            m_sSerialDeviceDirector = String.Empty;
+        }
+
+        String IndicatorProcessor(String director, PlcTranslationBlock srcBlock, int iRadix, bool bAddress)
+        {
+            string strRet = String.Empty;
+            // Int64 i64Data = UDMImportCommon.Hex2Int(srcBlock.HexPrint.Substring( 2,  srcBlock.HexPrint.Length - 2 ), true);
+            Int64 i64Data = UDMImportCommon.Hex2Int(srcBlock.HexPrint.Substring(2), true);
+
+            if (srcBlock.HexPrint.Length > 6 || srcBlock.HexPrint.Substring(0, 2) == "E9")
+            {
+                Int32 i32Data = (Int32)UDMImportCommon.Hex2Int(srcBlock.HexPrint.Substring(2), true);
+                strRet = String.Format("{0}{1}", director, i32Data);
+            }
+            else if (srcBlock.HexPrint.Length > 6 || srcBlock.HexPrint.Substring(0, 2) == "E8") //  K 음수 표현식
+            {
+                Int16 i16Data  = (Int16)UDMImportCommon.Hex2Int(srcBlock.HexPrint.Substring(2), true);
+                strRet = String.Format("{0}{1}", director, i16Data);
+            }
+            else
+            {
+                if (iRadix == 10)
+                    strRet = String.Format("{0}{1}", director, i64Data);
+                else
+                {
+                    if (bAddress)
+                    {
+                        strRet = String.Format("{0:X}", i64Data);
+
+                        if (strRet[0] <= '9' && strRet[0] >= '0')
+                        {
+                            strRet = String.Format("{0}{1:X}", director, i64Data);
+                        }
+                        else
+                        {
+                            strRet = String.Format("{0}0{1:X}", director, i64Data);
+                        }
+                    }
+                    else
+                    {
+                        strRet = String.Format("{0}{1:X}", director, i64Data);
+                    }
+                }
+            }
+
+            return strRet;
+        }
+
+        String _AddressPacketProcessor(PlcTranslationBlock srcBlock)
+        {
+            string sRet = String.Empty;
+
+            PlcCommand srcCommand = new PlcCommand();
+            if (srcBlock.HexPrint.Substring(0, 2) == "EC") // 소숫점 주소??? E
+            {
+                byte[] raw = new byte[(srcBlock.HexPrint.Length - 2) / 2];
+                for (int i = 0; i < raw.Length; i++)
+                {
+                    raw[i] = Convert.ToByte(srcBlock.HexPrint.Substring(2 + i * 2, 2), 16);
+                    raw[raw.Length - i - 1] = Convert.ToByte(srcBlock.HexPrint.Substring(2+ i * 2, 2), 16);
+                }
+                float fData = BitConverter.ToSingle(raw, 0);
+                sRet = String.Format("E{0:F1}", fData);
+            }
+            else if (_dicPlcCommand.TryGetValue(srcBlock.HexPrint.Substring(0, 2), out srcCommand))
+            {
+                sRet = IndicatorProcessor(srcCommand.Description,
+                    srcBlock,
+                    srcCommand.Radix, true);
+            }
+            else
+            {
+                return srcBlock.HexPrint.Substring(0, 2) + ".Device Not Found!!!";
+            }
+
+            return sRet;
+        }
+
+        bool _PlcParameterPacketProcessor(PlcTranslationBlock srcBlock)
+        {
+            string strParameter = String.Empty;
+
+            nextProgramLine.Note += GetFileDataHexDumpWithIndex(srcBlock.ReadIndex, srcBlock.HexPrint.Length/2 + 2);
+
+            // 패킷 헤드 분석에서 패킷의 종류가 결정되었다. Command/Comment/Parameter(Address,Bit,Indirector,Exp,Point,..)
+            switch (srcBlock.PacketType)
+            {
+                case PacketDataType.BIT_INDICATOR: // ## XXXX ##
+                    m_sBitDirector = IndicatorProcessor("K", srcBlock ,16, false);
+                    break;
+                case PacketDataType.LINK_DEVICE_INDICATOR: // F9 J
+                    m_sLinkDeviceDirector = IndicatorProcessor("J", srcBlock, 16,false);
+                    plcProgramLineNum++;
+                    break;
+                case PacketDataType.SERIAL_DEVICE_INDICATOR: // B0 ZR
+                    m_sSerialDeviceDirector = IndicatorProcessor("ZR", srcBlock, 16, false);
+                    plcProgramLineNum++;
+                    break;
+                case PacketDataType.INDEX_INDICATOR:
+                    m_sIndexDirector = IndicatorProcessor("Z", srcBlock ,10,false);
+                    break;
+                case PacketDataType.SPECIAL_DEVICE_INDICATOR:
+                    m_sSpecialDeviceDirector = IndicatorProcessor("U", srcBlock, 10,false);
+                    break;
+                case PacketDataType.INDIRECT_INDICATOR:
+                    m_sIndirectDirector = IndicatorProcessor("@", srcBlock ,16,false);
+                    plcProgramLineNum++;
+                    break;
+                case PacketDataType.POINT_INDICATOR:
+                    m_sPointDirector = IndicatorProcessor(".", srcBlock ,16,false);
+                    break;
+                case PacketDataType.STRING_INDICATOR:
+                    // 파라미터를 저장하고 부가 정보를 초기화 한다.
+                    strParameter += m_sSpecialDeviceDirector != String.Empty ? m_sSpecialDeviceDirector + "\\" : "";
+                    strParameter += m_sIndirectDirector;
+                    strParameter += m_sBitDirector;
+                    strParameter += m_sLinkDeviceDirector;
+                    strParameter += m_sSerialDeviceDirector;
+                    strParameter += "\""+ GetFileDataWithIndex(srcBlock.ReadIndex + 2, srcBlock.HexPrint.Length/2 -1) + "\"";
+                    strParameter += m_sPointDirector;
+                    strParameter += m_sIndexDirector;
+                    InitializeParameterDirector();
+                    nextProgramLine.Parameters[_dicPlcCommand[nextProgramLine.PlcCommandHexDump].ParameterTypes.Length - remainParamCount] = strParameter;
+
+                    // 파라미터가 문자열인 경우는 짝수시는 문자수/2, 홀수시는 (문자수 + 1)/2 만큼 스탭수가 증가한다.
+                    plcProgramLineNum += (srcBlock.HexPrint.Length - 2) / 2 % 2 == 0 ? (srcBlock.HexPrint.Length - 2) / 2 / 2 : ((srcBlock.HexPrint.Length - 2) / 2 + 1) / 2;
+                    remainParamCount--;
+
+                    break;
+                case PacketDataType.NUMERIC_INDICATOR:
+                    // 파라미터를 저장하고 부가 정보를 초기화 한다.
+                    if(m_sSpecialDeviceDirector != String.Empty)
+                    {
+                        if (m_sIndexDirector != String.Empty)
+                        {
+                            strParameter += m_sSpecialDeviceDirector + m_sIndexDirector + "\\";
+                            m_sIndexDirector = String.Empty;
+                        }
+                        else
+                        {
+                            strParameter += m_sSpecialDeviceDirector + "\\";
+                        }
+                    }
+                    strParameter += m_sIndirectDirector;
+                    strParameter += m_sBitDirector;
+                    strParameter += m_sLinkDeviceDirector;
+                    strParameter += m_sSerialDeviceDirector;
+                    strParameter += IndicatorProcessor("K", srcBlock, 10,false);
+                    strParameter += m_sPointDirector;
+                    strParameter += m_sIndexDirector;
+                    InitializeParameterDirector();
+                    nextProgramLine.Parameters[_dicPlcCommand[nextProgramLine.PlcCommandHexDump].ParameterTypes.Length - remainParamCount] = strParameter;
+                    remainParamCount--;
+                    break;
+                case PacketDataType.ADDRESS_INDICATOR:
+                    // 파라미터를 저장하고 부가 정보를 초기화 한다.
+                    if (m_sSpecialDeviceDirector != String.Empty)
+                    {
+                        if (m_sIndexDirector != String.Empty)
+                        {
+                            strParameter += m_sSpecialDeviceDirector + m_sIndexDirector + "\\";
+                            m_sIndexDirector = String.Empty;
+                        }
+                        else
+                        {
+                            strParameter += m_sSpecialDeviceDirector + "\\";
+                        }
+                    }                    
+                    strParameter += m_sIndirectDirector;
+                    strParameter += m_sBitDirector;
+                    strParameter += m_sLinkDeviceDirector;
+                    strParameter += m_sSerialDeviceDirector;
+                    strParameter += _AddressPacketProcessor(srcBlock);
+                    strParameter += m_sPointDirector;
+                    strParameter += m_sIndexDirector;
+                    InitializeParameterDirector();
+                    nextProgramLine.Parameters[_dicPlcCommand[nextProgramLine.PlcCommandHexDump].ParameterTypes.Length - remainParamCount] = strParameter;
+                    remainParamCount--;
+                    break;
+                default:
+                    break;
+            }
+
+            if (remainParamCount == 0)
+            {
+                plcLadderNodsS.Add( nextProgramLine );
+                ladderTraceState = PlcLadderTracerRunningState.Wait;
+            }
+
+            return true;
+        }
+
+        public string _PlcLanguageTranslator( int packetLength )
+        {
+            string strRet = String.Empty;
+
+            PlcTranslationBlock srcTranslationBlock = new PlcTranslationBlock();
+            GetTargetPacket(packetLength, out srcTranslationBlock);
+
+            switch (srcTranslationBlock.ParseType)
+            {
+                case LanguageParseType.COMMAND:
+                    if (_PlcCommandPacketProcessor( srcTranslationBlock ) != true)
+                    {
+                        Console.WriteLine("UnKnown Command Error!...FileName : {0} / Line m_iNo:{1}", new System.Diagnostics.StackTrace(true).GetFrame(0).GetFileName(), new System.Diagnostics.StackTrace(true).GetFrame(0).GetFileLineNumber());
+                        _idxFileReadPosition = _srcFileByteDumpArray.Length;
+                        SaveResultFile();
+                        return GetFileDataHexDumpWithIndex( _idxFileReadPosition, packetLength );
+                    }
+                    else
+                    {
+                        if (ladderTraceState == PlcLadderTracerRunningState.EndRead)
+                        {
+                            SaveResultFile();
+                        }
+                    }
+                    break;
+                case LanguageParseType.PARAMETER:
+                    if ( _PlcParameterPacketProcessor(srcTranslationBlock ) != true)
+                    {
+                        Console.WriteLine("UnKnown Command Error!...FileName : {0} / Line m_iNo:{1}", new System.Diagnostics.StackTrace(true).GetFrame(0).GetFileName(), new System.Diagnostics.StackTrace(true).GetFrame(0).GetFileLineNumber());
+                        _idxFileReadPosition = _srcFileByteDumpArray.Length;
+                        SaveResultFile();
+                        return GetFileDataHexDumpWithIndex(_idxFileReadPosition, packetLength) + ".... UnKnown Address";
+                    }
+                    break;
+                default:
+                    Console.WriteLine("UnKnown State Error!... FileName : {0} / Line m_iNo:{1}", new System.Diagnostics.StackTrace(true).GetFrame(0).GetFileName(), new System.Diagnostics.StackTrace(true).GetFrame(0).GetFileLineNumber());
+                    _idxFileReadPosition = _srcFileByteDumpArray.Length;
+                    SaveResultFile();
+                    return "ERROR";
+            }
+
+            _idxFileReadPosition += packetLength;
+
+            return strRet;
+        }
+
+        public string PlcLanguageTranslator_GxDevelop(int plcPacketLength)
+        {
+            string packetHead = GetFileDataWithIndex(_idxFileReadPosition + 1);
+
+            if ( ladderTraceState == PlcLadderTracerRunningState.Wait )
+            {
+                switch (UDMImportCommon.Hex2Int( packetHead , true))
+                {
+                    case 128: // 80, 01 
+                    case 130:
+                        CommentPacketTranslator_GxDevelop(plcPacketLength);
+                        return String.Empty;
+                }
+            }
+            return _PlcLanguageTranslator( plcPacketLength );
+
+            /*
+            if (ladderTraceState == PlcLadderTracerRunningState.Wait)
+            {
+                packetHead = GetFileDataHexDumpWithIndex(_idxFileReadPosition, plcPacketLength);
+                bitPositionIndicator = String.Empty;
+                if (CommandPacketTranslator_GxDevelop(plcPacketLength) != true)
+                {
+                    Console.WriteLine("UnKnown Command Error!...FileName : {0} / Line m_iNo:{1}", new System.Diagnostics.StackTrace(true).GetFrame(0).GetFileName(), new System.Diagnostics.StackTrace(true).GetFrame(0).GetFileLineNumber());
+                    SaveResultFile();
+                    return packetHead;
+                }
+                else
+                {
+                    if (ladderTraceState == PlcLadderTracerRunningState.EndRead)
+                    {
+                        SaveResultFile();
+
+#if ladder_logical_draw
+                        #region Ladder Logical Drawing
+
+                        // Drawing Simulation.....
+                        PLCNode<PlcProgramLanguage> g = new PLCNode<PlcProgramLanguage>();
+                        PLCContact<PlcProgramLanguage> curContact = null;
+                        PLCContact<PlcProgramLanguage> prevContact = null;
+                        int nSteps = 0;
+
+                        foreach (PlcProgramLanguage plcLang in listPlcProgramLanguage)
+                        {
+                            // 새로운 노드를 추가하고.
+                            if (plcLang.PlcCommand.Trim() == ";") continue;
+                            curContact = g.AddNode(plcLang, nSteps);
+                            switch ( dicPlcCommand[plcLang.PlcCommandHexDump].ndor )
+                            {
+                                case 1: // AND
+                                    if (prevContact != null)
+                                    {
+                                        g.AddEdge(prevContact, curContact, ++nSteps);
+                                    }
+                                    else
+                                    {
+                                        prevContact = curContact;
+                                    }
+                                    break;
+                                case 2: // OR
+                                    g.AddEdge(prevContact, curContact, nSteps);
+                                    curContact.Step = nSteps;
+                                    break;
+                                case 3: // END, OUT
+                                    if (prevContact != null)
+                                    {
+                                        g.AddEdge(prevContact, curContact, ++nSteps);
+                                        curContact.Step = nSteps;
+                                    }
+                                    prevContact = null;
+                                    nSteps = 0;
+                                    break;
+                                default: // Exception
+                                    break;
+                            }
+                        }
+
+
+                        Debug.WriteLine("==============================================================Start");
+                        foreach (object plcNode in g._nodeList)
+                        {
+                            PLCContact<PlcProgramLanguage> rootNode = (PLCContact<PlcProgramLanguage>)plcNode;
+                            if (rootNode.Data.PlcCommand == "Comment")
+                            {
+                                continue;
+                            }
+
+                            if(rootNode.Neighbers.Count > 0)
+                            {
+                                // RootNode 출력.
+                                Debug.Write(String.Format("{0:40}:[{1}] ", rootNode.Data.PlcCommand, rootNode.Step));
+                                for (int i = 0; i < dicPlcCommand[rootNode.Data.PlcCommandHexDump].paramCount; i++)
+                                {
+                                    Debug.Write(" " + rootNode.Data.Parameters[i]);
+                                }
+
+                                foreach (object contact in rootNode.Neighbers)
+                                {
+                                    PLCContact<PlcProgramLanguage> node = (PLCContact<PlcProgramLanguage>)contact;
+                                    if (dicPlcCommand[node.Data.PlcCommandHexDump].ndor != 3)
+                                    {
+                                        Debug.Write(" --> ");
+                                        Debug.Write(String.Format("{0:40}:[{1}]", node.Data.PlcCommand, node.Step));
+                                        for(int i = 0; i < dicPlcCommand[node.Data.PlcCommandHexDump].paramCount;i++)
+                                        {
+                                            Debug.Write(" " + node.Data.Parameters[i]);
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                PLCContact<PlcProgramLanguage> node = (PLCContact<PlcProgramLanguage>)rootNode;
+                                if (dicPlcCommand[node.Data.PlcCommandHexDump].ndor == 3)
+                                {
+                                    switch (dicPlcCommand[node.Data.PlcCommandHexDump].command)
+                                    {
+                                        case "END":
+                                            Debug.Write(String.Format("{0:40}:[{1}]", node.Data.PlcCommand, node.Step));
+                                            break;
+                                        default:
+                                            Debug.Write("--> ");
+                                            Debug.Write(String.Format("{0:40}:[{1}]", node.Data.PlcCommand, node.Step));
+                                            for (int i = 0; i < dicPlcCommand[node.Data.PlcCommandHexDump].paramCount; i++)
+                                            {
+                                                Debug.Write(" " + node.Data.Parameters[i]);
+                                            }
+                                            break;
+                                    }
+                                    Debug.Write("\r\n");
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+                            }
+                        }
+                        Debug.WriteLine("===================================================================End");
+                        #endregion
+#endif
+                    }
+                }
+            }
+            else if (ladderTraceState == PlcLadderTracerRunningState.ParameterWait)
+            {
+                String strPacketDump;
+                if (ParameterPacketTranslator_GxDevelop(plcPacketLength, out strPacketDump) != true)
+                {
+                    // 파라미터 처리중 예측되지 못한 상황 발생.
+                    Console.WriteLine("Unknown Parameter Error!... FileName : {0} / Line m_iNo:{1}", new System.Diagnostics.StackTrace(true).GetFrame(0).GetFileName(), new System.Diagnostics.StackTrace(true).GetFrame(0).GetFileLineNumber());
+                    _idxFileReadPosition = _srcFileByteDumpArray.Length;
+                    SaveResultFile();
+                    return strPacketDump + ".m_sAddress ERROR";
+                }
+            }
+            else
+            {
+                Console.WriteLine("UnKnown State Error!... FileName : {0} / Line m_iNo:{1}", new System.Diagnostics.StackTrace(true).GetFrame(0).GetFileName(), new System.Diagnostics.StackTrace(true).GetFrame(0).GetFileLineNumber());
+                _idxFileReadPosition = _srcFileByteDumpArray.Length;
+                SaveResultFile();
+                return "ERROR";
+            }
+            */
+            return String.Empty;
+        }
+
+        private bool IsTranslatorRunnable_GxDevelop(out string message)
+        {
+            if ((ladderTraceInitialState 
+                & (PlcLaddeInitialState.SourceFilePathRead 
+                | PlcLaddeInitialState.SymbolFileRead 
+                | PlcLaddeInitialState.HeaderLengthRead)) != 0)
+            {
+                message = "Success";
+                return true;
+            }
+            else
+            {
+                PlcLaddeInitialState tempState = ladderTraceInitialState &= PlcLaddeInitialState.SymbolFileRead;
+
+                if ((tempState & PlcLaddeInitialState.SymbolFileRead) != 0)
+                {
+                    tempState = ladderTraceInitialState &= PlcLaddeInitialState.HeaderLengthRead;
+                    if ((tempState & PlcLaddeInitialState.HeaderLengthRead) != 0)
+                    {
+                        tempState = ladderTraceInitialState &= PlcLaddeInitialState.SourceFilePathRead;
+                        if ((tempState & PlcLaddeInitialState.SourceFilePathRead) != 0)
+                        {
+                            message = "Success";
+                            return true;
+                        }
+                        else
+                        {
+                            message = "Warnning Plc Program Load Error.";
+                        }
+                    }
+                    else
+                    {
+                        message = "Warnning Plc Header Length Define Error";
+                    }
+                }
+                else
+                {
+                    message = "Warnning Plc Symbol File Load Error";
+                }
+                return false;
+            }
+        }
+
+        private bool CommentPacketTranslator_GxDevelop(int packetLength)
+        {
+            nextProgramLine = new PlcLadderNode();
+            PlcCommandPacketConsistCount = 0;
+            nextProgramLine.Parameters = new String[__PlcLangParameterArraySize]; //
+            nextProgramLine.PlcCommand = "Comment";
+            nextProgramLine.LineNo = plcProgramLineNum;
+            plcProgramLineNum += (Int16)UDMImportCommon.Hex2Int(GetFileDataWithIndex(_idxFileReadPosition + 2));
+
+            nextProgramLine.Parameters[0] = GetFileDataWithIndex(_idxFileReadPosition + 3, packetLength - 4);
+            nextProgramLine.Note += GetFileDataHexDumpWithIndex(_idxFileReadPosition, packetLength);
+            nextProgramLine.No = plcLadderNodsS.Count + 1;
+            plcLadderNodsS.Add(nextProgramLine);
+            _idxFileReadPosition += packetLength;
+            ladderTraceState = PlcLadderTracerRunningState.Wait;
+            return true;
+        }
+
+        private bool CommandPacketTranslator_GxDevelop(int packetLength)
+        {
+            PLCLadderSymbol plcSymbol;
+            String command = "";
+
+            for (int idx = 0 + 1; idx < packetLength - 1; idx++)
+            {
+                command += String.Format("{0:X2}", GetFileDataWithIndex(_idxFileReadPosition + idx));
+            }
+
+            // 명령어 만큼 읽어 들여서 등록된 명령어인지 확인하고, 없는 경우는 이 상태에서 오류 리턴.
+            if (dicPlcCommand.TryGetValue(command, out plcSymbol) == false)
+            {
+                _idxFileReadPosition = _srcFileByteDumpArray.Length;
+                return false;
+            }
+
+            // 커맨드를 저장할 장소를 초기화 하고..
+            nextProgramLine = new PlcLadderNode();
+            PlcCommandPacketConsistCount = 0;
+
+            nextProgramLine.Parameters = new String[__PlcLangParameterArraySize];
+            nextProgramLine.PlcCommand = dicPlcCommand[command].command;
+            nextProgramLine.PlcCommandHexDump = command;
+            nextProgramLine.Note += GetFileDataHexDumpWithIndex(_idxFileReadPosition, packetLength);
+
+            // 읽어들여야 하는 파라미터 수를 정하고..
+            if (dicPlcCommand[command].paramTypeString.Length == 0)
+            {
+                nextProgramLine.LineNo = plcProgramLineNum;
+                // plcProgramLineNum += (Int16)dicPlcCommand[command].paramCount/2 + 1;
+                plcProgramLineNum += dicPlcCommand[command].stepCnt;
+
+                nextProgramLine.No = plcLadderNodsS.Count;
+
+                nextProgramLine.Note += String.Format("({0})", dicPlcCommand[command].stepCnt);
+
+                plcLadderNodsS.Add(nextProgramLine);
+                // 파일 번역 위치를 변경하고
+                _idxFileReadPosition += packetLength;
+
+                if (plcSymbol.command == "END")
+                {
+                    // 커맨트를 저장하고 (파일에 기록할 준비를 하고)
+                    // 
+                    ladderTraceState = PlcLadderTracerRunningState.EndRead;
+                }
+                else
+                {
+                    ladderTraceState = PlcLadderTracerRunningState.Wait;
+                }
+                return true;
+            }
+            else
+            {
+                remainParamCount = dicPlcCommand[command].paramTypeString.Length;
+                nextProgramLine.LineNo = plcProgramLineNum;
+                plcProgramLineNum += dicPlcCommand[command].stepCnt;
+                nextProgramLine.No = plcLadderNodsS.Count;
+
+                nextProgramLine.Note += String.Format("({0})", dicPlcCommand[command].stepCnt);
+
+                _idxFileReadPosition += packetLength;
+                ladderTraceState = PlcLadderTracerRunningState.ParameterWait;
+            }
+
+            // 파라미터를 읽기 위한 상태로 이동..
+            return true;
+        }
+        private bool ParameterPacketTranslator_GxDevelop(int packetLength, out string dumpPacket)
+        {
+            String parameter = "";
+            PLCLadderSymbol plcSymbol;
+
+            for (int idx = 1; idx < packetLength - 1; idx++)
+            {
+                parameter += String.Format("{0:X2}", GetFileDataWithIndex(_idxFileReadPosition + idx));
+            }
+
+            dumpPacket = parameter;
+
+            nextProgramLine.Note += GetFileDataHexDumpWithIndex(_idxFileReadPosition, packetLength);
+
+            if (dicPlcCommand.TryGetValue(nextProgramLine.PlcCommandHexDump, out plcSymbol) == false)
+            {
+                plcLadderNodsS.Add(nextProgramLine);
+                _idxFileReadPosition = _srcFileByteDumpArray.Length;
+                return false;
+            }
+
+            PlcCommandPacketConsistCount++;
+
+            String parameterType = plcSymbol.paramTypeString.Substring(plcSymbol.paramTypeString.Length - remainParamCount, 1);
+            String patternResult = "";
+            int paramInc = 0;
+
+            switch (parameterType)
+            {
+                case "A":   // Memory Address 이다. 비트를 표시하는 경우는 앞부분이 비트 지정이다. D100.F 인 경우 10진수로 표시된 100번지의 15번째 비트를 가르킨다.
+                    // Address는 1개의 번지수 또는 2개로 이루어져서 번지수를 나타낸다.
+                    // F1 04는 읽어야 하는 블럭수이다. F4로 표기한다.
+                    // 길이가 2인 경우 
+                    paramInc = AddressTypeParameterTranslator_GxDevelop(parameter , out patternResult);
+                    if (patternResult == String.Empty && bitPositionIndicator == String.Empty)
+                    {
+                        // 찾지 못한 메모리 번지 타입 (오류 발생)
+                        _idxFileReadPosition = _srcFileByteDumpArray.Length;
+                        return false;
+                    }
+                    else
+                    {
+                        String bufferString = nextProgramLine.Parameters[plcSymbol.paramTypeString.Length - remainParamCount];
+
+                        if (bufferString != null && bufferString != String.Empty)
+                        {
+                            // 이전 처리가 비트 위치라면
+                            
+                            if (nextProgramLine.Parameters[plcSymbol.paramTypeString.Length - remainParamCount].Substring(0, 1) == ".")
+                            {
+                                nextProgramLine.Parameters[plcSymbol.paramTypeString.Length - remainParamCount] = patternResult + nextProgramLine.Parameters[plcSymbol.paramTypeString.Length - remainParamCount];
+                            }
+                            /* 
+                            else if (nextProgramLine.m_saParameters[plcSymbol.paramTypeString.Length - remainParamCount].Substring(nextProgramLine.m_saParameters[plcSymbol.paramTypeString.Length - remainParamCount].Length - 2, 1) == "Z") // Z
+                            {
+                                if (nextProgramLine.m_saParameters[plcSymbol.paramTypeString.Length - remainParamCount].Length > 2)
+                                {
+                                    nextProgramLine.m_saParameters[plcSymbol.paramTypeString.Length - remainParamCount] = 
+                                        nextProgramLine.m_saParameters[plcSymbol.paramTypeString.Length 
+                                        - remainParamCount].Substring(0, 2) + patternResult + nextProgramLine.m_saParameters[plcSymbol.paramTypeString.Length - remainParamCount].Substring(2);
+                                }
+                                else
+                                {
+                                    nextProgramLine.m_saParameters[plcSymbol.paramTypeString.Length - remainParamCount] = 
+                                        patternResult + nextProgramLine.m_saParameters[plcSymbol.paramTypeString.Length - remainParamCount];
+                                }
+                                
+                            } */
+                            else // K
+                            {
+                                nextProgramLine.Parameters[plcSymbol.paramTypeString.Length - remainParamCount] = 
+                                    nextProgramLine.Parameters[plcSymbol.paramTypeString.Length - remainParamCount] + patternResult;
+                                if (nextProgramLine.Parameters[plcSymbol.paramTypeString.Length - remainParamCount].Length > 0 && bitPositionIndicator != String.Empty)
+                                {
+                                    // K로 시작하는 경우는 비트 지정자를 파라미터에 아직 추가하지 않습니다.
+                                    if (nextProgramLine.Parameters[plcSymbol.paramTypeString.Length - remainParamCount].Substring(0, 1) == "K"
+                                        && nextProgramLine.Parameters[plcSymbol.paramTypeString.Length - remainParamCount].Length < 3)
+                                    {
+                                        ;
+                                    }
+                                    else
+                                    {
+                                        nextProgramLine.Parameters[plcSymbol.paramTypeString.Length - remainParamCount] += bitPositionIndicator;
+                                        bitPositionIndicator = String.Empty;
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            nextProgramLine.Parameters[plcSymbol.paramTypeString.Length - remainParamCount] = nextProgramLine.Parameters[plcSymbol.paramTypeString.Length - remainParamCount] + patternResult;
+                            if (nextProgramLine.Parameters[plcSymbol.paramTypeString.Length - remainParamCount].Length > 0 && bitPositionIndicator != String.Empty)
+                            {
+                                nextProgramLine.Parameters[plcSymbol.paramTypeString.Length - remainParamCount] += bitPositionIndicator;
+                                bitPositionIndicator = String.Empty;
+                            }
+                            // 마지막 위치에 커맨트를 찾아서 기록합니다.
+                            string keyAddress = nextProgramLine.Parameters[plcSymbol.paramTypeString.Length - remainParamCount];
+                            if (dicPlcComment.TryGetValue(keyAddress, out plcComment) == true)
+                            {
+                                if (nextProgramLine.Parameters[__PlcLangParameterArraySize - 1] != null)
+                                {
+                                    nextProgramLine.Parameters[__PlcLangParameterArraySize - 1] += "\r\n" + plcComment.Address + " = " + plcComment.Comment;
+                                }
+                                else
+                                {
+                                    nextProgramLine.Parameters[__PlcLangParameterArraySize - 1] += plcComment.Address + " = " + plcComment.Comment;
+                                }
+                            }
+                            
+                        }                        
+                        remainParamCount -= paramInc;
+                    }
+                    break;
+                case "B":   // ReadBlockWidth
+                    break;
+                case "C":   // Constant Type
+                    break;
+                case "N":   // Number Type N회 반복하는 명령어 이다. 대개 K가 앞에 붙는다.
+                    paramInc = NumberTypeParameterTranslator_GXDevelop(parameter, out patternResult);
+                    if (patternResult == "")
+                    {
+                        // 찾지 못한 메모리 번지 타입 (오류 발생)
+                        _idxFileReadPosition = _srcFileByteDumpArray.Length;
+                        return false;
+                    }
+                    else
+                    {
+                        nextProgramLine.Parameters[plcSymbol.paramTypeString.Length - remainParamCount] = nextProgramLine.Parameters[plcSymbol.paramTypeString.Length - remainParamCount] + patternResult;
+                        remainParamCount -= paramInc;
+                    }
+                    break;
+                case "S":   // String Type
+                    paramInc = 1;
+                    patternResult = "\"" + GetFileDataWithIndex(_idxFileReadPosition + 2, packetLength - 3) + "\"";
+
+                    // 파라미터가 문자열인 경우는 짝수시는 문자수/2, 홀수시는 (문자수 + 1)/2 만큼 스탭수가 증가한다.
+                    plcProgramLineNum += (packetLength - 3) % 2 == 0 ? (packetLength - 3) / 2 : (packetLength - 3 + 1) / 2;
+
+                    nextProgramLine.Parameters[plcSymbol.paramTypeString.Length - remainParamCount] = nextProgramLine.Parameters[plcSymbol.paramTypeString.Length - remainParamCount] + patternResult;
+                    remainParamCount -= paramInc;
+                    break;
+            }
+
+            _idxFileReadPosition += packetLength;
+
+            if (remainParamCount == 0)
+            {
+                // 커맨트를 저장하고 (파일에 기록할 준비를 하고)
+#if STEPINCREASE_DEVICE
+                plcProgramLineNum += IncreaseStepCount();
+#endif
+
+#if INDIRECT_CONSIST
+                // 간접 지정이 사용되었다면 Step수를 추가합니다.
+                if ( plcSymbol.paramTypeString.Length <= PlcCommandPacketConsistCount - 2)
+                {
+                    plcProgramLineNum++;
+                }
+#endif
+                plcLadderNodsS.Add(nextProgramLine);
+                ladderTraceState = PlcLadderTracerRunningState.Wait;
+            }
+            return true;
+        }
+        private int NumberTypeParameterTranslator_GXDevelop(String addressPacket, out String patternResult)
+        {
+            int addressRadix;
+            int memoryAddress;
+            String deviceAddress = GetDeviceRadix(addressPacket, out addressRadix);
+
+            if (addressRadix != 0)
+            {
+                if (addressRadix == 10)
+                {
+                    if (addressPacket.Substring(2).Length > 4)
+                    {
+                        memoryAddress = (Int32)UDMImportCommon.Hex2Int(addressPacket.Substring(2), true);
+                    }
+                    else
+                    {
+                        memoryAddress = (Int16)UDMImportCommon.Hex2Int(addressPacket.Substring(2), true);
+                    }
+                    
+                    patternResult = String.Format("{0}{1}", deviceAddress, memoryAddress);
+                    return 1;  // Number의 K는 진수 표현식
+                }
+            }
+            else
+            {
+                System.Console.WriteLine("NumberTypeParameterTranslator_GXDevelop Device Radix Error {0}", addressPacket);
+            }
+            patternResult = "Error.NumberTypeParameterTranslator_GXDevelop";
+            return 0;
+
+        }
+        private int AddressTypeParameterTranslator_GxDevelop(String  addressPacket, out String patternResult)
+        {
+            int addressRadix;
+            Int64 memoryAddress;
+            String deviceAddress = GetDeviceRadix(addressPacket, out addressRadix);
+
+            string hexformatAddress = addressPacket.Substring(2);
+
+            if (addressRadix != 0)
+            {
+                if (addressRadix == 10)
+                {
+                    if (addressPacket.Substring(0, 2) == "EC") // 소숫점
+                    {
+                        byte[] raw = new byte[hexformatAddress.Length / 2];
+                        for (int i = 0; i < raw.Length; i++)
+                        {
+                            raw[i] = Convert.ToByte(hexformatAddress.Substring(i * 2, 2), 16);
+                            raw[raw.Length - i - 1] = Convert.ToByte(hexformatAddress.Substring(i * 2, 2), 16);
+                        }
+                        float f = BitConverter.ToSingle(raw, 0);
+                        patternResult = String.Format("{0}{1:F0}", deviceAddress, f);
+                    }
+                    else if (addressPacket.Substring(0, 2) == "F0") // 비트 지정자.
+                    {
+                        memoryAddress = (Int16)UDMImportCommon.Hex2Int(hexformatAddress, true);
+                        bitPositionIndicator = String.Format("{0}{1}", deviceAddress, memoryAddress);
+                        patternResult = String.Empty;
+                    }
+                    else
+                    {
+                        if (hexformatAddress.Length > 4 || addressPacket.Substring(0, 2) == "E9")
+                        {
+                            memoryAddress = (Int32)UDMImportCommon.Hex2Int(hexformatAddress, true);
+                        }
+                        else if (hexformatAddress.Length > 4 || addressPacket.Substring(0, 2) == "B0")
+                        {
+                            memoryAddress = (Int32)UDMImportCommon.Hex2Int(hexformatAddress, true);
+                        }
+                        else
+                        {
+                            memoryAddress = (Int16)UDMImportCommon.Hex2Int(hexformatAddress, true);
+                        }
+                        patternResult = String.Format("{0}{1}", deviceAddress, memoryAddress);
+                    }
+                }
+                else if (addressRadix == 16)
+                {
+                    patternResult = String.Empty;
+
+                    if (addressPacket.Substring(0, 2) == "F2") // 비트 지정자.
+                    {
+                        memoryAddress = (Int16)UDMImportCommon.Hex2Int(hexformatAddress, true);
+                        patternResult = String.Format("{0}{1:X}", deviceAddress, memoryAddress);
+                    }
+                    else if (addressPacket.Substring(0, 2) == "F3") // 간접 지정자.
+                    {
+                        memoryAddress = (Int16)UDMImportCommon.Hex2Int(hexformatAddress, true);
+                        patternResult = String.Format("{0}", deviceAddress);
+                    }
+                    else
+                    {
+                        for (int i = hexformatAddress.Length; i > 0; i -= 2)
+                        {
+                            patternResult += hexformatAddress.Substring(i - 2, 2);
+                        }
+
+                        patternResult = ReGenHexDecimalAddress(patternResult);
+                        patternResult = String.Format("{0}{1}{2}", deviceAddress, patternResult, deviceAddress == "U" ? "\\" : "");
+                    }
+
+                }
+                else
+                {
+                    patternResult = String.Empty;
+                }
+
+                switch (addressPacket.Substring(0, 2))
+                {
+                    case "F1": // K
+                    case "F3": // @  간접지정자..
+                    case "F0": // Z... 비트위치지정자로 파라미터의 제일 끝으로 가야 한다.
+                    case "F8": // U
+                        return 0;
+                    default:
+                        return deviceAddress == "." ? 0 : 1;
+                }
+
+            }
+            else
+            {
+                patternResult = String.Empty;
+                return 0;
+            }
+        }
+
+        // 번역된 결과를 저장하기 전에 메시지를 확인하여 스탭수 증가가 필요한 경우 증가 처리 합니다.
+        // Step 수의 증가가 필요한 조건은
+        // 1. 디바이스의 간접 지정시
+        // 2. 스탭수가 증가하는 디바이스 사용시
+        // 3. 1,2의 조건이 중복되는 경우 적산됨.
+        private int IncreaseStepCount()
+        {
+            int stepCountIncrease = 0;
+            // 디바이스 간접 지정시 기본 스탭수보다 증가..
+            for (int i = 0; i < __PlcLangParameterArraySize -2; i++)
+            {
+                if (nextProgramLine.Parameters[i] != null && nextProgramLine.Parameters[i] != "") // 파라미터가 있고, @를 사용한다면 스탭수 1증가.
+                {
+                    if (nextProgramLine.Parameters[i].StartsWith("@"))
+                    {
+                        stepCountIncrease++;
+                    }
+                    else if ( nextProgramLine.Parameters[i].StartsWith("E"))
+                    {
+                        stepCountIncrease++;
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
+            return stepCountIncrease;
+        }
+
+        #endregion translator body end
+
+        #region translator output
+        private void SaveResultFile()
+        {
+            String outPutFileName = UDMImportCommon.GetFileName(plcLadderProjectPath);
+
+            if (outPutFileName.Length > 0)
+            {
+                ExportPlcProgramCSVFormat(outPutFileName + "_ladder.csv");
+            }
+        }
+        private void ExportCommentCSVFormat(string targetFileName)
+        {
+            // using (CsvFileWriter writer = new CsvFileWriter(LadderTracerCommFunc.GetFilePath(sourceFilePath) + "\\PlcLadderComment.csv"))
+            using (CsvFileWriter writer = new CsvFileWriter(targetFileName))
+            {
+                List<KeyValuePair<String, PLCDeviceComment>> plcCommentList = dicPlcComment.ToList();
+
+                CsvRow rowStart = new CsvRow();
+                rowStart.Add("Device"); rowStart.Add("Label"); rowStart.Add("Comment");
+                writer.WriteRow(rowStart);
+
+                foreach (KeyValuePair<String, PLCDeviceComment> src in plcCommentList)
+                {
+                    CsvRow row = new CsvRow();
+                    row.Add( src.Value.Address );
+                    row.Add( src.Value.Alias.TrimEnd() );
+                    row.Add( src.Value.Comment.TrimEnd() );
+                    writer.WriteRow(row);
+                }
+            }
+        }
+        private void ExportPlcProgramCSVFormat(string sourceFileName)
+        {
+            // using (CsvFileWriter writer = new CsvFileWriter(LadderTracerCommFunc.GetFilePath(sourceFilePath) + "\\" + sourceFileName + ".csv"))
+            Int64 realExcelFileLineCount = 0;
+            using (CsvFileWriter writer = new CsvFileWriter(sourceFileName))
+            {
+                foreach (PlcLadderNode src in plcLadderNodsS)
+                {
+                    CsvRow row = new CsvRow();
+
+                    src.No = (int)++realExcelFileLineCount;
+
+                    row.Add(String.Format("{0}", src.LineNo)); 
+                    if (src.PlcCommand == "Comment")
+                    {
+                        if (src.Parameters[0].Trim().Length > 0)
+                        {
+                            row.Add(src.Parameters[0]); row.Add(""); row.Add("");
+                        }
+                        else
+                        {
+                            row.Add("*"); row.Add(""); row.Add("");
+                        }
+                        row.Add(""); row.Add(""); row.Add(""); row.Add(""); row.Add("");                        
+                    }
+                    else if (src.PlcCommand == "LABEL")
+                    {
+                        row.Add("");
+                        if (src.Parameters[0] != "" && src.Parameters[0] != null)
+                        {
+                            row.Add(src.Parameters[0]);
+                        }
+                        else
+                        {
+                            row.Add("");
+                        }
+                        row.Add(""); row.Add(""); row.Add(""); row.Add(""); row.Add(""); row.Add("");
+                    }
+                    else
+                    {
+                        row.Add("");
+                        row.Add(src.PlcCommand);
+                        if (src.Parameters[0] != "" && src.Parameters[0] != null)
+                        {
+                            row.Add(src.Parameters[0]);
+                        }
+                        else
+                        {
+                            row.Add("");
+                        }
+                        row.Add(""); row.Add(""); row.Add(""); row.Add(""); row.Add("");
+                    }
+
+                    
+                    writer.WriteRow(row);
+
+                    for (int i = 1; i < __PlcLangParameterArraySize - 1; i++)
+                    {
+                        if (src.Parameters[i] != "" && src.Parameters[i] != null)
+                        {
+                            CsvRow row2 = new CsvRow();
+                            row2.Add(""); row2.Add(""); row2.Add("");
+                            row2.Add( src.Parameters[i] );
+                            row2.Add(""); row2.Add(""); row2.Add(""); row2.Add(""); row2.Add("");
+                            writer.WriteRow(row2);
+                            ++realExcelFileLineCount;
+                        }
+                    }
+                }
+                CsvRow rowEnd = new CsvRow();
+                rowEnd.Add(""); rowEnd.Add(""); rowEnd.Add(""); rowEnd.Add(""); rowEnd.Add(""); rowEnd.Add(""); rowEnd.Add(""); rowEnd.Add(""); rowEnd.Add("");
+                writer.WriteRow(rowEnd);
+            }
+        }
+        #endregion translator output end
+    }
+}

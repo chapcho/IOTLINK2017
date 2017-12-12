@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="UDM.NewCommon.CLDBlock">
+    <Position X="3" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAQCAgAQEEAAABAAAAAAAQwAAgAQQAAQAAAAA=</HashCode>
+      <FileName>CLDBlock.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="UDM.NewCommon.CCoilcs">
+    <Position X="11.75" Y="8" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAEAAAAAAA=</HashCode>
+      <FileName>CCoilcs.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="UDM.NewCommon.CContact">
+    <Position X="15" Y="8" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAEAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>CContact.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="UDM.NewCommon.CContent" BaseTypeListCollapsed="true">
+    <Position X="22" Y="2.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAgAAAAAAAAAAgAQAAQABAAICAAAAAAAAI=</HashCode>
+      <FileName>CContent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="UDM.NewCommon.CContentS" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="25" Y="4.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CContentS.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="UDM.NewCommon.CFunctionUnit">
+    <Position X="18.25" Y="8" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAACAAAAEAAAAAAAAAAAAAAAAAAAgAAQAAAAA=</HashCode>
+      <FileName>CFunctionUnit.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="UDM.NewCommon.CLDBlockS" Collapsed="true">
+    <Position X="25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CLDBlockS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UDM.NewCommon.CLDPLC">
+    <Position X="0.5" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAQCAAAgAACQAAAAAAQACAEAAAAAAAAACAAAQ=</HashCode>
+      <FileName>CLDPLC.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="UDM.NewCommon.CLDRoutine" Collapsed="true">
+    <Position X="6.25" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAgIAAAAAAkAgAAAABAAAAgBAAAAAAAAAA=</HashCode>
+      <FileName>CLDRoutine.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="UDM.NewCommon.CLDRoutineS" Collapsed="true">
+    <Position X="25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CLDRoutineS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UDM.NewCommon.CLogicUnit">
+    <Position X="11.75" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAACAAAIIAAAAEAAAAgIoIAAIAAAAIAABAIAA=</HashCode>
+      <FileName>CLogicUnit.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="UDM.NewCommon.CLogicUnitS" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CLogicUnitS.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="UDM.NewCommon.CObject">
+    <Position X="4.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAACAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="UDM.NewCommon.CRefKeyS&lt;T&gt;" Collapsed="true">
+    <Position X="0.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAcAAEAAAACACABASAAAAAAAAACAAAAAhAACA=</HashCode>
+      <FileName>CRefKeyS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UDM.NewCommon.CRefTagS" Collapsed="true">
+    <Position X="5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAggAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAE=</HashCode>
+      <FileName>CRefTagS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UDM.NewCommon.CStep" Collapsed="true">
+    <Position X="8.25" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>CAQAAAAAECAAAAiAAAgAAQQAAAIAAAAGAAAAAAAgBAA=</HashCode>
+      <FileName>CStep.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="UDM.NewCommon.CStepS" Collapsed="true">
+    <Position X="25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CStepS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UDM.NewCommon.CTag" Collapsed="true">
+    <Position X="2.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAgACIggAIggAAAEATAAEAAICAiAIAAAQACABA=</HashCode>
+      <FileName>CTag.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="UDM.NewCommon.CTagS" Collapsed="true">
+    <Position X="25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CTagS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UDM.NewCommon.CTagStepRole" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAICAAAAAAAgAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CTagStepRole.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="UDM.NewCommon.CTagStepRoleS" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAEAACAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CTagStepRoleS.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="UDM.NewCommon.CLDModule">
+    <Position X="7" Y="8.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>QAAIAAAAACAAAAAAAAAAYAAAQAAAAAACAAAAAAAAGAA=</HashCode>
+      <FileName>CLDModule.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Enum Name="UDM.NewCommon.EMArgumentType">
+    <Position X="8.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAQAAAAAAAAAAAAgAAAAAAIEAAAA=</HashCode>
+      <FileName>Enumeration\EMArugumentType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="UDM.NewCommon.EMBlockType" Collapsed="true">
+    <Position X="12.5" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAIAAAAAAAQIAACBAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enumeration\EMBlockType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="UDM.NewCommon.EMCoilType" Collapsed="true">
+    <Position X="14.25" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAIEAAAAACAAAAAAAAQAAAAAQACAAAAEUAAA=</HashCode>
+      <FileName>Enumeration\EMCoilType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="UDM.NewCommon.EMContactType" Collapsed="true">
+    <Position X="12.5" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAgIAAAAAAAAAAABAAAEAAAA=</HashCode>
+      <FileName>Enumeration\EMContactType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="UDM.NewCommon.EMDataType" Collapsed="true">
+    <Position X="12.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAEEAAQEAAAAAAAgQIIQACAABYAAACERAAAAIAEEASA=</HashCode>
+      <FileName>Enumeration\EMDataType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="UDM.NewCommon.EMFunctionParaType" Collapsed="true">
+    <Position X="14.25" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAgAAAAAAAAAEAAAAEAAAA=</HashCode>
+      <FileName>Enumeration\EMFunctionParaType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="UDM.NewCommon.EMLogicUnitType">
+    <Position X="7" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAEAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enumeration\EMLogicUnitType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="UDM.NewCommon.EMStepRoleType" Collapsed="true">
+    <Position X="14.25" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACgAAEAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Enumeration\EMStepRoleType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="UDM.NewCommon.Enumeration.EMPLCMaker" Collapsed="true">
+    <Position X="12.5" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABCACAAAAAIAAAAAAAAAAIAAAAAAgAAAAAAAAAgAA=</HashCode>
+      <FileName>Enumeration\EMPLCMaker.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

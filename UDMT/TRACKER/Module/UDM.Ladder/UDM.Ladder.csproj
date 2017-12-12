@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CD8C4636-ABB7-4288-BE2D-3A43C9A5B594}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UDM.Ladder</RootNamespace>
+    <AssemblyName>UDM.Ladder</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CUSTOM_PAJU</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CUSTOM_PAJU</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v15.1, Version=15.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UDM.General">
+      <HintPath>..\..\..\Converter Module\bin\UDM.General.dll</HintPath>
+    </Reference>
+    <Reference Include="UDM.Log, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\UDM.Log.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="General\CBezier.cs" />
+    <Compile Include="General\CBezierS.cs" />
+    <Compile Include="General\CCanvasItem.cs" />
+    <Compile Include="General\CEdge.cs" />
+    <Compile Include="General\CEdgeS.cs" />
+    <Compile Include="General\CPolygon.cs" />
+    <Compile Include="General\CPolygonS.cs" />
+    <Compile Include="General\CText.cs" />
+    <Compile Include="General\CTextS.cs" />
+    <Compile Include="General\CVertex.cs" />
+    <Compile Include="General\CVertexS.cs" />
+    <Compile Include="General\ICanvasItem.cs" />
+    <Compile Include="General\ICanvasItemEntity.cs" />
+    <Compile Include="Ladder\Contact\Common\CCommonContactLogicalAFI.cs" />
+    <Compile Include="Ladder\Contact\Siemens\SiemensContactFunctionBlock.cs" />
+    <Compile Include="Ladder\FunctionBlock\Common\CFBCommon.cs" />
+    <Compile Include="Ladder\ILadderItemFB.cs" />
+    <Compile Include="Ladder\CLadderBrand.cs" />
+    <Compile Include="Ladder\CLadderCell.cs" />
+    <Compile Include="Ladder\CLadderCellConnector.cs" />
+    <Compile Include="Ladder\CLadderCellData.cs" />
+    <Compile Include="Ladder\CLadderHelper.cs" />
+    <Compile Include="Ladder\CLadderItem.cs" />
+    <Compile Include="Ladder\CLadderStep.cs" />
+    <Compile Include="Ladder\CMisc.cs" />
+    <Compile Include="Ladder\Coil\AB\ABCoil.cs" />
+    <Compile Include="Ladder\Coil\AB\ABCoilNormal.cs" />
+    <Compile Include="Ladder\Coil\AB\ABCoilOutputLatch.cs" />
+    <Compile Include="Ladder\Coil\AB\ABCoilOutputUnLatch.cs" />
+    <Compile Include="Ladder\Coil\MELSEC\MELSECCoil.cs" />
+    <Compile Include="Ladder\Coil\MELSEC\MELSECCoilNormal.cs" />
+    <Compile Include="Ladder\Coil\Common\CommonCoil.cs" />
+    <Compile Include="Ladder\Coil\MELSEC\MELSECCoilSpecial.cs" />
+    <Compile Include="Ladder\Coil\MELSEC\MELSECCoilEmpty.cs" />
+    <Compile Include="Ladder\Coil\MELSEC\MELSECCoilReset.cs" />
+    <Compile Include="Ladder\Coil\MELSEC\MELSECCoilSet.cs" />
+    <Compile Include="Ladder\Contact\AB\ABContact.cs" />
+    <Compile Include="Ladder\Contact\AB\ABContactClose.cs" />
+    <Compile Include="Ladder\Contact\AB\ABContactOns.cs" />
+    <Compile Include="Ladder\Contact\AB\ABContactOpen.cs" />
+    <Compile Include="Ladder\Contact\CContactNone.cs" />
+    <Compile Include="Ladder\Contact\Common\CCommonContactFB.cs" />
+    <Compile Include="Ladder\Contact\Common\CommonContact.cs" />
+    <Compile Include="Ladder\FunctionBlock\Common\CommonFuntionBlock.cs" />
+    <Compile Include="Ladder\Contact\MELSEC\MELSECContactLogicalEGP.cs" />
+    <Compile Include="Ladder\Contact\MELSEC\MELSECContactLogicalEGF.cs" />
+    <Compile Include="Ladder\Contact\MELSEC\MELSECContactLogicalMEF.cs" />
+    <Compile Include="Ladder\Contact\MELSEC\MELSECContactLogicalMEP.cs" />
+    <Compile Include="Ladder\Contact\MELSEC\MELSECContactLogicalINV.cs" />
+    <Compile Include="Ladder\Contact\MELSEC\MELSECContact.cs" />
+    <Compile Include="Ladder\Contact\MELSEC\MELSECContactClose.cs" />
+    <Compile Include="Ladder\Contact\MELSEC\MELSECContactCompare.cs" />
+    <Compile Include="Ladder\Contact\MELSEC\MELSECContactOpen.cs" />
+    <Compile Include="Ladder\Contact\MELSEC\MELSECContactPulseOffClose.cs" />
+    <Compile Include="Ladder\Contact\MELSEC\MELSECContactPulseOffOpen.cs" />
+    <Compile Include="Ladder\Contact\MELSEC\MELSECContactPulseOnClose.cs" />
+    <Compile Include="Ladder\Contact\MELSEC\MELSECContactPulseOnOpen.cs" />
+    <Compile Include="Ladder\CValidatorMultiple.cs" />
+    <Compile Include="Ladder\CValidatorSingle.cs" />
+    <Compile Include="Ladder\Form\FrmLadderDiagram.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ladder\Form\FrmLadderDiagram.designer.cs">
+      <DependentUpon>FrmLadderDiagram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ladder\Form\FrmLadderValidationMultiple.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ladder\Form\FrmLadderValidationMultiple.designer.cs">
+      <DependentUpon>FrmLadderValidationMultiple.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ladder\Form\FrmLadderValidationSingle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ladder\Form\FrmLadderValidationSingle.designer.cs">
+      <DependentUpon>FrmLadderValidationSingle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ladder\ILadderItemCoil.cs" />
+    <Compile Include="Ladder\ILadderItemContact.cs" />
+    <Compile Include="Ladder\UCCanvas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ladder\UCCanvas.designer.cs">
+      <DependentUpon>UCCanvas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ladder\UCLadderStep.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ladder\UCLadderStep.designer.cs">
+      <DependentUpon>UCLadderStep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ladder\Form\FrmLadderDiagram.resx">
+      <DependentUpon>FrmLadderDiagram.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ladder\Form\FrmLadderValidationMultiple.resx">
+      <DependentUpon>FrmLadderValidationMultiple.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ladder\Form\FrmLadderValidationSingle.resx">
+      <DependentUpon>FrmLadderValidationSingle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ladder\UCCanvas.resx">
+      <DependentUpon>UCCanvas.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ladder\UCLadderStep.resx">
+      <DependentUpon>UCLadderStep.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\TrackerModule\TrackerSPD\TrackerSPD.csproj">
+      <Project>{55267b2d-ae23-4917-b4e8-4f18870f251a}</Project>
+      <Name>TrackerSPD</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UDM.Common\UDM.Common.csproj">
+      <Project>{2b0d80eb-6675-423b-9297-5788b4baa631}</Project>
+      <Name>UDM.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

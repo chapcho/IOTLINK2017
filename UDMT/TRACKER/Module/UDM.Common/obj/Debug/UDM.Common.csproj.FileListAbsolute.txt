@@ -1,0 +1,5 @@
+D:\UDMTEK\SRC\Optra\bin\UDM.Common.dll
+D:\UDMTEK\SRC\Optra\bin\UDM.Common.pdb
+D:\UDMTEK\SRC\Optra\Module\UDM.Common\obj\Debug\UDM.Common.dll
+D:\UDMTEK\SRC\Optra\Module\UDM.Common\obj\Debug\UDM.Common.pdb
+D:\UDMTEK\SRC\Optra\Module\UDM.Common\obj\Debug\UDM.Common.csprojResolveAssemblyReference.cache

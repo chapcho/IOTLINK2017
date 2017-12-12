@@ -1,0 +1,10 @@
+D:\UDMTEK\SRC\Optra\Module\UDM.LogicViewer\obj\Debug\UDM.LogicViewer.csprojResolveAssemblyReference.cache
+D:\UDMTEK\SRC\Optra\Module\UDM.LogicViewer\obj\Debug\UDM.LogicViewer.FrmMessage.resources
+D:\UDMTEK\SRC\Optra\Module\UDM.LogicViewer\obj\Debug\UDM.LogicViewer.Properties.Resources.resources
+D:\UDMTEK\SRC\Optra\Module\UDM.LogicViewer\obj\Debug\UDM.LogicViewer.UCLogicDiagram.resources
+D:\UDMTEK\SRC\Optra\Module\UDM.LogicViewer\obj\Debug\UDM.LogicViewer.UCLogicDiagramS.resources
+D:\UDMTEK\SRC\Optra\Module\UDM.LogicViewer\obj\Debug\UDM.LogicViewer.csproj.GenerateResource.Cache
+D:\UDMTEK\SRC\Optra\bin\UDM.LogicViewer.dll
+D:\UDMTEK\SRC\Optra\bin\UDM.LogicViewer.pdb
+D:\UDMTEK\SRC\Optra\Module\UDM.LogicViewer\obj\Debug\UDM.LogicViewer.dll
+D:\UDMTEK\SRC\Optra\Module\UDM.LogicViewer\obj\Debug\UDM.LogicViewer.pdb

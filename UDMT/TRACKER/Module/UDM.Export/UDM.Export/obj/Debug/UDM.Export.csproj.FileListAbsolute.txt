@@ -1,0 +1,5 @@
+D:\UDMTEK\SRC\Optra\bin\UDM.Export.dll
+D:\UDMTEK\SRC\Optra\bin\UDM.Export.pdb
+D:\UDMTEK\SRC\Optra\Module\UDM.Export\UDM.Export\obj\Debug\UDM.Export.dll
+D:\UDMTEK\SRC\Optra\Module\UDM.Export\UDM.Export\obj\Debug\UDM.Export.pdb
+D:\UDMTEK\SRC\Optra\Module\UDM.Export\UDM.Export\obj\Debug\UDM.Export.csprojResolveAssemblyReference.cache
