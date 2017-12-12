@@ -71,11 +71,8 @@
             this.menuServerConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.mainTabControl = new System.Windows.Forms.TabControl();
-            this.tabMonitoring = new System.Windows.Forms.TabPage();
-            this.tabConfig = new System.Windows.Forms.TabPage();
-            this.tabLogConfig = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.tabIotlCompSvr = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabDatabase = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.txtQueryString = new System.Windows.Forms.TextBox();
@@ -84,10 +81,13 @@
             this.tvIotlTable = new System.Windows.Forms.TreeView();
             this.tabSocketServer = new System.Windows.Forms.TabPage();
             this.ucSocketServer1 = new IOTL.Common.UserControls.UCSocketServer();
-            this.ucClock1 = new IOTLManager.UserControls.UCClock();
-            this.tabIotlCompSvr = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tabMonitoring = new System.Windows.Forms.TabPage();
+            this.tabConfig = new System.Windows.Forms.TabPage();
+            this.tabLogConfig = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.ucCompressorDataManager1 = new IOTLManager.UserControls.UCCompressorDataManager();
+            this.ucClock1 = new IOTLManager.UserControls.UCClock();
             this.ucSystemLogTable = new IOTLManager.UserControls.UCSystemLogTable();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -96,7 +96,8 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.mainTabControl.SuspendLayout();
-            this.tabLogConfig.SuspendLayout();
+            this.tabIotlCompSvr.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.tabDatabase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -105,8 +106,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridReport)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.tabSocketServer.SuspendLayout();
-            this.tabIotlCompSvr.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.tabLogConfig.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -458,6 +458,139 @@
             this.mainTabControl.Size = new System.Drawing.Size(1032, 399);
             this.mainTabControl.TabIndex = 2;
             // 
+            // tabIotlCompSvr
+            // 
+            this.tabIotlCompSvr.AutoScroll = true;
+            this.tabIotlCompSvr.Controls.Add(this.groupBox1);
+            this.tabIotlCompSvr.Location = new System.Drawing.Point(4, 22);
+            this.tabIotlCompSvr.Name = "tabIotlCompSvr";
+            this.tabIotlCompSvr.Padding = new System.Windows.Forms.Padding(3);
+            this.tabIotlCompSvr.Size = new System.Drawing.Size(1024, 373);
+            this.tabIotlCompSvr.TabIndex = 5;
+            this.tabIotlCompSvr.Text = "Compressor Data Manager";
+            this.tabIotlCompSvr.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.ucCompressorDataManager1);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1001, 409);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Compressor Data Manager";
+            // 
+            // tabDatabase
+            // 
+            this.tabDatabase.Controls.Add(this.splitContainer1);
+            this.tabDatabase.Location = new System.Drawing.Point(4, 22);
+            this.tabDatabase.Name = "tabDatabase";
+            this.tabDatabase.Size = new System.Drawing.Size(1024, 373);
+            this.tabDatabase.TabIndex = 3;
+            this.tabDatabase.Text = "DataBase Viewer";
+            this.tabDatabase.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.txtQueryString);
+            this.splitContainer1.Panel1.Controls.Add(this.dataGridReport);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel2);
+            this.splitContainer1.Size = new System.Drawing.Size(1024, 412);
+            this.splitContainer1.SplitterDistance = 607;
+            this.splitContainer1.TabIndex = 4;
+            // 
+            // txtQueryString
+            // 
+            this.txtQueryString.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.txtQueryString.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtQueryString.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtQueryString.Location = new System.Drawing.Point(0, 0);
+            this.txtQueryString.Name = "txtQueryString";
+            this.txtQueryString.ReadOnly = true;
+            this.txtQueryString.Size = new System.Drawing.Size(607, 22);
+            this.txtQueryString.TabIndex = 1;
+            // 
+            // dataGridReport
+            // 
+            this.dataGridReport.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dataGridReport.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dataGridReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridReport.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dataGridReport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridReport.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridReport.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.dataGridReport.Location = new System.Drawing.Point(0, 0);
+            this.dataGridReport.MultiSelect = false;
+            this.dataGridReport.Name = "dataGridReport";
+            this.dataGridReport.RowTemplate.Height = 23;
+            this.dataGridReport.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridReport.Size = new System.Drawing.Size(607, 412);
+            this.dataGridReport.TabIndex = 0;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.3632F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.6368F));
+            this.tableLayoutPanel2.Controls.Add(this.tvIotlTable, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 4;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(413, 412);
+            this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // tvIotlTable
+            // 
+            this.tableLayoutPanel2.SetColumnSpan(this.tvIotlTable, 2);
+            this.tvIotlTable.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tvIotlTable.Location = new System.Drawing.Point(3, 3);
+            this.tvIotlTable.Name = "tvIotlTable";
+            this.tableLayoutPanel2.SetRowSpan(this.tvIotlTable, 3);
+            this.tvIotlTable.Size = new System.Drawing.Size(407, 144);
+            this.tvIotlTable.TabIndex = 4;
+            this.tvIotlTable.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvIotlTable_AfterSelect);
+            this.tvIotlTable.DoubleClick += new System.EventHandler(this.tvIotlTable_DoubleClick);
+            // 
+            // tabSocketServer
+            // 
+            this.tabSocketServer.Controls.Add(this.ucSocketServer1);
+            this.tabSocketServer.Controls.Add(this.ucClock1);
+            this.tabSocketServer.Location = new System.Drawing.Point(4, 22);
+            this.tabSocketServer.Name = "tabSocketServer";
+            this.tabSocketServer.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSocketServer.Size = new System.Drawing.Size(1024, 373);
+            this.tabSocketServer.TabIndex = 4;
+            this.tabSocketServer.Text = "SocketServer(Chat)";
+            this.tabSocketServer.UseVisualStyleBackColor = true;
+            // 
+            // ucSocketServer1
+            // 
+            this.ucSocketServer1.BackColor = System.Drawing.Color.Aquamarine;
+            this.ucSocketServer1.ConnectedClientCount = 0;
+            this.ucSocketServer1.Location = new System.Drawing.Point(286, 16);
+            this.ucSocketServer1.Name = "ucSocketServer1";
+            this.ucSocketServer1.ReceivedPacketCount = 0;
+            this.ucSocketServer1.SendPacketCount = 0;
+            this.ucSocketServer1.ServerCaption = "TCP Socket Server";
+            this.ucSocketServer1.Size = new System.Drawing.Size(542, 272);
+            this.ucSocketServer1.SocketServerIsStarted = false;
+            this.ucSocketServer1.TabIndex = 7;
+            // 
             // tabMonitoring
             // 
             this.tabMonitoring.Location = new System.Drawing.Point(4, 22);
@@ -509,147 +642,6 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // tabDatabase
-            // 
-            this.tabDatabase.Controls.Add(this.splitContainer1);
-            this.tabDatabase.Location = new System.Drawing.Point(4, 22);
-            this.tabDatabase.Name = "tabDatabase";
-            this.tabDatabase.Size = new System.Drawing.Size(1024, 373);
-            this.tabDatabase.TabIndex = 3;
-            this.tabDatabase.Text = "DataBase";
-            this.tabDatabase.UseVisualStyleBackColor = true;
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.txtQueryString);
-            this.splitContainer1.Panel1.Controls.Add(this.dataGridReport);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel2);
-            this.splitContainer1.Size = new System.Drawing.Size(1024, 412);
-            this.splitContainer1.SplitterDistance = 607;
-            this.splitContainer1.TabIndex = 4;
-            // 
-            // txtQueryString
-            // 
-            this.txtQueryString.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.txtQueryString.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtQueryString.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtQueryString.Location = new System.Drawing.Point(0, 0);
-            this.txtQueryString.Name = "txtQueryString";
-            this.txtQueryString.ReadOnly = true;
-            this.txtQueryString.Size = new System.Drawing.Size(607, 22);
-            this.txtQueryString.TabIndex = 1;
-            // 
-            // dataGridReport
-            // 
-            this.dataGridReport.AllowUserToAddRows = false;
-            this.dataGridReport.AllowUserToDeleteRows = false;
-            this.dataGridReport.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dataGridReport.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            this.dataGridReport.ColumnHeadersHeight = 20;
-            this.dataGridReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dataGridReport.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridReport.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridReport.Location = new System.Drawing.Point(0, 0);
-            this.dataGridReport.Name = "dataGridReport";
-            this.dataGridReport.ReadOnly = true;
-            this.dataGridReport.RowTemplate.Height = 23;
-            this.dataGridReport.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridReport.Size = new System.Drawing.Size(607, 412);
-            this.dataGridReport.TabIndex = 0;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.3632F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.6368F));
-            this.tableLayoutPanel2.Controls.Add(this.tvIotlTable, 0, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 4;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(413, 412);
-            this.tableLayoutPanel2.TabIndex = 0;
-            // 
-            // tvIotlTable
-            // 
-            this.tableLayoutPanel2.SetColumnSpan(this.tvIotlTable, 2);
-            this.tvIotlTable.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tvIotlTable.Location = new System.Drawing.Point(3, 3);
-            this.tvIotlTable.Name = "tvIotlTable";
-            this.tableLayoutPanel2.SetRowSpan(this.tvIotlTable, 3);
-            this.tvIotlTable.Size = new System.Drawing.Size(407, 144);
-            this.tvIotlTable.TabIndex = 4;
-            this.tvIotlTable.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvIotlTable_AfterSelect);
-            this.tvIotlTable.DoubleClick += new System.EventHandler(this.tvIotlTable_DoubleClick);
-            // 
-            // tabSocketServer
-            // 
-            this.tabSocketServer.Controls.Add(this.ucSocketServer1);
-            this.tabSocketServer.Controls.Add(this.ucClock1);
-            this.tabSocketServer.Location = new System.Drawing.Point(4, 22);
-            this.tabSocketServer.Name = "tabSocketServer";
-            this.tabSocketServer.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSocketServer.Size = new System.Drawing.Size(1024, 373);
-            this.tabSocketServer.TabIndex = 4;
-            this.tabSocketServer.Text = "SocketServer";
-            this.tabSocketServer.UseVisualStyleBackColor = true;
-            // 
-            // ucSocketServer1
-            // 
-            this.ucSocketServer1.BackColor = System.Drawing.Color.Aquamarine;
-            this.ucSocketServer1.ConnectedClientCount = 0;
-            this.ucSocketServer1.Location = new System.Drawing.Point(286, 16);
-            this.ucSocketServer1.Name = "ucSocketServer1";
-            this.ucSocketServer1.ReceivedPacketCount = 0;
-            this.ucSocketServer1.SendPacketCount = 0;
-            this.ucSocketServer1.ServerCaption = "TCP Socket Server";
-            this.ucSocketServer1.Size = new System.Drawing.Size(542, 272);
-            this.ucSocketServer1.SocketServerIsStarted = false;
-            this.ucSocketServer1.TabIndex = 7;
-            // 
-            // ucClock1
-            // 
-            this.ucClock1.Location = new System.Drawing.Point(8, 6);
-            this.ucClock1.Name = "ucClock1";
-            this.ucClock1.Size = new System.Drawing.Size(272, 79);
-            this.ucClock1.TabIndex = 6;
-            // 
-            // tabIotlCompSvr
-            // 
-            this.tabIotlCompSvr.AutoScroll = true;
-            this.tabIotlCompSvr.Controls.Add(this.groupBox1);
-            this.tabIotlCompSvr.Location = new System.Drawing.Point(4, 22);
-            this.tabIotlCompSvr.Name = "tabIotlCompSvr";
-            this.tabIotlCompSvr.Padding = new System.Windows.Forms.Padding(3);
-            this.tabIotlCompSvr.Size = new System.Drawing.Size(1024, 373);
-            this.tabIotlCompSvr.TabIndex = 5;
-            this.tabIotlCompSvr.Text = "Compressor Data Manager";
-            this.tabIotlCompSvr.UseVisualStyleBackColor = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.ucCompressorDataManager1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1001, 409);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Compressor Data Manager";
-            // 
             // ucCompressorDataManager1
             // 
             this.ucCompressorDataManager1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -659,6 +651,13 @@
             this.ucCompressorDataManager1.Name = "ucCompressorDataManager1";
             this.ucCompressorDataManager1.Size = new System.Drawing.Size(738, 389);
             this.ucCompressorDataManager1.TabIndex = 0;
+            // 
+            // ucClock1
+            // 
+            this.ucClock1.Location = new System.Drawing.Point(8, 6);
+            this.ucClock1.Name = "ucClock1";
+            this.ucClock1.Size = new System.Drawing.Size(272, 79);
+            this.ucClock1.TabIndex = 6;
             // 
             // ucSystemLogTable
             // 
@@ -690,7 +689,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.mainTabControl.ResumeLayout(false);
-            this.tabLogConfig.ResumeLayout(false);
+            this.tabIotlCompSvr.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.tabDatabase.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
@@ -700,8 +700,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridReport)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tabSocketServer.ResumeLayout(false);
-            this.tabIotlCompSvr.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
+            this.tabLogConfig.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

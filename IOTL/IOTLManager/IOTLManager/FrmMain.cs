@@ -207,7 +207,6 @@ namespace IOTLManager
 
             try
             {
-
                 MySqlLogWriter cLogWriter = new MySqlLogWriter();
                 bOK = cLogWriter.CreateDB();
 
@@ -321,12 +320,15 @@ namespace IOTLManager
         {
             try
             {
-                dataGridReport.Columns.Clear();
-
-                dataGridReport.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
+                
                 DataTable dt = DBReader.GetQueryResult(sqlQuery);
+                dataGridReport.Columns.Clear();
+                // DisplayColumnHeaders(dt.Columns);
+                dataGridReport.ColumnHeadersVisible = true;
+
                 dataGridReport.DataSource = dt;
+                // dataGridReport.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
 
                 txtQueryString.Text = sqlQuery;
             }
@@ -334,6 +336,14 @@ namespace IOTLManager
             {
                 Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name); ex.Data.Clear();
                 UpdateSystemMessage("Main", "데이터 표시에 문제가 있습니다.");
+            }
+        }
+
+        private void DisplayColumnHeaders(DataColumnCollection columns)
+        {
+            foreach(DataColumn col in columns)
+            {
+                dataGridReport.Columns.Add(col.ColumnName, col.Caption);
             }
         }
 
