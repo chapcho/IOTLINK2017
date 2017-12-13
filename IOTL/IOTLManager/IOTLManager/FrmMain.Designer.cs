@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
-            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.파일ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,8 +76,6 @@
             this.tabDatabase = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.txtQueryString = new System.Windows.Forms.TextBox();
-            this.dataGridReport = new System.Windows.Forms.DataGridView();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tvIotlTable = new System.Windows.Forms.TreeView();
             this.tabSocketServer = new System.Windows.Forms.TabPage();
             this.ucSocketServer1 = new IOTL.Common.UserControls.UCSocketServer();
@@ -86,9 +84,12 @@
             this.tabLogConfig = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.timerTimeRefresh = new System.Windows.Forms.Timer(this.components);
             this.ucCompressorDataManager1 = new IOTLManager.UserControls.UCCompressorDataManager();
             this.ucClock1 = new IOTLManager.UserControls.UCClock();
             this.ucSystemLogTable = new IOTLManager.UserControls.UCSystemLogTable();
+            this.dataGridReport = new System.Windows.Forms.DataGridView();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -103,18 +104,17 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridReport)).BeginInit();
-            this.tableLayoutPanel2.SuspendLayout();
             this.tabSocketServer.SuspendLayout();
             this.tabLogConfig.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridReport)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripProgressBar1,
-            this.toolStripSplitButton1,
-            this.toolStripStatusLabel1});
+            this.toolStripStatusLabel1,
+            this.toolStripProgressBar1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 606);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1032, 22);
@@ -125,15 +125,6 @@
             // 
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
             this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
-            // 
-            // toolStripSplitButton1
-            // 
-            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
-            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(32, 20);
-            this.toolStripSplitButton1.Text = "toolStripSplitButton1";
             // 
             // toolStripStatusLabel1
             // 
@@ -440,7 +431,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.ucSystemLogTable);
             this.splitContainer2.Size = new System.Drawing.Size(1032, 582);
-            this.splitContainer2.SplitterDistance = 399;
+            this.splitContainer2.SplitterDistance = 435;
             this.splitContainer2.TabIndex = 5;
             // 
             // mainTabControl
@@ -455,7 +446,7 @@
             this.mainTabControl.Location = new System.Drawing.Point(0, 0);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(1032, 399);
+            this.mainTabControl.Size = new System.Drawing.Size(1032, 435);
             this.mainTabControl.TabIndex = 2;
             // 
             // tabIotlCompSvr
@@ -486,7 +477,7 @@
             this.tabDatabase.Controls.Add(this.splitContainer1);
             this.tabDatabase.Location = new System.Drawing.Point(4, 22);
             this.tabDatabase.Name = "tabDatabase";
-            this.tabDatabase.Size = new System.Drawing.Size(1024, 373);
+            this.tabDatabase.Size = new System.Drawing.Size(1024, 409);
             this.tabDatabase.TabIndex = 3;
             this.tabDatabase.Text = "DataBase Viewer";
             this.tabDatabase.UseVisualStyleBackColor = true;
@@ -499,12 +490,12 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.groupBox2);
             this.splitContainer1.Panel1.Controls.Add(this.txtQueryString);
-            this.splitContainer1.Panel1.Controls.Add(this.dataGridReport);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel2);
+            this.splitContainer1.Panel2.Controls.Add(this.tvIotlTable);
             this.splitContainer1.Size = new System.Drawing.Size(1024, 412);
             this.splitContainer1.SplitterDistance = 607;
             this.splitContainer1.TabIndex = 4;
@@ -520,48 +511,15 @@
             this.txtQueryString.Size = new System.Drawing.Size(607, 22);
             this.txtQueryString.TabIndex = 1;
             // 
-            // dataGridReport
-            // 
-            this.dataGridReport.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dataGridReport.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dataGridReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridReport.Cursor = System.Windows.Forms.Cursors.Default;
-            this.dataGridReport.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridReport.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridReport.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dataGridReport.Location = new System.Drawing.Point(0, 0);
-            this.dataGridReport.MultiSelect = false;
-            this.dataGridReport.Name = "dataGridReport";
-            this.dataGridReport.RowTemplate.Height = 23;
-            this.dataGridReport.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridReport.Size = new System.Drawing.Size(607, 412);
-            this.dataGridReport.TabIndex = 0;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.3632F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.6368F));
-            this.tableLayoutPanel2.Controls.Add(this.tvIotlTable, 0, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 4;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(413, 412);
-            this.tableLayoutPanel2.TabIndex = 0;
-            // 
             // tvIotlTable
             // 
-            this.tableLayoutPanel2.SetColumnSpan(this.tvIotlTable, 2);
+            this.tvIotlTable.BackColor = System.Drawing.SystemColors.Info;
+            this.tvIotlTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tvIotlTable.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tvIotlTable.Location = new System.Drawing.Point(3, 3);
+            this.tvIotlTable.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.tvIotlTable.Location = new System.Drawing.Point(0, 0);
             this.tvIotlTable.Name = "tvIotlTable";
-            this.tableLayoutPanel2.SetRowSpan(this.tvIotlTable, 3);
-            this.tvIotlTable.Size = new System.Drawing.Size(407, 144);
+            this.tvIotlTable.Size = new System.Drawing.Size(413, 412);
             this.tvIotlTable.TabIndex = 4;
             this.tvIotlTable.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvIotlTable_AfterSelect);
             this.tvIotlTable.DoubleClick += new System.EventHandler(this.tvIotlTable_DoubleClick);
@@ -642,6 +600,12 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // timerTimeRefresh
+            // 
+            this.timerTimeRefresh.Enabled = true;
+            this.timerTimeRefresh.Interval = 1000;
+            this.timerTimeRefresh.Tick += new System.EventHandler(this.timerTimeRefresh_Tick);
+            // 
             // ucCompressorDataManager1
             // 
             this.ucCompressorDataManager1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -664,8 +628,31 @@
             this.ucSystemLogTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucSystemLogTable.Location = new System.Drawing.Point(0, 0);
             this.ucSystemLogTable.Name = "ucSystemLogTable";
-            this.ucSystemLogTable.Size = new System.Drawing.Size(1032, 179);
+            this.ucSystemLogTable.Size = new System.Drawing.Size(1032, 143);
             this.ucSystemLogTable.TabIndex = 4;
+            // 
+            // dataGridReport
+            // 
+            this.dataGridReport.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dataGridReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridReport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridReport.GridColor = System.Drawing.SystemColors.ControlLight;
+            this.dataGridReport.Location = new System.Drawing.Point(3, 17);
+            this.dataGridReport.Name = "dataGridReport";
+            this.dataGridReport.RowTemplate.Height = 23;
+            this.dataGridReport.Size = new System.Drawing.Size(601, 370);
+            this.dataGridReport.TabIndex = 2;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.dataGridReport);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(0, 22);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(607, 390);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Query Result";
             // 
             // FrmMain
             // 
@@ -697,10 +684,10 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridReport)).EndInit();
-            this.tableLayoutPanel2.ResumeLayout(false);
             this.tabSocketServer.ResumeLayout(false);
             this.tabLogConfig.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridReport)).EndInit();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -710,7 +697,6 @@
 
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
-        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 파일ToolStripMenuItem;
@@ -760,13 +746,14 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TabPage tabIotlCompSvr;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dataGridReport;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TreeView tvIotlTable;
         private IOTL.Common.UserControls.UCSocketServer ucSocketServer1;
         private UserControls.UCCompressorDataManager ucCompressorDataManager1;
         public System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.TextBox txtQueryString;
+        private System.Windows.Forms.Timer timerTimeRefresh;
+        private System.Windows.Forms.DataGridView dataGridReport;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

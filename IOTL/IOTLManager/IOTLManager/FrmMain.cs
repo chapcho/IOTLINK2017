@@ -320,17 +320,24 @@ namespace IOTLManager
         {
             try
             {
-                
+
+                ToolStripPrograss(0);
+
                 DataTable dt = DBReader.GetQueryResult(sqlQuery);
+                ToolStripPrograss(50);
                 dataGridReport.Columns.Clear();
                 // DisplayColumnHeaders(dt.Columns);
                 dataGridReport.ColumnHeadersVisible = true;
 
                 dataGridReport.DataSource = dt;
+                ToolStripPrograss(100);
                 // dataGridReport.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
+                dataGridReport.ColumnHeadersVisible = true;
 
-                txtQueryString.Text = sqlQuery;
+
+
+                txtQueryString.Text = "[Query] " + sqlQuery;
             }
             catch (Exception ex)
             {
@@ -415,6 +422,25 @@ namespace IOTLManager
             {
                 Console.WriteLine("parrent : " + tvIotlTable.SelectedNode.Parent.Text);
             }
+        }
+
+        delegate void ToolStripPrograssDelegate(int value);
+        private void ToolStripPrograss(int value)
+        {
+            if (this.InvokeRequired)
+            {
+                ToolStripPrograssDelegate del = new ToolStripPrograssDelegate(ToolStripPrograss);
+                this.Invoke(del, new object[] { value });
+            }
+            else
+            {
+                toolStripProgressBar1.Value = value; // Your thingy with the progress bar..
+            }
+        }
+
+        private void timerTimeRefresh_Tick(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
         }
     }
 }
