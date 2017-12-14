@@ -27,6 +27,8 @@ namespace IOTLManager.UserControls
         public UCCompressorDataManager()
         {
             InitializeComponent();
+
+            btnStartStop.BackColor = Color.WhiteSmoke;
         }
 
 
@@ -65,6 +67,10 @@ namespace IOTLManager.UserControls
                     }
                 }
             }
+            else
+            {
+                return;
+            }
 
             // UserControl에서 Form에 보내는 메시지
             ucSocketServer1.UEventMessage += UpdateSystemMessage;
@@ -94,6 +100,8 @@ namespace IOTLManager.UserControls
             {
                 InitCompressorDataManager();
                 btnStartStop.Text = "Monitor Stop";
+                btnStartStop.BackColor = Color.GreenYellow;
+                btnStartStop.Refresh();
             }
             else
             {
@@ -118,11 +126,15 @@ namespace IOTLManager.UserControls
                 if (DBReader != null)
                 {
                     DBReader.Disconnect();
-                    DBReader.Dispose();
-                    DBReader = null;
                 }
 
                 btnStartStop.Text = "Monitor Start";
+
+                btnStartStop.BackColor = Color.WhiteSmoke;
+                btnStartStop.Refresh();
+
+                UpdateSystemMessage("Compressor Monitor", "Monitor Stop!");
+
             }
         }
 
