@@ -77,7 +77,7 @@ namespace IOTLManager.UserControls
             ucSocketServer1.UEventFileLog += WriteMessageToLogfile;
 
             // Comp에서 수신한 데이터를 기록 대기 합니다.
-            ucSocketServer1.UEventMachineStateTimeLog += UcSocketServer1_UEventMachineStateTimeLog;
+            ucSocketServer1.UEventMachineStateTimeLog += HandlerCompressorMachineStateLog;
 
             ucSocketServer1.ServerCaption = "IOTL Compressor Monitor";
         }
@@ -107,7 +107,7 @@ namespace IOTLManager.UserControls
             {
                 ucSocketServer1.UEventMessage -= UpdateSystemMessage;
                 ucSocketServer1.UEventFileLog -= WriteMessageToLogfile;
-                ucSocketServer1.UEventMachineStateTimeLog -= UcSocketServer1_UEventMachineStateTimeLog;
+                ucSocketServer1.UEventMachineStateTimeLog -= HandlerCompressorMachineStateLog;
 
                 if (compressorLogWriter != null)
                 {
@@ -144,7 +144,7 @@ namespace IOTLManager.UserControls
             {
                 ucSocketServer1.UEventMessage -= UpdateSystemMessage;
                 ucSocketServer1.UEventFileLog -= WriteMessageToLogfile;
-                ucSocketServer1.UEventMachineStateTimeLog -= UcSocketServer1_UEventMachineStateTimeLog;
+                ucSocketServer1.UEventMachineStateTimeLog -= HandlerCompressorMachineStateLog;
 
                 if (compressorLogWriter != null)
                 {
@@ -166,7 +166,7 @@ namespace IOTLManager.UserControls
             base.OnHandleDestroyed(e);
         }
 
-        private void UcSocketServer1_UEventMachineStateTimeLog(CTimeLog cLog)
+        private void HandlerCompressorMachineStateLog(CTimeLog cLog)
         {
             if (compressorLogWriter != null)
                 compressorLogWriter.EnQue(cLog);
