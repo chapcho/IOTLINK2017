@@ -11,6 +11,8 @@ using IOTL.Common;
 using IOTL.Common.Log;
 using IOTLManager.Util;
 using IOTL.Common.DB;
+using System.IO;
+using IOTLManager.CsvLog;
 
 namespace IOTLManager.UserControls
 {
@@ -267,6 +269,45 @@ namespace IOTLManager.UserControls
                 timerWebCntlSender.Tick -= timerWebCntlSender_Tick;
                 timerWebCntlSender.Stop();
             }
+        }
+
+        private void btnImportLog_Click(object sender, EventArgs e)
+        {
+            List<String> lstLogFile = new List<string>();
+
+            // 로그가 있는 디렉토리에서 로그 파일의 목록을 가져와서..
+            using (var fbd = new FolderBrowserDialog())
+            {
+                fbd.SelectedPath = "C:\\Log";
+                fbd.Description = "Compressor 데이터 로그 폴터 선택!";
+                DialogResult result = fbd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    string[] files = Directory.GetFiles(fbd.SelectedPath,"*.csv");
+
+                    foreach(string filePath in files)
+                    {
+                        lstLogFile.Add(filePath);
+                    }
+                }
+            }
+
+            if(lstLogFile.Count > 0)
+            {
+                CCsvLogReader logReader = new CCsvLogReader();
+                CTimeLogS timeLogs = new CTimeLogS();
+
+                logReader.Open(lstLogFile.ToArray());
+
+                timeLogs = logReader.ReadTimeLogS();
+
+                logReader.Close();
+            }
+
+
+            // 로그 리더기로 데이터를 가져온다.
+
         }
     }
 }

@@ -120,7 +120,7 @@ namespace IOTL.Common.Csv
                 m_emState = EMFileState.Opened;
 
                 if (bHeader)
-                    ReadHeader(bHeader, 0);
+                    ReadHeader(bHeader, 0); // file Read Point moved.
 
             }
             catch (System.Exception ex)

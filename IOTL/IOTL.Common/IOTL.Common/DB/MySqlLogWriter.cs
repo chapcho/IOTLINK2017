@@ -175,6 +175,7 @@ namespace IOTL.Common.DB
             try
             {
                 string text = Encoding.Default.GetString(oData.ReceiveData);
+
                 // =======================================
                 // 시작 : "S" // 1byte
                 // 컴프레셔ID : "00000000" // 8byte
@@ -203,35 +204,35 @@ namespace IOTL.Common.DB
 
                     if (RecvDatas[2].ToString() == "00")
                     {
-                        DBSave00("compdata.comp_00_tb", RecvDatas);
+                        DBSave00("compdata.comp_00_tb", RecvDatas, oData.LogTime);
                     }
                     else if (RecvDatas[2].ToString() == "01")
                     {
-                        DBSave01("compdata.comp_01_tb", RecvDatas);
+                        DBSave01("compdata.comp_01_tb", RecvDatas, oData.LogTime);
                     }
                     else if (RecvDatas[2].ToString() == "02")
                     {
-                        DBSave02("compdata.comp_02_tb", RecvDatas);
+                        DBSave02("compdata.comp_02_tb", RecvDatas, oData.LogTime);
                     }
                     else if (RecvDatas[2].ToString() == "04")
                     {
-                        DBSave04("compdata.comp_04_tb", RecvDatas);
+                        DBSave04("compdata.comp_04_tb", RecvDatas, oData.LogTime);
                     }
                     else if (RecvDatas[2].ToString() == "05")
                     {
-                        DBSave05("compdata.comp_05_tb", RecvDatas);
+                        DBSave05("compdata.comp_05_tb", RecvDatas, oData.LogTime);
                     }
                     else if (RecvDatas[2].ToString() == "06")
                     {
-                        DBSave06("compdata.comp_06_tb", RecvDatas);
+                        DBSave06("compdata.comp_06_tb", RecvDatas, oData.LogTime);
                     }
                     else if (RecvDatas[2].ToString() == "07")
                     {
-                        DBSave07("compdata.comp_07_tb", RecvDatas);
+                        DBSave07("compdata.comp_07_tb", RecvDatas, oData.LogTime);
                     }
                     else if (RecvDatas[2].ToString() == "08")
                     {
-                        DBSave08("compdata.comp_08_tb", RecvDatas);
+                        DBSave08("compdata.comp_08_tb", RecvDatas, oData.LogTime);
                     }
 
                     /*
@@ -253,7 +254,7 @@ namespace IOTL.Common.DB
             return bRet;
 
         }
-        private void DBSave00(string TableName, string[] RecvData)
+        private void DBSave00(string TableName, string[] RecvData, DateTime logReceiveTime)
         {
             try
             {
@@ -274,8 +275,8 @@ namespace IOTL.Common.DB
                 string data00_12 = RecvData[15].ToString();
                 string data00_13 = RecvData[16].ToString();
 
-                DateTime dateValue = DateTime.Now;
-                string savetime = dateValue.ToString("yyyy-MM-dd HH:mm:ss");
+                // DateTime dateValue = DateTime.Now;
+                string savetime = logReceiveTime.ToString("yyyy-MM-dd HH:mm:ss");
 
                 string query = "INSERT INTO " + TableName +          // 쿼리 명령
                     " (FK_PRODUCT_NUMBER, ID, 00_00, 00_01, 00_02, 00_03, 00_04, 00_05, 00_06, 00_07, 00_08, 00_09, 00_10, 00_11, 00_12, 00_13, SAVETIME) " +
@@ -298,14 +299,14 @@ namespace IOTL.Common.DB
                     data00_13 + "," +
                     "'" + savetime + "')";
 
-                IotlCompDataWriter(query);
+                SaveQueryToIOTLCompDataDB(query);
             }
             catch (Exception ex)
             {
                 ex.Data.Clear();
             }
         }
-        private void DBSave01(string TableName, string[] RecvData)
+        private void DBSave01(string TableName, string[] RecvData, DateTime logReceiveTime)
         {
             try
             {
@@ -322,8 +323,8 @@ namespace IOTL.Common.DB
                 string data01_08 = RecvData[11].ToString();
                 string data01_09 = RecvData[12].ToString();
 
-                DateTime dateValue = DateTime.Now;
-                string savetime = dateValue.ToString("yyyy-MM-dd HH:mm:ss");
+                // DateTime dateValue = DateTime.Now;
+                string savetime = logReceiveTime.ToString("yyyy-MM-dd HH:mm:ss");
 
                 string query = "INSERT INTO " + TableName +          // 쿼리 명령
                     " (FK_PRODUCT_NUMBER, ID, 01_00, 01_01, 01_02, 01_03, 01_04, 01_05, 01_06, 01_07, 01_08, 01_09, SAVETIME) " +
@@ -342,14 +343,14 @@ namespace IOTL.Common.DB
                     data01_09 + "," +
                     "'" + savetime + "')";
 
-                IotlCompDataWriter(query);
+                SaveQueryToIOTLCompDataDB(query);
             }
             catch (Exception ex)
             {
                 ex.Data.Clear();
             }
         }
-        private void DBSave02(string TableName, string[] RecvData)
+        private void DBSave02(string TableName, string[] RecvData, DateTime logReceiveTime)
         {
             try
             {
@@ -363,8 +364,8 @@ namespace IOTL.Common.DB
                 string data02_05 = RecvData[8].ToString();
                 string data02_06 = RecvData[9].ToString();
 
-                DateTime dateValue = DateTime.Now;
-                string savetime = dateValue.ToString("yyyy-MM-dd HH:mm:ss");
+                // DateTime dateValue = DateTime.Now;
+                string savetime = logReceiveTime.ToString("yyyy-MM-dd HH:mm:ss");
 
                 string query = "INSERT INTO " + TableName +          // 쿼리 명령
                     " (FK_PRODUCT_NUMBER, ID, 02_00, 02_01, 02_02, 02_03, 02_04, 02_05, 02_06, SAVETIME) " +
@@ -380,14 +381,14 @@ namespace IOTL.Common.DB
                     data02_06 + "," +
                     "'" + savetime + "')";
 
-                IotlCompDataWriter(query);
+                SaveQueryToIOTLCompDataDB(query);
             }
             catch (Exception ex)
             {
                 ex.Data.Clear();
             }
         }
-        private void DBSave04(string TableName, string[] RecvData)
+        private void DBSave04(string TableName, string[] RecvData, DateTime logReceiveTime)
         {
             try
             {
@@ -400,8 +401,8 @@ namespace IOTL.Common.DB
                 string data04_04 = RecvData[7].ToString();
                 string data04_05 = RecvData[8].ToString();
 
-                DateTime dateValue = DateTime.Now;
-                string savetime = dateValue.ToString("yyyy-MM-dd HH:mm:ss");
+                // DateTime dateValue = DateTime.Now;
+                string savetime = logReceiveTime.ToString("yyyy-MM-dd HH:mm:ss");
 
                 string query = "INSERT INTO " + TableName +          // 쿼리 명령
                     " (FK_PRODUCT_NUMBER, ID, 04_00, 04_01, 04_02, 04_03, 04_04, 04_05, SAVETIME) " +
@@ -416,14 +417,14 @@ namespace IOTL.Common.DB
                     data04_05 + "," +
                     "'" + savetime + "')";
 
-                IotlCompDataWriter(query);
+                SaveQueryToIOTLCompDataDB(query);
             }
             catch (Exception ex)
             {
                 ex.Data.Clear();
             }
         }
-        private void DBSave05(string TableName, string[] RecvData)
+        private void DBSave05(string TableName, string[] RecvData, DateTime logReceiveTime)
         {
             try
             {
@@ -435,8 +436,8 @@ namespace IOTL.Common.DB
                 string data05_03 = RecvData[6].ToString();
                 string data05_04 = RecvData[7].ToString();
 
-                DateTime dateValue = DateTime.Now;
-                string savetime = dateValue.ToString("yyyy-MM-dd HH:mm:ss");
+                // DateTime dateValue = DateTime.Now;
+                string savetime = logReceiveTime.ToString("yyyy-MM-dd HH:mm:ss");
 
                 string query = "INSERT INTO " + TableName +          // 쿼리 명령
                     " (FK_PRODUCT_NUMBER, ID, 05_00, 05_01, 05_02, 05_03, 05_04, SAVETIME) " +
@@ -450,14 +451,14 @@ namespace IOTL.Common.DB
                     data05_04 + "," +
                     "'" + savetime + "')";
 
-                IotlCompDataWriter(query);
+                SaveQueryToIOTLCompDataDB(query);
             }
             catch (Exception ex)
             {
                 ex.Data.Clear();
             }
         }
-        private void DBSave06(string TableName, string[] RecvData)
+        private void DBSave06(string TableName, string[] RecvData, DateTime logReceiveTime)
         {
             try
             {
@@ -470,8 +471,8 @@ namespace IOTL.Common.DB
                 string data06_04 = RecvData[7].ToString();
                 string data06_05 = RecvData[8].ToString();
 
-                DateTime dateValue = DateTime.Now;
-                string savetime = dateValue.ToString("yyyy-MM-dd HH:mm:ss");
+                // DateTime dateValue = DateTime.Now;
+                string savetime = logReceiveTime.ToString("yyyy-MM-dd HH:mm:ss");
 
                 string query = "INSERT INTO " + TableName +          // 쿼리 명령
                     " (FK_PRODUCT_NUMBER, ID, 06_00, 06_01, 06_02, 06_03, 06_04, 06_05, SAVETIME) " +
@@ -486,14 +487,14 @@ namespace IOTL.Common.DB
                     data06_05 + "," +
                     "'" + savetime + "')";
 
-                IotlCompDataWriter(query);
+                SaveQueryToIOTLCompDataDB(query);
             }
             catch (Exception ex)
             {
                 ex.Data.Clear();
             }
         }
-        private void DBSave07(string TableName, string[] RecvData)
+        private void DBSave07(string TableName, string[] RecvData, DateTime logReceiveTime)
         {
             try
             {
@@ -502,8 +503,8 @@ namespace IOTL.Common.DB
                 string data07_00 = RecvData[3].ToString();
                 string data07_01 = RecvData[4].ToString();
 
-                DateTime dateValue = DateTime.Now;
-                string savetime = dateValue.ToString("yyyy-MM-dd HH:mm:ss");
+                // DateTime dateValue = DateTime.Now;
+                string savetime = logReceiveTime.ToString("yyyy-MM-dd HH:mm:ss");
 
                 string query = "INSERT INTO " + TableName +          // 쿼리 명령
                     " (FK_PRODUCT_NUMBER, ID, 07_00, 07_01, SAVETIME) " +
@@ -514,14 +515,14 @@ namespace IOTL.Common.DB
                     data07_01 + "," +
                     "'" + savetime + "')";
 
-                IotlCompDataWriter(query);
+                SaveQueryToIOTLCompDataDB(query);
             }
             catch (Exception ex)
             {
                 ex.Data.Clear();
             }
         }
-        private void DBSave08(string TableName, string[] RecvData)
+        private void DBSave08(string TableName, string[] RecvData, DateTime logReceiveTime)
         {
             try
             {
@@ -537,8 +538,8 @@ namespace IOTL.Common.DB
                 string data08_07 = RecvData[10].ToString();
                 string data08_08 = RecvData[11].ToString();
 
-                DateTime dateValue = DateTime.Now;
-                string savetime = dateValue.ToString("yyyy-MM-dd HH:mm:ss");
+                // DateTime dateValue = DateTime.Now;
+                string savetime = logReceiveTime.ToString("yyyy-MM-dd HH:mm:ss");
 
                 string query = "INSERT INTO " + TableName +          // 쿼리 명령
                     " (FK_PRODUCT_NUMBER, ID, 08_00, 08_01, 08_02, 08_03, 08_04, 08_05, 08_06, 08_07, 08_08, SAVETIME) " +
@@ -556,7 +557,7 @@ namespace IOTL.Common.DB
                     data08_08 + "," +
                     "'" + savetime + "')";
 
-                IotlCompDataWriter(query);
+                SaveQueryToIOTLCompDataDB(query);
 
             }
             catch (Exception ex)
@@ -564,7 +565,7 @@ namespace IOTL.Common.DB
                 ex.Data.Clear();
             }
         }
-        private void DBSave(string TableName, string[] RecvData)
+        private void DBSave(string TableName, string[] RecvData, DateTime logReceiveTime)
         {
             try
             {
@@ -573,8 +574,8 @@ namespace IOTL.Common.DB
                 string outputairtemp = RecvData[2].ToString();
                 string inoiltemp = RecvData[3].ToString();
 
-                DateTime dateValue = DateTime.Now;
-                string savetime = dateValue.ToString("yyyy-MM-dd HH:mm:ss");
+                // DateTime dateValue = DateTime.Now;
+                string savetime = logReceiveTime.ToString("yyyy-MM-dd HH:mm:ss");
 
                 string query = "INSERT INTO " + TableName +          // 쿼리 명령
                     " (outputairpressure, inoilpressure, outputairtemp, inoiltemp, savetime) " +
@@ -585,7 +586,7 @@ namespace IOTL.Common.DB
                     Convert.ToDouble(inoiltemp) + "," +
                     "'" + savetime + "')";
 
-                IotlCompDataWriter(query);
+                SaveQueryToIOTLCompDataDB(query);
             }
             catch (Exception ex)
             {
@@ -593,7 +594,7 @@ namespace IOTL.Common.DB
             }
         }
 
-        private void IotlCompDataWriter(string query)
+        private void SaveQueryToIOTLCompDataDB(string query)
         {
             MySqlCommand dbComm = null;
             try

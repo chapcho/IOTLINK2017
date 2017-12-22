@@ -34,6 +34,7 @@
             this.chkWebCntlSendTimer = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.timerWebCntlSender = new System.Windows.Forms.Timer(this.components);
+            this.btnImportLog = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,12 +86,23 @@
             // 
             this.timerWebCntlSender.Tick += new System.EventHandler(this.timerWebCntlSender_Tick);
             // 
+            // btnImportLog
+            // 
+            this.btnImportLog.Location = new System.Drawing.Point(551, 303);
+            this.btnImportLog.Name = "btnImportLog";
+            this.btnImportLog.Size = new System.Drawing.Size(174, 40);
+            this.btnImportLog.TabIndex = 4;
+            this.btnImportLog.Text = "import log";
+            this.btnImportLog.UseVisualStyleBackColor = true;
+            this.btnImportLog.Click += new System.EventHandler(this.btnImportLog_Click);
+            // 
             // UCCompressorDataManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Controls.Add(this.btnImportLog);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnStartStop);
             this.Controls.Add(this.ucSocketServer1);
@@ -110,5 +122,6 @@
         private System.Windows.Forms.CheckBox chkWebCntlSendTimer;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Timer timerWebCntlSender;
+        private System.Windows.Forms.Button btnImportLog;
     }
 }

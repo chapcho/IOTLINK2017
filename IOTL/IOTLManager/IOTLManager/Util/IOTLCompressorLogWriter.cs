@@ -2,16 +2,23 @@
 using IOTL.Common.DB;
 using IOTL.Common.Log;
 using IOTL.Common.Threading;
+using IOTLManager.CsvLog;
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Threading;
 
 namespace IOTLManager.Util
 {
     public class IOTLCompressorLogWriter : ThreadWithQueBase<object>
     {
-
         private MySqlLogWriter m_cLogDBWriter = null;
+        protected CCsvLogWriter m_cCSVLogWrite = new CCsvLogWriter();
+
+        protected DateTime m_dtFileCreated = DateTime.MinValue;
+        protected string m_sProjectName = string.Empty;
+        protected string m_sProjectPath = string.Empty;
+
         public event UEventHandlerIOTLMessage UEventIOTLMessage = null;
         public event UEventHandlerFileLog UEventFileLog = null;
 
@@ -39,8 +46,6 @@ namespace IOTLManager.Util
             }
         }
 
-
-
         #region Base Class Inheritanced Method (추상클래스로 부터 상속받은 클래스 구현)
 
         protected override bool AfterRun()
@@ -66,7 +71,48 @@ namespace IOTLManager.Util
                 UpdateSystemMessage(sender: System.Reflection.MethodBase.GetCurrentMethod().Name, message: "DB에 연결되었습니다.");
             }
 
+            DateTime dtNow = DateTime.Now;
+            
+
+            // Compressor로 부터 받은 데이터를 기록.
+            m_bRun = CreateCSV(dtNow);
+
             return m_bRun;
+        }
+
+        private bool CreateCSV(DateTime dtNow)
+        {
+            if (m_sProjectPath == "" || m_sProjectPath == string.Empty)
+                m_sProjectPath = "C:\\Log";
+
+            string path = m_sProjectPath;
+
+            try
+            {
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+                string sFile = m_sProjectPath + "\\" + "iotlCompLog"+ dtNow.ToString("yyyyMMddHHmmssfff")+".csv";
+
+                if (!File.Exists(sFile))
+                {
+                    bool bOK = m_cCSVLogWrite.Open(sFile);
+                    if (!bOK)
+                        return false;
+
+                    m_dtFileCreated = dtNow;
+
+                    UpdateSystemMessage(this.ToString(), "파일 생성 : " + sFile);
+                }
+                return true;
+            }
+            catch(Exception ex)
+            {
+                UpdateSystemMessage(this.ToString(), "Error : 파일 생성 중 문제 발생(" + ex.Message + ")");
+                return false;
+            }
         }
 
         private void UpdateFileLog(EMFileLogType emFileLogType, EMFileLogDepth emFileLogDepth, string logMessage)
@@ -88,6 +134,7 @@ namespace IOTLManager.Util
 
             m_bRun = false;
             m_cLogDBWriter.Disconnect();
+            m_cCSVLogWrite.Close();
 
             return m_bRun;
         }
@@ -109,9 +156,12 @@ namespace IOTLManager.Util
 
                     if (oData == null)
                     {
-                        Thread.Sleep(100);
+                        Thread.Sleep(90);
                         continue;
                     }
+
+                    DateTime dtNow = DateTime.Now;
+                    TimeSpan tsSpan = dtNow.Subtract(m_dtFileCreated);
 
                     if (!LogDBWriter.IsConnected)
                         LogDBWriter.Connect();
@@ -129,39 +179,18 @@ namespace IOTLManager.Util
                     else if(oData.GetType() == typeof(CTimeLog))
                     {
                         // bOK = LogDBWriter.WriteTimeLog((CTimeLog)oData);
+
+                        
                         bOK = LogDBWriter.WriteIOTLCompDataSingle((CTimeLog)oData);
+                        bOK = m_cCSVLogWrite.WriteTimeLog((CTimeLog)oData);
                     }
-                    //else if (oData.GetType() == typeof(CCycleInfo))
-                    //{
-                    //    CCycleInfo cCycleInfo = (CCycleInfo)oData;
-                    //    iStep = 3;
-                    //    m_cWriter.WriteCycleInfo(cCycleInfo);
-                    //    iStep = 4;
-                    //    UpdateSystemMessage("LogWriter", string.Format("Cycle Info : ID = {0}, Group : {1}", cCycleInfo.CycleID, cCycleInfo.GroupKey));
 
-                    //    //Memory 최적화
-                    //    cCycleInfo = null;
-                    //}
-                    //else if (oData.GetType() == typeof(CErrorInfo))
-                    //{
-                    //    CErrorInfo cErrorInfo = (CErrorInfo)oData;
-                    //    iStep = 5;
-                    //    bOK = m_cWriter.WriteErrorInfo(cErrorInfo);
-                    //    iStep = 6;
-                    //    if (bOK)
-                    //        UpdateSystemMessage("LogWriter", string.Format("Error Info Write OK : ID = {0}", cErrorInfo.ErrorID));
-                    //    else
-                    //        UpdateSystemMessage("LogWriter", string.Format("Error Info Write Error : ID = {0}", cErrorInfo.ErrorID));
-
-                    //    iStep = 7;
-                    //    if (cErrorInfo.ErrorLogS.Count > 0)
-                    //        m_cWriter.WriteErrorLogS(cErrorInfo.ErrorID, cErrorInfo.ErrorLogS);
-                    //    iStep = 8;
-
-                    //    //Memory 최적화
-                    //    cErrorInfo.ErrorLogS.Dispose();
-                    //    cErrorInfo = null;
-                    //}
+                    // Log 파일은 1시간마다 생성한다.
+                    if (tsSpan.TotalMinutes > 60)
+                    {
+                        m_cCSVLogWrite.Close();
+                        CreateCSV(dtNow);
+                    }
 
                     iGCCount++;
 

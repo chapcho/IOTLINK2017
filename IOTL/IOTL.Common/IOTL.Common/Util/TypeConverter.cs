@@ -114,7 +114,6 @@ namespace IOTL.Common
             return iValue;
         }
 
-
         public static double ToDouble(string sNumber)
         {
             double dValue = 0;
@@ -224,7 +223,6 @@ namespace IOTL.Common
 
         }
 
-
         public static string ToHex(int iValue)
         {
             if (iValue == -1)
@@ -297,5 +295,29 @@ namespace IOTL.Common
 
             return sValue;
         }
+
+        public static string ByteToString(byte[] strBytes)
+        {
+            return ByteToString(strBytes, Encoding.Default);
+        }
+
+        public static byte[] StringToBytes(string str)
+        {
+            return StringToBytes(str, Encoding.Default);
+        }
+
+        public static string ByteToString(byte[] strBytes, Encoding encoding)
+        {
+            string str = encoding.GetString(strBytes);
+            return str;
+        }
+
+        public static byte[] StringToBytes(string str, Encoding encoding)
+        {
+            byte[] strBytes = encoding.GetBytes(str);
+            return strBytes;
+        }
+
+        
     }
 }
