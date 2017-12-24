@@ -27,7 +27,6 @@ namespace IOTLManager
         private LogManager LOG = new LogManager();
         private LogProcessor logProcessor;
 
-        protected delegate void UpdateTextCallBack(string sSender, string sMessage);
 
         #endregion
 
@@ -76,7 +75,13 @@ namespace IOTLManager
             // Compressor Monitor에서 발생하는 이벤트 처리자 연결.
             ucCompressorDataManager1.UEventMessage += UpdateSystemMessage;
             ucCompressorDataManager1.UEventFileLog += WriteMessageToLogfile;
+            ucCompressorDataManager1.UEventProgressBar += ToolStripProgressBar;
 
+        }
+
+        private void 정보ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("IOTL Compress Data Manager!!!");
         }
 
         /// <summary>
@@ -136,11 +141,6 @@ namespace IOTLManager
             // UpdateSystemMessage(emFileLogType.ToString(), sLogMessage);
         }
 
-        private void 정보ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("IOTL DataManager Ver 1.0");
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             
@@ -173,6 +173,8 @@ namespace IOTLManager
                 LOG.AppLog.appendInfoLog("DB Writer Closed.");
             }
         }
+
+        protected delegate void UpdateTextCallBack(string sSender, string sMessage);
 
         protected void UpdateSystemMessage(string sSender, string sMessage)
         {
@@ -241,7 +243,6 @@ namespace IOTLManager
 
             UpdateSystemMessage(Application.ProductName, "IOTLink Manager DB 생성 완료");
         }
-
 
         private void CreateDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -321,16 +322,16 @@ namespace IOTLManager
             try
             {
 
-                ToolStripPrograss(0);
+                ToolStripProgressBar(0);
 
                 DataTable dt = DBReader.GetQueryResult(sqlQuery);
-                ToolStripPrograss(50);
+                ToolStripProgressBar(50);
                 dataGridReport.Columns.Clear();
                 // DisplayColumnHeaders(dt.Columns);
                 dataGridReport.ColumnHeadersVisible = true;
 
                 dataGridReport.DataSource = dt;
-                ToolStripPrograss(100);
+                ToolStripProgressBar(100);
                 // dataGridReport.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
                 dataGridReport.ColumnHeadersVisible = true;
@@ -424,12 +425,12 @@ namespace IOTLManager
             }
         }
 
-        delegate void ToolStripPrograssDelegate(int value);
-        private void ToolStripPrograss(int value)
+        delegate void ToolStripProgressDelegate(int value);
+        private void ToolStripProgressBar(int value)
         {
             if (this.InvokeRequired)
             {
-                ToolStripPrograssDelegate del = new ToolStripPrograssDelegate(ToolStripPrograss);
+                ToolStripProgressDelegate del = new ToolStripProgressDelegate(ToolStripProgressBar);
                 this.Invoke(del, new object[] { value });
             }
             else

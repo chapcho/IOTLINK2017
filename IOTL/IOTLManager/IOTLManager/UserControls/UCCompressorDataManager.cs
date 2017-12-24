@@ -20,6 +20,7 @@ namespace IOTLManager.UserControls
     {
         public event UEventHandlerFileLog UEventFileLog = null;
         public event UEventHandlerIOTLMessage UEventMessage = null;
+        public event UEventProgressBarRefreshDelegate UEventProgressBar = null;
         // public event UIEventHandlerCompressMonitoringEvent UEventCompressMonitor = null;
 
         // Compressor Monitoring 이벤트를 처리하는 처리자.
@@ -271,6 +272,12 @@ namespace IOTLManager.UserControls
             }
         }
 
+        private void RefreshProgressBarValue(int iValue)
+        {
+            if (UEventProgressBar != null)
+                UEventProgressBar(iValue);
+        }
+
         private void btnImportLog_Click(object sender, EventArgs e)
         {
             List<String> lstLogFile = new List<string>();
@@ -285,11 +292,15 @@ namespace IOTLManager.UserControls
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
                     string[] files = Directory.GetFiles(fbd.SelectedPath,"*.csv");
+                    RefreshProgressBarValue(0);
 
-                    foreach(string filePath in files)
+
+                    foreach (string filePath in files)
                     {
                         lstLogFile.Add(filePath);
                     }
+
+                    RefreshProgressBarValue(50);
                 }
             }
 
@@ -304,6 +315,8 @@ namespace IOTLManager.UserControls
 
                 logReader.Close();
             }
+
+            RefreshProgressBarValue(100);
 
 
             // 로그 리더기로 데이터를 가져온다.

@@ -27,4 +27,6 @@ namespace IOTL.Common
 
     public delegate void UEventHandlerFileLog(EMFileLogType emFileLogType, EMFileLogDepth emFileLogDepth, string logMessage);
     public delegate void LogFuncDelegate(string sMessage);
+
+    public delegate void UEventProgressBarRefreshDelegate(int iValue);
 }
