@@ -164,15 +164,15 @@ namespace IOTL.Common.Xml
             object oValue = null;
 
             if (t == typeof(bool))
-                oValue = TypeConverter.ToBool(sValue);
+                oValue = CTypeConverter.ToBool(sValue);
             else if (t == typeof(int))
-                oValue = TypeConverter.ToInteger(sValue);
+                oValue = CTypeConverter.ToInteger(sValue);
             else if (t == typeof(Color))
-                oValue = TypeConverter.ToColor(sValue);
+                oValue = CTypeConverter.ToColor(sValue);
             else if (t == typeof(DateTime))
-                oValue = TypeConverter.ToDateTime(sValue);
+                oValue = CTypeConverter.ToDateTime(sValue);
             else if (t.BaseType == typeof(Enum))
-                oValue = TypeConverter.ToEnum(t, sValue);            
+                oValue = CTypeConverter.ToEnum(t, sValue);            
             else
                 oValue = sValue;
 

@@ -595,19 +595,19 @@ namespace IOTL.Common.Csv
             if (t == typeof(string))
                 oValue = sValue;
             else if (t == typeof(bool))
-                oValue = TypeConverter.ToBool(sValue);
+                oValue = CTypeConverter.ToBool(sValue);
             else if (t == typeof(int))
-                oValue = TypeConverter.ToInteger(sValue);
+                oValue = CTypeConverter.ToInteger(sValue);
             else if (t == typeof(decimal))
-                oValue = TypeConverter.ToDecimal(sValue);
+                oValue = CTypeConverter.ToDecimal(sValue);
             else if (t == typeof(double))
-                oValue = TypeConverter.ToDouble(sValue);
+                oValue = CTypeConverter.ToDouble(sValue);
             else if (t == typeof(Color))
-                oValue = TypeConverter.ToColor(sValue);
+                oValue = CTypeConverter.ToColor(sValue);
             else if (t == typeof(DateTime))
-                oValue = TypeConverter.ToDateTime(sValue);
+                oValue = CTypeConverter.ToDateTime(sValue);
             else if (t.BaseType == typeof(Enum))
-                oValue = TypeConverter.ToEnum(t, sValue);
+                oValue = CTypeConverter.ToEnum(t, sValue);
             else
                 oValue = sValue;
 

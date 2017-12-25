@@ -15,7 +15,7 @@ namespace IOTL.Common.Util
 
             for (int i = 0; i < iLength; i++)
             {
-                iaValue[i] = IOTL.Common.TypeConverter.ToInteger(saValue[i]);
+                iaValue[i] = IOTL.Common.CTypeConverter.ToInteger(saValue[i]);
             }
 
             return iaValue;

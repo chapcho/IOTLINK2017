@@ -79,7 +79,7 @@ namespace IOTLManager
 
         }
 
-        private void 정보ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void InfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("IOTL Compress Data Manager!!!");
         }

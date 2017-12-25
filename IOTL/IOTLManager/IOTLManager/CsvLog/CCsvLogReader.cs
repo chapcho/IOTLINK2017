@@ -3,6 +3,7 @@ using IOTL.Common.Csv;
 using IOTL.Common.Log;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -272,6 +273,28 @@ namespace IOTLManager.CsvLog
             return cLogS;
         }
 
+        public CTimeLogS ReadTimeLogS(BackgroundWorker worker)
+        {
+            if (m_emState == EMFileState.Closed)
+                return null;
+
+            CTimeLogS cLogS = new CTimeLogS();
+
+            CsvReader cReader;
+            int percentValue = 0;
+
+            for (int i = 0; i < m_lstReader.Count; i++)
+            {
+                cReader = m_lstReader[i];
+                FillTimeLogS(cReader, cLogS);
+
+                percentValue = i / m_lstReader.Count;
+                worker.ReportProgress(percentValue);
+            }
+
+            return cLogS;
+        }
+
         public void Close()
         {
             if (m_lstReader != null)
@@ -335,10 +358,10 @@ namespace IOTLManager.CsvLog
                     }
                 }
                 cLog.Key = sb.ToString();
-                cLog.ReceiveData = TypeConverter.StringToBytes(sb.ToString());
+                cLog.ReceiveData = CTypeConverter.StringToBytes(sb.ToString());
 
                 // Log Import시에는 수집된 로그 시간을 기록한다.
-                cLog.LogTime = TypeConverter.ToDateTime(lstValue[0]);
+                cLog.LogTime = CTypeConverter.ToDateTime(lstValue[0]);
 
                 sb.Clear();
             }

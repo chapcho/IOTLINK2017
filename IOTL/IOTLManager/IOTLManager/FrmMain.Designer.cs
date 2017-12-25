@@ -64,7 +64,7 @@ namespace IOTLManager
             this.인덱스ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.검색ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.정보ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.InfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.시스템ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuCreateDatabase = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBackupDatabase = new System.Windows.Forms.ToolStripMenuItem();
@@ -337,7 +337,7 @@ namespace IOTLManager
             this.인덱스ToolStripMenuItem,
             this.검색ToolStripMenuItem,
             this.toolStripSeparator5,
-            this.정보ToolStripMenuItem});
+            this.InfoToolStripMenuItem});
             this.도움말ToolStripMenuItem.Name = "도움말ToolStripMenuItem";
             this.도움말ToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.도움말ToolStripMenuItem.Text = "도움말";
@@ -365,12 +365,12 @@ namespace IOTLManager
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(107, 6);
             // 
-            // 정보ToolStripMenuItem
+            // InfoToolStripMenuItem
             // 
-            this.정보ToolStripMenuItem.Name = "정보ToolStripMenuItem";
-            this.정보ToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
-            this.정보ToolStripMenuItem.Text = "정보...";
-            this.정보ToolStripMenuItem.Click += new System.EventHandler(this.정보ToolStripMenuItem_Click);
+            this.InfoToolStripMenuItem.Name = "InfoToolStripMenuItem";
+            this.InfoToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.InfoToolStripMenuItem.Text = "정보...";
+            this.InfoToolStripMenuItem.Click += new System.EventHandler(this.InfoToolStripMenuItem_Click);
             // 
             // 시스템ToolStripMenuItem
             // 
@@ -729,7 +729,7 @@ namespace IOTLManager
         private System.Windows.Forms.ToolStripMenuItem 인덱스ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 검색ToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.ToolStripMenuItem 정보ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem InfoToolStripMenuItem;
         private System.Windows.Forms.TabControl mainTabControl;
         private System.Windows.Forms.TabPage tabMonitoring;
         private System.Windows.Forms.TabPage tabConfig;

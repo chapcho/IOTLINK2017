@@ -27,6 +27,9 @@ namespace IOTLManager.UserControls
         private IOTLCompressorLogWriter compressorLogWriter;
         private MySqlLogReader DBReader = new MySqlLogReader("compdata");
 
+        private string logFilePath = string.Empty;
+        private BackgroundWorker logFileReader;
+
         public UCCompressorDataManager()
         {
             InitializeComponent();
@@ -278,6 +281,41 @@ namespace IOTLManager.UserControls
                 UEventProgressBar(iValue);
         }
 
+        // Background Work 를 이용해서 로그파일을 읽어오고 싶다면
+        // 디렉토리와 background worker를 파라미터로 전달하고
+        // 디렉토리의 파일수를 검토하여 진행.
+        private void ReadLogFileWithBgWorker(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                string[] files = Directory.GetFiles(logFilePath, "*.csv");
+                List<String> lstLogFile = new List<string>();
+
+                CCsvLogReader logReader = new CCsvLogReader();
+                CTimeLogS timeLogs = new CTimeLogS();
+
+                for (int i = 0; i < files.Length; i++)
+                {
+                    lstLogFile.Add(files[i]);
+                }
+
+                if (lstLogFile.Count > 0)
+                {
+                    logReader.Open(lstLogFile.ToArray());
+
+                    timeLogs = logReader.ReadTimeLogS(logFileReader);
+
+                    logReader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Clear();
+            }
+        }
+
+
+
         private void btnImportLog_Click(object sender, EventArgs e)
         {
             List<String> lstLogFile = new List<string>();
@@ -291,36 +329,36 @@ namespace IOTLManager.UserControls
 
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
-                    string[] files = Directory.GetFiles(fbd.SelectedPath,"*.csv");
-                    RefreshProgressBarValue(0);
+                    logFilePath = fbd.SelectedPath;
 
+                    logFileReader = new BackgroundWorker();
+                    logFileReader.WorkerReportsProgress = true;
+                    logFileReader.WorkerSupportsCancellation = true;
+                    logFileReader.DoWork += new DoWorkEventHandler(ReadLogFileWithBgWorker);
+                    logFileReader.ProgressChanged += new ProgressChangedEventHandler(LogFileReadProgress_ChangedEvent);
+                    logFileReader.RunWorkerCompleted += new RunWorkerCompletedEventHandler(LogFileReader_RunWorkerCompleted);
 
-                    foreach (string filePath in files)
-                    {
-                        lstLogFile.Add(filePath);
-                    }
+                    logFileReader.RunWorkerAsync();
 
-                    RefreshProgressBarValue(50);
                 }
             }
+        }
 
-            if(lstLogFile.Count > 0)
+        private void LogFileReader_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            // 에러가 있는지 체크
+            if (e.Error != null)
             {
-                CCsvLogReader logReader = new CCsvLogReader();
-                CTimeLogS timeLogs = new CTimeLogS();
-
-                logReader.Open(lstLogFile.ToArray());
-
-                timeLogs = logReader.ReadTimeLogS();
-
-                logReader.Close();
+                UpdateSystemMessage("Compressor Monitor", "[Fail]LogFileReading." + e.Error.Message);
+                return;
             }
 
-            RefreshProgressBarValue(100);
+            UpdateSystemMessage("Compressor Monitor", "Success LogFiles Reading.");
+        }
 
-
-            // 로그 리더기로 데이터를 가져온다.
-
+        private void LogFileReadProgress_ChangedEvent(object sender, ProgressChangedEventArgs e)
+        {
+            RefreshProgressBarValue(e.ProgressPercentage);
         }
     }
 }

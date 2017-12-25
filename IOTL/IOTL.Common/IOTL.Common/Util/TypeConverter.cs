@@ -6,7 +6,7 @@ using System.Drawing;
 
 namespace IOTL.Common
 {
-    public static class TypeConverter
+    public static class CTypeConverter
     {
         public static DateTime ToDateTime(decimal nDateTime)
         {

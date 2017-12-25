@@ -112,7 +112,7 @@ namespace IOTLManager.CsvLog
                 {
                     cLog = cLogS[i];
                     sb.Clear();
-                    sb.Append(TypeConverter.ToDateTimeFormat(cLog.LogTime));
+                    sb.Append(CTypeConverter.ToDateTimeFormat(cLog.LogTime));
                     sb.Append("/" + cLog.Key);
                     m_cWriter.WriteLine(sb.ToString());
                 }
@@ -139,7 +139,7 @@ namespace IOTLManager.CsvLog
                 StringBuilder sb = new StringBuilder();
 
                 sb.Clear();
-                sb.Append(TypeConverter.ToDateTimeFormat(cLog.LogTime));
+                sb.Append(CTypeConverter.ToDateTimeFormat(cLog.LogTime));
                 sb.Append("/" + cLog.Key);
                 m_cWriter.WriteLine(sb.ToString());
 
