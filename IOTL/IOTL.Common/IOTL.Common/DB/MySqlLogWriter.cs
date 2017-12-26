@@ -197,7 +197,7 @@ namespace IOTL.Common.DB
                 // "07" : 2개
                 // "08" : 9개
 
-                if (text[0] == 'S' && text[text.Length - 2] == 'E')
+                if (text[0] == 'S' && text[text.Length - 1] == 'E')
                 {
                     // S,id,data1,data2,data3,data4
                     string[] RecvDatas = text.Split(',');
@@ -248,6 +248,7 @@ namespace IOTL.Common.DB
             }
             catch(Exception ex)
             {
+                ex.Data.Clear();
                 bRet = false;
             }
 

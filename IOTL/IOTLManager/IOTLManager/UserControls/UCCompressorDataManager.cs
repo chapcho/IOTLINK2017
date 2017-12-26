@@ -307,14 +307,19 @@ namespace IOTLManager.UserControls
 
                     logReader.Close();
                 }
+
+                // 읽은 로그를 DB에 기록
+                foreach(CTimeLog log in timeLogs)
+                {
+                    if (compressorLogWriter != null)
+                        compressorLogWriter.EnQue(log);
+                }
             }
             catch (Exception ex)
             {
                 ex.Data.Clear();
             }
         }
-
-
 
         private void btnImportLog_Click(object sender, EventArgs e)
         {
@@ -327,19 +332,31 @@ namespace IOTLManager.UserControls
                 fbd.Description = "Compressor 데이터 로그 폴터 선택!";
                 DialogResult result = fbd.ShowDialog();
 
-                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                try
                 {
-                    logFilePath = fbd.SelectedPath;
+                    Cursor.Current = Cursors.WaitCursor;
 
-                    logFileReader = new BackgroundWorker();
-                    logFileReader.WorkerReportsProgress = true;
-                    logFileReader.WorkerSupportsCancellation = true;
-                    logFileReader.DoWork += new DoWorkEventHandler(ReadLogFileWithBgWorker);
-                    logFileReader.ProgressChanged += new ProgressChangedEventHandler(LogFileReadProgress_ChangedEvent);
-                    logFileReader.RunWorkerCompleted += new RunWorkerCompletedEventHandler(LogFileReader_RunWorkerCompleted);
+                    if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                    {
+                        logFilePath = fbd.SelectedPath;
 
-                    logFileReader.RunWorkerAsync();
+                        logFileReader = new BackgroundWorker();
+                        logFileReader.WorkerReportsProgress = true;
+                        logFileReader.WorkerSupportsCancellation = true;
+                        logFileReader.DoWork += new DoWorkEventHandler(ReadLogFileWithBgWorker);
+                        logFileReader.ProgressChanged += new ProgressChangedEventHandler(LogFileReadProgress_ChangedEvent);
+                        logFileReader.RunWorkerCompleted += new RunWorkerCompletedEventHandler(LogFileReader_RunWorkerCompleted);
 
+                        logFileReader.RunWorkerAsync();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    ex.Data.Clear();
+                }
+                finally
+                {
+                    Cursor.Current = Cursors.Default;
                 }
             }
         }
@@ -358,6 +375,7 @@ namespace IOTLManager.UserControls
 
         private void LogFileReadProgress_ChangedEvent(object sender, ProgressChangedEventArgs e)
         {
+            Console.WriteLine("Progress Report Changed : " + e.ProgressPercentage);
             RefreshProgressBarValue(e.ProgressPercentage);
         }
     }

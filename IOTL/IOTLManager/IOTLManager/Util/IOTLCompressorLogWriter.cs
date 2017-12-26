@@ -179,7 +179,6 @@ namespace IOTLManager.Util
                     else if(oData.GetType() == typeof(CTimeLog))
                     {
                         // bOK = LogDBWriter.WriteTimeLog((CTimeLog)oData);
-
                         
                         bOK = LogDBWriter.WriteIOTLCompDataSingle((CTimeLog)oData);
                         bOK = m_cCSVLogWrite.WriteTimeLog((CTimeLog)oData);

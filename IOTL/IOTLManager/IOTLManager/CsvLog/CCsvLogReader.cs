@@ -288,9 +288,12 @@ namespace IOTLManager.CsvLog
                 cReader = m_lstReader[i];
                 FillTimeLogS(cReader, cLogS);
 
-                percentValue = i / m_lstReader.Count;
+                percentValue = (i*100) / m_lstReader.Count;
                 worker.ReportProgress(percentValue);
             }
+
+            if(m_lstReader.Count > 0)
+                worker.ReportProgress(100);
 
             return cLogS;
         }
