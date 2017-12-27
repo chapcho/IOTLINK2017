@@ -348,6 +348,8 @@ namespace IOTLManager.CsvLog
             // 로그에는 현재 수신시간,로그 데이터가 문자열로 저장되어 있어야 한다.
             // 임의의 데이터를 만들어서 테스트할 필요가 있다.
             CTimeLog cLog = new CTimeLog("UnKnown", "ReadFromFileLog");
+
+            cLog.ReadFromCSV = true;
             try
             {
                 StringBuilder sb = new StringBuilder();

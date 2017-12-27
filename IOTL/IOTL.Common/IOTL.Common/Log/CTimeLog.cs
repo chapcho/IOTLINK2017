@@ -15,6 +15,8 @@ namespace IOTL.Common.Log
         // 여기서는 데이터를 파싱해서 넣도록 한다.
 
         protected DateTime _dtTime = DateTime.MinValue;    // Log 수신시간
+        protected bool _readFromCsv = false; // CSV에서 읽은 데이터를 다시 CSV로 저장하지 않기 위한 구분 필드
+
         //protected string 
         protected byte[] _objReceiveData = null;
         public CTimeLog(string sKey, string sDescription) : base(sKey, sDescription)
@@ -40,6 +42,12 @@ namespace IOTL.Common.Log
                 _objReceiveData = value;
                 _dtTime = DateTime.Now;
             }
+        }
+
+        public bool ReadFromCSV
+        {
+            get { return _readFromCsv; }
+            set { _readFromCsv = value; }
         }
 
         public string GetReceiveDataToHex()

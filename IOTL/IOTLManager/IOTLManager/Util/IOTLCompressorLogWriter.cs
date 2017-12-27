@@ -181,7 +181,9 @@ namespace IOTLManager.Util
                         // bOK = LogDBWriter.WriteTimeLog((CTimeLog)oData);
                         
                         bOK = LogDBWriter.WriteIOTLCompDataSingle((CTimeLog)oData);
-                        bOK = m_cCSVLogWrite.WriteTimeLog((CTimeLog)oData);
+
+                        if(!((CTimeLog)oData).ReadFromCSV)
+                            bOK = m_cCSVLogWrite.WriteTimeLog((CTimeLog)oData);
                     }
 
                     // Log 파일은 1시간마다 생성한다.
