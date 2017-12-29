@@ -32,6 +32,12 @@ namespace IOTLManager
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
@@ -75,7 +81,6 @@ namespace IOTLManager
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.tabIotlCompSvr = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.ucCompressorDataManager1 = new IOTLManager.UserControls.UCCompressorDataManager();
             this.tabDatabase = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -83,15 +88,22 @@ namespace IOTLManager
             this.txtQueryString = new System.Windows.Forms.TextBox();
             this.tvIotlTable = new System.Windows.Forms.TreeView();
             this.tabSocketServer = new System.Windows.Forms.TabPage();
-            this.ucSocketServer1 = new IOTL.Common.UserControls.UCSocketServer();
-            this.ucClock1 = new IOTLManager.UserControls.UCClock();
             this.tabMonitoring = new System.Windows.Forms.TabPage();
             this.tabConfig = new System.Windows.Forms.TabPage();
             this.tabLogConfig = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.ucSystemLogTable = new IOTLManager.UserControls.UCSystemLogTable();
             this.timerTimeRefresh = new System.Windows.Forms.Timer(this.components);
+            this.lblProcessUsagePct = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ucSocketServer1 = new IOTL.Common.UserControls.UCSocketServer();
+            this.lblMemoryUsageMB = new System.Windows.Forms.ToolStripStatusLabel();
+            this.chartCpuUsage = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartMemoryAvailable = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.ucCompressorDataManager1 = new IOTLManager.UserControls.UCCompressorDataManager();
+            this.ucClock1 = new IOTLManager.UserControls.UCClock();
+            this.ucSystemLogTable = new IOTLManager.UserControls.UCSystemLogTable();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -109,14 +121,24 @@ namespace IOTLManager
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridReport)).BeginInit();
             this.tabSocketServer.SuspendLayout();
+            this.tabMonitoring.SuspendLayout();
             this.tabLogConfig.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartCpuUsage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartMemoryAvailable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
-            this.toolStripProgressBar1});
+            this.toolStripProgressBar1,
+            this.lblProcessUsagePct,
+            this.lblMemoryUsageMB});
             this.statusStrip1.Location = new System.Drawing.Point(0, 606);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1032, 22);
@@ -474,16 +496,6 @@ namespace IOTLManager
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Compressor Data Manager";
             // 
-            // ucCompressorDataManager1
-            // 
-            this.ucCompressorDataManager1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.ucCompressorDataManager1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ucCompressorDataManager1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ucCompressorDataManager1.Location = new System.Drawing.Point(3, 17);
-            this.ucCompressorDataManager1.Name = "ucCompressorDataManager1";
-            this.ucCompressorDataManager1.Size = new System.Drawing.Size(738, 389);
-            this.ucCompressorDataManager1.TabIndex = 0;
-            // 
             // tabDatabase
             // 
             this.tabDatabase.Controls.Add(this.splitContainer1);
@@ -571,28 +583,9 @@ namespace IOTLManager
             this.tabSocketServer.Text = "SocketServer(Chat)";
             this.tabSocketServer.UseVisualStyleBackColor = true;
             // 
-            // ucSocketServer1
-            // 
-            this.ucSocketServer1.BackColor = System.Drawing.Color.Aquamarine;
-            this.ucSocketServer1.ConnectedClientCount = 0;
-            this.ucSocketServer1.Location = new System.Drawing.Point(286, 16);
-            this.ucSocketServer1.Name = "ucSocketServer1";
-            this.ucSocketServer1.ReceivedPacketCount = 0;
-            this.ucSocketServer1.SendPacketCount = 0;
-            this.ucSocketServer1.ServerCaption = "TCP Socket Server";
-            this.ucSocketServer1.Size = new System.Drawing.Size(542, 272);
-            this.ucSocketServer1.SocketServerIsStarted = false;
-            this.ucSocketServer1.TabIndex = 7;
-            // 
-            // ucClock1
-            // 
-            this.ucClock1.Location = new System.Drawing.Point(8, 6);
-            this.ucClock1.Name = "ucClock1";
-            this.ucClock1.Size = new System.Drawing.Size(272, 79);
-            this.ucClock1.TabIndex = 6;
-            // 
             // tabMonitoring
             // 
+            this.tabMonitoring.Controls.Add(this.groupBox3);
             this.tabMonitoring.Location = new System.Drawing.Point(4, 22);
             this.tabMonitoring.Name = "tabMonitoring";
             this.tabMonitoring.Padding = new System.Windows.Forms.Padding(3);
@@ -642,6 +635,91 @@ namespace IOTLManager
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // timerTimeRefresh
+            // 
+            this.timerTimeRefresh.Enabled = true;
+            this.timerTimeRefresh.Interval = 1000;
+            this.timerTimeRefresh.Tick += new System.EventHandler(this.timerTimeRefresh_Tick);
+            // 
+            // lblProcessUsagePct
+            // 
+            this.lblProcessUsagePct.Name = "lblProcessUsagePct";
+            this.lblProcessUsagePct.Size = new System.Drawing.Size(24, 17);
+            this.lblProcessUsagePct.Text = "0%";
+            this.lblProcessUsagePct.ToolTipText = "Process Usage";
+            // 
+            // ucSocketServer1
+            // 
+            this.ucSocketServer1.BackColor = System.Drawing.Color.Aquamarine;
+            this.ucSocketServer1.ConnectedClientCount = 0;
+            this.ucSocketServer1.Location = new System.Drawing.Point(286, 16);
+            this.ucSocketServer1.Name = "ucSocketServer1";
+            this.ucSocketServer1.ReceivedPacketCount = 0;
+            this.ucSocketServer1.SendPacketCount = 0;
+            this.ucSocketServer1.ServerCaption = "TCP Socket Server";
+            this.ucSocketServer1.Size = new System.Drawing.Size(542, 272);
+            this.ucSocketServer1.SocketServerIsStarted = false;
+            this.ucSocketServer1.TabIndex = 7;
+            // 
+            // lblMemoryUsageMB
+            // 
+            this.lblMemoryUsageMB.Name = "lblMemoryUsageMB";
+            this.lblMemoryUsageMB.Size = new System.Drawing.Size(25, 17);
+            this.lblMemoryUsageMB.Text = "MB";
+            this.lblMemoryUsageMB.ToolTipText = "Memory Usage";
+            // 
+            // chartCpuUsage
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chartCpuUsage.ChartAreas.Add(chartArea1);
+            this.chartCpuUsage.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Name = "Legend1";
+            this.chartCpuUsage.Legends.Add(legend1);
+            this.chartCpuUsage.Location = new System.Drawing.Point(0, 0);
+            this.chartCpuUsage.Name = "chartCpuUsage";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartCpuUsage.Series.Add(series1);
+            this.chartCpuUsage.Size = new System.Drawing.Size(515, 381);
+            this.chartCpuUsage.TabIndex = 0;
+            this.chartCpuUsage.Text = "Cpu Usage";
+            // 
+            // chartMemoryAvailable
+            // 
+            this.chartMemoryAvailable.BorderSkin.BackSecondaryColor = System.Drawing.Color.Lime;
+            chartArea2.Name = "ChartArea1";
+            this.chartMemoryAvailable.ChartAreas.Add(chartArea2);
+            this.chartMemoryAvailable.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend2.Name = "Legend1";
+            this.chartMemoryAvailable.Legends.Add(legend2);
+            this.chartMemoryAvailable.Location = new System.Drawing.Point(0, 0);
+            this.chartMemoryAvailable.Name = "chartMemoryAvailable";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartMemoryAvailable.Series.Add(series2);
+            this.chartMemoryAvailable.Size = new System.Drawing.Size(489, 381);
+            this.chartMemoryAvailable.TabIndex = 1;
+            this.chartMemoryAvailable.Text = "chart1";
+            // 
+            // ucCompressorDataManager1
+            // 
+            this.ucCompressorDataManager1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.ucCompressorDataManager1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ucCompressorDataManager1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ucCompressorDataManager1.Location = new System.Drawing.Point(3, 17);
+            this.ucCompressorDataManager1.Name = "ucCompressorDataManager1";
+            this.ucCompressorDataManager1.Size = new System.Drawing.Size(738, 389);
+            this.ucCompressorDataManager1.TabIndex = 0;
+            // 
+            // ucClock1
+            // 
+            this.ucClock1.Location = new System.Drawing.Point(8, 6);
+            this.ucClock1.Name = "ucClock1";
+            this.ucClock1.Size = new System.Drawing.Size(272, 79);
+            this.ucClock1.TabIndex = 6;
+            // 
             // ucSystemLogTable
             // 
             this.ucSystemLogTable.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -650,11 +728,34 @@ namespace IOTLManager
             this.ucSystemLogTable.Size = new System.Drawing.Size(1032, 143);
             this.ucSystemLogTable.TabIndex = 4;
             // 
-            // timerTimeRefresh
+            // splitContainer3
             // 
-            this.timerTimeRefresh.Enabled = true;
-            this.timerTimeRefresh.Interval = 1000;
-            this.timerTimeRefresh.Tick += new System.EventHandler(this.timerTimeRefresh_Tick);
+            this.splitContainer3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Location = new System.Drawing.Point(3, 17);
+            this.splitContainer3.Name = "splitContainer3";
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.chartCpuUsage);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.chartMemoryAvailable);
+            this.splitContainer3.Size = new System.Drawing.Size(1012, 383);
+            this.splitContainer3.SplitterDistance = 517;
+            this.splitContainer3.TabIndex = 2;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.splitContainer3);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Location = new System.Drawing.Point(3, 3);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(1018, 403);
+            this.groupBox3.TabIndex = 3;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Monitoring ";
             // 
             // FrmMain
             // 
@@ -689,7 +790,15 @@ namespace IOTLManager
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridReport)).EndInit();
             this.tabSocketServer.ResumeLayout(false);
+            this.tabMonitoring.ResumeLayout(false);
             this.tabLogConfig.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chartCpuUsage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartMemoryAvailable)).EndInit();
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -757,5 +866,11 @@ namespace IOTLManager
         private System.Windows.Forms.Timer timerTimeRefresh;
         private System.Windows.Forms.DataGridView dataGridReport;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ToolStripStatusLabel lblProcessUsagePct;
+        private System.Windows.Forms.ToolStripStatusLabel lblMemoryUsageMB;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartMemoryAvailable;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartCpuUsage;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.SplitContainer splitContainer3;
     }
 }

@@ -1,21 +1,15 @@
-﻿using IOTL.Common.Log;
-using System;
-using System.Text;
-using System.Windows.Forms;
-
-using IOTL.Socket;
-using SuperSocket.SocketBase.Config;
-using IOTL.Socket.ClientSession;
-using SocketGlobal;
-using IOTL.Common;
+﻿using IOTL.Common;
 using IOTL.Common.DB;
-using IOTLManager.Util;
-using IOTL.Common.Framework;
-using MySql.Data.MySqlClient;
+using IOTL.Common.Log;
 using IOTL.Common.Util;
 using IOTLManager.UserControls;
-using System.Data;
+using IOTLManager.Util;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace IOTLManager
 {
@@ -26,6 +20,17 @@ namespace IOTLManager
         private MySqlLogReader DBReader = new MySqlLogReader();
         private LogManager LOG = new LogManager();
         private LogProcessor logProcessor;
+
+        private PerformanceCounter cpuCounter;
+        private PerformanceCounter ramCounter;
+
+        private double maxMemoryExists = 0.0;
+
+        private double LocalSystemMaxMemory
+        {
+            get { return maxMemoryExists; }
+            set { maxMemoryExists = value; }
+        }
 
 
         #endregion
@@ -77,6 +82,13 @@ namespace IOTLManager
             ucCompressorDataManager1.UEventFileLog += WriteMessageToLogfile;
             ucCompressorDataManager1.UEventProgressBar += ToolStripProgressBar;
 
+            // Process Usage Counter
+            cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
+            ramCounter = new PerformanceCounter("Memory", "Available MBytes");
+
+            // Available MBytes
+
+            InitializeProcessMonitoringChart();
         }
 
         private void InfoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -441,7 +453,105 @@ namespace IOTLManager
 
         private void timerTimeRefresh_Tick(object sender, EventArgs e)
         {
+            float cpuUsage;
+            float ramUsage;
             toolStripStatusLabel1.Text = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+
+            cpuUsage = cpuCounter.NextValue();
+            ramUsage = (float)(LocalSystemMaxMemory  - ramCounter.NextValue());
+
+            lblProcessUsagePct.Text = "Cpu Usage: " + cpuUsage.ToString("#,#.##") + "% ";
+            lblMemoryUsageMB.Text = "Memory Usage: " + ramUsage.ToString("#,#") + "MB ";
+
+            ProcessUsageIndicator(cpuUsage, ramUsage);
+        }
+
+        private void InitializeProcessMonitoringChart()
+        {
+            this.chartCpuUsage.Series.Clear();
+            this.chartCpuUsage.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.BrightPastel;
+            this.chartCpuUsage.Titles.Add("Cpu Usage");
+
+            // Add chart series
+            Series seriesCpu = this.chartCpuUsage.Series.Add("CPU Usage");
+            seriesCpu.IsVisibleInLegend = false;
+            chartCpuUsage.Series[0].ChartType = SeriesChartType.Area;
+
+            // Add Initial Point as Zero.
+            seriesCpu.Points.Add(0);
+
+            //Populating X Y Axis  Information 
+            chartCpuUsage.Series[0].YAxisType = AxisType.Primary;
+            chartCpuUsage.Series[0].YValueType = ChartValueType.Double;
+            chartCpuUsage.Series[0].IsXValueIndexed = false;
+
+            chartCpuUsage.ResetAutoValues();
+            chartCpuUsage.ChartAreas[0].AxisY.Maximum = 100;//Max Y 
+            chartCpuUsage.ChartAreas[0].AxisY.Minimum = 0;
+            chartCpuUsage.ChartAreas[0].AxisX.Enabled = AxisEnabled.False;
+            chartCpuUsage.ChartAreas[0].AxisY.Title = "CPU usage %";
+            chartCpuUsage.ChartAreas[0].AxisY.IntervalAutoMode = IntervalAutoMode.VariableCount;
+
+            this.chartMemoryAvailable.Series.Clear();
+            this.chartMemoryAvailable.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.EarthTones;
+            this.chartMemoryAvailable.Titles.Add("Memory Usage");
+
+            // Add chart series
+            Series seriesRam = this.chartMemoryAvailable.Series.Add("Memory Usage");
+            chartMemoryAvailable.Series[0].ChartType = SeriesChartType.Area;
+            seriesRam.IsVisibleInLegend = false;
+
+            // Add Initial Point as Zero.
+            seriesRam.Points.Add(0);
+
+            //Populating X Y Axis  Information 
+            chartMemoryAvailable.Series[0].YAxisType = AxisType.Primary;
+            chartMemoryAvailable.Series[0].YValueType = ChartValueType.Double;
+            chartMemoryAvailable.Series[0].IsXValueIndexed = false;
+
+            chartMemoryAvailable.ResetAutoValues();
+            chartMemoryAvailable.ChartAreas[0].AxisY.Maximum = (double)getPhysicalMemory();
+            chartMemoryAvailable.ChartAreas[0].AxisY.Minimum = 0;
+            chartMemoryAvailable.ChartAreas[0].AxisX.Enabled = AxisEnabled.False;
+            chartMemoryAvailable.ChartAreas[0].AxisY.Title = "Memory Usage(MB)";
+            chartMemoryAvailable.ChartAreas[0].AxisY.IntervalAutoMode = IntervalAutoMode.VariableCount;
+        }
+
+        private void ProcessUsageIndicator(float cpuUsage, float ramAvail)
+        {
+            this.Invoke(new System.Windows.Forms.MethodInvoker(delegate ()
+            {
+                chartCpuUsage.Series[0].Points.AddY(cpuUsage);//Add process to chart 
+
+                if (chartCpuUsage.Series[0].Points.Count > 40)
+                    chartCpuUsage.Series[0].Points.RemoveAt(0);
+
+                chartMemoryAvailable.Series[0].Points.AddY(ramAvail);//Add process to chart 
+
+                if (chartMemoryAvailable.Series[0].Points.Count > 40)
+                    chartMemoryAvailable.Series[0].Points.RemoveAt(0);
+
+            }));
+        }
+
+        private int getPhysicalMemory()
+        {
+            int maxMem = 0;
+
+            System.Management.ObjectQuery winQuery = new System.Management.ObjectQuery("SELECT * FROM Win32_OperatingSystem");
+            System.Management.ManagementObjectSearcher searcher = new System.Management.ManagementObjectSearcher(winQuery);
+            System.Management.ManagementObjectCollection queryCollection = searcher.Get();
+
+            ulong memory = 0;
+            foreach (System.Management.ManagementObject item in queryCollection)
+            {
+                memory = ulong.Parse(item["TotalVisibleMemorySize"].ToString());
+            }
+            maxMem = (int)(memory/1024);
+
+            LocalSystemMaxMemory = maxMem;
+
+            return maxMem;
         }
     }
 }
