@@ -82,13 +82,7 @@ namespace IOTLManager
             ucCompressorDataManager1.UEventFileLog += WriteMessageToLogfile;
             ucCompressorDataManager1.UEventProgressBar += ToolStripProgressBar;
 
-            // Process Usage Counter
-            cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
-            ramCounter = new PerformanceCounter("Memory", "Available MBytes");
-
-            // Available MBytes
-
-            InitializeProcessMonitoringChart();
+            
         }
 
         private void InfoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -411,6 +405,20 @@ namespace IOTLManager
         private void FrmMain_Load(object sender, EventArgs e)
         {
             LoadIotlTableListInTreeView();
+
+            // Process Usage Counter
+            cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total", true);
+            ramCounter = new PerformanceCounter("Memory", "Available MBytes", true);
+
+            try
+            {
+                InitializeProcessMonitoringChart();
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Clear();
+            }
+
         }
 
         private void tvIotlTable_DoubleClick(object sender, EventArgs e)
@@ -454,16 +462,23 @@ namespace IOTLManager
         private void timerTimeRefresh_Tick(object sender, EventArgs e)
         {
             float cpuUsage;
-            float ramUsage;
+            float ramAvail;
+
             toolStripStatusLabel1.Text = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
 
-            cpuUsage = cpuCounter.NextValue();
-            ramUsage = (float)(LocalSystemMaxMemory  - ramCounter.NextValue());
+            try
+            {
+                cpuUsage = cpuCounter.NextValue();
+                ramAvail = (float)(LocalSystemMaxMemory - ramCounter.NextValue());
 
-            lblProcessUsagePct.Text = "Cpu Usage: " + cpuUsage.ToString("#,#.##") + "% ";
-            lblMemoryUsageMB.Text = "Memory Usage: " + ramUsage.ToString("#,#") + "MB ";
-
-            ProcessUsageIndicator(cpuUsage, ramUsage);
+                ProcessUsageIndicator(cpuUsage, ramAvail);
+            }
+            catch(Exception ex)
+            {
+                System.Console.WriteLine("Exception Message : {0}", ex.Message);
+                ex.Data.Clear();
+            }
+            
         }
 
         private void InitializeProcessMonitoringChart()
@@ -476,6 +491,7 @@ namespace IOTLManager
             Series seriesCpu = this.chartCpuUsage.Series.Add("CPU Usage");
             seriesCpu.IsVisibleInLegend = false;
             chartCpuUsage.Series[0].ChartType = SeriesChartType.Area;
+            seriesCpu.BorderColor = System.Drawing.Color.Cyan;
 
             // Add Initial Point as Zero.
             seriesCpu.Points.Add(0);
@@ -521,8 +537,10 @@ namespace IOTLManager
         {
             this.Invoke(new System.Windows.Forms.MethodInvoker(delegate ()
             {
-                chartCpuUsage.Series[0].Points.AddY(cpuUsage);//Add process to chart 
+                lblProcessUsagePct.Text = "Cpu Usage: " + cpuUsage.ToString("#,#.##") + "% ";
+                lblMemoryUsageMB.Text = "Memory Usage: " + ramAvail.ToString("#,#") + "MB ";
 
+                chartCpuUsage.Series[0].Points.AddY(cpuUsage);//Add process to chart 
                 if (chartCpuUsage.Series[0].Points.Count > 40)
                     chartCpuUsage.Series[0].Points.RemoveAt(0);
 
@@ -552,6 +570,20 @@ namespace IOTLManager
             LocalSystemMaxMemory = maxMem;
 
             return maxMem;
+        }
+
+        private void chartCpuUsage_Click(object sender, EventArgs e)
+        {
+            Process[] proc = Process.GetProcesses();
+
+            foreach (Process proces in proc)
+            {
+                using (PerformanceCounter pcProcess = new PerformanceCounter("Process", "% Processor Time", proces.ProcessName))
+                {
+                    pcProcess.NextValue();
+                    Console.WriteLine("process[{0}] = {1}", proces.ProcessName, pcProcess.NextValue());
+                }
+            }
         }
     }
 }
