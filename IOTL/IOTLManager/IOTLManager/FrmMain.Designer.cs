@@ -104,6 +104,7 @@ namespace IOTLManager
             this.button1 = new System.Windows.Forms.Button();
             this.ucSystemLogTable = new IOTLManager.UserControls.UCSystemLogTable();
             this.timerTimeRefresh = new System.Windows.Forms.Timer(this.components);
+            this.ucConfigIOTLinkManager1 = new IOTLManager.UserControls.UCConfigIOTLinkManager();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -129,6 +130,7 @@ namespace IOTLManager
             this.splitContainer3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartCpuUsage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartMemoryAvailable)).BeginInit();
+            this.tabConfig.SuspendLayout();
             this.tabLogConfig.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -705,6 +707,7 @@ namespace IOTLManager
             // 
             // tabConfig
             // 
+            this.tabConfig.Controls.Add(this.ucConfigIOTLinkManager1);
             this.tabConfig.Location = new System.Drawing.Point(4, 22);
             this.tabConfig.Name = "tabConfig";
             this.tabConfig.Padding = new System.Windows.Forms.Padding(3);
@@ -758,6 +761,13 @@ namespace IOTLManager
             this.timerTimeRefresh.Interval = 1000;
             this.timerTimeRefresh.Tick += new System.EventHandler(this.timerTimeRefresh_Tick);
             // 
+            // ucConfigIOTLinkManager1
+            // 
+            this.ucConfigIOTLinkManager1.Location = new System.Drawing.Point(20, 20);
+            this.ucConfigIOTLinkManager1.Name = "ucConfigIOTLinkManager1";
+            this.ucConfigIOTLinkManager1.Size = new System.Drawing.Size(591, 278);
+            this.ucConfigIOTLinkManager1.TabIndex = 0;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -799,6 +809,7 @@ namespace IOTLManager
             this.splitContainer3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chartCpuUsage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartMemoryAvailable)).EndInit();
+            this.tabConfig.ResumeLayout(false);
             this.tabLogConfig.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -873,5 +884,6 @@ namespace IOTLManager
         private System.Windows.Forms.DataVisualization.Charting.Chart chartCpuUsage;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.SplitContainer splitContainer3;
+        private UserControls.UCConfigIOTLinkManager ucConfigIOTLinkManager1;
     }
 }

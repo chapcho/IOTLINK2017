@@ -97,6 +97,12 @@
     <Compile Include="UserControls\UCCompressorDataManager.Designer.cs">
       <DependentUpon>UCCompressorDataManager.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UCConfigIOTLinkManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCConfigIOTLinkManager.Designer.cs">
+      <DependentUpon>UCConfigIOTLinkManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UCSystemLogTable.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -116,6 +122,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="UserControls\MySQLBackupForm.resx">
       <DependentUpon>MySQLBackupForm.cs</DependentUpon>
@@ -125,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCCompressorDataManager.resx">
       <DependentUpon>UCCompressorDataManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCConfigIOTLinkManager.resx">
+      <DependentUpon>UCConfigIOTLinkManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCSystemLogTable.resx">
       <DependentUpon>UCSystemLogTable.cs</DependentUpon>
@@ -167,6 +177,15 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Up_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Up_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SavePageSetup_32x32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

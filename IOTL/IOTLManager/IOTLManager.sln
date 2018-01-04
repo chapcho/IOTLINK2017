@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IOTL.Utilities", "..\IOTL.Utilities\IOTL.Utilities\IOTL.Utilities.csproj", "{1EDEC009-993A-42E9-AA9A-5B0CCF9172A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IOTL.Project", "..\IOTL.Common\IOTL.Project\IOTL.Project.csproj", "{A0714C4A-B38D-4AAE-BEE8-B26DA7861EC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{1EDEC009-993A-42E9-AA9A-5B0CCF9172A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EDEC009-993A-42E9-AA9A-5B0CCF9172A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EDEC009-993A-42E9-AA9A-5B0CCF9172A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0714C4A-B38D-4AAE-BEE8-B26DA7861EC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0714C4A-B38D-4AAE-BEE8-B26DA7861EC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0714C4A-B38D-4AAE-BEE8-B26DA7861EC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0714C4A-B38D-4AAE-BEE8-B26DA7861EC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +84,7 @@ Global
 		{6BC18475-618B-467B-803B-057C8EBA8114} = {DD72EBCB-0359-4983-93F8-6C39EA120264}
 		{DFC35509-2DDB-41F4-B3AC-B13CAE259BA0} = {74D26A92-3395-4C49-B1F6-86826F9CEF8D}
 		{1EDEC009-993A-42E9-AA9A-5B0CCF9172A9} = {74D26A92-3395-4C49-B1F6-86826F9CEF8D}
+		{A0714C4A-B38D-4AAE-BEE8-B26DA7861EC1} = {D2A32162-C6E1-44A8-B01B-4AFD09C73575}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4DCE8477-6957-4BE0-BF3E-E1BB114AC05B}
