@@ -7,11 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IOTL.Project;
+using IOTL.Common.Serialize;
 
 namespace IOTLManager.UserControls
 {
     public partial class UCConfigIOTLinkManager : UserControl
     {
+        private CProject cProject = new CProject();
+
         public UCConfigIOTLinkManager()
         {
             InitializeComponent();
@@ -33,6 +37,7 @@ namespace IOTLManager.UserControls
         {
             bool bRet = false;
 
+            bRet = true;
 
             if(!bRet)
             {
@@ -47,6 +52,34 @@ namespace IOTLManager.UserControls
             {
                 return;
             }
+
+            CProject _localSetting = new CProject();
+
+            _localSetting.CompServerIPAddress = this.txtCompServerIPAddress.Text;
+            _localSetting.CompServerTcpPort = Convert.ToUInt16(this.txtCompServerPort.Text);
+            _localSetting.CompServerInitialDatabaseName = this.txtCompServerDBName.Text;
+            _localSetting.CompServerDBLoginUserId = this.txtCompServerDBUserID.Text;
+            _localSetting.CompServerDBLoginUserPw = this.txtCompServerDBUserPw.Text;
+
+            SaveCompServerSetting(Application.StartupPath, _localSetting);
+
+        }
+
+        private bool SaveCompServerSetting(string configSavePath, CProject localSetting)
+        {
+            bool bOK = false;
+            NetSerializer cSerializer = new NetSerializer();
+
+            try
+            {
+                bOK = cSerializer.Write(configSavePath, localSetting);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name); ex.Data.Clear();
+            }
+
+            return bOK;
         }
     }
 }

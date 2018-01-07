@@ -159,6 +159,10 @@
       <Project>{64bbe205-a04f-410b-8d00-2e6466ada985}</Project>
       <Name>IOTL.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\IOTL.Common\IOTL.Project\IOTL.Project.csproj">
+      <Project>{a0714c4a-b38d-4aae-bee8-b26da7861ec1}</Project>
+      <Name>IOTL.Project</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\IOTL.Socket\IOTL.Socket\IOTL.Socket.csproj">
       <Project>{f78972a4-0264-4c97-a4a6-b7e2cc2f3700}</Project>
       <Name>IOTL.Socket</Name>

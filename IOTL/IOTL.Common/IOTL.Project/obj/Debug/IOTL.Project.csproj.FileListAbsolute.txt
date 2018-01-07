@@ -1,2 +1,6 @@
-D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Common\IOTL.Project\obj\Debug\IOTL.Project.csprojResolveAssemblyReference.cache
 D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Common\IOTL.Project\obj\Debug\IOTL.Project.csproj.CoreCompileInputs.cache
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Common\IOTL.Project\bin\Debug\IOTL.Project.dll
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Common\IOTL.Project\bin\Debug\IOTL.Project.pdb
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Common\IOTL.Project\obj\Debug\IOTL.Project.dll
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Common\IOTL.Project\obj\Debug\IOTL.Project.pdb
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Common\IOTL.Project\obj\Debug\IOTL.Project.csprojResolveAssemblyReference.cache
