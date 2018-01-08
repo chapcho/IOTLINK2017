@@ -44,5 +44,11 @@
     <Compile Include="CProject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IOTL.Common\IOTL.Common.csproj">
+      <Project>{64bbe205-a04f-410b-8d00-2e6466ada985}</Project>
+      <Name>IOTL.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

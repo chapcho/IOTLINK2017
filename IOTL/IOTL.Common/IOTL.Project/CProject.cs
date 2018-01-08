@@ -1,5 +1,7 @@
-﻿using System;
+﻿using IOTL.Common.Serialize;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +11,8 @@ namespace IOTL.Project
     [Serializable]
     public class CProject : IDisposable
     {
+        public const string ConfigFileName = "IOTLDataManager.ini";
+
         protected string _compServerIPAddress = string.Empty;
         protected uint _compServerTcpPort = 0;
         protected string _compServerLogDirectory = string.Empty;
@@ -68,6 +72,66 @@ namespace IOTL.Project
         private void ClearAll()
         {
             Console.WriteLine("CProject Class Dispose");
+        }
+
+        public bool Save(string sPath)
+        {
+            bool bOK = false;
+            NetSerializer cSerializer = new NetSerializer();
+
+            try
+            {
+                bOK = cSerializer.Write(sPath + "\\" + ConfigFileName, this);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name); ex.Data.Clear();
+            }
+            finally
+            {
+                cSerializer.Dispose();
+                cSerializer = null;
+            }
+
+            return bOK;
+        }
+
+        public bool Open(string sPath, out CProject savedConfig)
+        {
+            bool bOK = false;
+
+            string configFilePath = sPath + "\\" + ConfigFileName;
+
+            if (!File.Exists(configFilePath))
+            {
+                savedConfig = null;
+                return false;
+            }
+
+            NetSerializer cSerializer = new NetSerializer();
+            savedConfig = null;
+
+            try
+            {
+                savedConfig = (cSerializer.Read(configFilePath)) as CProject;
+            }
+            catch (Exception ex) { ex.Data.Clear(); }
+            finally
+            {
+                cSerializer.Dispose();
+                cSerializer = null;
+            }
+
+            if (savedConfig != null)
+            {
+                bOK = true;
+            }
+            else
+            {
+                bOK = false;
+            }
+
+            return bOK;
         }
     }
 }

@@ -14,6 +14,7 @@ namespace IOTLManager.UserControls
 {
     public partial class UCConfigIOTLinkManager : UserControl
     {
+        
         private CProject cProject = new CProject();
 
         public UCConfigIOTLinkManager()
@@ -61,25 +62,44 @@ namespace IOTLManager.UserControls
             _localSetting.CompServerDBLoginUserId = this.txtCompServerDBUserID.Text;
             _localSetting.CompServerDBLoginUserPw = this.txtCompServerDBUserPw.Text;
 
-            SaveCompServerSetting(Application.StartupPath, _localSetting);
-
-        }
-
-        private bool SaveCompServerSetting(string configSavePath, CProject localSetting)
-        {
-            bool bOK = false;
-            NetSerializer cSerializer = new NetSerializer();
+            cProject = _localSetting;
 
             try
             {
-                bOK = cSerializer.Write(configSavePath, localSetting);
+                cProject.Save(Application.StartupPath);
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name); ex.Data.Clear();
             }
+        }
 
-            return bOK;
+        private void btnLoadConfig_Click(object sender, EventArgs e)
+        {
+            CProject savedConfig = new CProject();
+            try
+            {
+                bool bOk = cProject.Open(Application.StartupPath, out savedConfig);
+                if(bOk)
+                {
+                    cProject = savedConfig;
+                    ReloadSystemConfig(cProject);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name); ex.Data.Clear();
+            }
+        }
+
+        private void ReloadSystemConfig(CProject savedConfig)
+        {
+            this.txtCompServerIPAddress.Text = savedConfig.CompServerIPAddress;
+            this.txtCompServerPort.Text = savedConfig.CompServerTcpPort.ToString();
+            this.txtCompServerDBName.Text = savedConfig.CompServerInitialDatabaseName;
+            this.txtCompServerDBUserID.Text = savedConfig.CompServerDBLoginUserId;
+            this.txtCompServerDBUserPw.Text = savedConfig.CompServerDBLoginUserPw;
+            this.txtCompServerLogFolder.Text = savedConfig.CompServerLogDirectory;
         }
     }
 }
