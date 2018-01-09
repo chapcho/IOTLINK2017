@@ -1,0 +1,2 @@
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.WCF\IOTL.WCF\obj\Release\IOTL.WCF.csprojResolveAssemblyReference.cache
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.WCF\IOTL.WCF\obj\Release\IOTL.WCF.csproj.CoreCompileInputs.cache

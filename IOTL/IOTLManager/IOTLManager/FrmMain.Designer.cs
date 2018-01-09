@@ -99,12 +99,12 @@ namespace IOTLManager
             this.chartCpuUsage = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartMemoryAvailable = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabConfig = new System.Windows.Forms.TabPage();
+            this.ucConfigIOTLinkManager1 = new IOTLManager.UserControls.UCConfigIOTLinkManager();
             this.tabLogConfig = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.ucSystemLogTable = new IOTLManager.UserControls.UCSystemLogTable();
             this.timerTimeRefresh = new System.Windows.Forms.Timer(this.components);
-            this.ucConfigIOTLinkManager1 = new IOTLManager.UserControls.UCConfigIOTLinkManager();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -488,6 +488,7 @@ namespace IOTLManager
             this.mainTabControl.SelectedIndex = 0;
             this.mainTabControl.Size = new System.Drawing.Size(1032, 435);
             this.mainTabControl.TabIndex = 2;
+            this.mainTabControl.SelectedIndexChanged += new System.EventHandler(this.mainTabControl_SelectedIndexChanged);
             // 
             // tabIotlCompSvr
             // 
@@ -716,6 +717,13 @@ namespace IOTLManager
             this.tabConfig.Text = "Configure";
             this.tabConfig.UseVisualStyleBackColor = true;
             // 
+            // ucConfigIOTLinkManager1
+            // 
+            this.ucConfigIOTLinkManager1.Location = new System.Drawing.Point(20, 20);
+            this.ucConfigIOTLinkManager1.Name = "ucConfigIOTLinkManager1";
+            this.ucConfigIOTLinkManager1.Size = new System.Drawing.Size(591, 278);
+            this.ucConfigIOTLinkManager1.TabIndex = 0;
+            // 
             // tabLogConfig
             // 
             this.tabLogConfig.Controls.Add(this.button2);
@@ -760,13 +768,6 @@ namespace IOTLManager
             this.timerTimeRefresh.Enabled = true;
             this.timerTimeRefresh.Interval = 1000;
             this.timerTimeRefresh.Tick += new System.EventHandler(this.timerTimeRefresh_Tick);
-            // 
-            // ucConfigIOTLinkManager1
-            // 
-            this.ucConfigIOTLinkManager1.Location = new System.Drawing.Point(20, 20);
-            this.ucConfigIOTLinkManager1.Name = "ucConfigIOTLinkManager1";
-            this.ucConfigIOTLinkManager1.Size = new System.Drawing.Size(591, 278);
-            this.ucConfigIOTLinkManager1.TabIndex = 0;
             // 
             // FrmMain
             // 

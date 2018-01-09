@@ -87,7 +87,7 @@ namespace IOTLManager
 
         private void InfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("IOTL Compress Data Manager!!!");
+            MessageBox.Show("IOTLink Data Manager!!!");
         }
 
         /// <summary>
@@ -259,7 +259,14 @@ namespace IOTLManager
 
         private void menuServerConfig_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                mainTabControl.SelectedIndex = 4;
+            }
+            catch(Exception ex)
+            {
+                ex.Data.Clear();
+            }
         }
 
 
@@ -418,7 +425,6 @@ namespace IOTLManager
             {
                 ex.Data.Clear();
             }
-
         }
 
         private void tvIotlTable_DoubleClick(object sender, EventArgs e)
@@ -584,6 +590,11 @@ namespace IOTLManager
                     Console.WriteLine("process[{0}] = {1}", proces.ProcessName, pcProcess.NextValue());
                 }
             }
+        }
+
+        private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

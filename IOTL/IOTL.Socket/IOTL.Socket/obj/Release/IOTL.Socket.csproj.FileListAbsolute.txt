@@ -1,0 +1,15 @@
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Socket\IOTL.Socket\bin\Release\IOTL.Socket.dll
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Socket\IOTL.Socket\bin\Release\IOTL.Socket.pdb
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Socket\IOTL.Socket\bin\Release\log4net.dll
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Socket\IOTL.Socket\bin\Release\SocketGlobal.dll
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Socket\IOTL.Socket\bin\Release\SuperSocket.Common.dll
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Socket\IOTL.Socket\bin\Release\SuperSocket.Facility.dll
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Socket\IOTL.Socket\bin\Release\SuperSocket.SocketBase.dll
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Socket\IOTL.Socket\bin\Release\SuperSocket.SocketEngine.dll
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Socket\IOTL.Socket\bin\Release\SocketGlobal.pdb
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Socket\IOTL.Socket\bin\Release\log4net.xml
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Socket\IOTL.Socket\bin\Release\SuperSocket.Facility.xml
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Socket\IOTL.Socket\obj\Release\IOTL.Socket.csprojResolveAssemblyReference.cache
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Socket\IOTL.Socket\obj\Release\IOTL.Socket.csproj.CoreCompileInputs.cache
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Socket\IOTL.Socket\obj\Release\IOTL.Socket.dll
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Socket\IOTL.Socket\obj\Release\IOTL.Socket.pdb

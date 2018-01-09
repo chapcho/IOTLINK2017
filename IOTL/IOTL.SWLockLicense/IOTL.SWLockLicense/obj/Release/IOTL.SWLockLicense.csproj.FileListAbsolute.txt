@@ -1,0 +1,8 @@
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.SWLockLicense\IOTL.SWLockLicense\bin\Release\IOTL.SWLockLicense.dll
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.SWLockLicense\IOTL.SWLockLicense\bin\Release\IOTL.SWLockLicense.pdb
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.SWLockLicense\IOTL.SWLockLicense\obj\Release\IOTL.SWLockLicense.csprojResolveAssemblyReference.cache
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.SWLockLicense\IOTL.SWLockLicense\obj\Release\IOTL.SWLockLicense.FrmLicense.resources
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.SWLockLicense\IOTL.SWLockLicense\obj\Release\IOTL.SWLockLicense.csproj.GenerateResource.Cache
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.SWLockLicense\IOTL.SWLockLicense\obj\Release\IOTL.SWLockLicense.csproj.CoreCompileInputs.cache
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.SWLockLicense\IOTL.SWLockLicense\obj\Release\IOTL.SWLockLicense.dll
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.SWLockLicense\IOTL.SWLockLicense\obj\Release\IOTL.SWLockLicense.pdb

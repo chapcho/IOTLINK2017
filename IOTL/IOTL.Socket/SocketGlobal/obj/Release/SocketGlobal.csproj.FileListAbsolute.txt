@@ -1,0 +1,5 @@
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Socket\SocketGlobal\bin\Release\SocketGlobal.dll
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Socket\SocketGlobal\bin\Release\SocketGlobal.pdb
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Socket\SocketGlobal\obj\Release\SocketGlobal.csproj.CoreCompileInputs.cache
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Socket\SocketGlobal\obj\Release\SocketGlobal.dll
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Socket\SocketGlobal\obj\Release\SocketGlobal.pdb

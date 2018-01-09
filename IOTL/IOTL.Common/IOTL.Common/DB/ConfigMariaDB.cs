@@ -25,9 +25,9 @@ namespace IOTL.Common.DB
             // Default DB Connecion String
             databaseServerIp = "localhost";
             databaseServerPort = 3306;
-            initialDatabaseName = "iotlink";
+            initialDatabaseName = "comp";
             loginUserID = "root";
-            loginUserPassword = "iotl";
+            loginUserPassword = "amin!!";
             databaseCharset = "utf8";
         }
 

@@ -1,0 +1,6 @@
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Common\IOTL.Common\obj\Release\IOTL.Common.csprojResolveAssemblyReference.cache
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Common\IOTL.Common\obj\Release\IOTL.Common.Properties.Resources.resources
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Common\IOTL.Common\obj\Release\IOTL.Common.UserControls.UCSocketServer.resources
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Common\IOTL.Common\obj\Release\IOTL.Common.Util.SplashWnd.resources
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Common\IOTL.Common\obj\Release\IOTL.Common.csproj.GenerateResource.Cache
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Common\IOTL.Common\obj\Release\IOTL.Common.csproj.CoreCompileInputs.cache
