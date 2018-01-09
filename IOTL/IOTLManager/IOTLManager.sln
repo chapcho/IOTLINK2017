@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IOTL.Utilities", "..\IOTL.U
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IOTL.Project", "..\IOTL.Common\IOTL.Project\IOTL.Project.csproj", "{A0714C4A-B38D-4AAE-BEE8-B26DA7861EC1}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "IOTLManagerSetup", "IOTLManagerSetup\IOTLManagerSetup.vdproj", "{C6002014-EB81-4428-B192-5EFA77851362}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,8 @@ Global
 		{A0714C4A-B38D-4AAE-BEE8-B26DA7861EC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0714C4A-B38D-4AAE-BEE8-B26DA7861EC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0714C4A-B38D-4AAE-BEE8-B26DA7861EC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6002014-EB81-4428-B192-5EFA77851362}.Debug|Any CPU.ActiveCfg = Debug
+		{C6002014-EB81-4428-B192-5EFA77851362}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
