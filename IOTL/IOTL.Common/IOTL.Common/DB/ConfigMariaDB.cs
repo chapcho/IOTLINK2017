@@ -36,9 +36,19 @@ namespace IOTL.Common.DB
             databaseServerIp = dbIp;
             databaseServerPort = dbPort;
             initialDatabaseName = dbName;
-            loginUserID = loginUser;
+            loginUserID = string.IsNullOrEmpty(loginUser) ? "root" : loginUser;
             loginUserPassword = userPassword;
-            databaseCharset = dbCharset;
+            databaseCharset = string.IsNullOrEmpty(dbCharset) ? "utf8" : dbCharset;
+        }
+
+        public ConfigMariaDB(ConfigMariaDB connInfo)
+        {
+            this.DatabaseServerIp = connInfo.DatabaseServerIp;
+            this.DatabaseServerPort = connInfo.DatabaseServerPort;
+            this.InitialDatabaseName = connInfo.InitialDatabaseName;
+            this.LoginUserID = connInfo.LoginUserID;
+            this.LoginUserPassword = connInfo.LoginUserPassword;
+            this.DatabaseCharset = string.IsNullOrEmpty(connInfo.DatabaseCharset) ? "utf8" : connInfo.DatabaseCharset;
         }
 
         #region MySQLDB Connect Interface 구현
