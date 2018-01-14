@@ -30,6 +30,9 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnLoadConfig = new System.Windows.Forms.Button();
+            this.btnSaveConfig = new System.Windows.Forms.Button();
+            this.btnCompServerLogFind = new System.Windows.Forms.Button();
             this.txtCompServerLogFolder = new System.Windows.Forms.TextBox();
             this.txtCompServerPort = new System.Windows.Forms.TextBox();
             this.txtCompServerDBUserPw = new System.Windows.Forms.TextBox();
@@ -42,9 +45,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnLoadConfig = new System.Windows.Forms.Button();
-            this.btnSaveConfig = new System.Windows.Forms.Button();
-            this.btnCompServerLogFind = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtCompServerDBPort = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -64,12 +66,14 @@
             this.groupBox1.Controls.Add(this.btnSaveConfig);
             this.groupBox1.Controls.Add(this.btnCompServerLogFind);
             this.groupBox1.Controls.Add(this.txtCompServerLogFolder);
+            this.groupBox1.Controls.Add(this.txtCompServerDBPort);
             this.groupBox1.Controls.Add(this.txtCompServerPort);
             this.groupBox1.Controls.Add(this.txtCompServerDBUserPw);
             this.groupBox1.Controls.Add(this.txtCompServerDBUserID);
             this.groupBox1.Controls.Add(this.txtCompServerDBName);
             this.groupBox1.Controls.Add(this.txtCompServerIPAddress);
             this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
@@ -77,10 +81,44 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(548, 225);
+            this.groupBox1.Size = new System.Drawing.Size(548, 231);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Comp Server";
+            // 
+            // btnLoadConfig
+            // 
+            this.btnLoadConfig.Image = global::IOTLManager.Properties.Resources.Technology_32x32;
+            this.btnLoadConfig.Location = new System.Drawing.Point(480, 140);
+            this.btnLoadConfig.Name = "btnLoadConfig";
+            this.btnLoadConfig.Size = new System.Drawing.Size(61, 62);
+            this.btnLoadConfig.TabIndex = 6;
+            this.btnLoadConfig.Text = "Load";
+            this.btnLoadConfig.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnLoadConfig.UseVisualStyleBackColor = true;
+            this.btnLoadConfig.Click += new System.EventHandler(this.btnLoadConfig_Click);
+            // 
+            // btnSaveConfig
+            // 
+            this.btnSaveConfig.Image = global::IOTLManager.Properties.Resources.SavePageSetup_32x32;
+            this.btnSaveConfig.Location = new System.Drawing.Point(380, 140);
+            this.btnSaveConfig.Name = "btnSaveConfig";
+            this.btnSaveConfig.Size = new System.Drawing.Size(61, 62);
+            this.btnSaveConfig.TabIndex = 6;
+            this.btnSaveConfig.Text = "Save";
+            this.btnSaveConfig.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnSaveConfig.UseVisualStyleBackColor = true;
+            this.btnSaveConfig.Click += new System.EventHandler(this.btnSaveConfig_Click);
+            // 
+            // btnCompServerLogFind
+            // 
+            this.btnCompServerLogFind.Image = global::IOTLManager.Properties.Resources.Up_16x16;
+            this.btnCompServerLogFind.Location = new System.Drawing.Point(373, 68);
+            this.btnCompServerLogFind.Name = "btnCompServerLogFind";
+            this.btnCompServerLogFind.Size = new System.Drawing.Size(40, 21);
+            this.btnCompServerLogFind.TabIndex = 2;
+            this.btnCompServerLogFind.UseVisualStyleBackColor = true;
+            this.btnCompServerLogFind.Click += new System.EventHandler(this.btnCompServerLogFind_Click);
             // 
             // txtCompServerLogFolder
             // 
@@ -98,7 +136,7 @@
             // 
             // txtCompServerDBUserPw
             // 
-            this.txtCompServerDBUserPw.Location = new System.Drawing.Point(141, 183);
+            this.txtCompServerDBUserPw.Location = new System.Drawing.Point(141, 199);
             this.txtCompServerDBUserPw.MaxLength = 20;
             this.txtCompServerDBUserPw.Name = "txtCompServerDBUserPw";
             this.txtCompServerDBUserPw.PasswordChar = '*';
@@ -107,7 +145,7 @@
             // 
             // txtCompServerDBUserID
             // 
-            this.txtCompServerDBUserID.Location = new System.Drawing.Point(141, 152);
+            this.txtCompServerDBUserID.Location = new System.Drawing.Point(141, 171);
             this.txtCompServerDBUserID.MaxLength = 20;
             this.txtCompServerDBUserID.Name = "txtCompServerDBUserID";
             this.txtCompServerDBUserID.Size = new System.Drawing.Size(226, 21);
@@ -148,7 +186,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(17, 192);
+            this.label6.Location = new System.Drawing.Point(17, 202);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 12);
             this.label6.TabIndex = 0;
@@ -157,7 +195,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(17, 155);
+            this.label5.Location = new System.Drawing.Point(17, 176);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(72, 12);
             this.label5.TabIndex = 0;
@@ -181,39 +219,21 @@
             this.panel1.Size = new System.Drawing.Size(777, 491);
             this.panel1.TabIndex = 2;
             // 
-            // btnLoadConfig
+            // label7
             // 
-            this.btnLoadConfig.Image = global::IOTLManager.Properties.Resources.Technology_32x32;
-            this.btnLoadConfig.Location = new System.Drawing.Point(480, 140);
-            this.btnLoadConfig.Name = "btnLoadConfig";
-            this.btnLoadConfig.Size = new System.Drawing.Size(61, 62);
-            this.btnLoadConfig.TabIndex = 6;
-            this.btnLoadConfig.Text = "Load";
-            this.btnLoadConfig.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnLoadConfig.UseVisualStyleBackColor = true;
-            this.btnLoadConfig.Click += new System.EventHandler(this.btnLoadConfig_Click);
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(17, 152);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(58, 12);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "DB PORT";
             // 
-            // btnSaveConfig
+            // txtDatabsePort
             // 
-            this.btnSaveConfig.Image = global::IOTLManager.Properties.Resources.SavePageSetup_32x32;
-            this.btnSaveConfig.Location = new System.Drawing.Point(380, 140);
-            this.btnSaveConfig.Name = "btnSaveConfig";
-            this.btnSaveConfig.Size = new System.Drawing.Size(61, 62);
-            this.btnSaveConfig.TabIndex = 6;
-            this.btnSaveConfig.Text = "Save";
-            this.btnSaveConfig.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSaveConfig.UseVisualStyleBackColor = true;
-            this.btnSaveConfig.Click += new System.EventHandler(this.btnSaveConfig_Click);
-            // 
-            // btnCompServerLogFind
-            // 
-            this.btnCompServerLogFind.Image = global::IOTLManager.Properties.Resources.Up_16x16;
-            this.btnCompServerLogFind.Location = new System.Drawing.Point(373, 68);
-            this.btnCompServerLogFind.Name = "btnCompServerLogFind";
-            this.btnCompServerLogFind.Size = new System.Drawing.Size(40, 21);
-            this.btnCompServerLogFind.TabIndex = 2;
-            this.btnCompServerLogFind.UseVisualStyleBackColor = true;
-            this.btnCompServerLogFind.Click += new System.EventHandler(this.btnCompServerLogFind_Click);
+            this.txtCompServerDBPort.Location = new System.Drawing.Point(142, 143);
+            this.txtCompServerDBPort.Name = "txtDatabsePort";
+            this.txtCompServerDBPort.Size = new System.Drawing.Size(84, 21);
+            this.txtCompServerDBPort.TabIndex = 1;
             // 
             // UCConfigIOTLinkManager
             // 
@@ -248,5 +268,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnSaveConfig;
         private System.Windows.Forms.Button btnLoadConfig;
+        private System.Windows.Forms.TextBox txtCompServerDBPort;
+        private System.Windows.Forms.Label label7;
     }
 }

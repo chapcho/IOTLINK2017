@@ -20,16 +20,16 @@ namespace IOTL.Common.DB
         /// <summary>
         /// MariaDB Connection은 MySQLDBConnection과 동일합니다.
         /// </summary>
-        public ConfigMariaDB()
-        {
-            // Default DB Connecion String
-            databaseServerIp = "localhost";
-            databaseServerPort = 3306;
-            initialDatabaseName = "comp";
-            loginUserID = "root";
-            loginUserPassword = "amin!!";
-            databaseCharset = "utf8";
-        }
+        //public ConfigMariaDB()
+        //{
+        //    // Default DB Connecion String
+        //    databaseServerIp = "localhost";
+        //    databaseServerPort = 3306;
+        //    initialDatabaseName = "comp";
+        //    loginUserID = "root";
+        //    loginUserPassword = "amin!!";
+        //    databaseCharset = "utf8";
+        //}
 
         public ConfigMariaDB(string dbIp, uint dbPort, string dbName, string loginUser, string userPassword, string dbCharset)
         {

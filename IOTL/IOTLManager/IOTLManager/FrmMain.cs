@@ -2,6 +2,7 @@
 using IOTL.Common.DB;
 using IOTL.Common.Log;
 using IOTL.Common.Util;
+using IOTL.Project;
 using IOTLManager.UserControls;
 using IOTLManager.Util;
 using System;
@@ -17,9 +18,11 @@ namespace IOTLManager
     {
         public const string APPLICATION_NAME = "IOTLink Data Manager";
         #region private value define
-        private MySqlLogReader DBReader = new MySqlLogReader();
+        private CProject m_cProject = null;
+        private MySqlLogReader DBReader = null;
         private LogManager LOG = new LogManager();
         private LogProcessor logProcessor;
+        private ConfigMariaDB m_mariaDBConfigInfo = null;
 
         private PerformanceCounter cpuCounter;
         private PerformanceCounter ramCounter;
@@ -39,6 +42,42 @@ namespace IOTLManager
         {
             InitializeComponent();
 
+            m_cProject = new CProject();
+        }
+
+        public bool LoadConfigFile()
+        {
+            bool bRet = false;
+            CProject savedProject = new CProject();
+            if( m_cProject.Open(Application.StartupPath, out savedProject))
+            {
+                m_cProject = savedProject;
+                bRet = true;
+            }
+            return bRet;
+        }
+
+        private bool Loading()
+        {
+            bool bRet = false;
+
+            if(LoadConfigFile())
+            {
+                m_mariaDBConfigInfo = new ConfigMariaDB( m_cProject.CompServerIPAddress,
+                    m_cProject.CompServerDBPort,
+                    m_cProject.CompServerInitialDatabaseName,
+                    m_cProject.CompServerDBLoginUserId,
+                    m_cProject.CompServerDBLoginUserPw,
+                    ""
+                    );
+                // m_mariaDBConfigInfo = new ConfigMariaDB(new ConfigMariaDB("127.0.0.1",3306,"comp","root","amin!!",""));
+            }
+            else
+            {
+                MessageBox.Show("Config File Not Found!!! Path: " + Application.StartupPath);
+                return false;
+            }
+
             // Initialize Other Configuration...
             // Start System Log Configuration Path : AppPath\LogConfig.xml
 
@@ -55,10 +94,10 @@ namespace IOTLManager
             {
                 bool bOK = false;
 
-                logProcessor = new LogProcessor();
+                logProcessor = new LogProcessor(m_mariaDBConfigInfo);
                 logProcessor.UEventIOTLMessage += UpdateSystemMessage;
                 logProcessor.UEventFileLog += WriteMessageToLogfile;
-                
+
                 bOK = logProcessor.Run();
                 if (bOK == false)
                 {
@@ -67,8 +106,10 @@ namespace IOTLManager
                 }
             }
 
+            DBReader = new MySqlLogReader(m_mariaDBConfigInfo);
+
             DBReader.Connect();
-            if(DBReader.IsConnected)
+            if (DBReader.IsConnected)
             {
                 UpdateSystemMessage("Main", "DB Reader Connected!");
             }
@@ -82,7 +123,7 @@ namespace IOTLManager
             ucCompressorDataManager1.UEventFileLog += WriteMessageToLogfile;
             ucCompressorDataManager1.UEventProgressBar += ToolStripProgressBar;
 
-            
+            return bRet;
         }
 
         private void InfoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -215,7 +256,7 @@ namespace IOTLManager
 
             try
             {
-                MySqlLogWriter cLogWriter = new MySqlLogWriter();
+                MySqlLogWriter cLogWriter = new MySqlLogWriter(m_mariaDBConfigInfo);
                 bOK = cLogWriter.CreateDB();
 
                 cLogWriter.Dispose();
@@ -238,7 +279,7 @@ namespace IOTLManager
                     }
 
                     this.Close();
-                    DBReader = new MySqlLogReader();
+                    DBReader = new MySqlLogReader(m_mariaDBConfigInfo);
                     DBReader.Connect();
                 }
             }

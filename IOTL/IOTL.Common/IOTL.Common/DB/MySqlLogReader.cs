@@ -29,21 +29,21 @@ namespace IOTL.Common.DB
 
         #region Intialize/Dispose
 
-        public MySqlLogReader()
-        {
-            dbConnectionInfo = new ConfigMariaDB();
-        }
+        //public MySqlLogReader()
+        //{
+        //    dbConnectionInfo = new ConfigMariaDB();
+        //}
 
         public MySqlLogReader(ConfigMariaDB connectionInfo)
         {
             dbConnectionInfo = connectionInfo;
         }
 
-        public MySqlLogReader(string databaseName)
-        {
-            dbConnectionInfo = new ConfigMariaDB();
-            dbConnectionInfo.InitialDatabaseName = databaseName;
-        }
+        //public MySqlLogReader(string databaseName)
+        //{
+        //    dbConnectionInfo = new ConfigMariaDB();
+        //    dbConnectionInfo.InitialDatabaseName = databaseName;
+        //}
 
         public void Dispose()
         {

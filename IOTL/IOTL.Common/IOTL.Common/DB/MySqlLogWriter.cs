@@ -17,7 +17,7 @@ namespace IOTL.Common.DB
     {
         private ConfigMariaDB dbConnectionInfo;
         private int iTagStatusIndex = 0;
-        private MySqlLogReader objDBReader = new MySqlLogReader();
+        // private MySqlLogReader objDBReader = new MySqlLogReader();
         public event UEventHandlerFileLog UEventFileLog = null;
 
         #region Member Variables
@@ -34,16 +34,16 @@ namespace IOTL.Common.DB
 
         #region Intialize/Dispose
 
-        public MySqlLogWriter()
-        {
-            dbConnectionInfo = new ConfigMariaDB();
-        }
+        //public MySqlLogWriter()
+        //{
+        //    dbConnectionInfo = new ConfigMariaDB();
+        //}
 
-        public MySqlLogWriter(string databaseName)
-        {
-            dbConnectionInfo = new ConfigMariaDB();
-            dbConnectionInfo.InitialDatabaseName = databaseName;
-        }
+        //public MySqlLogWriter(string databaseName)
+        //{
+        //    dbConnectionInfo = new ConfigMariaDB();
+        //    dbConnectionInfo.InitialDatabaseName = databaseName;
+        //}
 
         public MySqlLogWriter(ConfigMariaDB connectionInfo)
         {
@@ -2105,61 +2105,61 @@ namespace IOTL.Common.DB
         //    return bOK;
         //}
 
-        public bool WriteTagStatus_Stop()
-        {
-            bool bOK = false;
+        //public bool WriteTagStatus_Stop()
+        //{
+        //    bool bOK = false;
 
-            MySqlCommand dbComm = null;
+        //    MySqlCommand dbComm = null;
 
-            string sQuery;
-            string sDataSet;
+        //    string sQuery;
+        //    string sDataSet;
 
-            Connect();
+        //    Connect();
 
-            try
-            {
-                if (dbConnected)
-                {
-                    sQuery = @"INSERT INTO IOTLINK.tblTagStatus VALUES";
+        //    try
+        //    {
+        //        if (dbConnected)
+        //        {
+        //            sQuery = @"INSERT INTO IOTLINK.tblTagStatus VALUES";
 
-                    iTagStatusIndex = objDBReader.GetIndex();
-                    m_sProjectName = objDBReader.GetProjectname();
+        //            iTagStatusIndex = objDBReader.GetIndex();
+        //            m_sProjectName = objDBReader.GetProjectname();
 
-                    sDataSet = @"('"
-                        + iTagStatusIndex + "','"
-                        + "Stop" + "','"
-                        + "NonKey" + "','"
-                        + m_sProjectName + "','"
-                        + ToTimeString(DateTime.Now) + "','"
-                        + 0 + "','"
-                        + 0 + "')";
+        //            sDataSet = @"('"
+        //                + iTagStatusIndex + "','"
+        //                + "Stop" + "','"
+        //                + "NonKey" + "','"
+        //                + m_sProjectName + "','"
+        //                + ToTimeString(DateTime.Now) + "','"
+        //                + 0 + "','"
+        //                + 0 + "')";
 
-                    sQuery += sDataSet;
+        //            sQuery += sDataSet;
 
-                    dbComm = new MySqlCommand();
-                    dbComm.Connection = dbConnection;
-                    dbComm.CommandText = sQuery;
-                    dbComm.ExecuteNonQuery();
+        //            dbComm = new MySqlCommand();
+        //            dbComm.Connection = dbConnection;
+        //            dbComm.CommandText = sQuery;
+        //            dbComm.ExecuteNonQuery();
 
-                    bOK = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name);
-                ex.Data.Clear();
-                bOK = false;
-            }
-            finally
-            {
-                if (dbComm != null)
-                {
-                    dbComm.Dispose();
-                    dbComm = null;
-                }
-            }
-            return bOK;
-        }
+        //            bOK = true;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name);
+        //        ex.Data.Clear();
+        //        bOK = false;
+        //    }
+        //    finally
+        //    {
+        //        if (dbComm != null)
+        //        {
+        //            dbComm.Dispose();
+        //            dbComm = null;
+        //        }
+        //    }
+        //    return bOK;
+        //}
 
         //public bool WriteTagStatus_Update(string sProjectID, CTimeLogS cLogS)
         //{

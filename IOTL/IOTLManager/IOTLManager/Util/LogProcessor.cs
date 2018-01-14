@@ -15,9 +15,9 @@ namespace IOTLManager.Util
         public event UEventHandlerIOTLMessage UEventIOTLMessage = null;
         public event UEventHandlerFileLog UEventFileLog = null;
 
-        public LogProcessor()
+        public LogProcessor(ConfigMariaDB dbConnectionInfo)
         {
-            m_cLogDBWriter = new MySqlLogWriter();
+            m_cLogDBWriter = new MySqlLogWriter(dbConnectionInfo);
             m_cLogDBWriter.UEventFileLog += UpdateFileLog; ;
         }
 

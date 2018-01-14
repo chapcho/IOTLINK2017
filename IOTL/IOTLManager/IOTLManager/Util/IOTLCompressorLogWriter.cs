@@ -22,9 +22,9 @@ namespace IOTLManager.Util
         public event UEventHandlerIOTLMessage UEventIOTLMessage = null;
         public event UEventHandlerFileLog UEventFileLog = null;
 
-        public IOTLCompressorLogWriter(String initialDataBaseName)
+        public IOTLCompressorLogWriter(ConfigMariaDB dbConnectionInfo)
         {
-            m_cLogDBWriter = new MySqlLogWriter(initialDataBaseName);
+            m_cLogDBWriter = new MySqlLogWriter(dbConnectionInfo);
             m_cLogDBWriter.UEventFileLog += UpdateFileLog; ;
         }
 

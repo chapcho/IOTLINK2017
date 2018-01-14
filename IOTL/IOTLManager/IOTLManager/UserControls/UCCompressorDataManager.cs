@@ -23,9 +23,10 @@ namespace IOTLManager.UserControls
         public event UEventProgressBarRefreshDelegate UEventProgressBar = null;
         // public event UIEventHandlerCompressMonitoringEvent UEventCompressMonitor = null;
 
+        private ConfigMariaDB m_dbConnInfo = null;
         // Compressor Monitoring 이벤트를 처리하는 처리자.
         private IOTLCompressorLogWriter compressorLogWriter;
-        private MySqlLogReader DBReader = new MySqlLogReader("compdata");
+        private MySqlLogReader DBReader = null;
 
         private string logFilePath = string.Empty;
         private BackgroundWorker logFileReader;
@@ -38,18 +39,36 @@ namespace IOTLManager.UserControls
         }
 
 
+        public ConfigMariaDB DBConnectionInfo
+        {
+            get { return m_dbConnInfo; }
+            set
+            {
+                m_dbConnInfo = value;
+            }
+        }
+
         private void UCCompressorDataManager_Load(object sender, EventArgs e)
         {
 
         }
 
-        public void InitCompressorDataManager()
+        public int InitCompressorDataManager()
         {
+            if (DBConnectionInfo is null)
+            {
+                return 1; // Database Connection Info Needed!
+            }
+            else
+            {
+                DBReader = new MySqlLogReader(DBConnectionInfo);
+            }
+
             if (compressorLogWriter == null)
             {
                 bool bOK = false;
 
-                compressorLogWriter = new IOTLCompressorLogWriter("compdata");
+                compressorLogWriter = new IOTLCompressorLogWriter(DBConnectionInfo);
                 compressorLogWriter.UEventIOTLMessage += UpdateSystemMessage;
                 compressorLogWriter.UEventFileLog += WriteMessageToLogfile;
 
@@ -75,7 +94,7 @@ namespace IOTLManager.UserControls
             }
             else
             {
-                return;
+                return 2; // already initialized
             }
 
             // UserControl에서 Form에 보내는 메시지
@@ -86,6 +105,8 @@ namespace IOTLManager.UserControls
             ucSocketServer1.UEventMachineStateTimeLog += HandlerCompressorMachineStateLog;
 
             ucSocketServer1.ServerCaption = "IOTL Compressor Monitor";
+
+            return 0; // success initialized
         }
 
         private void WriteMessageToLogfile(EMFileLogType emFileLogType, EMFileLogDepth emFileLogDepth, string logMessage)

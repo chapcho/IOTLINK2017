@@ -24,13 +24,21 @@ namespace IOTLManager.UserControls
 
         private void btnCompServerLogFind_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-
-            ofd.InitialDirectory = Application.StartupPath;
-            ofd.Filter = "*.cfg||(*.cfg)";
-            if (ofd.ShowDialog() == DialogResult.OK)
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            try
             {
-                Console.WriteLine("...");
+                if (fbd.ShowDialog() == DialogResult.OK)
+                {
+                    this.txtCompServerLogFolder.Text = fbd.SelectedPath;
+                }
+                else
+                {
+                    this.txtCompServerLogFolder.Text = "C:\\Log";
+                }
+            }
+            catch(Exception ex)
+            {
+                ex.Data.Clear();
             }
         }
 
@@ -54,15 +62,13 @@ namespace IOTLManager.UserControls
                 return;
             }
 
-            CProject _localSetting = new CProject();
-
-            _localSetting.CompServerIPAddress = this.txtCompServerIPAddress.Text;
-            _localSetting.CompServerTcpPort = Convert.ToUInt16(this.txtCompServerPort.Text);
-            _localSetting.CompServerInitialDatabaseName = this.txtCompServerDBName.Text;
-            _localSetting.CompServerDBLoginUserId = this.txtCompServerDBUserID.Text;
-            _localSetting.CompServerDBLoginUserPw = this.txtCompServerDBUserPw.Text;
-
-            cProject = _localSetting;
+            cProject.CompServerIPAddress = this.txtCompServerIPAddress.Text;
+            cProject.CompServerTcpPort = Convert.ToUInt16(this.txtCompServerPort.Text);
+            cProject.CompServerInitialDatabaseName = this.txtCompServerDBName.Text;
+            cProject.CompServerLogDirectory = this.txtCompServerLogFolder.Text;
+            cProject.CompServerDBPort = Convert.ToUInt16(this.txtCompServerDBPort.Text);
+            cProject.CompServerDBLoginUserId = this.txtCompServerDBUserID.Text;
+            cProject.CompServerDBLoginUserPw = this.txtCompServerDBUserPw.Text;
 
             try
             {
@@ -97,6 +103,7 @@ namespace IOTLManager.UserControls
             this.txtCompServerIPAddress.Text = savedConfig.CompServerIPAddress;
             this.txtCompServerPort.Text = savedConfig.CompServerTcpPort.ToString();
             this.txtCompServerDBName.Text = savedConfig.CompServerInitialDatabaseName;
+            this.txtCompServerDBPort.Text = savedConfig.CompServerDBPort.ToString();
             this.txtCompServerDBUserID.Text = savedConfig.CompServerDBLoginUserId;
             this.txtCompServerDBUserPw.Text = savedConfig.CompServerDBLoginUserPw;
             this.txtCompServerLogFolder.Text = savedConfig.CompServerLogDirectory;
