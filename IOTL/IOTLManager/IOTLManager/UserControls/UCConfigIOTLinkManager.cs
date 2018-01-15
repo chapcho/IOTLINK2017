@@ -14,12 +14,20 @@ namespace IOTLManager.UserControls
 {
     public partial class UCConfigIOTLinkManager : UserControl
     {
-        
-        private CProject cProject = new CProject();
+        private CProject m_cProject = new CProject();
 
         public UCConfigIOTLinkManager()
         {
             InitializeComponent();
+        }
+
+        public CProject ServerConfig
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(m_cProject.CompServerDBLoginUserId)) return m_cProject;
+                else return null;
+            }
         }
 
         private void btnCompServerLogFind_Click(object sender, EventArgs e)
@@ -62,17 +70,17 @@ namespace IOTLManager.UserControls
                 return;
             }
 
-            cProject.CompServerIPAddress = this.txtCompServerIPAddress.Text;
-            cProject.CompServerTcpPort = Convert.ToUInt16(this.txtCompServerPort.Text);
-            cProject.CompServerInitialDatabaseName = this.txtCompServerDBName.Text;
-            cProject.CompServerLogDirectory = this.txtCompServerLogFolder.Text;
-            cProject.CompServerDBPort = Convert.ToUInt16(this.txtCompServerDBPort.Text);
-            cProject.CompServerDBLoginUserId = this.txtCompServerDBUserID.Text;
-            cProject.CompServerDBLoginUserPw = this.txtCompServerDBUserPw.Text;
+            m_cProject.CompServerIPAddress = this.txtCompServerIPAddress.Text;
+            m_cProject.CompServerTcpPort = Convert.ToUInt16(this.txtCompServerPort.Text);
+            m_cProject.CompServerInitialDatabaseName = this.txtCompServerDBName.Text;
+            m_cProject.CompServerLogDirectory = this.txtCompServerLogFolder.Text;
+            m_cProject.CompServerDBPort = Convert.ToUInt16(this.txtCompServerDBPort.Text);
+            m_cProject.CompServerDBLoginUserId = this.txtCompServerDBUserID.Text;
+            m_cProject.CompServerDBLoginUserPw = this.txtCompServerDBUserPw.Text;
 
             try
             {
-                cProject.Save(Application.StartupPath);
+                m_cProject.Save(Application.StartupPath);
             }
             catch (Exception ex)
             {
@@ -82,20 +90,32 @@ namespace IOTLManager.UserControls
 
         private void btnLoadConfig_Click(object sender, EventArgs e)
         {
+            if(LoadSystemConfig())
+            {
+                ReloadSystemConfig(m_cProject);
+            }
+        }
+
+        public bool LoadSystemConfig()
+        {
+            bool bOk = false;
+
             CProject savedConfig = new CProject();
             try
             {
-                bool bOk = cProject.Open(Application.StartupPath, out savedConfig);
-                if(bOk)
+                bOk = m_cProject.Open(Application.StartupPath, out savedConfig);
+                if (bOk)
                 {
-                    cProject = savedConfig;
-                    ReloadSystemConfig(cProject);
+                    m_cProject = savedConfig;
+                    ReloadSystemConfig(m_cProject);
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name); ex.Data.Clear();
             }
+
+            return bOk;
         }
 
         private void ReloadSystemConfig(CProject savedConfig)

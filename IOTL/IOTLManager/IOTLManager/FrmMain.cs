@@ -71,6 +71,7 @@ namespace IOTLManager
                     ""
                     );
                 // m_mariaDBConfigInfo = new ConfigMariaDB(new ConfigMariaDB("127.0.0.1",3306,"comp","root","amin!!",""));
+                bRet = true;
             }
             else
             {
@@ -92,17 +93,14 @@ namespace IOTLManager
             // Log(DataBase) 기록을 시작한다.
             if (logProcessor == null)
             {
-                bool bOK = false;
-
                 logProcessor = new LogProcessor(m_mariaDBConfigInfo);
                 logProcessor.UEventIOTLMessage += UpdateSystemMessage;
                 logProcessor.UEventFileLog += WriteMessageToLogfile;
 
-                bOK = logProcessor.Run();
-                if (bOK == false)
+                bRet = logProcessor.Run();
+                if (bRet == false)
                 {
                     UpdateSystemMessage("Main", "DB Writer 시작 실패");
-                    // return bOK;
                 }
             }
 
@@ -122,6 +120,8 @@ namespace IOTLManager
             ucCompressorDataManager1.UEventMessage += UpdateSystemMessage;
             ucCompressorDataManager1.UEventFileLog += WriteMessageToLogfile;
             ucCompressorDataManager1.UEventProgressBar += ToolStripProgressBar;
+
+            LoadIotlTableListInTreeView();
 
             return bRet;
         }
@@ -310,7 +310,6 @@ namespace IOTLManager
             }
         }
 
-
         /// <summary>
         /// MySQL Database의 백업과 복원에 관한 절차
         /// 외부 참조
@@ -452,8 +451,6 @@ namespace IOTLManager
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            LoadIotlTableListInTreeView();
-
             // Process Usage Counter
             cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total", true);
             ramCounter = new PerformanceCounter("Memory", "Available MBytes", true);
@@ -465,6 +462,16 @@ namespace IOTLManager
             catch (Exception ex)
             {
                 ex.Data.Clear();
+            }
+
+            bool bRet = false;
+
+            bRet = Loading();
+
+            if (!bRet)
+            {
+                // Config Pannel로  Active를 옮긴다.
+                mainTabControl.SelectedIndex = 4;
             }
         }
 
