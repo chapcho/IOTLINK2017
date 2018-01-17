@@ -86,6 +86,11 @@ namespace IOTLManager.UserControls
             {
                 Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name); ex.Data.Clear();
             }
+
+            if(MessageBox.Show("Config Saved. ReStart Application.","IOTLManager") == DialogResult.OK)
+            {
+                Application.Exit();
+            }
         }
 
         private void btnLoadConfig_Click(object sender, EventArgs e)

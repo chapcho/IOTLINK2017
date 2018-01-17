@@ -517,10 +517,12 @@ namespace IOTLManager
             // 
             this.ucCompressorDataManager1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ucCompressorDataManager1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ucCompressorDataManager1.DBConnectionInfo = null;
             this.ucCompressorDataManager1.Dock = System.Windows.Forms.DockStyle.Left;
             this.ucCompressorDataManager1.Location = new System.Drawing.Point(3, 17);
+            this.ucCompressorDataManager1.LogSavedPath = "C:\\Log";
             this.ucCompressorDataManager1.Name = "ucCompressorDataManager1";
-            this.ucCompressorDataManager1.Size = new System.Drawing.Size(738, 389);
+            this.ucCompressorDataManager1.Size = new System.Drawing.Size(756, 389);
             this.ucCompressorDataManager1.TabIndex = 0;
             // 
             // tabDatabase

@@ -17,7 +17,7 @@ namespace IOTLManager.Util
 
         protected DateTime m_dtFileCreated = DateTime.MinValue;
         protected string m_sProjectName = string.Empty;
-        protected string m_sProjectPath = string.Empty;
+        protected string m_sProjectPath = "C:\\Log";
 
         public event UEventHandlerIOTLMessage UEventIOTLMessage = null;
         public event UEventHandlerFileLog UEventFileLog = null;
@@ -31,6 +31,12 @@ namespace IOTLManager.Util
         public MySqlLogWriter LogDBWriter
         {
             get { return m_cLogDBWriter; }
+        }
+
+        public string ProjectPath
+        {
+            get { return m_sProjectPath; }
+            set { m_sProjectPath = value; }
         }
 
         public bool IsConnected
@@ -82,9 +88,6 @@ namespace IOTLManager.Util
 
         private bool CreateCSV(DateTime dtNow)
         {
-            if (m_sProjectPath == "" || m_sProjectPath == string.Empty)
-                m_sProjectPath = "C:\\Log";
-
             string path = m_sProjectPath;
 
             try

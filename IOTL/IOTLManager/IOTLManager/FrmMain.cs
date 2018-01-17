@@ -116,6 +116,10 @@ namespace IOTLManager
                 UpdateSystemMessage("Main", "DB Reader NotConnected!");
             }
 
+            ucCompressorDataManager1.DBConnectionInfo = m_mariaDBConfigInfo;
+            ucCompressorDataManager1.LogSavedPath = m_cProject.CompServerLogDirectory;
+
+
             // Compressor Monitor에서 발생하는 이벤트 처리자 연결.
             ucCompressorDataManager1.UEventMessage += UpdateSystemMessage;
             ucCompressorDataManager1.UEventFileLog += WriteMessageToLogfile;

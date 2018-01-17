@@ -28,7 +28,7 @@ namespace IOTLManager.UserControls
         private IOTLCompressorLogWriter compressorLogWriter;
         private MySqlLogReader DBReader = null;
 
-        private string logFilePath = string.Empty;
+        private string logFilePath = "C:\\Log";
         private BackgroundWorker logFileReader;
 
         public UCCompressorDataManager()
@@ -46,6 +46,12 @@ namespace IOTLManager.UserControls
             {
                 m_dbConnInfo = value;
             }
+        }
+
+        public string LogSavedPath
+        {
+            get { return logFilePath; }
+            set { logFilePath = value; }
         }
 
         private void UCCompressorDataManager_Load(object sender, EventArgs e)
@@ -69,6 +75,7 @@ namespace IOTLManager.UserControls
                 bool bOK = false;
 
                 compressorLogWriter = new IOTLCompressorLogWriter(DBConnectionInfo);
+                compressorLogWriter.ProjectPath = logFilePath;
                 compressorLogWriter.UEventIOTLMessage += UpdateSystemMessage;
                 compressorLogWriter.UEventFileLog += WriteMessageToLogfile;
 
@@ -125,7 +132,23 @@ namespace IOTLManager.UserControls
         {
             if (btnStartStop.Text.ToUpper().Equals("MONITOR START"))
             {
-                InitCompressorDataManager();
+                int iRet = InitCompressorDataManager();
+
+                switch(iRet)
+                {
+                    case 0:Console.WriteLine("Loading.. Start");
+                        break;
+                    case 1:
+                        MessageBox.Show("Error Database Config Info", "IOTLDataManager");
+                        return;
+                    case 2:
+                        MessageBox.Show("Already Starting", "IOTLDataManager");
+                        return;
+                    default:
+                        MessageBox.Show("Error Database Config Info", "IOTLDataManager");
+                        return;
+                }
+
                 btnStartStop.Text = "Monitor Stop";
                 btnStartStop.BackColor = Color.GreenYellow;
                 btnStartStop.Refresh();
@@ -349,7 +372,7 @@ namespace IOTLManager.UserControls
             // 로그가 있는 디렉토리에서 로그 파일의 목록을 가져와서..
             using (var fbd = new FolderBrowserDialog())
             {
-                fbd.SelectedPath = "C:\\Log";
+                fbd.SelectedPath = LogSavedPath;
                 fbd.Description = "Compressor 데이터 로그 폴터 선택!";
                 DialogResult result = fbd.ShowDialog();
 
