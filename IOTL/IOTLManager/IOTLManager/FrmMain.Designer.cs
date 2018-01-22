@@ -32,12 +32,12 @@ namespace IOTLManager
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea15 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend15 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea16 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend16 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
@@ -105,6 +105,10 @@ namespace IOTLManager
             this.button1 = new System.Windows.Forms.Button();
             this.ucSystemLogTable = new IOTLManager.UserControls.UCSystemLogTable();
             this.timerTimeRefresh = new System.Windows.Forms.Timer(this.components);
+            this.trayNotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -132,6 +136,7 @@ namespace IOTLManager
             ((System.ComponentModel.ISupportInitialize)(this.chartMemoryAvailable)).BeginInit();
             this.tabConfig.SuspendLayout();
             this.tabLogConfig.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -519,6 +524,7 @@ namespace IOTLManager
             this.ucCompressorDataManager1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.ucCompressorDataManager1.DBConnectionInfo = null;
             this.ucCompressorDataManager1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ucCompressorDataManager1.LocalTcpServerPort = ((uint)(9595u));
             this.ucCompressorDataManager1.Location = new System.Drawing.Point(3, 17);
             this.ucCompressorDataManager1.LogSavedPath = "C:\\Log";
             this.ucCompressorDataManager1.Name = "ucCompressorDataManager1";
@@ -616,6 +622,7 @@ namespace IOTLManager
             // 
             this.ucSocketServer1.BackColor = System.Drawing.Color.Aquamarine;
             this.ucSocketServer1.ConnectedClientCount = 0;
+            this.ucSocketServer1.LocalServerTcpPort = ((uint)(3000u));
             this.ucSocketServer1.Location = new System.Drawing.Point(286, 16);
             this.ucSocketServer1.Name = "ucSocketServer1";
             this.ucSocketServer1.ReceivedPacketCount = 0;
@@ -674,17 +681,17 @@ namespace IOTLManager
             // 
             // chartCpuUsage
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartCpuUsage.ChartAreas.Add(chartArea1);
+            chartArea15.Name = "ChartArea1";
+            this.chartCpuUsage.ChartAreas.Add(chartArea15);
             this.chartCpuUsage.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chartCpuUsage.Legends.Add(legend1);
+            legend15.Name = "Legend1";
+            this.chartCpuUsage.Legends.Add(legend15);
             this.chartCpuUsage.Location = new System.Drawing.Point(0, 0);
             this.chartCpuUsage.Name = "chartCpuUsage";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartCpuUsage.Series.Add(series1);
+            series15.ChartArea = "ChartArea1";
+            series15.Legend = "Legend1";
+            series15.Name = "Series1";
+            this.chartCpuUsage.Series.Add(series15);
             this.chartCpuUsage.Size = new System.Drawing.Size(515, 381);
             this.chartCpuUsage.TabIndex = 0;
             this.chartCpuUsage.Text = "Cpu Usage";
@@ -693,17 +700,17 @@ namespace IOTLManager
             // chartMemoryAvailable
             // 
             this.chartMemoryAvailable.BorderSkin.BackSecondaryColor = System.Drawing.Color.Lime;
-            chartArea2.Name = "ChartArea1";
-            this.chartMemoryAvailable.ChartAreas.Add(chartArea2);
+            chartArea16.Name = "ChartArea1";
+            this.chartMemoryAvailable.ChartAreas.Add(chartArea16);
             this.chartMemoryAvailable.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.chartMemoryAvailable.Legends.Add(legend2);
+            legend16.Name = "Legend1";
+            this.chartMemoryAvailable.Legends.Add(legend16);
             this.chartMemoryAvailable.Location = new System.Drawing.Point(0, 0);
             this.chartMemoryAvailable.Name = "chartMemoryAvailable";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartMemoryAvailable.Series.Add(series2);
+            series16.ChartArea = "ChartArea1";
+            series16.Legend = "Legend1";
+            series16.Name = "Series1";
+            this.chartMemoryAvailable.Series.Add(series16);
             this.chartMemoryAvailable.Size = new System.Drawing.Size(489, 381);
             this.chartMemoryAvailable.TabIndex = 1;
             this.chartMemoryAvailable.Text = "chart1";
@@ -771,6 +778,37 @@ namespace IOTLManager
             this.timerTimeRefresh.Interval = 1000;
             this.timerTimeRefresh.Tick += new System.EventHandler(this.timerTimeRefresh_Tick);
             // 
+            // notifyIcon1
+            // 
+            this.trayNotifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.trayNotifyIcon.ContextMenuStrip = this.contextMenuStrip1;
+            this.trayNotifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.trayNotifyIcon.Text = "IOTLinkManager";
+            this.trayNotifyIcon.Visible = true;
+            this.trayNotifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showToolStripMenuItem,
+            this.hideToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(105, 48);
+            // 
+            // showToolStripMenuItem
+            // 
+            this.showToolStripMenuItem.Name = "showToolStripMenuItem";
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.showToolStripMenuItem.Text = "Show";
+            this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click);
+            // 
+            // hideToolStripMenuItem
+            // 
+            this.hideToolStripMenuItem.Name = "hideToolStripMenuItem";
+            this.hideToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hideToolStripMenuItem.Text = "Hide";
+            this.hideToolStripMenuItem.Click += new System.EventHandler(this.hideToolStripMenuItem_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -784,6 +822,7 @@ namespace IOTLManager
             this.Text = "IOTLink Data Manager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMain_FormClosing);
             this.Load += new System.EventHandler(this.FrmMain_Load);
+            this.Resize += new System.EventHandler(this.FrmMain_Resize);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -814,6 +853,7 @@ namespace IOTLManager
             ((System.ComponentModel.ISupportInitialize)(this.chartMemoryAvailable)).EndInit();
             this.tabConfig.ResumeLayout(false);
             this.tabLogConfig.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -888,5 +928,9 @@ namespace IOTLManager
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.SplitContainer splitContainer3;
         private UserControls.UCConfigIOTLinkManager ucConfigIOTLinkManager1;
+        private System.Windows.Forms.NotifyIcon trayNotifyIcon;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hideToolStripMenuItem;
     }
 }

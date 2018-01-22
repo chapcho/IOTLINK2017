@@ -22,6 +22,8 @@ namespace IOTL.Common.UserControls
         private int connectedClientCount = 0;
         private int receivedPacketCount = 0;
         private int sendPacketCount = 0;
+        private uint m_LocalServerTcpPort = 3000;
+        private bool m_SocketServerIsStarted = false;
 
         public event UEventHandlerIOTLMessage UEventMessage = null;
         public event UEventHandlerMachineStateTimeLog UEventMachineStateTimeLog = null;
@@ -35,7 +37,21 @@ namespace IOTL.Common.UserControls
 
         public bool SocketServerIsStarted
         {
-            get;set;
+            get { return m_SocketServerIsStarted; }
+            set { m_SocketServerIsStarted = value; }
+        }
+
+        public uint LocalServerTcpPort
+        {
+            get { return m_LocalServerTcpPort; }
+            set
+            {
+                if (this.txtServerPort.Enabled)
+                {
+                    m_LocalServerTcpPort = value;
+                    this.txtServerPort.Text = m_LocalServerTcpPort.ToString();
+                }
+            }
         }
 
         private void UCSocketServer_ParentChanged(object sender, EventArgs e)

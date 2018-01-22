@@ -34,19 +34,19 @@
             this.btnSaveConfig = new System.Windows.Forms.Button();
             this.btnCompServerLogFind = new System.Windows.Forms.Button();
             this.txtCompServerLogFolder = new System.Windows.Forms.TextBox();
+            this.txtCompServerDBPort = new System.Windows.Forms.TextBox();
             this.txtCompServerPort = new System.Windows.Forms.TextBox();
             this.txtCompServerDBUserPw = new System.Windows.Forms.TextBox();
             this.txtCompServerDBUserID = new System.Windows.Forms.TextBox();
             this.txtCompServerDBName = new System.Windows.Forms.TextBox();
             this.txtCompServerIPAddress = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtCompServerDBPort = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -92,7 +92,7 @@
             this.btnLoadConfig.Location = new System.Drawing.Point(480, 140);
             this.btnLoadConfig.Name = "btnLoadConfig";
             this.btnLoadConfig.Size = new System.Drawing.Size(61, 62);
-            this.btnLoadConfig.TabIndex = 6;
+            this.btnLoadConfig.TabIndex = 8;
             this.btnLoadConfig.Text = "Load";
             this.btnLoadConfig.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnLoadConfig.UseVisualStyleBackColor = true;
@@ -104,7 +104,7 @@
             this.btnSaveConfig.Location = new System.Drawing.Point(380, 140);
             this.btnSaveConfig.Name = "btnSaveConfig";
             this.btnSaveConfig.Size = new System.Drawing.Size(61, 62);
-            this.btnSaveConfig.TabIndex = 6;
+            this.btnSaveConfig.TabIndex = 7;
             this.btnSaveConfig.Text = "Save";
             this.btnSaveConfig.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSaveConfig.UseVisualStyleBackColor = true;
@@ -122,13 +122,22 @@
             // 
             // txtCompServerLogFolder
             // 
+            this.txtCompServerLogFolder.AllowDrop = true;
             this.txtCompServerLogFolder.Location = new System.Drawing.Point(86, 68);
             this.txtCompServerLogFolder.Name = "txtCompServerLogFolder";
             this.txtCompServerLogFolder.Size = new System.Drawing.Size(281, 21);
             this.txtCompServerLogFolder.TabIndex = 2;
             // 
+            // txtCompServerDBPort
+            // 
+            this.txtCompServerDBPort.Location = new System.Drawing.Point(142, 143);
+            this.txtCompServerDBPort.Name = "txtCompServerDBPort";
+            this.txtCompServerDBPort.Size = new System.Drawing.Size(84, 21);
+            this.txtCompServerDBPort.TabIndex = 4;
+            // 
             // txtCompServerPort
             // 
+            this.txtCompServerPort.AllowDrop = true;
             this.txtCompServerPort.Location = new System.Drawing.Point(330, 28);
             this.txtCompServerPort.Name = "txtCompServerPort";
             this.txtCompServerPort.Size = new System.Drawing.Size(84, 21);
@@ -141,7 +150,7 @@
             this.txtCompServerDBUserPw.Name = "txtCompServerDBUserPw";
             this.txtCompServerDBUserPw.PasswordChar = '*';
             this.txtCompServerDBUserPw.Size = new System.Drawing.Size(226, 21);
-            this.txtCompServerDBUserPw.TabIndex = 5;
+            this.txtCompServerDBUserPw.TabIndex = 6;
             // 
             // txtCompServerDBUserID
             // 
@@ -149,7 +158,7 @@
             this.txtCompServerDBUserID.MaxLength = 20;
             this.txtCompServerDBUserID.Name = "txtCompServerDBUserID";
             this.txtCompServerDBUserID.Size = new System.Drawing.Size(226, 21);
-            this.txtCompServerDBUserID.TabIndex = 4;
+            this.txtCompServerDBUserID.TabIndex = 5;
             // 
             // txtCompServerDBName
             // 
@@ -160,6 +169,7 @@
             // 
             // txtCompServerIPAddress
             // 
+            this.txtCompServerIPAddress.AllowDrop = true;
             this.txtCompServerIPAddress.Location = new System.Drawing.Point(86, 28);
             this.txtCompServerIPAddress.Name = "txtCompServerIPAddress";
             this.txtCompServerIPAddress.Size = new System.Drawing.Size(166, 21);
@@ -173,6 +183,15 @@
             this.label3.Size = new System.Drawing.Size(49, 12);
             this.label3.TabIndex = 0;
             this.label3.Text = "LOG Dir";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(17, 152);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(58, 12);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "DB PORT";
             // 
             // label2
             // 
@@ -217,23 +236,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(777, 491);
-            this.panel1.TabIndex = 2;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(17, 152);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(58, 12);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "DB PORT";
-            // 
-            // txtDatabsePort
-            // 
-            this.txtCompServerDBPort.Location = new System.Drawing.Point(142, 143);
-            this.txtCompServerDBPort.Name = "txtDatabsePort";
-            this.txtCompServerDBPort.Size = new System.Drawing.Size(84, 21);
-            this.txtCompServerDBPort.TabIndex = 1;
+            this.panel1.TabIndex = 0;
             // 
             // UCConfigIOTLinkManager
             // 

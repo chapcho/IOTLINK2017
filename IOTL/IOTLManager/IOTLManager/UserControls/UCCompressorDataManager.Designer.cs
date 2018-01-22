@@ -35,7 +35,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.timerWebCntlSender = new System.Windows.Forms.Timer(this.components);
             this.btnImportLog = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnStartStop
@@ -52,6 +54,7 @@
             // 
             this.ucSocketServer1.BackColor = System.Drawing.Color.Aquamarine;
             this.ucSocketServer1.ConnectedClientCount = 0;
+            this.ucSocketServer1.LocalServerTcpPort = ((uint)(3000u));
             this.ucSocketServer1.Location = new System.Drawing.Point(3, 3);
             this.ucSocketServer1.Name = "ucSocketServer1";
             this.ucSocketServer1.ReceivedPacketCount = 0;
@@ -96,12 +99,23 @@
             this.btnImportLog.UseVisualStyleBackColor = true;
             this.btnImportLog.Click += new System.EventHandler(this.btnImportLog_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::IOTLManager.Properties.Resources.IOTLINK;
+            this.pictureBox1.Location = new System.Drawing.Point(555, 145);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(173, 77);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
+            // 
             // UCCompressorDataManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnImportLog);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnStartStop);
@@ -111,6 +125,7 @@
             this.Load += new System.EventHandler(this.UCCompressorDataManager_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -123,5 +138,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Timer timerWebCntlSender;
         private System.Windows.Forms.Button btnImportLog;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

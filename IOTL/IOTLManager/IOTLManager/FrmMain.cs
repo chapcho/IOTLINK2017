@@ -118,6 +118,7 @@ namespace IOTLManager
 
             ucCompressorDataManager1.DBConnectionInfo = m_mariaDBConfigInfo;
             ucCompressorDataManager1.LogSavedPath = m_cProject.CompServerLogDirectory;
+            ucCompressorDataManager1.LocalTcpServerPort = m_cProject.CompServerTcpPort;
 
 
             // Compressor Monitor에서 발생하는 이벤트 처리자 연결.
@@ -205,6 +206,12 @@ namespace IOTLManager
 
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if(MessageBox.Show("종료 ?", "IOTLink Compress Data Manager", MessageBoxButtons.OKCancel) != DialogResult.OK)
+            {
+                e.Cancel = true;
+                return;
+            }
+
             // 사용자가 상태 변경 해야 하는 서비스가 중지 되었는지 확인
 
             ucSocketServer1.UEventMessage -= UpdateSystemMessage;
@@ -647,6 +654,45 @@ namespace IOTLManager
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void FrmMain_Resize(object sender, EventArgs e)
+        {
+            //윈도우 상태가 Minimized일 경우
+
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                this.Visible = false; //창을 보이지 않게 한다.
+                this.ShowIcon = false; //작업표시줄에서 제거.
+
+                trayNotifyIcon.Visible = true; //트레이 아이콘을 표시한다.
+            }
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            //Notify Icon을 더블클릭했을시 일어나는 이벤트.
+            this.Visible = true;
+            this.ShowIcon = true;
+
+            trayNotifyIcon.Visible = false; //트레이 아이콘을 숨긴다.
+        }
+
+        private void showToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Notify Icon을 더블클릭했을시 일어나는 이벤트.
+            this.Visible = true;
+            this.ShowIcon = true;
+
+            trayNotifyIcon.Visible = false; //트레이 아이콘을 숨긴다.
+        }
+
+        private void hideToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Visible = false; //창을 보이지 않게 한다.
+            this.ShowIcon = false; //작업표시줄에서 제거.
+
+            trayNotifyIcon.Visible = true; //트레이 아이콘을 표시한다.
         }
     }
 }

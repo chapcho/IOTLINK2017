@@ -29,6 +29,7 @@ namespace IOTLManager.UserControls
         private MySqlLogReader DBReader = null;
 
         private string logFilePath = "C:\\Log";
+        private uint m_LocalTcpServerPort = 9595;
         private BackgroundWorker logFileReader;
 
         public UCCompressorDataManager()
@@ -46,6 +47,12 @@ namespace IOTLManager.UserControls
             {
                 m_dbConnInfo = value;
             }
+        }
+
+        public uint LocalTcpServerPort
+        {
+            get { return m_LocalTcpServerPort; }
+            set { m_LocalTcpServerPort = value; }
         }
 
         public string LogSavedPath
@@ -110,7 +117,7 @@ namespace IOTLManager.UserControls
 
             // Comp에서 수신한 데이터를 기록 대기 합니다.
             ucSocketServer1.UEventMachineStateTimeLog += HandlerCompressorMachineStateLog;
-
+            ucSocketServer1.LocalServerTcpPort = LocalTcpServerPort;
             ucSocketServer1.ServerCaption = "IOTL Compressor Monitor";
 
             return 0; // success initialized
