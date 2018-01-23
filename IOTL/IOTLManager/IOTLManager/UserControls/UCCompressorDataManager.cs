@@ -429,5 +429,10 @@ namespace IOTLManager.UserControls
             Console.WriteLine("Progress Report Changed : " + e.ProgressPercentage);
             RefreshProgressBarValue(e.ProgressPercentage);
         }
+
+        private void pictureAbout_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("IOTLink Socket DataManager\r\n Usage : dbid/passwd/ipaddress/port/...");
+        }
     }
 }

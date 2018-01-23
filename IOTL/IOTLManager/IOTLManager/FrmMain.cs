@@ -206,7 +206,7 @@ namespace IOTLManager
 
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(MessageBox.Show("종료 ?", "IOTLink Compress Data Manager", MessageBoxButtons.OKCancel) != DialogResult.OK)
+            if(MessageBox.Show("종료하시겠습니까 ?", "IOTLink Compress Data Manager", MessageBoxButtons.OKCancel) != DialogResult.OK)
             {
                 e.Cancel = true;
                 return;
