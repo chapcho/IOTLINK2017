@@ -13,3 +13,4 @@ D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.ex
 D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.pdb
 D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.UserControls.UCCompressorDataManager.resources
 D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.UserControls.UCConfigIOTLinkManager.resources
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTLManager\IOTLManager\obj\Debug\IOTLManager.UserControls.UCExcelChartSample.resources

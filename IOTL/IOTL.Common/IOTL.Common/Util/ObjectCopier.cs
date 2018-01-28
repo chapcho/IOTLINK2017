@@ -35,5 +35,7 @@ namespace IOTL.Common
                 return (T)formatter.Deserialize(stream);
             }
         }
+
+
     }
 }
