@@ -79,6 +79,8 @@
     <Compile Include="DB\IMySQLDBConnect.cs" />
     <Compile Include="DB\MySqlLogReader.cs" />
     <Compile Include="DB\MySqlLogWriter.cs" />
+    <Compile Include="Entity\CPacketData.cs" />
+    <Compile Include="Entity\CPacketDefine.cs" />
     <Compile Include="Enumeration\EMCsvType.cs" />
     <Compile Include="Enumeration\EMDataType.cs" />
     <Compile Include="Enumeration\EMFileLogDepth.cs" />
@@ -160,9 +162,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entity\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
