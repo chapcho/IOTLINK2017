@@ -196,6 +196,8 @@ namespace IOTL.Common.DB
                 // "06" : 6개
                 // "07" : 2개
                 // "08" : 9개
+                //2018-01-23추가// "09" : 51개 // 09번의 경우 운전 상태 데이터로 0 또는 1 로 온다 (ex: "S,00000000,09,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0 ㆍㆍㆍ ,E")
+                //2018-01-23추가// "10" : 17개
 
                 if (text[0] == 'S' && text[text.Length - 1] == 'E')
                 {
@@ -234,6 +236,14 @@ namespace IOTL.Common.DB
                     {
                         DBSave08("compdata.comp_08_tb", RecvDatas, oData.LogTime);
                     }
+                    else if (RecvDatas[2].ToString() == "09")
+                    {
+                        DBSave09("compdata.comp_09_tb", RecvDatas, oData.LogTime);
+                    }
+                    else if (RecvDatas[2].ToString() == "10")
+                    {
+                        DBSave10("compdata.comp_10_tb", RecvDatas, oData.LogTime);
+                    }
 
                     /*
                     string[] GotoDBData = new string[4];
@@ -260,7 +270,7 @@ namespace IOTL.Common.DB
             try
             {
                 string FK_Product_Number = RecvData[1].ToString();
-                string Id = RecvData[1].ToString();
+                // string Id = RecvData[1].ToString();
                 string data00_00 = RecvData[3].ToString();
                 string data00_01 = RecvData[4].ToString();
                 string data00_02 = RecvData[5].ToString();
@@ -280,10 +290,11 @@ namespace IOTL.Common.DB
                 string savetime = logReceiveTime.ToString("yyyy-MM-dd HH:mm:ss");
 
                 string query = "INSERT INTO " + TableName +          // 쿼리 명령
-                    " (FK_PRODUCT_NUMBER, ID, 00_00, 00_01, 00_02, 00_03, 00_04, 00_05, 00_06, 00_07, 00_08, 00_09, 00_10, 00_11, 00_12, 00_13, SAVETIME) " +
+                    // " (FK_PRODUCT_NUMBER, ID, 00_00, 00_01, 00_02, 00_03, 00_04, 00_05, 00_06, 00_07, 00_08, 00_09, 00_10, 00_11, 00_12, 00_13, SAVETIME) " +
+                    " (FK_PRODUCT_NUMBER, 00_00, 00_01, 00_02, 00_03, 00_04, 00_05, 00_06, 00_07, 00_08, 00_09, 00_10, 00_11, 00_12, 00_13, SAVETIME) " +
                     " values (" +
                     FK_Product_Number + "," +
-                    Convert.ToInt32(Id) + "," +
+                    // Convert.ToInt32(Id) + "," +
                     data00_00 + "," +
                     data00_01 + "," +
                     data00_02 + "," +
@@ -312,7 +323,7 @@ namespace IOTL.Common.DB
             try
             {
                 string FK_Product_Number = RecvData[1].ToString();
-                string Id = RecvData[1].ToString();
+                // string Id = RecvData[1].ToString();
                 string data01_00 = RecvData[3].ToString();
                 string data01_01 = RecvData[4].ToString();
                 string data01_02 = RecvData[5].ToString();
@@ -328,10 +339,11 @@ namespace IOTL.Common.DB
                 string savetime = logReceiveTime.ToString("yyyy-MM-dd HH:mm:ss");
 
                 string query = "INSERT INTO " + TableName +          // 쿼리 명령
-                    " (FK_PRODUCT_NUMBER, ID, 01_00, 01_01, 01_02, 01_03, 01_04, 01_05, 01_06, 01_07, 01_08, 01_09, SAVETIME) " +
+                    // " (FK_PRODUCT_NUMBER, ID, 01_00, 01_01, 01_02, 01_03, 01_04, 01_05, 01_06, 01_07, 01_08, 01_09, SAVETIME) " +
+                    " (FK_PRODUCT_NUMBER, 01_00, 01_01, 01_02, 01_03, 01_04, 01_05, 01_06, 01_07, 01_08, 01_09, SAVETIME) " +
                     " values (" +
                     FK_Product_Number + "," +
-                    Convert.ToInt32(Id) + "," +
+                    // Convert.ToInt32(Id) + "," +
                     data01_00 + "," +
                     data01_01 + "," +
                     data01_02 + "," +
@@ -356,7 +368,7 @@ namespace IOTL.Common.DB
             try
             {
                 string FK_Product_Number = RecvData[1].ToString();
-                string Id = RecvData[1].ToString();
+                // string Id = RecvData[1].ToString();
                 string data02_00 = RecvData[3].ToString();
                 string data02_01 = RecvData[4].ToString();
                 string data02_02 = RecvData[5].ToString();
@@ -369,10 +381,11 @@ namespace IOTL.Common.DB
                 string savetime = logReceiveTime.ToString("yyyy-MM-dd HH:mm:ss");
 
                 string query = "INSERT INTO " + TableName +          // 쿼리 명령
-                    " (FK_PRODUCT_NUMBER, ID, 02_00, 02_01, 02_02, 02_03, 02_04, 02_05, 02_06, SAVETIME) " +
+                    // " (FK_PRODUCT_NUMBER, ID, 02_00, 02_01, 02_02, 02_03, 02_04, 02_05, 02_06, SAVETIME) " +
+                    " (FK_PRODUCT_NUMBER, 02_00, 02_01, 02_02, 02_03, 02_04, 02_05, 02_06, SAVETIME) " +
                     " values (" +
                     FK_Product_Number + "," +
-                    Convert.ToInt32(Id) + "," +
+                    // Convert.ToInt32(Id) + "," +
                     data02_00 + "," +
                     data02_01 + "," +
                     data02_02 + "," +
@@ -394,7 +407,7 @@ namespace IOTL.Common.DB
             try
             {
                 string FK_Product_Number = RecvData[1].ToString();
-                string Id = RecvData[1].ToString();
+                // string Id = RecvData[1].ToString();
                 string data04_00 = RecvData[3].ToString();
                 string data04_01 = RecvData[4].ToString();
                 string data04_02 = RecvData[5].ToString();
@@ -406,10 +419,11 @@ namespace IOTL.Common.DB
                 string savetime = logReceiveTime.ToString("yyyy-MM-dd HH:mm:ss");
 
                 string query = "INSERT INTO " + TableName +          // 쿼리 명령
-                    " (FK_PRODUCT_NUMBER, ID, 04_00, 04_01, 04_02, 04_03, 04_04, 04_05, SAVETIME) " +
+                    // " (FK_PRODUCT_NUMBER, ID, 04_00, 04_01, 04_02, 04_03, 04_04, 04_05, SAVETIME) " +
+                    " (FK_PRODUCT_NUMBER, 04_00, 04_01, 04_02, 04_03, 04_04, 04_05, SAVETIME) " +
                     " values (" +
                     FK_Product_Number + "," +
-                    Convert.ToInt32(Id) + "," +
+                    // Convert.ToInt32(Id) + "," +
                     data04_00 + "," +
                     data04_01 + "," +
                     data04_02 + "," +
@@ -430,7 +444,7 @@ namespace IOTL.Common.DB
             try
             {
                 string FK_Product_Number = RecvData[1].ToString();
-                string Id = RecvData[1].ToString();
+                // string Id = RecvData[1].ToString();
                 string data05_00 = RecvData[3].ToString();
                 string data05_01 = RecvData[4].ToString();
                 string data05_02 = RecvData[5].ToString();
@@ -441,10 +455,11 @@ namespace IOTL.Common.DB
                 string savetime = logReceiveTime.ToString("yyyy-MM-dd HH:mm:ss");
 
                 string query = "INSERT INTO " + TableName +          // 쿼리 명령
-                    " (FK_PRODUCT_NUMBER, ID, 05_00, 05_01, 05_02, 05_03, 05_04, SAVETIME) " +
+                    // " (FK_PRODUCT_NUMBER, ID, 05_00, 05_01, 05_02, 05_03, 05_04, SAVETIME) " +
+                    " (FK_PRODUCT_NUMBER, 05_00, 05_01, 05_02, 05_03, 05_04, SAVETIME) " +
                     " values (" +
                     FK_Product_Number + "," +
-                    Convert.ToInt32(Id) + "," +
+                    // Convert.ToInt32(Id) + "," +
                     data05_00 + "," +
                     data05_01 + "," +
                     data05_02 + "," +
@@ -464,7 +479,7 @@ namespace IOTL.Common.DB
             try
             {
                 string FK_Product_Number = RecvData[1].ToString();
-                string Id = RecvData[1].ToString();
+                // string Id = RecvData[1].ToString();
                 string data06_00 = RecvData[3].ToString();
                 string data06_01 = RecvData[4].ToString();
                 string data06_02 = RecvData[5].ToString();
@@ -476,10 +491,11 @@ namespace IOTL.Common.DB
                 string savetime = logReceiveTime.ToString("yyyy-MM-dd HH:mm:ss");
 
                 string query = "INSERT INTO " + TableName +          // 쿼리 명령
-                    " (FK_PRODUCT_NUMBER, ID, 06_00, 06_01, 06_02, 06_03, 06_04, 06_05, SAVETIME) " +
+                    // " (FK_PRODUCT_NUMBER, ID, 06_00, 06_01, 06_02, 06_03, 06_04, 06_05, SAVETIME) " +
+                    " (FK_PRODUCT_NUMBER, 06_00, 06_01, 06_02, 06_03, 06_04, 06_05, SAVETIME) " +
                     " values (" +
                     FK_Product_Number + "," +
-                    Convert.ToInt32(Id) + "," +
+                    // Convert.ToInt32(Id) + "," +
                     data06_00 + "," +
                     data06_01 + "," +
                     data06_02 + "," +
@@ -500,7 +516,7 @@ namespace IOTL.Common.DB
             try
             {
                 string FK_Product_Number = RecvData[1].ToString();
-                string Id = RecvData[1].ToString();
+                // string Id = RecvData[1].ToString();
                 string data07_00 = RecvData[3].ToString();
                 string data07_01 = RecvData[4].ToString();
 
@@ -508,10 +524,11 @@ namespace IOTL.Common.DB
                 string savetime = logReceiveTime.ToString("yyyy-MM-dd HH:mm:ss");
 
                 string query = "INSERT INTO " + TableName +          // 쿼리 명령
-                    " (FK_PRODUCT_NUMBER, ID, 07_00, 07_01, SAVETIME) " +
+                    // " (FK_PRODUCT_NUMBER, ID, 07_00, 07_01, SAVETIME) " +
+                    " (FK_PRODUCT_NUMBER, 07_00, 07_01, SAVETIME) " +
                     " values (" +
                     FK_Product_Number + "," +
-                    Convert.ToInt32(Id) + "," +
+                    // Convert.ToInt32(Id) + "," +
                     data07_00 + "," +
                     data07_01 + "," +
                     "'" + savetime + "')";
@@ -528,7 +545,7 @@ namespace IOTL.Common.DB
             try
             {
                 string FK_Product_Number = RecvData[1].ToString();
-                string Id = RecvData[1].ToString();
+                // string Id = RecvData[1].ToString();
                 string data08_00 = RecvData[3].ToString();
                 string data08_01 = RecvData[4].ToString();
                 string data08_02 = RecvData[5].ToString();
@@ -543,10 +560,11 @@ namespace IOTL.Common.DB
                 string savetime = logReceiveTime.ToString("yyyy-MM-dd HH:mm:ss");
 
                 string query = "INSERT INTO " + TableName +          // 쿼리 명령
-                    " (FK_PRODUCT_NUMBER, ID, 08_00, 08_01, 08_02, 08_03, 08_04, 08_05, 08_06, 08_07, 08_08, SAVETIME) " +
+                    // " (FK_PRODUCT_NUMBER, ID, 08_00, 08_01, 08_02, 08_03, 08_04, 08_05, 08_06, 08_07, 08_08, SAVETIME) " +
+                    " (FK_PRODUCT_NUMBER, 08_00, 08_01, 08_02, 08_03, 08_04, 08_05, 08_06, 08_07, 08_08, SAVETIME) " +
                     " values (" +
                     FK_Product_Number + "," +
-                    Convert.ToInt32(Id) + "," +
+                    // Convert.ToInt32(Id) + "," +
                     data08_00 + "," +
                     data08_01 + "," +
                     data08_02 + "," +
@@ -566,6 +584,197 @@ namespace IOTL.Common.DB
                 ex.Data.Clear();
             }
         }
+        private void DBSave09(string TableName, string[] RecvData, DateTime logReceiveTime)
+        {
+            try
+            {
+                string FK_Product_Number = RecvData[1].ToString();
+                //string Id = RecvData[1].ToString();
+                string data09_00 = RecvData[3].ToString();
+                string data09_01 = RecvData[4].ToString();
+                string data09_02 = RecvData[5].ToString();
+                string data09_03 = RecvData[6].ToString();
+                string data09_04 = RecvData[7].ToString();
+                string data09_05 = RecvData[8].ToString();
+                string data09_06 = RecvData[9].ToString();
+                string data09_07 = RecvData[10].ToString();
+                string data09_08 = RecvData[11].ToString();
+                string data09_09 = RecvData[12].ToString();
+                string data09_10 = RecvData[13].ToString();
+                string data09_11 = RecvData[14].ToString();
+                string data09_12 = RecvData[15].ToString();
+                string data09_13 = RecvData[16].ToString();
+                string data09_14 = RecvData[17].ToString();
+                string data09_15 = RecvData[18].ToString();
+                string data09_16 = RecvData[19].ToString();
+                string data09_17 = RecvData[20].ToString();
+                string data09_18 = RecvData[21].ToString();
+                string data09_19 = RecvData[22].ToString();
+                string data09_20 = RecvData[23].ToString();
+                string data09_21 = RecvData[24].ToString();
+                string data09_22 = RecvData[25].ToString();
+                string data09_23 = RecvData[26].ToString();
+                string data09_24 = RecvData[27].ToString();
+                string data09_25 = RecvData[28].ToString();
+                string data09_26 = RecvData[29].ToString();
+                string data09_27 = RecvData[30].ToString();
+                string data09_28 = RecvData[31].ToString();
+                string data09_29 = RecvData[32].ToString();
+                string data09_30 = RecvData[33].ToString();
+                string data09_31 = RecvData[34].ToString();
+                string data09_32 = RecvData[35].ToString();
+                string data09_33 = RecvData[36].ToString();
+                string data09_34 = RecvData[37].ToString();
+                string data09_35 = RecvData[38].ToString();
+                string data09_36 = RecvData[39].ToString();
+                string data09_37 = RecvData[40].ToString();
+                string data09_38 = RecvData[41].ToString();
+                string data09_39 = RecvData[42].ToString();
+                string data09_40 = RecvData[43].ToString();
+                string data09_41 = RecvData[44].ToString();
+                string data09_42 = RecvData[45].ToString();
+                string data09_43 = RecvData[46].ToString();
+                string data09_44 = RecvData[47].ToString();
+                string data09_45 = RecvData[48].ToString();
+                string data09_46 = RecvData[49].ToString();
+                string data09_47 = RecvData[50].ToString();
+                string data09_48 = RecvData[51].ToString();
+                string data09_49 = RecvData[52].ToString();
+                string data09_50 = RecvData[53].ToString();
+
+                // DateTime dateValue = DateTime.Now;
+                string savetime = logReceiveTime.ToString("yyyy-MM-dd HH:mm:ss");
+
+                string query = "INSERT INTO " + TableName +          // 쿼리 명령
+                    " (FK_PRODUCT_NUMBER, 09_00, 09_01, 09_02, 09_03, 09_04, 09_05, 09_06, 09_07, 09_08, 09_09, 09_10, " +
+                    "09_11, 09_12, 09_13, 09_14, 09_15, 09_16, 09_17, 09_18, 09_19, 09_20, 09_21, 09_22, 09_23, 09_24, " +
+                    "09_25, 09_26, 09_27, 09_28, 09_29, 09_30, 09_31, 09_32, 09_33, 09_34, 09_35, 09_36, 09_37, 09_38, " +
+                    "09_39, 09_40, 09_41, 09_42, 09_43, 09_44, 09_45, 09_46, 09_47, 09_48, 09_49, 09_50, SAVETIME) " +
+                    " values (" +
+                    FK_Product_Number + "," +
+                    //Convert.ToInt32(Id) + "," +
+                    data09_00 + "," +
+                    data09_01 + "," +
+                    data09_02 + "," +
+                    data09_03 + "," +
+                    data09_04 + "," +
+                    data09_05 + "," +
+                    data09_06 + "," +
+                    data09_07 + "," +
+                    data09_08 + "," +
+                    data09_09 + "," +
+                    data09_10 + "," +
+                    data09_11 + "," +
+                    data09_12 + "," +
+                    data09_13 + "," +
+                    data09_14 + "," +
+                    data09_15 + "," +
+                    data09_16 + "," +
+                    data09_17 + "," +
+                    data09_18 + "," +
+                    data09_19 + "," +
+                    data09_20 + "," +
+                    data09_21 + "," +
+                    data09_22 + "," +
+                    data09_23 + "," +
+                    data09_24 + "," +
+                    data09_25 + "," +
+                    data09_26 + "," +
+                    data09_27 + "," +
+                    data09_28 + "," +
+                    data09_29 + "," +
+                    data09_30 + "," +
+                    data09_31 + "," +
+                    data09_32 + "," +
+                    data09_33 + "," +
+                    data09_34 + "," +
+                    data09_35 + "," +
+                    data09_36 + "," +
+                    data09_37 + "," +
+                    data09_38 + "," +
+                    data09_39 + "," +
+                    data09_40 + "," +
+                    data09_41 + "," +
+                    data09_42 + "," +
+                    data09_43 + "," +
+                    data09_44 + "," +
+                    data09_45 + "," +
+                    data09_46 + "," +
+                    data09_47 + "," +
+                    data09_48 + "," +
+                    data09_49 + "," +
+                    data09_50 + "," +
+                    "'" + savetime + "')";
+
+                SaveQueryToIOTLCompDataDB(query);
+
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Clear();
+            }
+        }
+        private void DBSave10(string TableName, string[] RecvData, DateTime logReceiveTime)
+        {
+            try
+            {
+                string FK_Product_Number = RecvData[1].ToString();
+                //string Id = RecvData[1].ToString();
+                string data10_00 = RecvData[3].ToString();
+                string data10_01 = RecvData[4].ToString();
+                string data10_02 = RecvData[5].ToString();
+                string data10_03 = RecvData[6].ToString();
+                string data10_04 = RecvData[7].ToString();
+                string data10_05 = RecvData[8].ToString();
+                string data10_06 = RecvData[9].ToString();
+                string data10_07 = RecvData[10].ToString();
+                string data10_08 = RecvData[11].ToString();
+                string data10_09 = RecvData[12].ToString();
+                string data10_10 = RecvData[13].ToString();
+                string data10_11 = RecvData[14].ToString();
+                string data10_12 = RecvData[15].ToString();
+                string data10_13 = RecvData[16].ToString();
+                string data10_14 = RecvData[17].ToString();
+                string data10_15 = RecvData[18].ToString();
+                string data10_16 = RecvData[19].ToString();
+
+                // DateTime dateValue = DateTime.Now;
+                string savetime = logReceiveTime.ToString("yyyy-MM-dd HH:mm:ss");
+
+                string query = "INSERT INTO " + TableName +          // 쿼리 명령
+                    " (FK_PRODUCT_NUMBER, 10_00, 10_01, 10_02, 10_03, 10_04, 10_05, 10_06, 10_07, 10_08, " +
+                    "10_09, 10_10, 10_11, 10_12, 10_13, 10_14, 10_15, 10_16, SAVETIME) " +
+                    " values (" +
+                    FK_Product_Number + "," +
+                    //Convert.ToInt32(Id) + "," +
+                    data10_00 + "," +
+                    data10_01 + "," +
+                    data10_02 + "," +
+                    data10_03 + "," +
+                    data10_04 + "," +
+                    data10_05 + "," +
+                    data10_06 + "," +
+                    data10_07 + "," +
+                    data10_08 + "," +
+                    data10_09 + "," +
+                    data10_10 + "," +
+                    data10_11 + "," +
+                    data10_12 + "," +
+                    data10_13 + "," +
+                    data10_14 + "," +
+                    data10_15 + "," +
+                    data10_16 + "," +
+                    "'" + savetime + "')";
+
+                SaveQueryToIOTLCompDataDB(query);
+
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Clear();
+            }
+        }
+
         private void DBSave(string TableName, string[] RecvData, DateTime logReceiveTime)
         {
             try
