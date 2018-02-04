@@ -1,2 +1,0 @@
-D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Common\IOTL.Project\obj\Release\IOTL.Project.csprojResolveAssemblyReference.cache
-D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Common\IOTL.Project\obj\Release\IOTL.Project.csproj.CoreCompileInputs.cache
