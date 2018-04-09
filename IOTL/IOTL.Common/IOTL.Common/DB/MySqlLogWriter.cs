@@ -265,6 +265,33 @@ namespace IOTL.Common.DB
             return bRet;
 
         }
+        /* MySQL DB에서 프로시져를 이용하는 방법 Sample
+         * ***************************************************
+        try
+        {
+            conn.Open();
+            cmd.Connection = conn;
+            cmd.CommandText = "add_emp";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add( "?lname", "Jones" );
+            cmd.Parameters["?lname"].Direction = ParameterDirection.Input;
+            cmd.Parameters.Add( "?fname", "Tom" );
+            cmd.Parameters["?fname"].Direction = ParameterDirection.Input;
+            cmd.Parameters.Add( "?bday", DateTime.Parse("12/13/1977 2:17:36 PM") );
+            cmd.Parameters["?bday"].Direction = ParameterDirection.Input;
+            cmd.Parameters.Add( "?empno", MySqlDbType.Int32 );
+            cmd.Parameters["?empno"].Direction = ParameterDirection.Output;
+            cmd.ExecuteNonQuery();
+            MessageBox.Show( cmd.Parameters["?empno"].Value );
+        }
+        catch( MySql.Data.MySqlClient.MySqlException ex )
+        {
+            MessageBox.Show( "Error " + ex.Number + " has occurred: " + ex.Message,
+                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+        }
+        출처: http://jong8.tistory.com/entry/c-mysql-stored-procedure-사용 [종팔이의 개발 인생]
+        */
+
         private void DBSave00(string TableName, string[] RecvData, DateTime logReceiveTime)
         {
             try
