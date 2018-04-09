@@ -1,4 +1,7 @@
 -- IOTLink Compressor Manager Table Generator
+-- 
+USE COMPDATA
+;
 
 CREATE TABLE TBM_COMP_AS
 (
