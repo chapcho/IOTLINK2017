@@ -168,9 +168,16 @@ namespace IOTL.Common.DB
             return bOK;
         }
 
-        public bool WriteIOTLCompDataSingle(CTimeLog oData)
+        // 데이터 수신시 
+        // 수신 로그(debug. txt)(1), csv Log(2), Db 처리(3)
+        // IOTLCompressorLogWriter.Run() -> WriteIOTLCompDataSingle()
+        //
+        public int WriteIOTLCompDataSingle(CTimeLog oData)
         {
-            bool bRet = true;
+            // 0: success
+            // 1: protocol error
+            
+            int retErrorCode = 0;
 
             try
             {
@@ -255,14 +262,19 @@ namespace IOTL.Common.DB
                     DBSave(RecvDatas[1].ToString(), GotoDBData);
                     */
                 }
+                else
+                {
+                    // Compressor 서버의 프로토콜과 다르다.
+                    retErrorCode = 1;
+                }
             }
             catch(Exception ex)
             {
                 ex.Data.Clear();
-                bRet = false;
+                retErrorCode = 2;
             }
 
-            return bRet;
+            return retErrorCode;
 
         }
         /* MySQL DB에서 프로시져를 이용하는 방법 Sample

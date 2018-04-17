@@ -145,6 +145,7 @@ namespace IOTLManager
         /// <param name="cLog"></param>
         private void EventHandler_UEventMachineStateTimeLog(CTimeLog cLog)
         {
+            // 데이터 처리자에게 전달한다.
             if (logProcessor != null)
                 logProcessor.EnQue(cLog);
         }
@@ -152,6 +153,8 @@ namespace IOTLManager
         public void WriteMessageToLogfile(EMFileLogType emFileLogType, EMFileLogDepth emFileLogDepth, string sLogMessage)
         {
             LogFuncDelegate logFunc = null;
+
+            // 수신한 데이터를 Log(파일)에 기록한다.
 
             switch (emFileLogType)
             {
