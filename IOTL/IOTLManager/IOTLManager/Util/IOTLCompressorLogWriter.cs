@@ -183,19 +183,7 @@ namespace IOTLManager.Util
                     }
                     else if(oData.GetType() == typeof(CTimeLog))
                     {
-                        // bOK = LogDBWriter.WriteTimeLog((CTimeLog)oData);
-                        
-                        // bOK = LogDBWriter.WriteIOTLCompDataSingle((CTimeLog)oData);
-                        // 성공시 0
-                        iRetVal = LogDBWriter.WriteIOTLCompDataSingle((CTimeLog)oData);
-
-                        // 위와 같이 처리하면 MySqlLogWriter.cs의 로직이 복잡해 진다.
-                        // 이 쪽에서 프로시져 호출 부분을 만들어서 MySqlLogWriter를 호출하는 것이 바람직해 보인다. 2018.04.18 <<< 여기까지 생각했다.
-
-                        if (iRetVal > 0)    // 수신 데이터 처리시 오류 발생.
-                        {
-                            UpdateSystemMessage("IOTLCompressorLogWriter", "수신한 Socket Data 처리중 확인 되지 않은 오류가 있습니다. errorCode :" + iRetVal.ToString());
-                        }
+                        iRetVal = CompressorLogWriterProc((CTimeLog)oData);
 
                         if(!((CTimeLog)oData).ReadFromCSV)
                             bOK = m_cCSVLogWrite.WriteTimeLog((CTimeLog)oData);
@@ -226,6 +214,22 @@ namespace IOTLManager.Util
                     ex.Data.Clear();
                 }
             }
+        }
+
+        private int CompressorLogWriterProc(CTimeLog oData)
+        {
+            int iRetVal = 0;
+
+            // iRetVal = LogDBWriter.WriteIOTLCompDataSingle((CTimeLog)oData);
+
+            iRetVal = LogDBWriter.SaveCompressorMachineLogSingle((CTimeLog)oData);
+
+            if (iRetVal > 0)    // 수신 데이터 처리시 오류 발생.
+            {
+                UpdateSystemMessage("IOTLCompressorLogWriter", "수신한 Socket Data 처리중 확인 되지 않은 오류가 있습니다. errorCode :" + iRetVal.ToString());
+            }
+
+            return iRetVal;
         }
 
         #endregion

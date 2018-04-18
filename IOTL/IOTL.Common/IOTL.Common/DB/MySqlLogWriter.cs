@@ -277,32 +277,85 @@ namespace IOTL.Common.DB
             return retErrorCode;
 
         }
+
+        public int SaveCompressorMachineLogSingle(CTimeLog oData)
+        {
+            int iRetVal = 0;
+
+            string rcvText = Encoding.Default.GetString(oData.ReceiveData);
+
+            // ex) "S,00000000,00,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,E"
+            if ("S".Equals(rcvText.Substring(0,1)) && "E".Equals(rcvText.Substring(rcvText.Length -1,1)))
+            {
+                string[] RecvDatas = rcvText.Split(',');
+
+                switch(RecvDatas[1])
+                {
+                    case "0":   // 장비 등록 메시지 이다.
+                        break;
+                    case "1":   // 장비 상태 저장 메시지 이다.
+                        switch(RecvDatas[3])
+                        {
+                            case "00":iRetVal = CallCompressorProcedureWithParams("usp_COMP_01_00_Packet", RecvDatas);
+                                break;
+                            case "01":iRetVal = CallCompressorProcedureWithParams("usp_COMP_01_01_Packet", RecvDatas);
+                                break;
+                            case "02":iRetVal = CallCompressorProcedureWithParams("usp_COMP_01_02_Packet", RecvDatas);
+                                break;
+                            case "03":iRetVal = CallCompressorProcedureWithParams("usp_COMP_01_03_Packet", RecvDatas);
+                                break;
+                            case "04":iRetVal = CallCompressorProcedureWithParams("usp_COMP_01_04_Packet", RecvDatas);
+                                break;
+                            case "05":iRetVal = CallCompressorProcedureWithParams("usp_COMP_01_05_Packet", RecvDatas);
+                                break;
+                            case "06":iRetVal = CallCompressorProcedureWithParams("usp_COMP_01_06_Packet", RecvDatas);
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
+                    default:    // 등록 메시지나 처리 메시지가 아니다.
+                        break;
+                }
+
+            }
+
+            return iRetVal;
+        }
+
+        private int CallCompressorProcedureWithParams(string v, string[] recvDatas)
+        {
+            int iRetVal = 0;
+            // 다른 파라미터 이름을 어떻게 지정할 것인지 고민중.
+            return iRetVal;
+        }
+
         /* MySQL DB에서 프로시져를 이용하는 방법 Sample
-         * ***************************************************
-        try
-        {
-            conn.Open();
-            cmd.Connection = conn;
-            cmd.CommandText = "add_emp";
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add( "?lname", "Jones" );
-            cmd.Parameters["?lname"].Direction = ParameterDirection.Input;
-            cmd.Parameters.Add( "?fname", "Tom" );
-            cmd.Parameters["?fname"].Direction = ParameterDirection.Input;
-            cmd.Parameters.Add( "?bday", DateTime.Parse("12/13/1977 2:17:36 PM") );
-            cmd.Parameters["?bday"].Direction = ParameterDirection.Input;
-            cmd.Parameters.Add( "?empno", MySqlDbType.Int32 );
-            cmd.Parameters["?empno"].Direction = ParameterDirection.Output;
-            cmd.ExecuteNonQuery();
-            MessageBox.Show( cmd.Parameters["?empno"].Value );
-        }
-        catch( MySql.Data.MySqlClient.MySqlException ex )
-        {
-            MessageBox.Show( "Error " + ex.Number + " has occurred: " + ex.Message,
-                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
-        }
-        출처: http://jong8.tistory.com/entry/c-mysql-stored-procedure-사용 [종팔이의 개발 인생]
-        */
+* ***************************************************
+try
+{
+   conn.Open();
+   cmd.Connection = conn;
+   cmd.CommandText = "add_emp";
+   cmd.CommandType = CommandType.StoredProcedure;
+   cmd.Parameters.Add( "?lname", "Jones" );
+   cmd.Parameters["?lname"].Direction = ParameterDirection.Input;
+   cmd.Parameters.Add( "?fname", "Tom" );
+   cmd.Parameters["?fname"].Direction = ParameterDirection.Input;
+   cmd.Parameters.Add( "?bday", DateTime.Parse("12/13/1977 2:17:36 PM") );
+   cmd.Parameters["?bday"].Direction = ParameterDirection.Input;
+   cmd.Parameters.Add( "?empno", MySqlDbType.Int32 );
+   cmd.Parameters["?empno"].Direction = ParameterDirection.Output;
+   cmd.ExecuteNonQuery();
+   MessageBox.Show( cmd.Parameters["?empno"].Value );
+}
+catch( MySql.Data.MySqlClient.MySqlException ex )
+{
+   MessageBox.Show( "Error " + ex.Number + " has occurred: " + ex.Message,
+       "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+}
+출처: http://jong8.tistory.com/entry/c-mysql-stored-procedure-사용 [종팔이의 개발 인생]
+*/
 
         private void DBSave00(string TableName, string[] RecvData, DateTime logReceiveTime)
         {
@@ -2482,6 +2535,11 @@ namespace IOTL.Common.DB
         private string ToTimeString(DateTime dtTime)
         {
             return dtTime.ToString("yyyyMMddHHmmss.fff");
+        }
+
+        private string GetShortTimeString(DateTime dtTime)
+        {
+            return dtTime.ToString("yyyyMMddHHmmss");
         }
 
         private string ToTimeSpanString(TimeSpan dtTime)
