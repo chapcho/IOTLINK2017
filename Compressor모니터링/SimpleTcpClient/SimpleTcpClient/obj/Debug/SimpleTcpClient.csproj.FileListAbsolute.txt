@@ -1,0 +1,9 @@
+D:\chapcho\IOTLink\GitRoot\Compressor모니터링\SimpleTcpClient\SimpleTcpClient\bin\Debug\SimpleTcpClient.exe.config
+D:\chapcho\IOTLink\GitRoot\Compressor모니터링\SimpleTcpClient\SimpleTcpClient\bin\Debug\SimpleTcpClient.exe
+D:\chapcho\IOTLink\GitRoot\Compressor모니터링\SimpleTcpClient\SimpleTcpClient\bin\Debug\SimpleTcpClient.pdb
+D:\chapcho\IOTLink\GitRoot\Compressor모니터링\SimpleTcpClient\SimpleTcpClient\obj\Debug\SimpleTcpClient.Form1.resources
+D:\chapcho\IOTLink\GitRoot\Compressor모니터링\SimpleTcpClient\SimpleTcpClient\obj\Debug\SimpleTcpClient.Properties.Resources.resources
+D:\chapcho\IOTLink\GitRoot\Compressor모니터링\SimpleTcpClient\SimpleTcpClient\obj\Debug\SimpleTcpClient.csproj.GenerateResource.Cache
+D:\chapcho\IOTLink\GitRoot\Compressor모니터링\SimpleTcpClient\SimpleTcpClient\obj\Debug\SimpleTcpClient.csproj.CoreCompileInputs.cache
+D:\chapcho\IOTLink\GitRoot\Compressor모니터링\SimpleTcpClient\SimpleTcpClient\obj\Debug\SimpleTcpClient.exe
+D:\chapcho\IOTLink\GitRoot\Compressor모니터링\SimpleTcpClient\SimpleTcpClient\obj\Debug\SimpleTcpClient.pdb

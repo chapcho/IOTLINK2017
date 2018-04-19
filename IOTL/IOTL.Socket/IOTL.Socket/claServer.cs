@@ -71,8 +71,18 @@ namespace IOTL.Socket
         protected override void OnSessionClosed(claClientSession session, CloseReason reason)
         {
             //로그아웃 처리를 하여 유저가 끊김을 알린다.
-            OnLogoutUser(session, null);
-            base.OnSessionClosed(session, reason);
+            try
+            {
+                OnLogoutUser(session, null);
+            }
+            catch(Exception ex)
+            {
+                ex.Data.Clear();
+            }
+            finally
+            {
+                base.OnSessionClosed(session, reason);
+            }
         }
 
         /// <summary>
