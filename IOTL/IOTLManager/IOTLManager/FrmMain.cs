@@ -63,7 +63,7 @@ namespace IOTLManager
 
             if(LoadConfigFile())
             {
-                m_mariaDBConfigInfo = new ConfigMariaDB( m_cProject.CompServerIPAddress,
+                m_mariaDBConfigInfo = new ConfigMariaDB( m_cProject.CompServerDBAddr,
                     m_cProject.CompServerDBPort,
                     m_cProject.CompServerInitialDatabaseName,
                     m_cProject.CompServerDBLoginUserId,

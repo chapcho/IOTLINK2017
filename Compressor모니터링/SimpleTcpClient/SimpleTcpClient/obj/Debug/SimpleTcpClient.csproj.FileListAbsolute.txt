@@ -7,3 +7,4 @@ D:\chapcho\IOTLink\GitRoot\Compressor모니터링\SimpleTcpClient\SimpleTcpClien
 D:\chapcho\IOTLink\GitRoot\Compressor모니터링\SimpleTcpClient\SimpleTcpClient\obj\Debug\SimpleTcpClient.csproj.CoreCompileInputs.cache
 D:\chapcho\IOTLink\GitRoot\Compressor모니터링\SimpleTcpClient\SimpleTcpClient\obj\Debug\SimpleTcpClient.exe
 D:\chapcho\IOTLink\GitRoot\Compressor모니터링\SimpleTcpClient\SimpleTcpClient\obj\Debug\SimpleTcpClient.pdb
+D:\chapcho\IOTLink\GitRoot\Compressor모니터링\SimpleTcpClient\SimpleTcpClient\obj\Debug\SimpleTcpClient.csprojResolveAssemblyReference.cache

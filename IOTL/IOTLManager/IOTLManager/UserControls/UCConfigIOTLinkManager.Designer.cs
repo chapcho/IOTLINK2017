@@ -47,6 +47,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtCompServerDBAddr = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -62,6 +64,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtCompServerDBAddr);
+            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.btnLoadConfig);
             this.groupBox1.Controls.Add(this.btnSaveConfig);
             this.groupBox1.Controls.Add(this.btnCompServerLogFind);
@@ -81,7 +85,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(548, 231);
+            this.groupBox1.Size = new System.Drawing.Size(583, 262);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Comp Server";
@@ -89,7 +93,7 @@
             // btnLoadConfig
             // 
             this.btnLoadConfig.Image = global::IOTLManager.Properties.Resources.Technology_32x32;
-            this.btnLoadConfig.Location = new System.Drawing.Point(480, 140);
+            this.btnLoadConfig.Location = new System.Drawing.Point(480, 169);
             this.btnLoadConfig.Name = "btnLoadConfig";
             this.btnLoadConfig.Size = new System.Drawing.Size(61, 62);
             this.btnLoadConfig.TabIndex = 8;
@@ -101,7 +105,7 @@
             // btnSaveConfig
             // 
             this.btnSaveConfig.Image = global::IOTLManager.Properties.Resources.SavePageSetup_32x32;
-            this.btnSaveConfig.Location = new System.Drawing.Point(380, 140);
+            this.btnSaveConfig.Location = new System.Drawing.Point(380, 169);
             this.btnSaveConfig.Name = "btnSaveConfig";
             this.btnSaveConfig.Size = new System.Drawing.Size(61, 62);
             this.btnSaveConfig.TabIndex = 7;
@@ -130,7 +134,7 @@
             // 
             // txtCompServerDBPort
             // 
-            this.txtCompServerDBPort.Location = new System.Drawing.Point(142, 143);
+            this.txtCompServerDBPort.Location = new System.Drawing.Point(142, 172);
             this.txtCompServerDBPort.Name = "txtCompServerDBPort";
             this.txtCompServerDBPort.Size = new System.Drawing.Size(84, 21);
             this.txtCompServerDBPort.TabIndex = 4;
@@ -145,7 +149,7 @@
             // 
             // txtCompServerDBUserPw
             // 
-            this.txtCompServerDBUserPw.Location = new System.Drawing.Point(141, 199);
+            this.txtCompServerDBUserPw.Location = new System.Drawing.Point(141, 228);
             this.txtCompServerDBUserPw.MaxLength = 20;
             this.txtCompServerDBUserPw.Name = "txtCompServerDBUserPw";
             this.txtCompServerDBUserPw.PasswordChar = '*';
@@ -154,7 +158,7 @@
             // 
             // txtCompServerDBUserID
             // 
-            this.txtCompServerDBUserID.Location = new System.Drawing.Point(141, 171);
+            this.txtCompServerDBUserID.Location = new System.Drawing.Point(141, 200);
             this.txtCompServerDBUserID.MaxLength = 20;
             this.txtCompServerDBUserID.Name = "txtCompServerDBUserID";
             this.txtCompServerDBUserID.Size = new System.Drawing.Size(226, 21);
@@ -187,7 +191,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(17, 152);
+            this.label7.Location = new System.Drawing.Point(17, 181);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(58, 12);
             this.label7.TabIndex = 0;
@@ -205,7 +209,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(17, 202);
+            this.label6.Location = new System.Drawing.Point(17, 231);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 12);
             this.label6.TabIndex = 0;
@@ -214,7 +218,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(17, 176);
+            this.label5.Location = new System.Drawing.Point(17, 205);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(72, 12);
             this.label5.TabIndex = 0;
@@ -237,6 +241,22 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(777, 491);
             this.panel1.TabIndex = 0;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(17, 151);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(36, 12);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "DB IP";
+            // 
+            // txtCompServerDBAddr
+            // 
+            this.txtCompServerDBAddr.Location = new System.Drawing.Point(141, 143);
+            this.txtCompServerDBAddr.Name = "txtCompServerDBAddr";
+            this.txtCompServerDBAddr.Size = new System.Drawing.Size(226, 21);
+            this.txtCompServerDBAddr.TabIndex = 10;
             // 
             // UCConfigIOTLinkManager
             // 
@@ -273,5 +293,7 @@
         private System.Windows.Forms.Button btnLoadConfig;
         private System.Windows.Forms.TextBox txtCompServerDBPort;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtCompServerDBAddr;
+        private System.Windows.Forms.Label label8;
     }
 }

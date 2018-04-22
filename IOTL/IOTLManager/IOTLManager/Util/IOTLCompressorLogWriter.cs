@@ -219,15 +219,24 @@ namespace IOTLManager.Util
         private int CompressorLogWriterProc(CTimeLog oData)
         {
             int iRetVal = 0;
-
-            // iRetVal = LogDBWriter.WriteIOTLCompDataSingle((CTimeLog)oData);
+            string resultMessage = string.Empty;
 
             iRetVal = LogDBWriter.SaveCompressorMachineLogSingle((CTimeLog)oData);
 
-            if (iRetVal > 0)    // 수신 데이터 처리시 오류 발생.
+            switch(iRetVal)
             {
-                UpdateSystemMessage("IOTLCompressorLogWriter", "수신한 Socket Data 처리중 확인 되지 않은 오류가 있습니다. errorCode :" + iRetVal.ToString());
+                case 1:
+                    resultMessage = "Ok";
+                    break;
+                case 0:
+                    resultMessage = "No Register";
+                    break;
+                default:
+                    resultMessage = "수신한 Socket Data 처리중 확인 되지 않은 오류가 있습니다. resultCode :" + iRetVal.ToString();
+                    break;
             }
+
+            UpdateSystemMessage("IOTLCompressorLogWriter", resultMessage);
 
             return iRetVal;
         }

@@ -9,4 +9,3 @@ D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Utilities\ReferenceDllCopier\bin\Debug\Refe
 D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Utilities\ReferenceDllCopier\obj\Debug\ReferenceDllCopier.csproj.CoreCompileInputs.cache
 D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Utilities\ReferenceDllCopier\obj\Debug\ReferenceDllCopier.exe
 D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Utilities\ReferenceDllCopier\obj\Debug\ReferenceDllCopier.pdb
-D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Utilities\ReferenceDllCopier\obj\Debug\ReferenceDllCopier.csprojResolveAssemblyReference.cache

@@ -301,15 +301,15 @@ namespace IOTL.Common.DB
                                 break;
                             case "01":iRetVal = CallCompressorRunSetProcedure("compdata.usp_COMP_01_01_Packet", RecvDatas, GetShortTimeString(oData.LogTime));
                                 break;
-                            case "02":iRetVal = CallCompressorSaveStatusProcedure("compdata.usp_COMP_01_02_Packet", RecvDatas, GetShortTimeString(oData.LogTime));
+                            case "02":iRetVal = CallCompressorRunPlanProcedure("compdata.usp_COMP_01_02_Packet", RecvDatas, GetShortTimeString(oData.LogTime));
                                 break;
-                            case "03":iRetVal = CallCompressorSaveStatusProcedure("compdata.usp_COMP_01_03_Packet", RecvDatas, GetShortTimeString(oData.LogTime));
+                            case "03":iRetVal = CallCompressorAsInfoProcedure("compdata.usp_COMP_01_03_Packet", RecvDatas, GetShortTimeString(oData.LogTime));
                                 break;
-                            case "04":iRetVal = CallCompressorSaveStatusProcedure("compdata.usp_COMP_01_04_Packet", RecvDatas, GetShortTimeString(oData.LogTime));
+                            case "04":iRetVal = CallCompressorTripInfoProcedure("compdata.usp_COMP_01_04_Packet", RecvDatas, GetShortTimeString(oData.LogTime));
                                 break;
-                            case "05":iRetVal = CallCompressorSaveStatusProcedure("compdata.usp_COMP_01_05_Packet", RecvDatas, GetShortTimeString(oData.LogTime));
+                            case "05":iRetVal = CallCompressorRunTypeProcedure("compdata.usp_COMP_01_05_Packet", RecvDatas, GetShortTimeString(oData.LogTime));
                                 break;
-                            case "06":iRetVal = CallCompressorSaveStatusProcedure("compdata.usp_COMP_01_06_Packet", RecvDatas, GetShortTimeString(oData.LogTime));
+                            case "06":iRetVal = CallCompressorAlarmStateProcedure("compdata.usp_COMP_01_06_Packet", RecvDatas, GetShortTimeString(oData.LogTime));
                                 break;
                             default:
                                 break;
@@ -553,6 +553,458 @@ namespace IOTL.Common.DB
                 dbComm.Parameters.Add("V_COOLING_FAN_STOP_TEMPER", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
                 dbComm.Parameters["V_COOLING_FAN_STOP_TEMPER"].Value = recvDatas[12];
                 dbComm.Parameters["V_COOLING_FAN_STOP_TEMPER"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_SAVE_TIME_STR", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_SAVE_TIME_STR"].Value = strReceivedTime;
+                dbComm.Parameters["V_SAVE_TIME_STR"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_RESULT", MySql.Data.MySqlClient.MySqlDbType.Int32);
+                dbComm.Parameters["V_RESULT"].Direction = ParameterDirection.Output;
+
+                dbComm.ExecuteNonQuery();
+                // Console.WriteLine("Procedure Call Result:" + dbComm.Parameters["V_RESULT"].Value.ToString());
+                iRetVal = Int32.Parse(dbComm.Parameters["V_RESULT"].Value.ToString());
+
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name);
+
+                UEventFileLog?.Invoke(EMFileLogType.DatabaseLog, EMFileLogDepth.Error, ex.Message);
+
+                ex.Data.Clear();
+
+                iRetVal = -1;
+            }
+            finally
+            {
+                if (dbComm != null)
+                {
+                    dbComm.Dispose();
+                    dbComm = null;
+                }
+            }
+
+            return iRetVal;
+        }
+
+        public int CallCompressorRunPlanProcedure(string strProcedureName, string[] recvDatas, string strReceivedTime)
+        {
+            int iRetVal = 0;
+
+            MySqlCommand dbComm = null;
+
+            try
+            {
+                dbComm = new MySqlCommand();
+                dbComm.Connection = dbConnection;
+
+                // 프로시져를 이용한 업데이트 실행.
+                dbComm.CommandType = CommandType.StoredProcedure;
+
+                dbComm.CommandText = strProcedureName; //  "compdata.usp_COMP_01_01_Packet";
+                dbComm.CommandType = CommandType.StoredProcedure;
+
+                dbComm.Parameters.Add("V_COMP_ID", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_COMP_ID"].Value = recvDatas[2];
+                dbComm.Parameters["V_COMP_ID"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_SUN_OPER_PERIOD", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_SUN_OPER_PERIOD"].Value = recvDatas[4];
+                dbComm.Parameters["V_SUN_OPER_PERIOD"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_MON_OPER_PERIOD", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_MON_OPER_PERIOD"].Value = recvDatas[5];
+                dbComm.Parameters["V_MON_OPER_PERIOD"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_TUE_OPER_PERIOD", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_TUE_OPER_PERIOD"].Value = recvDatas[6];
+                dbComm.Parameters["V_TUE_OPER_PERIOD"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_WED_OPER_PERIOD", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_WED_OPER_PERIOD"].Value = recvDatas[7];
+                dbComm.Parameters["V_WED_OPER_PERIOD"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_THU_OPER_PERIOD", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_THU_OPER_PERIOD"].Value = recvDatas[8];
+                dbComm.Parameters["V_THU_OPER_PERIOD"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_FRI_OPER_PERIOD", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_FRI_OPER_PERIOD"].Value = recvDatas[9];
+                dbComm.Parameters["V_FRI_OPER_PERIOD"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_SAT_OPER_PERIOD", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_SAT_OPER_PERIOD"].Value = recvDatas[10];
+                dbComm.Parameters["V_SAT_OPER_PERIOD"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_SAVE_TIME_STR", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_SAVE_TIME_STR"].Value = strReceivedTime;
+                dbComm.Parameters["V_SAVE_TIME_STR"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_RESULT", MySql.Data.MySqlClient.MySqlDbType.Int32);
+                dbComm.Parameters["V_RESULT"].Direction = ParameterDirection.Output;
+
+                dbComm.ExecuteNonQuery();
+                // Console.WriteLine("Procedure Call Result:" + dbComm.Parameters["V_RESULT"].Value.ToString());
+                iRetVal = Int32.Parse(dbComm.Parameters["V_RESULT"].Value.ToString());
+
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name);
+
+                UEventFileLog?.Invoke(EMFileLogType.DatabaseLog, EMFileLogDepth.Error, ex.Message);
+
+                ex.Data.Clear();
+
+                iRetVal = -1;
+            }
+            finally
+            {
+                if (dbComm != null)
+                {
+                    dbComm.Dispose();
+                    dbComm = null;
+                }
+            }
+
+            return iRetVal;
+        }
+
+        public int CallCompressorAsInfoProcedure(string strProcedureName, string[] recvDatas, string strReceivedTime)
+        {
+            int iRetVal = 0;
+
+            MySqlCommand dbComm = null;
+
+            try
+            {
+                dbComm = new MySqlCommand();
+                dbComm.Connection = dbConnection;
+
+                // 프로시져를 이용한 업데이트 실행.
+                dbComm.CommandType = CommandType.StoredProcedure;
+
+                dbComm.CommandText = strProcedureName; //  "compdata.usp_COMP_01_01_Packet";
+                dbComm.CommandType = CommandType.StoredProcedure;
+
+                dbComm.Parameters.Add("V_COMP_ID", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_COMP_ID"].Value = recvDatas[2];
+                dbComm.Parameters["V_COMP_ID"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_DUST_FILTER_CLN", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_DUST_FILTER_CLN"].Value = recvDatas[4];
+                dbComm.Parameters["V_DUST_FILTER_CLN"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_INHALATE_FILTER_CHG", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_INHALATE_FILTER_CHG"].Value = recvDatas[5];
+                dbComm.Parameters["V_INHALATE_FILTER_CHG"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_OIL_FILTER_CHG", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_OIL_FILTER_CHG"].Value = recvDatas[6];
+                dbComm.Parameters["V_OIL_FILTER_CHG"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_LUBRICATING_OIL_CHG", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_LUBRICATING_OIL_CHG"].Value = recvDatas[7];
+                dbComm.Parameters["V_LUBRICATING_OIL_CHG"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_COOLER_INSPECT", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_COOLER_INSPECT"].Value = recvDatas[8];
+                dbComm.Parameters["V_COOLER_INSPECT"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_DISASSEMBLE_INSPECT", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_DISASSEMBLE_INSPECT"].Value = recvDatas[9];
+                dbComm.Parameters["V_DISASSEMBLE_INSPECT"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_CUR_DUST_FILTER_CLN", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_CUR_DUST_FILTER_CLN"].Value = recvDatas[10];
+                dbComm.Parameters["V_CUR_DUST_FILTER_CLN"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_CUR_INHALATE_FILTER_CHG", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_CUR_INHALATE_FILTER_CHG"].Value = recvDatas[11];
+                dbComm.Parameters["V_CUR_INHALATE_FILTER_CHG"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_CUR_OIL_FILTER_CHG", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_CUR_OIL_FILTER_CHG"].Value = recvDatas[12];
+                dbComm.Parameters["V_CUR_OIL_FILTER_CHG"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_CUR_LUBRICATING_OIL_CHG", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_CUR_LUBRICATING_OIL_CHG"].Value = recvDatas[13];
+                dbComm.Parameters["V_CUR_LUBRICATING_OIL_CHG"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_CUR_COOLER_INSPECT", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_CUR_COOLER_INSPECT"].Value = recvDatas[14];
+                dbComm.Parameters["V_CUR_COOLER_INSPECT"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_CUR_DISASSEMBLE_INSPECT", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_CUR_DISASSEMBLE_INSPECT"].Value = recvDatas[15];
+                dbComm.Parameters["V_CUR_DISASSEMBLE_INSPECT"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_SAVE_TIME_STR", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_SAVE_TIME_STR"].Value = strReceivedTime;
+                dbComm.Parameters["V_SAVE_TIME_STR"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_RESULT", MySql.Data.MySqlClient.MySqlDbType.Int32);
+                dbComm.Parameters["V_RESULT"].Direction = ParameterDirection.Output;
+
+                dbComm.ExecuteNonQuery();
+                // Console.WriteLine("Procedure Call Result:" + dbComm.Parameters["V_RESULT"].Value.ToString());
+                iRetVal = Int32.Parse(dbComm.Parameters["V_RESULT"].Value.ToString());
+
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name);
+
+                UEventFileLog?.Invoke(EMFileLogType.DatabaseLog, EMFileLogDepth.Error, ex.Message);
+
+                ex.Data.Clear();
+
+                iRetVal = -1;
+            }
+            finally
+            {
+                if (dbComm != null)
+                {
+                    dbComm.Dispose();
+                    dbComm = null;
+                }
+            }
+
+            return iRetVal;
+        }
+
+        public int CallCompressorTripInfoProcedure(string strProcedureName, string[] recvDatas, string strReceivedTime)
+        {
+            int iRetVal = 0;
+
+            MySqlCommand dbComm = null;
+
+            try
+            {
+                dbComm = new MySqlCommand();
+                dbComm.Connection = dbConnection;
+
+                // 프로시져를 이용한 업데이트 실행.
+                dbComm.CommandType = CommandType.StoredProcedure;
+
+                dbComm.CommandText = strProcedureName; //  "compdata.usp_COMP_01_01_Packet";
+                dbComm.CommandType = CommandType.StoredProcedure;
+
+                dbComm.Parameters.Add("V_COMP_ID", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_COMP_ID"].Value = recvDatas[2];
+                dbComm.Parameters["V_COMP_ID"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_DISCHARGE_TEMPER_ULIMIT", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_DISCHARGE_TEMPER_ULIMIT"].Value = recvDatas[4];
+                dbComm.Parameters["V_DISCHARGE_TEMPER_ULIMIT"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_DISCHARGE_PRESS_ULIMIT", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_DISCHARGE_PRESS_ULIMIT"].Value = recvDatas[5];
+                dbComm.Parameters["V_DISCHARGE_PRESS_ULIMIT"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_OILSKIMMER_TEMPER_ULIMIT", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_OILSKIMMER_TEMPER_ULIMIT"].Value = recvDatas[6];
+                dbComm.Parameters["V_OILSKIMMER_TEMPER_ULIMIT"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_OILSKIMMER_PRESS_ULIMIT", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_OILSKIMMER_PRESS_ULIMIT"].Value = recvDatas[7];
+                dbComm.Parameters["V_OILSKIMMER_PRESS_ULIMIT"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_DIFF_PRESS_ULIMIT", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_DIFF_PRESS_ULIMIT"].Value = recvDatas[8];
+                dbComm.Parameters["V_DIFF_PRESS_ULIMIT"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_ALARM_DISCHARGE_TEMPER_ULIMIT", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_ALARM_DISCHARGE_TEMPER_ULIMIT"].Value = recvDatas[9];
+                dbComm.Parameters["V_ALARM_DISCHARGE_TEMPER_ULIMIT"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_ALARM_DISCHARGE_PRESS_ULIMIT", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_ALARM_DISCHARGE_PRESS_ULIMIT"].Value = recvDatas[10];
+                dbComm.Parameters["V_ALARM_DISCHARGE_PRESS_ULIMIT"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_ALARM_OILSKIMMER_TEMPER_ULIMIT", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_ALARM_OILSKIMMER_TEMPER_ULIMIT"].Value = recvDatas[11];
+                dbComm.Parameters["V_ALARM_OILSKIMMER_TEMPER_ULIMIT"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_ALARM_OILSKIMMER_PRESS_ULIMIT", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_ALARM_OILSKIMMER_PRESS_ULIMIT"].Value = recvDatas[12];
+                dbComm.Parameters["V_ALARM_OILSKIMMER_PRESS_ULIMIT"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_ALARM_DIFF_PRESS_ULIMIT", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_ALARM_DIFF_PRESS_ULIMIT"].Value = recvDatas[13];
+                dbComm.Parameters["V_ALARM_DIFF_PRESS_ULIMIT"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_ALARM_OUT_TEMPER_ULIMIT", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_ALARM_OUT_TEMPER_ULIMIT"].Value = recvDatas[14];
+                dbComm.Parameters["V_ALARM_OUT_TEMPER_ULIMIT"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_OPER_DISCHARGE_TEMPER_LLIMIT", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_OPER_DISCHARGE_TEMPER_LLIMIT"].Value = recvDatas[15];
+                dbComm.Parameters["V_OPER_DISCHARGE_TEMPER_LLIMIT"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_OPER_OILSKIMMER_PRESS_ULIMIT", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_OPER_OILSKIMMER_PRESS_ULIMIT"].Value = recvDatas[16];
+                dbComm.Parameters["V_OPER_OILSKIMMER_PRESS_ULIMIT"].Direction = ParameterDirection.Input;
+
+
+                dbComm.Parameters.Add("V_SAVE_TIME_STR", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_SAVE_TIME_STR"].Value = strReceivedTime;
+                dbComm.Parameters["V_SAVE_TIME_STR"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_RESULT", MySql.Data.MySqlClient.MySqlDbType.Int32);
+                dbComm.Parameters["V_RESULT"].Direction = ParameterDirection.Output;
+
+                dbComm.ExecuteNonQuery();
+                // Console.WriteLine("Procedure Call Result:" + dbComm.Parameters["V_RESULT"].Value.ToString());
+                iRetVal = Int32.Parse(dbComm.Parameters["V_RESULT"].Value.ToString());
+
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name);
+
+                UEventFileLog?.Invoke(EMFileLogType.DatabaseLog, EMFileLogDepth.Error, ex.Message);
+
+                ex.Data.Clear();
+
+                iRetVal = -1;
+            }
+            finally
+            {
+                if (dbComm != null)
+                {
+                    dbComm.Dispose();
+                    dbComm = null;
+                }
+            }
+
+            return iRetVal;
+        }
+
+        public int CallCompressorRunTypeProcedure(string strProcedureName, string[] recvDatas, string strReceivedTime)
+        {
+            int iRetVal = 0;
+
+            MySqlCommand dbComm = null;
+
+            try
+            {
+                dbComm = new MySqlCommand();
+                dbComm.Connection = dbConnection;
+
+                // 프로시져를 이용한 업데이트 실행.
+                dbComm.CommandType = CommandType.StoredProcedure;
+
+                dbComm.CommandText = strProcedureName; //  "compdata.usp_COMP_01_01_Packet";
+                dbComm.CommandType = CommandType.StoredProcedure;
+
+                dbComm.Parameters.Add("V_COMP_ID", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_COMP_ID"].Value = recvDatas[2];
+                dbComm.Parameters["V_COMP_ID"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_YD_TRANS_RODE_HOUR", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_YD_TRANS_RODE_HOUR"].Value = recvDatas[4];
+                dbComm.Parameters["V_YD_TRANS_RODE_HOUR"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_LOAD_OPER_HOUR", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_LOAD_OPER_HOUR"].Value = recvDatas[5];
+                dbComm.Parameters["V_LOAD_OPER_HOUR"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_RELOAD_OPER_DELAY", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_RELOAD_OPER_DELAY"].Value = recvDatas[6];
+                dbComm.Parameters["V_RELOAD_OPER_DELAY"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_DIFF_PRESS_DETECT_DELAY", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_DIFF_PRESS_DETECT_DELAY"].Value = recvDatas[7];
+                dbComm.Parameters["V_DIFF_PRESS_DETECT_DELAY"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_LOAD_OPER_MODE_SET", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_LOAD_OPER_MODE_SET"].Value = recvDatas[8];
+                dbComm.Parameters["V_LOAD_OPER_MODE_SET"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_START_MODE_SET", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_START_MODE_SET"].Value = recvDatas[9];
+                dbComm.Parameters["V_START_MODE_SET"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_POWER_CUT_RETURN_SET", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_POWER_CUT_RETURN_SET"].Value = recvDatas[10];
+                dbComm.Parameters["V_POWER_CUT_RETURN_SET"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_SERVER_ADDR", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_SERVER_ADDR"].Value = recvDatas[11];
+                dbComm.Parameters["V_SERVER_ADDR"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_COMM_SPEED", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_COMM_SPEED"].Value = recvDatas[12];
+                dbComm.Parameters["V_COMM_SPEED"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_SAVE_TIME_STR", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_SAVE_TIME_STR"].Value = strReceivedTime;
+                dbComm.Parameters["V_SAVE_TIME_STR"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_RESULT", MySql.Data.MySqlClient.MySqlDbType.Int32);
+                dbComm.Parameters["V_RESULT"].Direction = ParameterDirection.Output;
+
+                dbComm.ExecuteNonQuery();
+                // Console.WriteLine("Procedure Call Result:" + dbComm.Parameters["V_RESULT"].Value.ToString());
+                iRetVal = Int32.Parse(dbComm.Parameters["V_RESULT"].Value.ToString());
+
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name);
+
+                UEventFileLog?.Invoke(EMFileLogType.DatabaseLog, EMFileLogDepth.Error, ex.Message);
+
+                ex.Data.Clear();
+
+                iRetVal = -1;
+            }
+            finally
+            {
+                if (dbComm != null)
+                {
+                    dbComm.Dispose();
+                    dbComm = null;
+                }
+            }
+
+            return iRetVal;
+        }
+
+        public int CallCompressorAlarmStateProcedure(string strProcedureName, string[] recvDatas, string strReceivedTime)
+        {
+            int iRetVal = 0;
+
+            MySqlCommand dbComm = null;
+
+            try
+            {
+                dbComm = new MySqlCommand();
+                dbComm.Connection = dbConnection;
+
+                // 프로시져를 이용한 업데이트 실행.
+                dbComm.CommandType = CommandType.StoredProcedure;
+
+                dbComm.CommandText = strProcedureName; //  "compdata.usp_COMP_01_01_Packet";
+                dbComm.CommandType = CommandType.StoredProcedure;
+
+                dbComm.Parameters.Add("V_COMP_ID", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_COMP_ID"].Value = recvDatas[2];
+                dbComm.Parameters["V_COMP_ID"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_ALARM_1", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_ALARM_1"].Value = recvDatas[4];
+                dbComm.Parameters["V_ALARM_1"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_ALARM_2", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_ALARM_2"].Value = recvDatas[5];
+                dbComm.Parameters["V_ALARM_2"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_ALARM_3", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_ALARM_3"].Value = recvDatas[6];
+                dbComm.Parameters["V_ALARM_3"].Direction = ParameterDirection.Input;
 
                 dbComm.Parameters.Add("V_SAVE_TIME_STR", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
                 dbComm.Parameters["V_SAVE_TIME_STR"].Value = strReceivedTime;

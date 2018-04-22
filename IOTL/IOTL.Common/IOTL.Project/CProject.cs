@@ -14,6 +14,7 @@ namespace IOTL.Project
         public const string ConfigFileName = "IOTLDataManager.ini";
 
         protected string _compServerIPAddress = string.Empty;
+        protected string _compServerDBAddr = string.Empty;
         protected uint _compServerDBPort = 0;
         protected uint _compServerTcpPort = 0;
         protected string _compServerLogDirectory = string.Empty;
@@ -43,6 +44,12 @@ namespace IOTL.Project
         {
             get { return _compServerTcpPort; }
             set { _compServerTcpPort = value; }
+        }
+
+        public string CompServerDBAddr
+        {
+            get { return _compServerDBAddr; }
+            set { _compServerDBAddr = value; }
         }
 
         public string CompServerLogDirectory
