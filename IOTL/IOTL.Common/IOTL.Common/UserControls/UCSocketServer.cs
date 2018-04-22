@@ -6,6 +6,7 @@ using IOTL.Socket.CustomEventArgs;
 using SuperSocket.SocketBase.Config;
 using System;
 using System.Net;
+using System.Text;
 using System.Windows.Forms;
 
 namespace IOTL.Common.UserControls
@@ -310,11 +311,24 @@ namespace IOTL.Common.UserControls
         {
             ReceivedPacketCount++;
             // 수신한 내용을 화면에 표시(데이터량이 많으면 표시 할수 없다.)
-            UpdateSystemMessage("SocketServer", session.UserID + " : " + e.Message);
-            // 처리전에 로그에 기록
-            SaveLogToFile(EMFileLogType.CommunicationLog, EMFileLogDepth.Info, e.Message);
-            // Monitor에게 보내는 메시지(DB저장등 App에서 해야 할 처리)
-            SaveLogToMonitor(session.SessionID, session.UserID, e);
+            try
+            {
+                string rcvText = Encoding.Default.GetString(e.receiveData);
+                // UpdateSystemMessage("SocketServer", session.UserID + " : " + e.Message);
+                UpdateSystemMessage("SocketServer", session.UserID + " Receive Data : " + rcvText);
+                // 처리전에 로그에 기록
+                // SaveLogToFile(EMFileLogType.CommunicationLog, EMFileLogDepth.Info, e.Message);
+                SaveLogToFile(EMFileLogType.CommunicationLog, EMFileLogDepth.Info, rcvText);
+                // Monitor에게 보내는 메시지(DB저장등 App에서 해야 할 처리)
+                SaveLogToMonitor(session.SessionID, session.UserID, e);
+
+            }
+            catch(Exception ex)
+            {
+                ex.Data.Clear();
+                UpdateSystemMessage("SocketServer", "수신 데이터 Decoding Error!");
+                SaveLogToFile(EMFileLogType.ApplicationLog, EMFileLogDepth.Error, "수신 데이터 Decoding Error!");
+            }
         }
 
         private void SocketServer_OnLogoutUser(claClientSession session, LocalMessageEventArgs e)
