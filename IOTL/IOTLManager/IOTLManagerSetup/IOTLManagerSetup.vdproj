@@ -154,13 +154,13 @@
         "Entry"
         {
         "MsmKey" = "8:_2648E4DFD12BE6F9A56E3E6175DDA53F"
-        "OwnerKey" = "8:_786A1EA1B044431B861D012E708DEBC0"
+        "OwnerKey" = "8:_DEFAEAD04DD24F868B8A9CFF273D2D0D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_2648E4DFD12BE6F9A56E3E6175DDA53F"
-        "OwnerKey" = "8:_DEFAEAD04DD24F868B8A9CFF273D2D0D"
+        "OwnerKey" = "8:_786A1EA1B044431B861D012E708DEBC0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -184,25 +184,19 @@
         "Entry"
         {
         "MsmKey" = "8:_2EF08131BAE00081EDCB1EBEC3205A75"
-        "OwnerKey" = "8:_DEFAEAD04DD24F868B8A9CFF273D2D0D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2EF08131BAE00081EDCB1EBEC3205A75"
         "OwnerKey" = "8:_08C1D3228DB248C7B2229D7416C6FBE4"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_2EF08131BAE00081EDCB1EBEC3205A75"
-        "OwnerKey" = "8:_BA291BBC236A465588243141EE7B30A7"
+        "OwnerKey" = "8:_DEFAEAD04DD24F868B8A9CFF273D2D0D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_2EF08131BAE00081EDCB1EBEC3205A75"
-        "OwnerKey" = "8:_5DFD52BBBAE24C49BAB87D9F723780FC"
+        "OwnerKey" = "8:_BA291BBC236A465588243141EE7B30A7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1305,7 +1299,7 @@
             "{1525181F-901A-416C-8A58-119130FE478E}:_1713D383F36F4AEEAED6B29991AB97FD"
             {
             "Name" = "8:#1916"
-            "AlwaysCreate" = "11:FALSE"
+            "AlwaysCreate" = "11:TRUE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Property" = "8:DesktopFolder"
@@ -1316,7 +1310,7 @@
             "{1525181F-901A-416C-8A58-119130FE478E}:_19F10D2F183B48E280B4C89B72A4EF47"
             {
             "Name" = "8:#1919"
-            "AlwaysCreate" = "11:FALSE"
+            "AlwaysCreate" = "11:TRUE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Property" = "8:ProgramMenuFolder"
@@ -1328,7 +1322,7 @@
             {
             "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
             "Name" = "8:#1925"
-            "AlwaysCreate" = "11:FALSE"
+            "AlwaysCreate" = "11:TRUE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Property" = "8:TARGETDIR"
@@ -1352,23 +1346,23 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:IOTLCompressDataManager"
-        "ProductCode" = "8:{563E8637-5160-4B91-B781-D810281D2761}"
-        "PackageCode" = "8:{F1D55555-9FB5-4BF8-9D72-4DA8AF71744F}"
+        "ProductCode" = "8:{583E6BE5-F675-4BC3-95F8-10A7AB3F2F5C}"
+        "PackageCode" = "8:{81197DC2-7630-4BFE-9299-44D57A774CA4}"
         "UpgradeCode" = "8:{5D2554A5-C56E-4123-A364-B744C67324BD}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
-        "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "InstallAllUsers" = "11:TRUE"
+        "ProductVersion" = "8:1.0.1"
         "Manufacturer" = "8:IOTLINK"
-        "ARPHELPTELEPHONE" = "8:"
+        "ARPHELPTELEPHONE" = "8:01064407941"
         "ARPHELPLINK" = "8:http://www.iotlink.co.kr/support"
         "Title" = "8:IOTLCompressDataManager"
         "Subject" = "8:"
         "ARPCONTACT" = "8:IOTLink"
         "Keywords" = "8:Compressor Data Gathering"
-        "ARPCOMMENTS" = "8:IOTLink DataManager version 2017"
+        "ARPCOMMENTS" = "8:IOTLink DataManager version 2018"
         "ARPURLINFOABOUT" = "8:http://www.iotlink.co.kr"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"

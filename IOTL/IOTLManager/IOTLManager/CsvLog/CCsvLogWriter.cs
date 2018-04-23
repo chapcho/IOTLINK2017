@@ -140,7 +140,10 @@ namespace IOTLManager.CsvLog
 
                 sb.Clear();
                 sb.Append(CTypeConverter.ToDateTimeFormat(cLog.LogTime));
-                sb.Append("/" + cLog.Key);
+                sb.Append(",");
+                // sb.Append("/" + cLog.Key);
+                // string rcvText = Encoding.Default.GetString(cLog.ReceiveData);
+                sb.Append(Encoding.Default.GetString(cLog.ReceiveData));
                 m_cWriter.WriteLine(sb.ToString());
 
                 sb.Clear();

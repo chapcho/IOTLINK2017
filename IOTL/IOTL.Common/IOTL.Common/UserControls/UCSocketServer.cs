@@ -315,7 +315,7 @@ namespace IOTL.Common.UserControls
             {
                 string rcvText = Encoding.Default.GetString(e.receiveData);
                 // UpdateSystemMessage("SocketServer", session.UserID + " : " + e.Message);
-                UpdateSystemMessage("SocketServer", session.UserID + " Receive Data : " + rcvText);
+                UpdateSystemMessage("SocketServer", session.UserID + "Receive : " + rcvText);
                 // 처리전에 로그에 기록
                 // SaveLogToFile(EMFileLogType.CommunicationLog, EMFileLogDepth.Info, e.Message);
                 SaveLogToFile(EMFileLogType.CommunicationLog, EMFileLogDepth.Info, rcvText);
@@ -350,7 +350,7 @@ namespace IOTL.Common.UserControls
 
             UpdateSystemMessage("SocketServer", "Session Closed :" + session.UserID);
 
-            SaveLogToFile(EMFileLogType.CommunicationLog, EMFileLogDepth.Info, session.UserID + "Session Closed!");
+            // SaveLogToFile(EMFileLogType.CommunicationLog, EMFileLogDepth.Info, session.UserID + "Session Closed!");
         }
 
         private void UpdateSystemMessage(string sSender, string sMessage)

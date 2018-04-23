@@ -229,7 +229,7 @@ namespace IOTLManager.Util
                     resultMessage = "Ok";
                     break;
                 case 0:
-                    resultMessage = "No Register";
+                    resultMessage = "No Register:등록되지 않은 단말로 부터의 데이터 수신";
                     break;
                 default:
                     resultMessage = "수신한 Socket Data 처리중 확인 되지 않은 오류가 있습니다. resultCode :" + iRetVal.ToString();
