@@ -1,0 +1,31 @@
+
+USE MySQL;
+
+-- 사용자 생성
+Create user 'compweb'@'%' identified by 'compWeb!23';
+
+
+-- 데이터베이스 권한 주기
+grant all privileges on compdata.* to 'compweb'@'%';
+
+grant all privileges on comp.* to 'compweb'@'%';
+
+grant all privileges on phpmyadmin.* to 'compweb'@'%';
+
+grant all privileges on test.* to 'compweb'@'%';
+
+-- 접근 권한 주기
+INSERT INTO mysql.user (host,user,authentication_string,ssl_cipher, x509_issuer, x509_subject) VALUES ('localhost','compweb',password('compWeb!23'),'','','');
+GRANT ALL PRIVILEGES ON *.* TO 'compweb'@'localhost';
+INSERT INTO mysql.user (host,user,authentication_string,ssl_cipher, x509_issuer, x509_subject) VALUES ('::1','compweb',password('compWeb!23'),'','','');
+GRANT ALL PRIVILEGES ON *.* TO 'compweb'@'::1';
+INSERT INTO mysql.user (host,user,authentication_string,ssl_cipher, x509_issuer, x509_subject) VALUES ('127.0.0.1','compweb',password('compWeb!23'),'','','');
+GRANT ALL PRIVILEGES ON *.* TO 'compweb'@'127.0.0.1';
+
+FLUSH PRIVILEGES;
+
+
+-- 기본 DB 확인
+SELECT engine, support FROM information_schema.engines WHERE support='DEFAULT';
+
+SELECT engine FROM information_schema.TABLES where table_name='tbp_comp_set' AND table_schema='compdata';
