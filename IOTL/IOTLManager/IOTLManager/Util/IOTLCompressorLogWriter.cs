@@ -149,6 +149,7 @@ namespace IOTLManager.Util
             int iGCCount = 0;
             bool bOK = false;
             int iRetVal = 0;
+            int iSleepCount = 0;
             Stopwatch swMain = new Stopwatch();
 
             while (m_bRun)
@@ -162,7 +163,19 @@ namespace IOTLManager.Util
                     if (oData == null)
                     {
                         Thread.Sleep(90);
+                        // DB 연결이 오래도록 활성화 되지 않은면, 끊어 지는 문제를 처리 해야 한다.
+                        iSleepCount++;
+                        if(iSleepCount > 100000)
+                        {
+                            if (LogDBWriter.IsConnected)
+                                LogDBWriter.Disconnect();
+                            iSleepCount = 0;
+                        }
                         continue;
+                    }
+                    else
+                    {
+                        iSleepCount = 0;
                     }
 
                     DateTime dtNow = DateTime.Now;

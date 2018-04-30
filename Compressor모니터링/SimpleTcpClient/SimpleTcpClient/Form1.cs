@@ -58,6 +58,7 @@ namespace SimpleTcpClient
                 new {Text = "Trip 1,04", Value = "S,1,2018040001,04,1.2,1.2,1.2,1.2,1.2,1.2,1.2,1.2,1.2,1.2,1.2,1.2,1.2,E"},
                 new {Text = "RunType 1,05", Value = "S,1,2018040001,05,20,40,20,20,10,10,10,127.0.0.1,19200,E"},
                 new {Text = "Alarm 1,06", Value = "S,1,2018040001,06,00000123,00000123,00000123,E"},
+                new {Text = "SBTemper 1,B0", Value = "S,1,2018040001,B0,-5.0,20180501060810,50,E"},
             };
 
             cmbTestData.DataSource = items;
