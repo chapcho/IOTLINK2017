@@ -5,6 +5,7 @@ using IOTL.Common.Util;
 using IOTL.Project;
 using IOTLManager.UserControls;
 using IOTLManager.Util;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -546,6 +547,10 @@ namespace IOTLManager
                 System.Console.WriteLine("Exception Message : {0}", ex.Message);
                 ex.Data.Clear();
             }
+
+            // 매 24시간 마다 데이터 베이스 백업 진행.
+            // 강제로 백업된 자료는 보관하고,
+            // 타이머에 의해 백업된 자료는 3일전 백업을 삭제
             
         }
 
@@ -696,6 +701,89 @@ namespace IOTLManager
             this.ShowIcon = false; //작업표시줄에서 제거.
 
             trayNotifyIcon.Visible = true; //트레이 아이콘을 표시한다.
+        }
+
+        private void btnDBBackup_Click(object sender, EventArgs e)
+        {
+            BackupDataBase("C:\\Log\\BackupTest.SQL");
+        }
+
+        // Database를 백업.
+        private void BackupDataBase(string file)
+        {
+            string conString = m_mariaDBConfigInfo.GetDBConnectionString();
+            string backupFile = file;
+
+            using (MySqlConnection conn = new MySqlConnection(conString))
+            {
+                using (MySqlCommand cmd = new MySqlCommand { Connection = conn })
+                {
+                    using (MySqlBackup mb = new MySqlBackup { Command = cmd })
+                    {
+                        if (conn.State == ConnectionState.Open)
+                            conn.Close();
+
+                        try
+                        {
+                            conn.Open();
+                        }
+                        catch (MySqlException ex)
+                        {
+                            MessageBox.Show(ex.Message + " connection error.");
+                            return;
+                        }
+
+                        try
+                        {
+                            mb.ExportToFile(backupFile);
+                        }
+                        catch (MySqlException ex)
+                        {
+                            MessageBox.Show(ex.Message + " sql query error.");
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Database 복원.
+        private void RestoreDBFromBackupFile(string file)
+        {
+            string conString = m_mariaDBConfigInfo.GetDBConnectionString();
+            string backupFile = file;
+
+            using (MySqlConnection conn = new MySqlConnection(conString))
+            {
+                using (MySqlCommand cmd = new MySqlCommand { Connection = conn })
+                {
+                    using (MySqlBackup mb = new MySqlBackup { Command = cmd })
+                    {
+                        if (conn.State == ConnectionState.Open)
+                            conn.Close();
+
+                        try
+                        {
+                            conn.Open();
+                        }
+                        catch (MySqlException ex)
+                        {
+                            MessageBox.Show(ex.Message + " connection error.");
+                            return;
+                        }
+
+                        try
+                        {
+                            mb.ImportFromFile(backupFile);
+                        }
+                        catch (MySqlException ex)
+                        {
+                            MessageBox.Show(ex.Message + " sql query error.");
+                            return;
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -138,7 +138,7 @@ namespace IOTL.Common.DB
                 return;
             }
 
-            dbConnectionString = string.Format("DATA SOURCE={0};PORT={1};INITIAL CATALOG={2};USER ID={3};PASSWORD={4};charset={5}",
+            dbConnectionString = string.Format("DATA SOURCE={0};PORT={1};INITIAL CATALOG={2};USER ID={3};PASSWORD={4};charset={5};pooling = false; convert zero datetime=True",
                 databaseServerIp, databaseServerPort, initialDatabaseName, loginUserID, loginUserPassword, databaseCharset);
         }
 
