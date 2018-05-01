@@ -311,8 +311,9 @@ namespace IOTL.Common.DB
                                 break;
                             case "06":iRetVal = CallCompressorAlarmStateProcedure("compdata.usp_COMP_01_06_Packet", RecvDatas, GetShortTimeString(oData.LogTime));
                                 break;
-                            case "B0":
-                                iRetVal = CallSBTemperatureProcedure("compdata.usp_SB_01_B0_Packet", RecvDatas, GetShortTimeString(oData.LogTime));
+                            case "A0":iRetVal = CallAirValveMonitoringProcedure("compdata.usp_AirValveMonitoring_01_A0_Packet", RecvDatas, GetShortTimeString(oData.LogTime));
+                                break;
+                            case "B0":iRetVal = CallSBTemperatureProcedure("compdata.usp_SB_01_B0_Packet", RecvDatas, GetShortTimeString(oData.LogTime));
                                 break;
                             default:
                                 break;
@@ -1008,6 +1009,82 @@ namespace IOTL.Common.DB
                 dbComm.Parameters.Add("V_ALARM_3", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
                 dbComm.Parameters["V_ALARM_3"].Value = recvDatas[6];
                 dbComm.Parameters["V_ALARM_3"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_SAVE_TIME_STR", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_SAVE_TIME_STR"].Value = strReceivedTime;
+                dbComm.Parameters["V_SAVE_TIME_STR"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_RESULT", MySql.Data.MySqlClient.MySqlDbType.Int32);
+                dbComm.Parameters["V_RESULT"].Direction = ParameterDirection.Output;
+
+                dbComm.ExecuteNonQuery();
+                // Console.WriteLine("Procedure Call Result:" + dbComm.Parameters["V_RESULT"].Value.ToString());
+                iRetVal = Int32.Parse(dbComm.Parameters["V_RESULT"].Value.ToString());
+
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name);
+
+                UEventFileLog?.Invoke(EMFileLogType.DatabaseLog, EMFileLogDepth.Error, ex.Message);
+
+                ex.Data.Clear();
+
+                iRetVal = -1;
+            }
+            finally
+            {
+                if (dbComm != null)
+                {
+                    dbComm.Dispose();
+                    dbComm = null;
+                }
+            }
+
+            return iRetVal;
+        }
+
+        // 콤프레샤 벨브 모니터링
+        public int CallAirValveMonitoringProcedure(string strProcedureName, string[] recvDatas, string strReceivedTime)
+        {
+            int iRetVal = 0;
+
+            MySqlCommand dbComm = null;
+
+            try
+            {
+                dbComm = new MySqlCommand();
+                dbComm.Connection = dbConnection;
+
+                // 프로시져를 이용한 업데이트 실행.
+                dbComm.CommandType = CommandType.StoredProcedure;
+
+                dbComm.CommandText = strProcedureName; //  "compdata.usp_AirValveMonitoring_01_A0_Packet";
+                dbComm.CommandType = CommandType.StoredProcedure;
+
+                dbComm.Parameters.Add("V_COMP_ID", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_COMP_ID"].Value = recvDatas[2];
+                dbComm.Parameters["V_COMP_ID"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_VALVE_STATE", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_VALVE_STATE"].Value = recvDatas[4];
+                dbComm.Parameters["V_VALVE_STATE"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_HW_VERSION", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_HW_VERSION"].Value = recvDatas[5];
+                dbComm.Parameters["V_HW_VERSION"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_SW_VERSION", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_SW_VERSION"].Value = recvDatas[6];
+                dbComm.Parameters["V_SW_VERSION"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_AIR_PRESSURE", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_AIR_PRESSURE"].Value = recvDatas[7];
+                dbComm.Parameters["V_AIR_PRESSURE"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_CONTROL_STATE", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_CONTROL_STATE"].Value = recvDatas[7];
+                dbComm.Parameters["V_CONTROL_STATE"].Direction = ParameterDirection.Input;
 
                 dbComm.Parameters.Add("V_SAVE_TIME_STR", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
                 dbComm.Parameters["V_SAVE_TIME_STR"].Value = strReceivedTime;

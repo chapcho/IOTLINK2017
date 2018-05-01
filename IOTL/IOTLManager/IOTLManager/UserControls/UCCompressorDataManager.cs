@@ -432,7 +432,14 @@ namespace IOTLManager.UserControls
 
         private void pictureAbout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("IOTLink Socket DataManager\r\n Usage : dbid/passwd/ipaddress/port/...");
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("IOTLink Socket DataManager");
+            sb.Append("\r\nVersion :2018.05.01");
+            sb.Append("\r\n2018.04.20 콤프레샤 상태 데이터 수집.");
+            sb.Append("\r\n2018.05.01 에어벨브 상태 데이터 수집.");
+            sb.Append("\r\n2018.05.01 스봉 온도 데이터 수집.");
+            MessageBox.Show(sb.ToString(),"About : IOTLink Socket Data Manager");
         }
     }
 }

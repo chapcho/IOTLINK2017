@@ -67,6 +67,7 @@
             // chkWebCntlSendTimer
             // 
             this.chkWebCntlSendTimer.AutoSize = true;
+            this.chkWebCntlSendTimer.Enabled = false;
             this.chkWebCntlSendTimer.Location = new System.Drawing.Point(6, 20);
             this.chkWebCntlSendTimer.Name = "chkWebCntlSendTimer";
             this.chkWebCntlSendTimer.Size = new System.Drawing.Size(108, 16);
