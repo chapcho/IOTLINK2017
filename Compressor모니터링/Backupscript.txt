@@ -1,0 +1,4 @@
+@echo off
+echo Running Dump
+D:\MariaDB\10.1.16\bin\mysqldump -uroot -pamin!! --result-file="d:\dbbackup\dbback_compdata_%date%.sql" compdata
+echo Done!

@@ -19,3 +19,4 @@ D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Common\IOTL.Project\bin\Debug\IOTL.Socket.p
 D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Common\IOTL.Project\bin\Debug\log4net.xml
 D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Common\IOTL.Project\bin\Debug\SocketGlobal.pdb
 D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Common\IOTL.Project\bin\Debug\SuperSocket.Facility.xml
+D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Common\IOTL.Project\bin\Debug\IOTL.Project.dll.config
