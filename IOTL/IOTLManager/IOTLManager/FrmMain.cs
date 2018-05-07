@@ -348,6 +348,12 @@ namespace IOTLManager
         private void button2_Click(object sender, EventArgs e)
         {
             SplashWnd.SplashClose(this);
+
+            CSimpleSmtpClient smtpClient = new CSimpleSmtpClient("iotlinkmonitoring", "iotlink!23");
+
+            smtpClient.SendGMail("IOTLink 모니터링"+ DateTime.Now.ToLongDateString(), "chapcho@naver.com", "IOTLink에 설치된 단말의 작업 기록을 메일로 전송할 예정입니다.");
+            //iotlinkmonitoring, iotlink!23
+
         }
 
         private void btnClientStatusRefresh_Click(object sender, EventArgs e)

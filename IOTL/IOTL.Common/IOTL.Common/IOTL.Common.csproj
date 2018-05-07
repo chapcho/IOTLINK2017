@@ -142,6 +142,7 @@
     </Compile>
     <Compile Include="Util\ByteArrayUtil.cs" />
     <Compile Include="Util\ConnectionInfo.cs" />
+    <Compile Include="Util\CSimpleSmtpClient.cs" />
     <Compile Include="Util\EnumHelper.cs" />
     <Compile Include="Util\GenericUtil.cs" />
     <Compile Include="Util\IntPtrUtil.cs" />

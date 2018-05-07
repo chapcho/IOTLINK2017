@@ -83,7 +83,6 @@ namespace IOTLManager
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.tabIotlCompSvr = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.ucCompressorDataManager1 = new IOTLManager.UserControls.UCCompressorDataManager();
             this.tabDatabase = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -92,24 +91,25 @@ namespace IOTLManager
             this.tvIotlTable = new System.Windows.Forms.TreeView();
             this.tabSocketServer = new System.Windows.Forms.TabPage();
             this.ucSocketServer1 = new IOTL.Common.UserControls.UCSocketServer();
-            this.ucClock1 = new IOTLManager.UserControls.UCClock();
             this.tabMonitoring = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.chartCpuUsage = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartMemoryAvailable = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabConfig = new System.Windows.Forms.TabPage();
-            this.ucConfigIOTLinkManager1 = new IOTLManager.UserControls.UCConfigIOTLinkManager();
             this.tabLogConfig = new System.Windows.Forms.TabPage();
+            this.btnDBBackup = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.ucSystemLogTable = new IOTLManager.UserControls.UCSystemLogTable();
             this.timerTimeRefresh = new System.Windows.Forms.Timer(this.components);
             this.trayNotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnDBBackup = new System.Windows.Forms.Button();
+            this.ucCompressorDataManager1 = new IOTLManager.UserControls.UCCompressorDataManager();
+            this.ucClock1 = new IOTLManager.UserControls.UCClock();
+            this.ucConfigIOTLinkManager1 = new IOTLManager.UserControls.UCConfigIOTLinkManager();
+            this.ucSystemLogTable = new IOTLManager.UserControls.UCSystemLogTable();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -519,19 +519,6 @@ namespace IOTLManager
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Compressor Data Manager";
             // 
-            // ucCompressorDataManager1
-            // 
-            this.ucCompressorDataManager1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.ucCompressorDataManager1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ucCompressorDataManager1.DBConnectionInfo = null;
-            this.ucCompressorDataManager1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ucCompressorDataManager1.LocalTcpServerPort = ((uint)(9595u));
-            this.ucCompressorDataManager1.Location = new System.Drawing.Point(3, 17);
-            this.ucCompressorDataManager1.LogSavedPath = "C:\\Log";
-            this.ucCompressorDataManager1.Name = "ucCompressorDataManager1";
-            this.ucCompressorDataManager1.Size = new System.Drawing.Size(756, 389);
-            this.ucCompressorDataManager1.TabIndex = 0;
-            // 
             // tabDatabase
             // 
             this.tabDatabase.Controls.Add(this.splitContainer1);
@@ -633,13 +620,6 @@ namespace IOTLManager
             this.ucSocketServer1.SocketServerIsStarted = false;
             this.ucSocketServer1.TabIndex = 7;
             // 
-            // ucClock1
-            // 
-            this.ucClock1.Location = new System.Drawing.Point(8, 6);
-            this.ucClock1.Name = "ucClock1";
-            this.ucClock1.Size = new System.Drawing.Size(272, 79);
-            this.ucClock1.TabIndex = 6;
-            // 
             // tabMonitoring
             // 
             this.tabMonitoring.Controls.Add(this.groupBox3);
@@ -727,13 +707,6 @@ namespace IOTLManager
             this.tabConfig.Text = "Configure";
             this.tabConfig.UseVisualStyleBackColor = true;
             // 
-            // ucConfigIOTLinkManager1
-            // 
-            this.ucConfigIOTLinkManager1.Location = new System.Drawing.Point(20, 20);
-            this.ucConfigIOTLinkManager1.Name = "ucConfigIOTLinkManager1";
-            this.ucConfigIOTLinkManager1.Size = new System.Drawing.Size(591, 278);
-            this.ucConfigIOTLinkManager1.TabIndex = 0;
-            // 
             // tabLogConfig
             // 
             this.tabLogConfig.Controls.Add(this.btnDBBackup);
@@ -745,6 +718,16 @@ namespace IOTLManager
             this.tabLogConfig.TabIndex = 2;
             this.tabLogConfig.Text = "System Log";
             this.tabLogConfig.UseVisualStyleBackColor = true;
+            // 
+            // btnDBBackup
+            // 
+            this.btnDBBackup.Location = new System.Drawing.Point(325, 55);
+            this.btnDBBackup.Name = "btnDBBackup";
+            this.btnDBBackup.Size = new System.Drawing.Size(137, 49);
+            this.btnDBBackup.TabIndex = 2;
+            this.btnDBBackup.Text = "Backup Database";
+            this.btnDBBackup.UseVisualStyleBackColor = true;
+            this.btnDBBackup.Click += new System.EventHandler(this.btnDBBackup_Click);
             // 
             // button2
             // 
@@ -765,14 +748,6 @@ namespace IOTLManager
             this.button1.Text = "테스트 하세요.";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // ucSystemLogTable
-            // 
-            this.ucSystemLogTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucSystemLogTable.Location = new System.Drawing.Point(0, 0);
-            this.ucSystemLogTable.Name = "ucSystemLogTable";
-            this.ucSystemLogTable.Size = new System.Drawing.Size(1032, 143);
-            this.ucSystemLogTable.TabIndex = 4;
             // 
             // timerTimeRefresh
             // 
@@ -811,15 +786,40 @@ namespace IOTLManager
             this.hideToolStripMenuItem.Text = "Hide";
             this.hideToolStripMenuItem.Click += new System.EventHandler(this.hideToolStripMenuItem_Click);
             // 
-            // btnDBBackup
+            // ucCompressorDataManager1
             // 
-            this.btnDBBackup.Location = new System.Drawing.Point(21, 20);
-            this.btnDBBackup.Name = "btnDBBackup";
-            this.btnDBBackup.Size = new System.Drawing.Size(137, 49);
-            this.btnDBBackup.TabIndex = 2;
-            this.btnDBBackup.Text = "Backup Database";
-            this.btnDBBackup.UseVisualStyleBackColor = true;
-            this.btnDBBackup.Click += new System.EventHandler(this.btnDBBackup_Click);
+            this.ucCompressorDataManager1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.ucCompressorDataManager1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ucCompressorDataManager1.DBConnectionInfo = null;
+            this.ucCompressorDataManager1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucCompressorDataManager1.LocalTcpServerPort = ((uint)(9595u));
+            this.ucCompressorDataManager1.Location = new System.Drawing.Point(3, 17);
+            this.ucCompressorDataManager1.LogSavedPath = "C:\\Log";
+            this.ucCompressorDataManager1.Name = "ucCompressorDataManager1";
+            this.ucCompressorDataManager1.Size = new System.Drawing.Size(995, 389);
+            this.ucCompressorDataManager1.TabIndex = 0;
+            // 
+            // ucClock1
+            // 
+            this.ucClock1.Location = new System.Drawing.Point(8, 6);
+            this.ucClock1.Name = "ucClock1";
+            this.ucClock1.Size = new System.Drawing.Size(272, 79);
+            this.ucClock1.TabIndex = 6;
+            // 
+            // ucConfigIOTLinkManager1
+            // 
+            this.ucConfigIOTLinkManager1.Location = new System.Drawing.Point(20, 20);
+            this.ucConfigIOTLinkManager1.Name = "ucConfigIOTLinkManager1";
+            this.ucConfigIOTLinkManager1.Size = new System.Drawing.Size(591, 278);
+            this.ucConfigIOTLinkManager1.TabIndex = 0;
+            // 
+            // ucSystemLogTable
+            // 
+            this.ucSystemLogTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucSystemLogTable.Location = new System.Drawing.Point(0, 0);
+            this.ucSystemLogTable.Name = "ucSystemLogTable";
+            this.ucSystemLogTable.Size = new System.Drawing.Size(1032, 143);
+            this.ucSystemLogTable.TabIndex = 4;
             // 
             // FrmMain
             // 
