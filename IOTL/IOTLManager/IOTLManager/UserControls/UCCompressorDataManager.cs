@@ -31,6 +31,13 @@ namespace IOTLManager.UserControls
         private string logFilePath = "C:\\Log";
         private uint m_LocalTcpServerPort = 9595;
         private BackgroundWorker logFileReader;
+        private string m_ServerTitleCaption = "IOTL Compressor Monitor";
+
+        public bool ServerSocketTypeTcp
+        {
+            get { return ucSocketServer1.SocketModeTcp; }
+            set { ucSocketServer1.SocketModeTcp = value; }
+        }
 
         public UCCompressorDataManager()
         {
@@ -59,6 +66,12 @@ namespace IOTLManager.UserControls
         {
             get { return logFilePath; }
             set { logFilePath = value; }
+        }
+
+        public string ServerTitleCaption
+        {
+            get { return m_ServerTitleCaption; }
+            set { m_ServerTitleCaption = value; }
         }
 
         private void UCCompressorDataManager_Load(object sender, EventArgs e)
@@ -118,7 +131,7 @@ namespace IOTLManager.UserControls
             // Comp에서 수신한 데이터를 기록 대기 합니다.
             ucSocketServer1.UEventMachineStateTimeLog += HandlerCompressorMachineStateLog;
             ucSocketServer1.LocalServerTcpPort = LocalTcpServerPort;
-            ucSocketServer1.ServerCaption = "IOTL Compressor Monitor";
+            ucSocketServer1.ServerCaption = ServerTitleCaption;
 
             return 0; // success initialized
         }

@@ -12,4 +12,3 @@ D:\chapcho\IOTLink\GitRoot\IOTL\bin\IOTL.Utilities.tlb
 D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Utilities\IOTL.Utilities\obj\Debug\IOTL.Utilities.csproj.CoreCompileInputs.cache
 D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Utilities\IOTL.Utilities\obj\Debug\IOTL.Utilities.dll
 D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Utilities\IOTL.Utilities\obj\Debug\IOTL.Utilities.pdb
-D:\chapcho\IOTLink\GitRoot\IOTL\IOTL.Utilities\IOTL.Utilities\obj\Debug\IOTL.Utilities.csprojResolveAssemblyReference.cache

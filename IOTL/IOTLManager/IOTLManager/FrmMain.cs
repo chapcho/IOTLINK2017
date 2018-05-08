@@ -117,6 +117,8 @@ namespace IOTLManager
                 UpdateSystemMessage("Main", "DB Reader NotConnected!");
             }
 
+            ucCompressorDataManager1.ServerTitleCaption = "IOTL Compressor Data Manager";
+            ucCompressorDataManager1.ServerSocketTypeTcp = true; // TCP
             ucCompressorDataManager1.DBConnectionInfo = m_mariaDBConfigInfo;
             ucCompressorDataManager1.LogSavedPath = m_cProject.CompServerLogDirectory;
             ucCompressorDataManager1.LocalTcpServerPort = m_cProject.CompServerTcpPort;
@@ -129,10 +131,12 @@ namespace IOTLManager
 
 
             // SmartBongdary에서 발생하는 이벤트 처리자 연결.
+            ucCompressorDataManager2.ServerTitleCaption = "IOTL SmartBongDari Data Manager";
+            ucCompressorDataManager2.ServerSocketTypeTcp = false; // UDP
             ucCompressorDataManager2.DBConnectionInfo = m_mariaDBConfigInfo;
             ucCompressorDataManager2.LogSavedPath = m_cProject.CompServerLogDirectory;
-            ucCompressorDataManager2.LocalTcpServerPort = m_cProject.CompServerTcpPort;
-
+            ucCompressorDataManager2.LocalTcpServerPort = m_cProject.SmartBongServerPort;
+            
 
             // Compressor Monitor에서 발생하는 이벤트 처리자 연결.
             ucCompressorDataManager2.UEventMessage += UpdateSystemMessage;

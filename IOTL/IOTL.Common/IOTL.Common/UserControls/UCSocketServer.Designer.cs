@@ -45,8 +45,9 @@
             this.lvClientList = new System.Windows.Forms.ListView();
             this.chkSocketTransparent = new System.Windows.Forms.CheckBox();
             this.chkEchoMode = new System.Windows.Forms.CheckBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkUDPMode = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnGetReport = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -161,6 +162,7 @@
             this.tableLayoutPanel1.Controls.Add(this.chkSocketTransparent, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.chkEchoMode, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.chkUDPMode, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.btnGetReport, 1, 6);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 17);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -275,6 +277,19 @@
             this.chkEchoMode.UseVisualStyleBackColor = false;
             this.chkEchoMode.CheckedChanged += new System.EventHandler(this.chkEchoMode_CheckedChanged);
             // 
+            // chkUDPMode
+            // 
+            this.chkUDPMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkUDPMode.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.chkUDPMode, 2);
+            this.chkUDPMode.Location = new System.Drawing.Point(3, 142);
+            this.chkUDPMode.Name = "chkUDPMode";
+            this.chkUDPMode.Size = new System.Drawing.Size(238, 16);
+            this.chkUDPMode.TabIndex = 4;
+            this.chkUDPMode.Text = "UDP Mode (Default : TCP)";
+            this.chkUDPMode.UseVisualStyleBackColor = true;
+            this.chkUDPMode.CheckedChanged += new System.EventHandler(this.chkUDPMode_CheckedChanged);
+            // 
             // groupBox1
             // 
             this.groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -288,18 +303,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "TCP Socket Server";
             // 
-            // chkUDPMode
+            // btnGetReport
             // 
-            this.chkUDPMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkUDPMode.AutoSize = true;
-            this.tableLayoutPanel1.SetColumnSpan(this.chkUDPMode, 2);
-            this.chkUDPMode.Location = new System.Drawing.Point(3, 142);
-            this.chkUDPMode.Name = "chkUDPMode";
-            this.chkUDPMode.Size = new System.Drawing.Size(238, 16);
-            this.chkUDPMode.TabIndex = 4;
-            this.chkUDPMode.Text = "UDP Mode (Default : TCP)";
-            this.chkUDPMode.UseVisualStyleBackColor = true;
-            this.chkUDPMode.CheckedChanged += new System.EventHandler(this.chkUDPMode_CheckedChanged);
+            this.btnGetReport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnGetReport.Location = new System.Drawing.Point(126, 213);
+            this.btnGetReport.Name = "btnGetReport";
+            this.btnGetReport.Size = new System.Drawing.Size(115, 36);
+            this.btnGetReport.TabIndex = 5;
+            this.btnGetReport.Text = "Report";
+            this.btnGetReport.UseVisualStyleBackColor = true;
+            this.btnGetReport.Click += new System.EventHandler(this.btnGetReport_Click);
             // 
             // UCSocketServer
             // 
@@ -339,5 +352,6 @@
         private System.Windows.Forms.CheckBox chkSocketTransparent;
         private System.Windows.Forms.CheckBox chkEchoMode;
         private System.Windows.Forms.CheckBox chkUDPMode;
+        private System.Windows.Forms.Button btnGetReport;
     }
 }

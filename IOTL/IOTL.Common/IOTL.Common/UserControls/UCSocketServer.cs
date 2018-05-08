@@ -118,6 +118,21 @@ namespace IOTL.Common.UserControls
             set { groupBox1.Text = value; }
         }
 
+        public string GetServerStatusReportMessage()
+        {
+            string strReport = string.Empty;
+
+            strReport += string.Format("Report Time :{0}:{1}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString());
+            strReport += string.Format("\nIP :{0}", GetLocalIP());
+            strReport += string.Format("\nPORT :{0}", LocalServerTcpPort.ToString());
+            strReport += string.Format("\nMODE :{0}", SocketModeTcp ? "Tcp" : "Udp");
+            strReport += string.Format("\nConnected Client :{0}", ConnectedClientCount.ToString());
+            strReport += string.Format("\nReceive Packets :{0}", ReceivedPacketCount.ToString());
+            strReport += string.Format("\nSend Packets :{0}", SendPacketCount.ToString());
+
+            return strReport;
+        }
+
         private void SetMonitorNumBinding()
         {
             // 아래 코드가 동작하지 않는데, 원인을 좀더 찾아 봐야 겠다.
@@ -548,6 +563,12 @@ namespace IOTL.Common.UserControls
             {
                 SocketModeTcp = true;
             }
+        }
+
+        private void btnGetReport_Click(object sender, EventArgs e)
+        {
+            string strReport = GetServerStatusReportMessage();
+            MessageBox.Show(strReport, "Server Report");
         }
     }
 }
