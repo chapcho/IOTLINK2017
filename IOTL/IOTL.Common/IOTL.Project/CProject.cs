@@ -17,6 +17,7 @@ namespace IOTL.Project
         protected string _compServerDBAddr = string.Empty;
         protected uint _compServerDBPort = 0;
         protected uint _compServerTcpPort = 0;
+        protected uint _smartBongServerPort = 0;
         protected string _compServerLogDirectory = string.Empty;
         protected string _CompServerInitialDatabaseName = string.Empty;
         protected string _CompServerDbLoginUserId = string.Empty;
@@ -44,6 +45,12 @@ namespace IOTL.Project
         {
             get { return _compServerTcpPort; }
             set { _compServerTcpPort = value; }
+        }
+
+        public uint SmartBongServerPort
+        {
+            get { return _smartBongServerPort; }
+            set { _smartBongServerPort = value; }
         }
 
         public string CompServerDBAddr

@@ -25,6 +25,7 @@ namespace IOTL.Common.UserControls
         private int sendPacketCount = 0;
         private uint m_LocalServerTcpPort = 3000;
         private bool m_SocketServerIsStarted = false;
+        private bool m_SocketModeTcp = true;
 
         public event UEventHandlerIOTLMessage UEventMessage = null;
         public event UEventHandlerMachineStateTimeLog UEventMachineStateTimeLog = null;
@@ -40,6 +41,12 @@ namespace IOTL.Common.UserControls
         {
             get { return m_SocketServerIsStarted; }
             set { m_SocketServerIsStarted = value; }
+        }
+
+        public bool SocketModeTcp
+        {
+            get { return m_SocketModeTcp; }
+            set { m_SocketModeTcp = value; }
         }
 
         public uint LocalServerTcpPort
@@ -68,6 +75,7 @@ namespace IOTL.Common.UserControls
             get { return connectedClientCount; }
             set
             {
+                if (!m_SocketModeTcp) return; // UDP Mode는 세션을 유지하지 않는다.
                 if (value != connectedClientCount)
                 {
                     connectedClientCount = value;
@@ -155,6 +163,7 @@ namespace IOTL.Common.UserControls
                 Ip = ipAddress,
                 Port = Int32.Parse(txtServerPort.Text),
                 MaxRequestLength = MAX_REQUEST_LENGTH,
+                Mode = SocketModeTcp ? SuperSocket.SocketBase.SocketMode.Tcp : SuperSocket.SocketBase.SocketMode.Udp,
             };
 
             txtServerPort.Enabled = false;
@@ -347,7 +356,6 @@ namespace IOTL.Common.UserControls
         {
             ConnectedClientCount--;
             UpdateClientList(false,session.SessionID,session.SecureProtocol.ToString());
-
             UpdateSystemMessage("SocketServer", "Session Closed :" + session.UserID);
 
             // SaveLogToFile(EMFileLogType.CommunicationLog, EMFileLogDepth.Info, session.UserID + "Session Closed!");
@@ -505,7 +513,9 @@ namespace IOTL.Common.UserControls
             }
             else
             {
+                if (!m_SocketModeTcp) return; // UDP Mode는 세션을 유지하지 않는다.
                 lvClientList.BeginUpdate();
+                
                 switch(bIsConnection)
                 {
                     case true:
@@ -528,6 +538,16 @@ namespace IOTL.Common.UserControls
             }
         }
 
-
+        private void chkUDPMode_CheckedChanged(object sender, EventArgs e)
+        {
+            if(chkUDPMode.Checked)
+            {
+                SocketModeTcp = false;
+            }
+            else
+            {
+                SocketModeTcp = true;
+            }
+        }
     }
 }

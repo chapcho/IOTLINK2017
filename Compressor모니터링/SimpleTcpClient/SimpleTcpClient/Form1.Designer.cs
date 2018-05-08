@@ -38,6 +38,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtServerPort = new System.Windows.Forms.TextBox();
+            this.chkUDPMode = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // txtMessage
@@ -130,11 +131,22 @@
             this.txtServerPort.TabIndex = 10;
             this.txtServerPort.Text = "9595";
             // 
+            // chkUDPMode
+            // 
+            this.chkUDPMode.AutoSize = true;
+            this.chkUDPMode.Location = new System.Drawing.Point(467, 44);
+            this.chkUDPMode.Name = "chkUDPMode";
+            this.chkUDPMode.Size = new System.Drawing.Size(48, 16);
+            this.chkUDPMode.TabIndex = 11;
+            this.chkUDPMode.Text = "UDP";
+            this.chkUDPMode.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(615, 230);
+            this.Controls.Add(this.chkUDPMode);
             this.Controls.Add(this.txtServerPort);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -164,6 +176,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtServerPort;
+        private System.Windows.Forms.CheckBox chkUDPMode;
     }
 }
 

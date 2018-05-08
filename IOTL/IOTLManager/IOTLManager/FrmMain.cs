@@ -127,6 +127,18 @@ namespace IOTLManager
             ucCompressorDataManager1.UEventFileLog += WriteMessageToLogfile;
             ucCompressorDataManager1.UEventProgressBar += ToolStripProgressBar;
 
+
+            // SmartBongdary에서 발생하는 이벤트 처리자 연결.
+            ucCompressorDataManager2.DBConnectionInfo = m_mariaDBConfigInfo;
+            ucCompressorDataManager2.LogSavedPath = m_cProject.CompServerLogDirectory;
+            ucCompressorDataManager2.LocalTcpServerPort = m_cProject.CompServerTcpPort;
+
+
+            // Compressor Monitor에서 발생하는 이벤트 처리자 연결.
+            ucCompressorDataManager2.UEventMessage += UpdateSystemMessage;
+            ucCompressorDataManager2.UEventFileLog += WriteMessageToLogfile;
+            ucCompressorDataManager2.UEventProgressBar += ToolStripProgressBar;
+
             LoadIotlTableListInTreeView();
 
             return bRet;
@@ -353,6 +365,8 @@ namespace IOTLManager
 
             smtpClient.SendGMail("IOTLink 모니터링"+ DateTime.Now.ToLongDateString(), "chapcho@naver.com", "IOTLink에 설치된 단말의 작업 기록을 메일로 전송할 예정입니다.");
             //iotlinkmonitoring, iotlink!23
+
+            // https://www.c-sharpcorner.com/article/sending-sms-using-C-Sharp-application/
 
         }
 

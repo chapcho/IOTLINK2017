@@ -20,15 +20,28 @@ namespace SimpleTcpClient
 
         private void btnSend_Click(object sender, EventArgs e)
         {
+            
             try
             {
-                TcpClient tc = new TcpClient(txtSeverAddress.Text, Int32.Parse(txtServerPort.Text));
-                string msg = txtMessage.Text;
-                byte[] buff = Encoding.ASCII.GetBytes(msg);
-                NetworkStream stream = tc.GetStream();
-                stream.Write(buff, 0, buff.Length);
-                stream.Close();
-                tc.Close();
+                if(chkUDPMode.Checked)
+                {
+                    UdpClient tc = new UdpClient(txtSeverAddress.Text, Int32.Parse(txtServerPort.Text));
+                    string msg = txtMessage.Text;
+                    byte[] buff = Encoding.ASCII.GetBytes(msg);
+                    tc.Send(buff, buff.Length);
+                    tc.Close();
+                }
+                else
+                {
+                    TcpClient tc = new TcpClient(txtSeverAddress.Text, Int32.Parse(txtServerPort.Text));
+                    string msg = txtMessage.Text;
+                    byte[] buff = Encoding.ASCII.GetBytes(msg);
+                    NetworkStream stream = tc.GetStream();
+                    stream.Write(buff, 0, buff.Length);
+                    stream.Close();
+                    tc.Close();
+                }
+
             }
             catch(Exception ex)
             {

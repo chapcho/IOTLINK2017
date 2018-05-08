@@ -79,10 +79,18 @@ namespace IOTLManager
             this.menuRestoreDatabase = new System.Windows.Forms.ToolStripMenuItem();
             this.구성ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuServerConfig = new System.Windows.Forms.ToolStripMenuItem();
+            this.timerTimeRefresh = new System.Windows.Forms.Timer(this.components);
+            this.trayNotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.tabIotlCompSvr = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ucCompressorDataManager1 = new IOTLManager.UserControls.UCCompressorDataManager();
+            this.tabSmartBong = new System.Windows.Forms.TabPage();
+            this.ucCompressorDataManager2 = new IOTLManager.UserControls.UCCompressorDataManager();
             this.tabDatabase = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -91,27 +99,22 @@ namespace IOTLManager
             this.tvIotlTable = new System.Windows.Forms.TreeView();
             this.tabSocketServer = new System.Windows.Forms.TabPage();
             this.ucSocketServer1 = new IOTL.Common.UserControls.UCSocketServer();
+            this.ucClock1 = new IOTLManager.UserControls.UCClock();
             this.tabMonitoring = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.chartCpuUsage = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartMemoryAvailable = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabConfig = new System.Windows.Forms.TabPage();
+            this.ucConfigIOTLinkManager1 = new IOTLManager.UserControls.UCConfigIOTLinkManager();
             this.tabLogConfig = new System.Windows.Forms.TabPage();
             this.btnDBBackup = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.timerTimeRefresh = new System.Windows.Forms.Timer(this.components);
-            this.trayNotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ucCompressorDataManager1 = new IOTLManager.UserControls.UCCompressorDataManager();
-            this.ucClock1 = new IOTLManager.UserControls.UCClock();
-            this.ucConfigIOTLinkManager1 = new IOTLManager.UserControls.UCConfigIOTLinkManager();
             this.ucSystemLogTable = new IOTLManager.UserControls.UCSystemLogTable();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -119,6 +122,7 @@ namespace IOTLManager
             this.mainTabControl.SuspendLayout();
             this.tabIotlCompSvr.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabSmartBong.SuspendLayout();
             this.tabDatabase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -137,7 +141,6 @@ namespace IOTLManager
             ((System.ComponentModel.ISupportInitialize)(this.chartMemoryAvailable)).BeginInit();
             this.tabConfig.SuspendLayout();
             this.tabLogConfig.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -462,6 +465,43 @@ namespace IOTLManager
             this.menuServerConfig.Text = "환경설정";
             this.menuServerConfig.Click += new System.EventHandler(this.menuServerConfig_Click);
             // 
+            // timerTimeRefresh
+            // 
+            this.timerTimeRefresh.Enabled = true;
+            this.timerTimeRefresh.Interval = 1000;
+            this.timerTimeRefresh.Tick += new System.EventHandler(this.timerTimeRefresh_Tick);
+            // 
+            // trayNotifyIcon
+            // 
+            this.trayNotifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.trayNotifyIcon.ContextMenuStrip = this.contextMenuStrip1;
+            this.trayNotifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("trayNotifyIcon.Icon")));
+            this.trayNotifyIcon.Text = "IOTLinkManager";
+            this.trayNotifyIcon.Visible = true;
+            this.trayNotifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showToolStripMenuItem,
+            this.hideToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(105, 48);
+            // 
+            // showToolStripMenuItem
+            // 
+            this.showToolStripMenuItem.Name = "showToolStripMenuItem";
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
+            this.showToolStripMenuItem.Text = "Show";
+            this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click);
+            // 
+            // hideToolStripMenuItem
+            // 
+            this.hideToolStripMenuItem.Name = "hideToolStripMenuItem";
+            this.hideToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
+            this.hideToolStripMenuItem.Text = "Hide";
+            this.hideToolStripMenuItem.Click += new System.EventHandler(this.hideToolStripMenuItem_Click);
+            // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -483,6 +523,7 @@ namespace IOTLManager
             // mainTabControl
             // 
             this.mainTabControl.Controls.Add(this.tabIotlCompSvr);
+            this.mainTabControl.Controls.Add(this.tabSmartBong);
             this.mainTabControl.Controls.Add(this.tabDatabase);
             this.mainTabControl.Controls.Add(this.tabSocketServer);
             this.mainTabControl.Controls.Add(this.tabMonitoring);
@@ -519,6 +560,43 @@ namespace IOTLManager
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Compressor Data Manager";
             // 
+            // ucCompressorDataManager1
+            // 
+            this.ucCompressorDataManager1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.ucCompressorDataManager1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ucCompressorDataManager1.DBConnectionInfo = null;
+            this.ucCompressorDataManager1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucCompressorDataManager1.LocalTcpServerPort = ((uint)(9595u));
+            this.ucCompressorDataManager1.Location = new System.Drawing.Point(3, 17);
+            this.ucCompressorDataManager1.LogSavedPath = "C:\\Log";
+            this.ucCompressorDataManager1.Name = "ucCompressorDataManager1";
+            this.ucCompressorDataManager1.Size = new System.Drawing.Size(995, 389);
+            this.ucCompressorDataManager1.TabIndex = 0;
+            // 
+            // tabSmartBong
+            // 
+            this.tabSmartBong.Controls.Add(this.ucCompressorDataManager2);
+            this.tabSmartBong.Location = new System.Drawing.Point(4, 22);
+            this.tabSmartBong.Name = "tabSmartBong";
+            this.tabSmartBong.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSmartBong.Size = new System.Drawing.Size(1024, 409);
+            this.tabSmartBong.TabIndex = 6;
+            this.tabSmartBong.Text = "스봉데이터서버";
+            this.tabSmartBong.UseVisualStyleBackColor = true;
+            // 
+            // ucCompressorDataManager2
+            // 
+            this.ucCompressorDataManager2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.ucCompressorDataManager2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ucCompressorDataManager2.DBConnectionInfo = null;
+            this.ucCompressorDataManager2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucCompressorDataManager2.LocalTcpServerPort = ((uint)(9595u));
+            this.ucCompressorDataManager2.Location = new System.Drawing.Point(3, 3);
+            this.ucCompressorDataManager2.LogSavedPath = "C:\\Log";
+            this.ucCompressorDataManager2.Name = "ucCompressorDataManager2";
+            this.ucCompressorDataManager2.Size = new System.Drawing.Size(1018, 403);
+            this.ucCompressorDataManager2.TabIndex = 1;
+            // 
             // tabDatabase
             // 
             this.tabDatabase.Controls.Add(this.splitContainer1);
@@ -543,8 +621,8 @@ namespace IOTLManager
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tvIotlTable);
-            this.splitContainer1.Size = new System.Drawing.Size(1024, 412);
-            this.splitContainer1.SplitterDistance = 607;
+            this.splitContainer1.Size = new System.Drawing.Size(192, 412);
+            this.splitContainer1.SplitterDistance = 113;
             this.splitContainer1.TabIndex = 4;
             // 
             // groupBox2
@@ -553,7 +631,7 @@ namespace IOTLManager
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 22);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(607, 390);
+            this.groupBox2.Size = new System.Drawing.Size(113, 390);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Query Result";
@@ -567,7 +645,7 @@ namespace IOTLManager
             this.dataGridReport.Location = new System.Drawing.Point(3, 17);
             this.dataGridReport.Name = "dataGridReport";
             this.dataGridReport.RowTemplate.Height = 23;
-            this.dataGridReport.Size = new System.Drawing.Size(601, 370);
+            this.dataGridReport.Size = new System.Drawing.Size(107, 370);
             this.dataGridReport.TabIndex = 2;
             // 
             // txtQueryString
@@ -578,7 +656,7 @@ namespace IOTLManager
             this.txtQueryString.Location = new System.Drawing.Point(0, 0);
             this.txtQueryString.Name = "txtQueryString";
             this.txtQueryString.ReadOnly = true;
-            this.txtQueryString.Size = new System.Drawing.Size(607, 22);
+            this.txtQueryString.Size = new System.Drawing.Size(113, 22);
             this.txtQueryString.TabIndex = 1;
             // 
             // tvIotlTable
@@ -589,7 +667,7 @@ namespace IOTLManager
             this.tvIotlTable.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.tvIotlTable.Location = new System.Drawing.Point(0, 0);
             this.tvIotlTable.Name = "tvIotlTable";
-            this.tvIotlTable.Size = new System.Drawing.Size(413, 412);
+            this.tvIotlTable.Size = new System.Drawing.Size(75, 412);
             this.tvIotlTable.TabIndex = 4;
             this.tvIotlTable.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvIotlTable_AfterSelect);
             this.tvIotlTable.DoubleClick += new System.EventHandler(this.tvIotlTable_DoubleClick);
@@ -617,8 +695,16 @@ namespace IOTLManager
             this.ucSocketServer1.SendPacketCount = 0;
             this.ucSocketServer1.ServerCaption = "TCP Socket Server";
             this.ucSocketServer1.Size = new System.Drawing.Size(542, 272);
+            this.ucSocketServer1.SocketModeTcp = false;
             this.ucSocketServer1.SocketServerIsStarted = false;
             this.ucSocketServer1.TabIndex = 7;
+            // 
+            // ucClock1
+            // 
+            this.ucClock1.Location = new System.Drawing.Point(8, 6);
+            this.ucClock1.Name = "ucClock1";
+            this.ucClock1.Size = new System.Drawing.Size(272, 79);
+            this.ucClock1.TabIndex = 6;
             // 
             // tabMonitoring
             // 
@@ -637,7 +723,7 @@ namespace IOTLManager
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(3, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1018, 403);
+            this.groupBox3.Size = new System.Drawing.Size(186, 68);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Monitoring ";
@@ -656,8 +742,8 @@ namespace IOTLManager
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.chartMemoryAvailable);
-            this.splitContainer3.Size = new System.Drawing.Size(1012, 383);
-            this.splitContainer3.SplitterDistance = 517;
+            this.splitContainer3.Size = new System.Drawing.Size(180, 48);
+            this.splitContainer3.SplitterDistance = 91;
             this.splitContainer3.TabIndex = 2;
             // 
             // chartCpuUsage
@@ -673,7 +759,7 @@ namespace IOTLManager
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chartCpuUsage.Series.Add(series1);
-            this.chartCpuUsage.Size = new System.Drawing.Size(515, 381);
+            this.chartCpuUsage.Size = new System.Drawing.Size(89, 46);
             this.chartCpuUsage.TabIndex = 0;
             this.chartCpuUsage.Text = "Cpu Usage";
             this.chartCpuUsage.Click += new System.EventHandler(this.chartCpuUsage_Click);
@@ -692,7 +778,7 @@ namespace IOTLManager
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.chartMemoryAvailable.Series.Add(series2);
-            this.chartMemoryAvailable.Size = new System.Drawing.Size(489, 381);
+            this.chartMemoryAvailable.Size = new System.Drawing.Size(83, 46);
             this.chartMemoryAvailable.TabIndex = 1;
             this.chartMemoryAvailable.Text = "chart1";
             // 
@@ -706,6 +792,13 @@ namespace IOTLManager
             this.tabConfig.TabIndex = 1;
             this.tabConfig.Text = "Configure";
             this.tabConfig.UseVisualStyleBackColor = true;
+            // 
+            // ucConfigIOTLinkManager1
+            // 
+            this.ucConfigIOTLinkManager1.Location = new System.Drawing.Point(20, 20);
+            this.ucConfigIOTLinkManager1.Name = "ucConfigIOTLinkManager1";
+            this.ucConfigIOTLinkManager1.Size = new System.Drawing.Size(591, 278);
+            this.ucConfigIOTLinkManager1.TabIndex = 0;
             // 
             // tabLogConfig
             // 
@@ -749,70 +842,6 @@ namespace IOTLManager
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // timerTimeRefresh
-            // 
-            this.timerTimeRefresh.Enabled = true;
-            this.timerTimeRefresh.Interval = 1000;
-            this.timerTimeRefresh.Tick += new System.EventHandler(this.timerTimeRefresh_Tick);
-            // 
-            // trayNotifyIcon
-            // 
-            this.trayNotifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.trayNotifyIcon.ContextMenuStrip = this.contextMenuStrip1;
-            this.trayNotifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("trayNotifyIcon.Icon")));
-            this.trayNotifyIcon.Text = "IOTLinkManager";
-            this.trayNotifyIcon.Visible = true;
-            this.trayNotifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showToolStripMenuItem,
-            this.hideToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(105, 48);
-            // 
-            // showToolStripMenuItem
-            // 
-            this.showToolStripMenuItem.Name = "showToolStripMenuItem";
-            this.showToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
-            this.showToolStripMenuItem.Text = "Show";
-            this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click);
-            // 
-            // hideToolStripMenuItem
-            // 
-            this.hideToolStripMenuItem.Name = "hideToolStripMenuItem";
-            this.hideToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
-            this.hideToolStripMenuItem.Text = "Hide";
-            this.hideToolStripMenuItem.Click += new System.EventHandler(this.hideToolStripMenuItem_Click);
-            // 
-            // ucCompressorDataManager1
-            // 
-            this.ucCompressorDataManager1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.ucCompressorDataManager1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ucCompressorDataManager1.DBConnectionInfo = null;
-            this.ucCompressorDataManager1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucCompressorDataManager1.LocalTcpServerPort = ((uint)(9595u));
-            this.ucCompressorDataManager1.Location = new System.Drawing.Point(3, 17);
-            this.ucCompressorDataManager1.LogSavedPath = "C:\\Log";
-            this.ucCompressorDataManager1.Name = "ucCompressorDataManager1";
-            this.ucCompressorDataManager1.Size = new System.Drawing.Size(995, 389);
-            this.ucCompressorDataManager1.TabIndex = 0;
-            // 
-            // ucClock1
-            // 
-            this.ucClock1.Location = new System.Drawing.Point(8, 6);
-            this.ucClock1.Name = "ucClock1";
-            this.ucClock1.Size = new System.Drawing.Size(272, 79);
-            this.ucClock1.TabIndex = 6;
-            // 
-            // ucConfigIOTLinkManager1
-            // 
-            this.ucConfigIOTLinkManager1.Location = new System.Drawing.Point(20, 20);
-            this.ucConfigIOTLinkManager1.Name = "ucConfigIOTLinkManager1";
-            this.ucConfigIOTLinkManager1.Size = new System.Drawing.Size(591, 278);
-            this.ucConfigIOTLinkManager1.TabIndex = 0;
-            // 
             // ucSystemLogTable
             // 
             this.ucSystemLogTable.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -839,6 +868,7 @@ namespace IOTLManager
             this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -846,6 +876,7 @@ namespace IOTLManager
             this.mainTabControl.ResumeLayout(false);
             this.tabIotlCompSvr.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.tabSmartBong.ResumeLayout(false);
             this.tabDatabase.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
@@ -865,7 +896,6 @@ namespace IOTLManager
             ((System.ComponentModel.ISupportInitialize)(this.chartMemoryAvailable)).EndInit();
             this.tabConfig.ResumeLayout(false);
             this.tabLogConfig.ResumeLayout(false);
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -945,5 +975,7 @@ namespace IOTLManager
         private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hideToolStripMenuItem;
         private System.Windows.Forms.Button btnDBBackup;
+        private System.Windows.Forms.TabPage tabSmartBong;
+        private UserControls.UCCompressorDataManager ucCompressorDataManager2;
     }
 }

@@ -72,6 +72,7 @@ namespace IOTLManager.UserControls
 
             m_cProject.CompServerIPAddress = this.txtCompServerIPAddress.Text;
             m_cProject.CompServerTcpPort = Convert.ToUInt16(this.txtCompServerPort.Text);
+            m_cProject.SmartBongServerPort = Convert.ToUInt16(this.txtSmartBongServerPort.Text);
             m_cProject.CompServerDBAddr = this.txtCompServerDBAddr.Text;
             m_cProject.CompServerInitialDatabaseName = this.txtCompServerDBName.Text;
             m_cProject.CompServerLogDirectory = this.txtCompServerLogFolder.Text;
@@ -128,6 +129,7 @@ namespace IOTLManager.UserControls
         {
             this.txtCompServerIPAddress.Text = savedConfig.CompServerIPAddress;
             this.txtCompServerPort.Text = savedConfig.CompServerTcpPort.ToString();
+            this.txtSmartBongServerPort.Text = savedConfig.SmartBongServerPort.ToString();
             this.txtCompServerDBName.Text = savedConfig.CompServerInitialDatabaseName;
             this.txtCompServerDBAddr.Text = savedConfig.CompServerDBAddr;
             this.txtCompServerDBPort.Text = savedConfig.CompServerDBPort.ToString();

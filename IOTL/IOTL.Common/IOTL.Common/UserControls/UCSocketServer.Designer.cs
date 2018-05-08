@@ -46,6 +46,7 @@
             this.chkSocketTransparent = new System.Windows.Forms.CheckBox();
             this.chkEchoMode = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkUDPMode = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -159,6 +160,7 @@
             this.tableLayoutPanel1.Controls.Add(this.groupBox2, 3, 3);
             this.tableLayoutPanel1.Controls.Add(this.chkSocketTransparent, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.chkEchoMode, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.chkUDPMode, 0, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 17);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -286,6 +288,19 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "TCP Socket Server";
             // 
+            // chkUDPMode
+            // 
+            this.chkUDPMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkUDPMode.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.chkUDPMode, 2);
+            this.chkUDPMode.Location = new System.Drawing.Point(3, 142);
+            this.chkUDPMode.Name = "chkUDPMode";
+            this.chkUDPMode.Size = new System.Drawing.Size(238, 16);
+            this.chkUDPMode.TabIndex = 4;
+            this.chkUDPMode.Text = "UDP Mode (Default : TCP)";
+            this.chkUDPMode.UseVisualStyleBackColor = true;
+            this.chkUDPMode.CheckedChanged += new System.EventHandler(this.chkUDPMode_CheckedChanged);
+            // 
             // UCSocketServer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -323,5 +338,6 @@
         private System.Windows.Forms.ListView lvClientList;
         private System.Windows.Forms.CheckBox chkSocketTransparent;
         private System.Windows.Forms.CheckBox chkEchoMode;
+        private System.Windows.Forms.CheckBox chkUDPMode;
     }
 }
