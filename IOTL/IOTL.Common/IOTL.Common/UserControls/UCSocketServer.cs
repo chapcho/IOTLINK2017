@@ -26,6 +26,8 @@ namespace IOTL.Common.UserControls
         private uint m_LocalServerTcpPort = 3000;
         private bool m_SocketServerIsStarted = false;
         private bool m_SocketModeTcp = true;
+        private DateTime m_dtServerStart = DateTime.MinValue;
+        private DateTime m_dtServerStop = DateTime.MinValue;
 
         public event UEventHandlerIOTLMessage UEventMessage = null;
         public event UEventHandlerMachineStateTimeLog UEventMachineStateTimeLog = null;
@@ -47,6 +49,18 @@ namespace IOTL.Common.UserControls
         {
             get { return m_SocketModeTcp; }
             set { m_SocketModeTcp = value; }
+        }
+
+        public DateTime ServerStartDt
+        {
+            get { return m_dtServerStart; }
+            set { m_dtServerStart = value; }
+        }
+
+        public DateTime ServerStopDt
+        {
+            get { return m_dtServerStop; }
+            set { m_dtServerStop = value; }
         }
 
         public uint LocalServerTcpPort
@@ -122,10 +136,15 @@ namespace IOTL.Common.UserControls
         {
             string strReport = string.Empty;
 
-            strReport += string.Format("Report Time :{0}:{1}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString());
+            strReport += string.Format("IOTLink {0} Report\nTime :{1} {2}", ServerCaption, DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString());
             strReport += string.Format("\nIP :{0}", GetLocalIP());
             strReport += string.Format("\nPORT :{0}", LocalServerTcpPort.ToString());
             strReport += string.Format("\nMODE :{0}", SocketModeTcp ? "Tcp" : "Udp");
+            if(SocketServerIsStarted)
+                strReport += string.Format("\nServer Start Time :{0} {1}", ServerStartDt.ToShortDateString(), ServerStartDt.ToShortTimeString());
+            else
+                strReport += string.Format("\nServer Stop Time :{0} {1}", ServerStopDt.ToShortDateString(), ServerStopDt.ToShortTimeString());
+
             strReport += string.Format("\nConnected Client :{0}", ConnectedClientCount.ToString());
             strReport += string.Format("\nReceive Packets :{0}", ReceivedPacketCount.ToString());
             strReport += string.Format("\nSend Packets :{0}", SendPacketCount.ToString());
@@ -267,8 +286,13 @@ namespace IOTL.Common.UserControls
 
         private void btnSeverStart_Click(object sender, EventArgs e)
         {
-            StartServerSocket();
-            socketServer.DummySocketServer = chkSocketTransparent.Checked;
+            if (StartServerSocket())
+            {
+                socketServer.DummySocketServer = chkSocketTransparent.Checked;
+                ServerStartDt = DateTime.Now;
+                chkUDPMode.Enabled = !SocketServerIsStarted;
+            };
+            
         }
 
         private void btnServerStop_Click(object sender, EventArgs e)
@@ -288,6 +312,10 @@ namespace IOTL.Common.UserControls
 
                 txtServerPort.Enabled = true;
                 UpdateSystemMessage("SocketServer", "소켓서버 종료");
+
+                ServerStopDt = DateTime.Now;
+                SocketServerIsStarted = false;
+                chkUDPMode.Enabled = !SocketServerIsStarted;
             }
             else
             {
@@ -467,6 +495,8 @@ namespace IOTL.Common.UserControls
             SetMonitorNumBinding();
             txtServerIPAddress.Text = GetLocalIP();
             InitialClientListLayout();
+
+            chkUDPMode.Checked = SocketModeTcp;
         }
 
         private void InitialClientListLayout()
@@ -557,11 +587,13 @@ namespace IOTL.Common.UserControls
         {
             if(chkUDPMode.Checked)
             {
-                SocketModeTcp = false;
+                SocketModeTcp = true;
+                chkUDPMode.Text = "TCP mode";
             }
             else
             {
-                SocketModeTcp = true;
+                SocketModeTcp = false;
+                chkUDPMode.Text = "UDP mode";
             }
         }
 

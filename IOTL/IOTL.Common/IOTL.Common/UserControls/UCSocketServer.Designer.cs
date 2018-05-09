@@ -46,8 +46,8 @@
             this.chkSocketTransparent = new System.Windows.Forms.CheckBox();
             this.chkEchoMode = new System.Windows.Forms.CheckBox();
             this.chkUDPMode = new System.Windows.Forms.CheckBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnGetReport = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -286,9 +286,20 @@
             this.chkUDPMode.Name = "chkUDPMode";
             this.chkUDPMode.Size = new System.Drawing.Size(238, 16);
             this.chkUDPMode.TabIndex = 4;
-            this.chkUDPMode.Text = "UDP Mode (Default : TCP)";
+            this.chkUDPMode.Text = "TCP mode";
             this.chkUDPMode.UseVisualStyleBackColor = true;
             this.chkUDPMode.CheckedChanged += new System.EventHandler(this.chkUDPMode_CheckedChanged);
+            // 
+            // btnGetReport
+            // 
+            this.btnGetReport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnGetReport.Location = new System.Drawing.Point(126, 213);
+            this.btnGetReport.Name = "btnGetReport";
+            this.btnGetReport.Size = new System.Drawing.Size(115, 36);
+            this.btnGetReport.TabIndex = 5;
+            this.btnGetReport.Text = "Report";
+            this.btnGetReport.UseVisualStyleBackColor = true;
+            this.btnGetReport.Click += new System.EventHandler(this.btnGetReport_Click);
             // 
             // groupBox1
             // 
@@ -302,17 +313,6 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "TCP Socket Server";
-            // 
-            // btnGetReport
-            // 
-            this.btnGetReport.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnGetReport.Location = new System.Drawing.Point(126, 213);
-            this.btnGetReport.Name = "btnGetReport";
-            this.btnGetReport.Size = new System.Drawing.Size(115, 36);
-            this.btnGetReport.TabIndex = 5;
-            this.btnGetReport.Text = "Report";
-            this.btnGetReport.UseVisualStyleBackColor = true;
-            this.btnGetReport.Click += new System.EventHandler(this.btnGetReport_Click);
             // 
             // UCSocketServer
             // 

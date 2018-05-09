@@ -28,6 +28,8 @@ namespace IOTLManager
         private PerformanceCounter cpuCounter;
         private PerformanceCounter ramCounter;
 
+        private DateTime m_dtReportTime = DateTime.Now;
+
         private double maxMemoryExists = 0.0;
 
         private double LocalSystemMaxMemory
@@ -365,14 +367,13 @@ namespace IOTLManager
         {
             SplashWnd.SplashClose(this);
 
-            CSimpleSmtpClient smtpClient = new CSimpleSmtpClient("iotlinkmonitoring", "iotlink!23");
-
-            smtpClient.SendGMail("IOTLink 모니터링"+ DateTime.Now.ToLongDateString(), "chapcho@naver.com", "IOTLink에 설치된 단말의 작업 기록을 메일로 전송할 예정입니다.");
-            //iotlinkmonitoring, iotlink!23
+            
 
             // https://www.c-sharpcorner.com/article/sending-sms-using-C-Sharp-application/
 
         }
+
+
 
         private void btnClientStatusRefresh_Click(object sender, EventArgs e)
         {
@@ -575,6 +576,13 @@ namespace IOTLManager
             // 매 24시간 마다 데이터 베이스 백업 진행.
             // 강제로 백업된 자료는 보관하고,
             // 타이머에 의해 백업된 자료는 3일전 백업을 삭제
+            TimeSpan diff = DateTime.Now - m_dtReportTime;
+
+            if(diff.Days > 0)
+            {
+                m_dtReportTime = DateTime.Now;
+                ManagerMailReport();
+            }
             
         }
 
@@ -725,6 +733,27 @@ namespace IOTLManager
             this.ShowIcon = false; //작업표시줄에서 제거.
 
             trayNotifyIcon.Visible = true; //트레이 아이콘을 표시한다.
+        }
+
+        public void ManagerMailReport()
+        {
+            try
+            {
+                CSimpleSmtpClient smtpClient = new CSimpleSmtpClient("iotlinkmonitoring", "iotlink!23");
+                //iotlinkmonitoring, iotlink!23 모니터링을 위한 Gmail계정
+
+                string strMessage = ucCompressorDataManager1.GetSocketReportMessage();
+                smtpClient.SendGMail("CompServer 모니터링" + DateTime.Now.ToLongDateString(), "chapcho@naver.com", strMessage);
+                strMessage = ucCompressorDataManager2.GetSocketReportMessage();
+                smtpClient.SendGMail("스봉서버 모니터링" + DateTime.Now.ToLongDateString(), "chapcho@naver.com", strMessage);
+
+                UpdateSystemMessage("FrmMain", "e-mail reporting success!");
+            }
+            catch(Exception ex)
+            {
+                ex.Data.Clear();
+                UpdateSystemMessage("FrmMain", "e-mail reporting fail!!!");
+            }
         }
 
         private void btnDBBackup_Click(object sender, EventArgs e)

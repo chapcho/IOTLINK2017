@@ -47,11 +47,10 @@ namespace IOTL.Common.Util
             message.SubjectEncoding = System.Text.Encoding.UTF8;
 
             message.Body = "==== IOTLink Monitoring Mail ====";
-            message.Body += Environment.NewLine +  "Mail Send Date :" + DateTime.Now.ToShortDateString();
-            message.Body += Environment.NewLine +  "          Time :" + DateTime.Now.ToShortTimeString();
-            message.Body += Environment.NewLine + "Message ===";
+            message.Body += Environment.NewLine +  "Time :" + DateTime.Now.ToShortDateString() + " " +DateTime.Now.ToShortTimeString();
+            message.Body += Environment.NewLine + "Message =========================================";
             message.Body += Environment.NewLine + mailMessage;
-            message.Body += Environment.NewLine + "=== End";
+            message.Body += Environment.NewLine + "End =========================================";
             message.BodyEncoding = System.Text.Encoding.UTF8;
 
             try

@@ -443,6 +443,11 @@ namespace IOTLManager.UserControls
             RefreshProgressBarValue(e.ProgressPercentage);
         }
 
+        public string GetSocketReportMessage()
+        {
+            return ucSocketServer1.GetServerStatusReportMessage();
+        }
+
         private void pictureAbout_Click(object sender, EventArgs e)
         {
             StringBuilder sb = new StringBuilder();
