@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,37 @@ namespace IOTL.Common.Util
         public string getMailAddress()
         {
             return bUserInitialized ? gmailUserId + "@gmail.com" : "emptyuser@gmail.com";
+        }
+
+        // 참고사이트 codeproject : https://www.codeproject.com/Questions/545481/SendplussmsplususingplusInternetplusinplusc
+        // 2018.05.10 금일 오전 5시 50분경 전송했으나, 6시 현재 아직 도착 하지 않음.
+        public void SendTextMessage(string subject, string message, long telephoneNumer)
+        {
+            // login details for gmail acct.
+            // const string sender = "me@gmail.com";
+            // const string password = "mypassword4gmailacct";
+
+            // find the carriers sms gateway for the recipent. txt.att.net is for AT&T customers.
+            string carrierGateway = "txt.att.net";
+
+            // this is the recipents number @ carrierGateway that gmail use to deliver message.
+            string recipent = string.Concat(new object[]{
+            telephoneNumer,
+            '@',
+            carrierGateway
+            });
+
+            // form the text message and send
+            using (MailMessage textMessage = new MailMessage(getMailAddress(), recipent, subject, message))
+            {
+                using (SmtpClient textMessageClient = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    textMessageClient.UseDefaultCredentials = false;
+                    textMessageClient.EnableSsl = true;
+                    textMessageClient.Credentials = new NetworkCredential(getMailAddress(), gmailUserPassword);
+                    textMessageClient.Send(textMessage);
+                }
+            }
         }
 
         public bool SendGMail(string mailSubject, string mailToUser, string mailMessage)
@@ -56,7 +88,9 @@ namespace IOTL.Common.Util
             try
             {
                 // 동기로 메일을 보낸다.
-                client.Send(message);
+                // client.Send(message);
+                string userState = "normal";
+                client.SendAsync(message, userState);
 
                 // Clean up.
                 message.Dispose();

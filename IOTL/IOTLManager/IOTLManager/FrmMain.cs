@@ -367,10 +367,11 @@ namespace IOTLManager
         {
             SplashWnd.SplashClose(this);
 
-            
+            // https://www.c-sharpcorner.com/article/sending-sms-using-C-Sharp-application/ --비용발생으로 취소
+            // https://www.twilio.com/blog/2016/04/send-an-sms-message-with-c-in-30-seconds.html
 
-            // https://www.c-sharpcorner.com/article/sending-sms-using-C-Sharp-application/
-
+            SendSMSMessage();
+            ManagerMailReport();
         }
 
 
@@ -756,6 +757,23 @@ namespace IOTLManager
             }
         }
 
+        public void SendSMSMessage()
+        {
+            // 테스트 결과.
+            // 2018.05.10 금일 오전 5시 50분경 전송했으나, 6시 현재 아직 도착 하지 않음.
+            try
+            {
+                CSimpleSmtpClient smtpClient = new CSimpleSmtpClient("iotlinkmonitoring", "iotlink!23");
+                smtpClient.SendTextMessage("C#으로 보내는 메시지", "이 메시지가 정말 전송 될까요", 821064407941);
+                UpdateSystemMessage("FrmMain", "sms reporting sucess!");
+            }
+            catch(Exception ex)
+            {
+                ex.Data.Clear();
+                UpdateSystemMessage("FrmMain", "sms reporting fail!!!");
+            }
+        }
+
         private void btnDBBackup_Click(object sender, EventArgs e)
         {
             BackupDataBase("C:\\Log\\BackupTest.SQL");
@@ -838,5 +856,9 @@ namespace IOTLManager
                 }
             }
         }
+
+
     }
+
+
 }
