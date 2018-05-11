@@ -49,7 +49,11 @@ namespace IOTL.Common.UserControls
         public bool SocketModeTcp
         {
             get { return m_SocketModeTcp; }
-            set { m_SocketModeTcp = value; }
+            set {
+                    m_SocketModeTcp = value;
+                if (m_SocketModeTcp) this.chkUDPMode.Text = "TCP Mode";
+                else this.chkUDPMode.Text = "UDP Mode";
+            }
         }
 
         public DateTime ServerStartDt
@@ -594,24 +598,22 @@ namespace IOTL.Common.UserControls
             }
         }
 
-        private void chkUDPMode_CheckedChanged(object sender, EventArgs e)
-        {
-            if(chkUDPMode.Checked)
-            {
-                SocketModeTcp = true;
-                chkUDPMode.Text = "TCP mode";
-            }
-            else
-            {
-                SocketModeTcp = false;
-                chkUDPMode.Text = "UDP mode";
-            }
-        }
-
         private void btnGetReport_Click(object sender, EventArgs e)
         {
             string strReport = GetServerStatusReportMessage();
             MessageBox.Show(strReport, "Server Report");
+        }
+
+        private void chkUDPMode_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (chkUDPMode.Checked)
+            {
+                SocketModeTcp = true;
+            }
+            else
+            {
+                SocketModeTcp = false;
+            }
         }
     }
 }

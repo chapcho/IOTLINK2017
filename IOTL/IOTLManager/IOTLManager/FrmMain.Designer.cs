@@ -38,6 +38,15 @@ namespace IOTLManager
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend11 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend12 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
@@ -109,9 +118,12 @@ namespace IOTLManager
             this.tabConfig = new System.Windows.Forms.TabPage();
             this.ucConfigIOTLinkManager1 = new IOTLManager.UserControls.UCConfigIOTLinkManager();
             this.tabLogConfig = new System.Windows.Forms.TabPage();
+            this.rptChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chkSendManagerEMail = new System.Windows.Forms.CheckBox();
             this.btnDBBackup = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.ucClock1 = new IOTLManager.UserControls.UCClock();
             this.ucSystemLogTable = new IOTLManager.UserControls.UCSystemLogTable();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -143,6 +155,7 @@ namespace IOTLManager
             ((System.ComponentModel.ISupportInitialize)(this.chartMemoryAvailable)).BeginInit();
             this.tabConfig.SuspendLayout();
             this.tabLogConfig.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rptChart)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -469,7 +482,6 @@ namespace IOTLManager
             // 
             // timerTimeRefresh
             // 
-            this.timerTimeRefresh.Enabled = true;
             this.timerTimeRefresh.Interval = 1000;
             this.timerTimeRefresh.Tick += new System.EventHandler(this.timerTimeRefresh_Tick);
             // 
@@ -576,6 +588,7 @@ namespace IOTLManager
             this.ucCompressorDataManager1.ServerTitleCaption = "IOTL Compressor Monitor";
             this.ucCompressorDataManager1.Size = new System.Drawing.Size(995, 389);
             this.ucCompressorDataManager1.TabIndex = 0;
+            //
             // 
             // tabSmartBong
             // 
@@ -699,8 +712,8 @@ namespace IOTLManager
             this.tabSocketServer.Size = new System.Drawing.Size(1024, 409);
             this.tabSocketServer.TabIndex = 4;
             this.tabSocketServer.Text = "SocketServer(Chat)";
-            this.tabSocketServer.UseVisualStyleBackColor = true;
-            // 
+            this.tabSocketServer.UseVisualStyleBackColor = true;            
+            //
             // ucSocketServer1
             // 
             this.ucSocketServer1.BackColor = System.Drawing.Color.Aquamarine;
@@ -725,6 +738,8 @@ namespace IOTLManager
             this.ucClock1.Name = "ucClock1";
             this.ucClock1.Size = new System.Drawing.Size(272, 79);
             this.ucClock1.TabIndex = 6;
+            // 
+
             // 
             // tabMonitoring
             // 
@@ -823,6 +838,10 @@ namespace IOTLManager
             // 
             // tabLogConfig
             // 
+            this.tabLogConfig.BackColor = System.Drawing.Color.Transparent;
+            this.tabLogConfig.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabLogConfig.Controls.Add(this.rptChart);
+            this.tabLogConfig.Controls.Add(this.chkSendManagerEMail);
             this.tabLogConfig.Controls.Add(this.btnDBBackup);
             this.tabLogConfig.Controls.Add(this.button2);
             this.tabLogConfig.Controls.Add(this.button1);
@@ -833,9 +852,37 @@ namespace IOTLManager
             this.tabLogConfig.Text = "System Log";
             this.tabLogConfig.UseVisualStyleBackColor = true;
             // 
+            // rptChart
+            // 
+            this.rptChart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.rptChart.BorderlineColor = System.Drawing.Color.Black;
+            chartArea12.Name = "ChartArea1";
+            this.rptChart.ChartAreas.Add(chartArea12);
+            legend12.Name = "Legend1";
+            this.rptChart.Legends.Add(legend12);
+            this.rptChart.Location = new System.Drawing.Point(18, 43);
+            this.rptChart.Name = "rptChart";
+            series12.ChartArea = "ChartArea1";
+            series12.Legend = "Legend1";
+            series12.Name = "Series1";
+            this.rptChart.Series.Add(series12);
+            this.rptChart.Size = new System.Drawing.Size(616, 361);
+            this.rptChart.TabIndex = 4;
+            this.rptChart.Text = "chart1";
+            // 
+            // chkSendManagerEMail
+            // 
+            this.chkSendManagerEMail.AutoSize = true;
+            this.chkSendManagerEMail.Location = new System.Drawing.Point(27, 21);
+            this.chkSendManagerEMail.Name = "chkSendManagerEMail";
+            this.chkSendManagerEMail.Size = new System.Drawing.Size(192, 16);
+            this.chkSendManagerEMail.TabIndex = 3;
+            this.chkSendManagerEMail.Text = "송수신내역관리자에게메일전송";
+            this.chkSendManagerEMail.UseVisualStyleBackColor = true;
+            // 
             // btnDBBackup
             // 
-            this.btnDBBackup.Location = new System.Drawing.Point(325, 55);
+            this.btnDBBackup.Location = new System.Drawing.Point(839, 56);
             this.btnDBBackup.Name = "btnDBBackup";
             this.btnDBBackup.Size = new System.Drawing.Size(137, 49);
             this.btnDBBackup.TabIndex = 2;
@@ -845,23 +892,30 @@ namespace IOTLManager
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(701, 249);
+            this.button2.Location = new System.Drawing.Point(839, 164);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(115, 68);
+            this.button2.Size = new System.Drawing.Size(137, 49);
             this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
+            this.button2.Text = "메일전송";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(594, 175);
+            this.button1.Location = new System.Drawing.Point(839, 111);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(222, 68);
+            this.button1.Size = new System.Drawing.Size(137, 47);
             this.button1.TabIndex = 0;
-            this.button1.Text = "테스트 하세요.";
+            this.button1.Text = "splash";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // ucClock1
+            // 
+            this.ucClock1.Location = new System.Drawing.Point(8, 6);
+            this.ucClock1.Name = "ucClock1";
+            this.ucClock1.Size = new System.Drawing.Size(272, 79);
+            this.ucClock1.TabIndex = 6;
             // 
             // ucSystemLogTable
             // 
@@ -918,6 +972,8 @@ namespace IOTLManager
             ((System.ComponentModel.ISupportInitialize)(this.chartMemoryAvailable)).EndInit();
             this.tabConfig.ResumeLayout(false);
             this.tabLogConfig.ResumeLayout(false);
+            this.tabLogConfig.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rptChart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1000,5 +1056,7 @@ namespace IOTLManager
         private System.Windows.Forms.TabPage tabSmartBong;
         private UserControls.UCCompressorDataManager ucCompressorDataManager2;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.CheckBox chkSendManagerEMail;
+        private System.Windows.Forms.DataVisualization.Charting.Chart rptChart;
     }
 }

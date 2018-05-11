@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -46,6 +47,8 @@ namespace IOTLManager
             InitializeComponent();
 
             m_cProject = new CProject();
+
+            timerTimeRefresh.Enabled = true;
         }
 
         public bool LoadConfigFile()
@@ -234,6 +237,8 @@ namespace IOTLManager
                 return;
             }
 
+            timerTimeRefresh.Enabled = false;
+
             // 사용자가 상태 변경 해야 하는 서비스가 중지 되었는지 확인
 
             ucSocketServer1.UEventMessage -= UpdateSystemMessage;
@@ -371,7 +376,16 @@ namespace IOTLManager
             // https://www.twilio.com/blog/2016/04/send-an-sms-message-with-c-in-30-seconds.html
 
             // SendSMSMessage();
-            ManagerMailReport();
+            if (chkSendManagerEMail.Checked)
+            {
+                string chartImgFileName = SmartBongDaRiChartDraw();
+                ManagerMailReport(chartImgFileName);
+            }
+            else
+            {
+                UpdateSystemMessage("Main", "관리자에게 메일 전송을 체크 하십시오.");
+            }
+
         }
 
 
@@ -582,7 +596,12 @@ namespace IOTLManager
             if(diff.Days > 0)
             {
                 m_dtReportTime = DateTime.Now;
-                ManagerMailReport();
+                if(chkSendManagerEMail.Checked)
+                {
+                    string chartImgFileName = SmartBongDaRiChartDraw();
+                    ManagerMailReport(chartImgFileName);
+                }
+                
             }
             
         }
@@ -736,7 +755,7 @@ namespace IOTLManager
             trayNotifyIcon.Visible = true; //트레이 아이콘을 표시한다.
         }
 
-        async public void ManagerMailReport()
+        async public void ManagerMailReport(string attachFileName)
         {
             try
             {
@@ -744,9 +763,10 @@ namespace IOTLManager
                 //iotlinkmonitoring, iotlink!23 모니터링을 위한 Gmail계정
 
                 string strMessage = ucCompressorDataManager1.GetSocketReportMessage();
-                await smtpClient.SendGMail("CompServer 모니터링" + DateTime.Now.ToLongDateString(), "chapcho@naver.com", strMessage);
+                await smtpClient.SendGMail("CompServer 모니터링" + DateTime.Now.ToLongDateString(), "chapcho@naver.com", strMessage,null);
                 strMessage = ucCompressorDataManager2.GetSocketReportMessage();
-                await smtpClient.SendGMail("스봉서버 모니터링" + DateTime.Now.ToLongDateString(), "chapcho@naver.com", strMessage);
+                await smtpClient.SendGMail("스봉서버 모니터링" + DateTime.Now.ToLongDateString(), "wjsong76@gmail.com", strMessage, attachFileName);
+                await smtpClient.SendGMail("스봉서버 모니터링" + DateTime.Now.ToLongDateString(), "chapcho@naver.com", strMessage, attachFileName);
 
                 UpdateSystemMessage("FrmMain", "e-mail reporting success!");
             }
@@ -863,7 +883,56 @@ namespace IOTLManager
 
         private void chartCpuUsage_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            chartCpuUsage.SaveImage("D:\\SampleChart.jpg", ChartImageFormat.Png);
+            SmartBongDaRiChartDraw();
+        }
+
+        private string SmartBongDaRiChartDraw()
+        {
+            string chartImgFileName = string.Empty;
+            if (!DBReader.IsConnected)
+            {
+                UpdateSystemMessage("Main", "DB Reader Not Connected, Manager Report Skip!!!");
+                return chartImgFileName;
+            }
+            /*
+             * 
+            EXPLAIN -- 쿼리의 실행계획 표시.
+            SELECT COMP_ID, CUR_TEMP, SAVE_TIME_STR
+            FROM compdata.tbp_sb_temperature
+            WHERE COMP_ID = '2018000002'
+            ORDER BY SAVE_TIME_STR DESC
+            LIMIT 10; -- 상위 10개의 데이터만.
+             * 
+             */
+
+            string sqlQuery = "SELECT " +
+                "   COMP_ID, CUR_TEMP, SAVE_TIME_STR " +
+                " FROM compdata.tbp_sb_temperature " +
+                " WHERE COMP_ID = '2018000002' " +
+                " ORDER BY SAVE_TIME_STR DESC" +
+                " LIMIT 100; ";
+
+            this.rptChart.Series.Clear();
+            this.rptChart.Titles.Add("Smart BongDaRi Data Receive Report");
+            Series series = this.rptChart.Series.Add("SB Temperature");
+            series.ChartType = SeriesChartType.Spline;
+
+            DataTable dt = DBReader.GetQueryResult(sqlQuery);
+            DataRow[] rows = dt.Select();
+            for(int i = 0; i < rows.Length; i++)
+            {
+                series.Points.AddXY(rows[i]["SAVE_TIME_STR"], rows[i]["CUR_TEMP"]);
+            }
+
+            if(File.Exists(@"D:\SmartBongDariReport.png"))
+            {
+                File.Delete(@"D:\SmartBongDariReport.png");
+            }
+            chartImgFileName = string.Format("D:\\SmartBongDariReport.png");
+
+            rptChart.SaveImage(chartImgFileName, ChartImageFormat.Png);
+
+            return chartImgFileName;
         }
     }
 

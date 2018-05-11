@@ -280,15 +280,17 @@
             // chkUDPMode
             // 
             this.chkUDPMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkUDPMode.Appearance = System.Windows.Forms.Appearance.Button;
             this.chkUDPMode.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.chkUDPMode, 2);
-            this.chkUDPMode.Location = new System.Drawing.Point(3, 142);
+            this.chkUDPMode.Location = new System.Drawing.Point(3, 139);
             this.chkUDPMode.Name = "chkUDPMode";
-            this.chkUDPMode.Size = new System.Drawing.Size(238, 16);
+            this.chkUDPMode.Size = new System.Drawing.Size(238, 22);
             this.chkUDPMode.TabIndex = 4;
             this.chkUDPMode.Text = "TCP mode";
+            this.chkUDPMode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkUDPMode.UseVisualStyleBackColor = true;
-            this.chkUDPMode.CheckedChanged += new System.EventHandler(this.chkUDPMode_CheckedChanged);
+            this.chkUDPMode.CheckStateChanged += new System.EventHandler(this.chkUDPMode_CheckStateChanged);
             // 
             // btnGetReport
             // 

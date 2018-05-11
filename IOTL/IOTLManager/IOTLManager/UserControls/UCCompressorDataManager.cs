@@ -457,6 +457,8 @@ namespace IOTLManager.UserControls
             sb.Append("\r\n2018.04.20 콤프레샤 상태 데이터 수집.");
             sb.Append("\r\n2018.05.01 에어벨브 상태 데이터 수집.");
             sb.Append("\r\n2018.05.01 스봉 온도 데이터 수집.");
+            sb.Append("\r\n2018.05.10 TCP/UDP 모드.");
+            sb.Append("\r\n2018.05.11 관리자에게 온도데이터 수신 차트 전송.");
             MessageBox.Show(sb.ToString(),"About : IOTLink Socket Data Manager");
         }
     }

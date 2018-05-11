@@ -58,7 +58,7 @@ namespace IOTL.Common.Util
             }
         }
 
-        public async Task SendGMail(string mailSubject, string mailToUser, string mailMessage)
+        public async Task SendGMail(string mailSubject, string mailToUser, string mailMessage, string attachmentFilename)
         {
             if (!bUserInitialized)
             {
@@ -86,6 +86,9 @@ namespace IOTL.Common.Util
             message.Body += Environment.NewLine + mailMessage;
             message.Body += Environment.NewLine + "End =========================================";
             message.BodyEncoding = System.Text.Encoding.UTF8;
+
+            if (attachmentFilename != null)
+                message.Attachments.Add(new Attachment(attachmentFilename));
 
             try
             {
