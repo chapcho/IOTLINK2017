@@ -58,11 +58,13 @@ namespace IOTL.Common.Util
             }
         }
 
-        public bool SendGMail(string mailSubject, string mailToUser, string mailMessage)
+        public async Task SendGMail(string mailSubject, string mailToUser, string mailMessage)
         {
-            bool bRet = true;
-
-            if (!bUserInitialized) return false;
+            if (!bUserInitialized)
+            {
+                Console.WriteLine("Need Gmail User Information Initialize!");
+                return;
+            }
 
             SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
             client.UseDefaultCredentials = false; // 시스템에 설정된 인증 정보를 사용하지 않는다.
@@ -89,8 +91,7 @@ namespace IOTL.Common.Util
             {
                 // 동기로 메일을 보낸다.
                 // client.Send(message);
-                string userState = "normal";
-                client.SendAsync(message, userState);
+                await client.SendMailAsync(message);
 
                 // Clean up.
                 message.Dispose();
@@ -99,11 +100,9 @@ namespace IOTL.Common.Util
             {
                 Console.WriteLine(ex.Message);
                 ex.Data.Clear();
-                bRet = false;
             }
-
-            return bRet;
         }
+
 
     }
 }

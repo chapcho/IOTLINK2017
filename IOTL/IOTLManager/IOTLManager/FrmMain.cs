@@ -370,7 +370,7 @@ namespace IOTLManager
             // https://www.c-sharpcorner.com/article/sending-sms-using-C-Sharp-application/ --비용발생으로 취소
             // https://www.twilio.com/blog/2016/04/send-an-sms-message-with-c-in-30-seconds.html
 
-            SendSMSMessage();
+            // SendSMSMessage();
             ManagerMailReport();
         }
 
@@ -736,7 +736,7 @@ namespace IOTLManager
             trayNotifyIcon.Visible = true; //트레이 아이콘을 표시한다.
         }
 
-        public void ManagerMailReport()
+        async public void ManagerMailReport()
         {
             try
             {
@@ -744,9 +744,9 @@ namespace IOTLManager
                 //iotlinkmonitoring, iotlink!23 모니터링을 위한 Gmail계정
 
                 string strMessage = ucCompressorDataManager1.GetSocketReportMessage();
-                smtpClient.SendGMail("CompServer 모니터링" + DateTime.Now.ToLongDateString(), "chapcho@naver.com", strMessage);
+                await smtpClient.SendGMail("CompServer 모니터링" + DateTime.Now.ToLongDateString(), "chapcho@naver.com", strMessage);
                 strMessage = ucCompressorDataManager2.GetSocketReportMessage();
-                smtpClient.SendGMail("스봉서버 모니터링" + DateTime.Now.ToLongDateString(), "chapcho@naver.com", strMessage);
+                await smtpClient.SendGMail("스봉서버 모니터링" + DateTime.Now.ToLongDateString(), "chapcho@naver.com", strMessage);
 
                 UpdateSystemMessage("FrmMain", "e-mail reporting success!");
             }
@@ -761,6 +761,10 @@ namespace IOTLManager
         {
             // 테스트 결과.
             // 2018.05.10 금일 오전 5시 50분경 전송했으나, 6시 현재 아직 도착 하지 않음.
+            // 이 테스트는 실패함.
+            // https://stackoverflow.com/questions/9171347/email-via-sms-gateway-is-sent-but-not-received 
+            // 위 자료를 살펴보는중.
+            // 그리고 GmailAsync도 테스트 하는중.
             try
             {
                 CSimpleSmtpClient smtpClient = new CSimpleSmtpClient("iotlinkmonitoring", "iotlink!23");
@@ -857,7 +861,10 @@ namespace IOTLManager
             }
         }
 
-
+        private void chartCpuUsage_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            chartCpuUsage.SaveImage("D:\\SampleChart.jpg", ChartImageFormat.Png);
+        }
     }
 
 

@@ -28,6 +28,7 @@ namespace IOTL.Common.UserControls
         private bool m_SocketModeTcp = true;
         private DateTime m_dtServerStart = DateTime.MinValue;
         private DateTime m_dtServerStop = DateTime.MinValue;
+        private string m_lastestReceivedMessage = string.Empty;
 
         public event UEventHandlerIOTLMessage UEventMessage = null;
         public event UEventHandlerMachineStateTimeLog UEventMachineStateTimeLog = null;
@@ -61,6 +62,12 @@ namespace IOTL.Common.UserControls
         {
             get { return m_dtServerStop; }
             set { m_dtServerStop = value; }
+        }
+
+        public string LastReceivedMessage
+        {
+            get { return m_lastestReceivedMessage; }
+            set { m_lastestReceivedMessage = string.Format("{0} : {1}", DateTime.Now.ToString("yyyyMMddHHmmss"), value); }
         }
 
         public uint LocalServerTcpPort
@@ -148,6 +155,7 @@ namespace IOTL.Common.UserControls
             strReport += string.Format("\nConnected Client :{0}", ConnectedClientCount.ToString());
             strReport += string.Format("\nReceive Packets :{0}", ReceivedPacketCount.ToString());
             strReport += string.Format("\nSend Packets :{0}", SendPacketCount.ToString());
+            strReport += string.Format("\nLast Received :{0}", LastReceivedMessage);
 
             return strReport;
         }
@@ -366,6 +374,9 @@ namespace IOTL.Common.UserControls
             try
             {
                 string rcvText = Encoding.Default.GetString(e.receiveData);
+
+                LastReceivedMessage = rcvText;
+
                 // UpdateSystemMessage("SocketServer", session.UserID + " : " + e.Message);
                 UpdateSystemMessage("SocketServer", session.UserID + "Receive : " + rcvText);
                 // 처리전에 로그에 기록

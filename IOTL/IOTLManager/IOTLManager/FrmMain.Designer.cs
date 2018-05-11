@@ -90,6 +90,7 @@ namespace IOTLManager
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ucCompressorDataManager1 = new IOTLManager.UserControls.UCCompressorDataManager();
             this.tabSmartBong = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.ucCompressorDataManager2 = new IOTLManager.UserControls.UCCompressorDataManager();
             this.tabDatabase = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -112,7 +113,6 @@ namespace IOTLManager
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.ucSystemLogTable = new IOTLManager.UserControls.UCSystemLogTable();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -124,6 +124,7 @@ namespace IOTLManager
             this.tabIotlCompSvr.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabSmartBong.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.tabDatabase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -142,7 +143,6 @@ namespace IOTLManager
             ((System.ComponentModel.ISupportInitialize)(this.chartMemoryAvailable)).BeginInit();
             this.tabConfig.SuspendLayout();
             this.tabLogConfig.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -572,6 +572,7 @@ namespace IOTLManager
             this.ucCompressorDataManager1.Location = new System.Drawing.Point(3, 17);
             this.ucCompressorDataManager1.LogSavedPath = "C:\\Log";
             this.ucCompressorDataManager1.Name = "ucCompressorDataManager1";
+            this.ucCompressorDataManager1.ServerSocketTypeTcp = true;
             this.ucCompressorDataManager1.ServerTitleCaption = "IOTL Compressor Monitor";
             this.ucCompressorDataManager1.Size = new System.Drawing.Size(995, 389);
             this.ucCompressorDataManager1.TabIndex = 0;
@@ -587,6 +588,17 @@ namespace IOTLManager
             this.tabSmartBong.Text = "스봉데이터서버";
             this.tabSmartBong.UseVisualStyleBackColor = true;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.ucCompressorDataManager2);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox4.Location = new System.Drawing.Point(3, 3);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(1018, 403);
+            this.groupBox4.TabIndex = 2;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "IOTLink SmartBongDaRi Data Manger";
+            // 
             // ucCompressorDataManager2
             // 
             this.ucCompressorDataManager2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -597,6 +609,7 @@ namespace IOTLManager
             this.ucCompressorDataManager2.Location = new System.Drawing.Point(3, 17);
             this.ucCompressorDataManager2.LogSavedPath = "C:\\Log";
             this.ucCompressorDataManager2.Name = "ucCompressorDataManager2";
+            this.ucCompressorDataManager2.ServerSocketTypeTcp = true;
             this.ucCompressorDataManager2.ServerTitleCaption = "IOTL Compressor Monitor";
             this.ucCompressorDataManager2.Size = new System.Drawing.Size(1012, 383);
             this.ucCompressorDataManager2.TabIndex = 1;
@@ -692,12 +705,15 @@ namespace IOTLManager
             // 
             this.ucSocketServer1.BackColor = System.Drawing.Color.Aquamarine;
             this.ucSocketServer1.ConnectedClientCount = 0;
+            this.ucSocketServer1.LastReceivedMessage = "";
             this.ucSocketServer1.LocalServerTcpPort = ((uint)(3000u));
             this.ucSocketServer1.Location = new System.Drawing.Point(286, 16);
             this.ucSocketServer1.Name = "ucSocketServer1";
             this.ucSocketServer1.ReceivedPacketCount = 0;
             this.ucSocketServer1.SendPacketCount = 0;
             this.ucSocketServer1.ServerCaption = "TCP Socket Server";
+            this.ucSocketServer1.ServerStartDt = new System.DateTime(((long)(0)));
+            this.ucSocketServer1.ServerStopDt = new System.DateTime(((long)(0)));
             this.ucSocketServer1.Size = new System.Drawing.Size(542, 272);
             this.ucSocketServer1.SocketModeTcp = false;
             this.ucSocketServer1.SocketServerIsStarted = false;
@@ -767,6 +783,7 @@ namespace IOTLManager
             this.chartCpuUsage.TabIndex = 0;
             this.chartCpuUsage.Text = "Cpu Usage";
             this.chartCpuUsage.Click += new System.EventHandler(this.chartCpuUsage_Click);
+            this.chartCpuUsage.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.chartCpuUsage_MouseDoubleClick);
             // 
             // chartMemoryAvailable
             // 
@@ -854,17 +871,6 @@ namespace IOTLManager
             this.ucSystemLogTable.Size = new System.Drawing.Size(1032, 143);
             this.ucSystemLogTable.TabIndex = 4;
             // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.ucCompressorDataManager2);
-            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox4.Location = new System.Drawing.Point(3, 3);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1018, 403);
-            this.groupBox4.TabIndex = 2;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "IOTLink SmartBongDaRi Data Manger";
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -892,6 +898,7 @@ namespace IOTLManager
             this.tabIotlCompSvr.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.tabSmartBong.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
             this.tabDatabase.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
@@ -911,7 +918,6 @@ namespace IOTLManager
             ((System.ComponentModel.ISupportInitialize)(this.chartMemoryAvailable)).EndInit();
             this.tabConfig.ResumeLayout(false);
             this.tabLogConfig.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
