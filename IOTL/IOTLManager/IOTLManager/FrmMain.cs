@@ -906,15 +906,18 @@ namespace IOTLManager
              */
 
             string sqlQuery = "SELECT " +
-                "   COMP_ID, CUR_TEMP, SAVE_TIME_STR " +
+                "   COMP_ID, CUR_TEMP, SAVE_TIME_STR,INSPECT_PERIOD " +
                 " FROM compdata.tbp_sb_temperature " +
                 " WHERE COMP_ID = '2018000002' " +
                 " ORDER BY SAVE_TIME_STR DESC" +
                 " LIMIT 100; ";
 
+            this.rptChart.Titles.Clear();
             this.rptChart.Series.Clear();
+            
             this.rptChart.Titles.Add("Smart BongDaRi Data Receive Report");
             Series series = this.rptChart.Series.Add("SB Temperature");
+            // Series series2 = this.rptChart.Series.Add("INSPECT PERIOD");
             series.ChartType = SeriesChartType.Spline;
 
             DataTable dt = DBReader.GetQueryResult(sqlQuery);
@@ -922,6 +925,7 @@ namespace IOTLManager
             for(int i = 0; i < rows.Length; i++)
             {
                 series.Points.AddXY(rows[i]["SAVE_TIME_STR"], rows[i]["CUR_TEMP"]);
+                // series2.Points.AddXY(rows[i]["SAVE_TIME_STR"], rows[i]["INSPECT_PERIOD"]);
             }
 
             if(File.Exists(@"D:\SmartBongDariReport.png"))

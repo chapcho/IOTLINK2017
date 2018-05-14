@@ -38,15 +38,9 @@ namespace IOTLManager
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend11 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend12 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
@@ -123,7 +117,6 @@ namespace IOTLManager
             this.btnDBBackup = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.ucClock1 = new IOTLManager.UserControls.UCClock();
             this.ucSystemLogTable = new IOTLManager.UserControls.UCSystemLogTable();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -588,7 +581,6 @@ namespace IOTLManager
             this.ucCompressorDataManager1.ServerTitleCaption = "IOTL Compressor Monitor";
             this.ucCompressorDataManager1.Size = new System.Drawing.Size(995, 389);
             this.ucCompressorDataManager1.TabIndex = 0;
-            //
             // 
             // tabSmartBong
             // 
@@ -712,13 +704,13 @@ namespace IOTLManager
             this.tabSocketServer.Size = new System.Drawing.Size(1024, 409);
             this.tabSocketServer.TabIndex = 4;
             this.tabSocketServer.Text = "SocketServer(Chat)";
-            this.tabSocketServer.UseVisualStyleBackColor = true;            
-            //
+            this.tabSocketServer.UseVisualStyleBackColor = true;
+            // 
             // ucSocketServer1
             // 
             this.ucSocketServer1.BackColor = System.Drawing.Color.Aquamarine;
             this.ucSocketServer1.ConnectedClientCount = 0;
-            this.ucSocketServer1.LastReceivedMessage = "";
+            this.ucSocketServer1.LastReceivedMessage = "20180515055657 : ";
             this.ucSocketServer1.LocalServerTcpPort = ((uint)(3000u));
             this.ucSocketServer1.Location = new System.Drawing.Point(286, 16);
             this.ucSocketServer1.Name = "ucSocketServer1";
@@ -738,8 +730,6 @@ namespace IOTLManager
             this.ucClock1.Name = "ucClock1";
             this.ucClock1.Size = new System.Drawing.Size(272, 79);
             this.ucClock1.TabIndex = 6;
-            // 
-
             // 
             // tabMonitoring
             // 
@@ -855,17 +845,18 @@ namespace IOTLManager
             // rptChart
             // 
             this.rptChart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.rptChart.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.TopBottom;
             this.rptChart.BorderlineColor = System.Drawing.Color.Black;
-            chartArea12.Name = "ChartArea1";
-            this.rptChart.ChartAreas.Add(chartArea12);
-            legend12.Name = "Legend1";
-            this.rptChart.Legends.Add(legend12);
+            chartArea3.Name = "ChartArea1";
+            this.rptChart.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.rptChart.Legends.Add(legend3);
             this.rptChart.Location = new System.Drawing.Point(18, 43);
             this.rptChart.Name = "rptChart";
-            series12.ChartArea = "ChartArea1";
-            series12.Legend = "Legend1";
-            series12.Name = "Series1";
-            this.rptChart.Series.Add(series12);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.rptChart.Series.Add(series3);
             this.rptChart.Size = new System.Drawing.Size(616, 361);
             this.rptChart.TabIndex = 4;
             this.rptChart.Text = "chart1";
@@ -909,13 +900,6 @@ namespace IOTLManager
             this.button1.Text = "splash";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // ucClock1
-            // 
-            this.ucClock1.Location = new System.Drawing.Point(8, 6);
-            this.ucClock1.Name = "ucClock1";
-            this.ucClock1.Size = new System.Drawing.Size(272, 79);
-            this.ucClock1.TabIndex = 6;
             // 
             // ucSystemLogTable
             // 
