@@ -1,4 +1,5 @@
 ﻿using IOTL.Common.Framework;
+using IOTL.Socket.ClientSession;
 using System;
 using System.Text;
 
@@ -10,6 +11,8 @@ namespace IOTL.Common.Log
     public class CTimeLog : LogBase
     {
         #region Member Variables
+
+        private claClientSession _clientSession;
 
         // 사용자 데이터 클래스로 오면, 소켓의 원데이터는 이제 필요 없다.
         // 여기서는 데이터를 파싱해서 넣도록 한다.
@@ -24,7 +27,18 @@ namespace IOTL.Common.Log
 
         }
 
+        public CTimeLog(claClientSession session, string sKey, string sDescription) : base(sKey, sDescription)
+        {
+            ClientSession = session;
+        }
+
         #endregion
+
+        public claClientSession ClientSession
+        {
+            get { return _clientSession; }
+            set { _clientSession = value; }
+        }
 
         public DateTime LogTime
         {

@@ -387,8 +387,7 @@ namespace IOTL.Common.UserControls
                 // SaveLogToFile(EMFileLogType.CommunicationLog, EMFileLogDepth.Info, e.Message);
                 SaveLogToFile(EMFileLogType.CommunicationLog, EMFileLogDepth.Info, rcvText);
                 // Monitor에게 보내는 메시지(DB저장등 App에서 해야 할 처리)
-                SaveLogToMonitor(session.SessionID, session.UserID, e);
-
+                SaveLogToMonitor(session, session.SessionID, session.UserID, e);
             }
             catch(Exception ex)
             {
@@ -430,13 +429,13 @@ namespace IOTL.Common.UserControls
             UEventFileLog?.Invoke(emFileLogType, emFileLogDepth, sLogMessage);
         }
 
-        private void SaveLogToMonitor(String sessionID, String clientID, LocalMessageEventArgs objReceiveData)
+        private void SaveLogToMonitor(claClientSession session, String sessionID, String clientID, LocalMessageEventArgs objReceiveData)
         {
             if (UEventMachineStateTimeLog != null)
             {
                 // Chatting에서 보낸 클라이언트 아이디를 사용하고 있음.
                 // 프로토콜 상의 구분자로 변경할 필요가 있음.
-                CTimeLog log = new CTimeLog(clientID, ConstantDef.NIY);
+                CTimeLog log = new CTimeLog(session, clientID, ConstantDef.NIY);
                 // 로그를 수신한 시간을 기록한다. 설비에서 보낸 시간은 데이터에 기록되어야 한다.
                 log.LogTime = DateTime.Now;
 

@@ -240,6 +240,49 @@ namespace IOTLManager.UserControls
         {
             if (compressorLogWriter != null)
                 compressorLogWriter.EnQue(cLog);
+
+            // 수신데이터 처리를 했고, 이제 송신 처리를 합니다.
+            SendControlMessageToClient(cLog);
+
+        }
+
+        /// <summary>
+        /// 단말로 전송할 제어 메시지가 있다면, 여기서 조회하고 전송한다.
+        /// 전송한 것 만으로, 전송 성공 처리를 한다.
+        /// 즉 필요하면 재 전송하는 방식으로 구현한다.
+        /// </summary>
+        /// <param name="cLog"></param>
+        /// <returns></returns>
+        private int SendControlMessageToClient(CTimeLog cLog)
+        {
+            int iRet = 0;
+
+            string rcvText = Encoding.Default.GetString(cLog.ReceiveData);
+            string compId = string.Empty;
+
+            // if compressor Protocol 
+            string[] rcvDatas = rcvText.Split(',');
+
+            if(rcvDatas.Length > 2)
+            {
+                if(rcvDatas[0].Equals("S") && rcvDatas[rcvDatas.Length - 1].Equals("E"))
+                {
+                    System.Console.WriteLine("Socket Data Receive & Send Sample");
+
+                    compId = rcvDatas[2];
+                }
+            }
+
+            System.Console.WriteLine("Socket Data Receive & Send Sample");
+
+            // 단말로 보낼 메시지가 있다면 ...
+            // 데이터 수신처리는 진행되고 있고, 단말에 보내야할 메시지가 있다면 여기서 전송합니다.
+
+            // Send Sample Message To Session
+            byte[] sendData = System.Text.Encoding.UTF8.GetBytes("Data Rcv ::" + compId + " :: " + DateTime.Now.ToLongTimeString());
+
+            cLog.ClientSession.SendData_Client(sendData);
+            return iRet;
         }
 
         private void timerWebCntlSender_Tick(object sender, EventArgs e)

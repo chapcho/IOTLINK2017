@@ -39,11 +39,13 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtServerPort = new System.Windows.Forms.TextBox();
             this.chkUDPMode = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtReceive = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtMessage
             // 
-            this.txtMessage.Location = new System.Drawing.Point(99, 120);
+            this.txtMessage.Location = new System.Drawing.Point(99, 94);
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.Size = new System.Drawing.Size(504, 52);
@@ -51,7 +53,7 @@
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(100, 178);
+            this.btnSend.Location = new System.Drawing.Point(99, 152);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(131, 39);
             this.btnSend.TabIndex = 3;
@@ -71,7 +73,7 @@
             // cmbTestData
             // 
             this.cmbTestData.FormattingEnabled = true;
-            this.cmbTestData.Location = new System.Drawing.Point(99, 94);
+            this.cmbTestData.Location = new System.Drawing.Point(99, 68);
             this.cmbTestData.Name = "cmbTestData";
             this.cmbTestData.Size = new System.Drawing.Size(203, 20);
             this.cmbTestData.TabIndex = 5;
@@ -80,7 +82,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(37, 97);
+            this.label2.Location = new System.Drawing.Point(37, 71);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 6;
@@ -89,7 +91,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(40, 123);
+            this.label3.Location = new System.Drawing.Point(40, 97);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 12);
             this.label3.TabIndex = 6;
@@ -141,16 +143,36 @@
             this.chkUDPMode.Text = "UDP";
             this.chkUDPMode.UseVisualStyleBackColor = true;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(40, 201);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 12);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "수신내용";
+            // 
+            // txtReceive
+            // 
+            this.txtReceive.Location = new System.Drawing.Point(99, 197);
+            this.txtReceive.Multiline = true;
+            this.txtReceive.Name = "txtReceive";
+            this.txtReceive.ReadOnly = true;
+            this.txtReceive.Size = new System.Drawing.Size(504, 52);
+            this.txtReceive.TabIndex = 12;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(615, 230);
+            this.ClientSize = new System.Drawing.Size(615, 259);
+            this.Controls.Add(this.txtReceive);
             this.Controls.Add(this.chkUDPMode);
             this.Controls.Add(this.txtServerPort);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtSeverAddress);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cmbTestData);
@@ -177,6 +199,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtServerPort;
         private System.Windows.Forms.CheckBox chkUDPMode;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtReceive;
     }
 }
 

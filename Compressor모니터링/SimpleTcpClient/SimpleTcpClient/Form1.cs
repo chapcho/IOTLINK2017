@@ -38,6 +38,11 @@ namespace SimpleTcpClient
                     byte[] buff = Encoding.ASCII.GetBytes(msg);
                     NetworkStream stream = tc.GetStream();
                     stream.Write(buff, 0, buff.Length);
+
+                    byte[] outBuf = new byte[1024];
+                    int nByte = stream.Read(outBuf, 0, outBuf.Length);
+                    string output = System.Text.Encoding.UTF8.GetString(outBuf, 0, nByte);
+                    txtReceive.Text = output;
                     stream.Close();
                     tc.Close();
                 }
