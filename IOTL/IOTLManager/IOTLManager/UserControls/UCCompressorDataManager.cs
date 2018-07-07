@@ -13,6 +13,7 @@ using IOTLManager.Util;
 using IOTL.Common.DB;
 using System.IO;
 using IOTLManager.CsvLog;
+using MySql.Data.MySqlClient;
 
 namespace IOTLManager.UserControls
 {
@@ -259,6 +260,7 @@ namespace IOTLManager.UserControls
 
             string rcvText = Encoding.Default.GetString(cLog.ReceiveData);
             string compId = string.Empty;
+            string sendMessage = string.Empty;
 
             // if compressor Protocol 
             string[] rcvDatas = rcvText.Split(',');
@@ -277,12 +279,74 @@ namespace IOTLManager.UserControls
 
             // 단말로 보낼 메시지가 있다면 ...
             // 데이터 수신처리는 진행되고 있고, 단말에 보내야할 메시지가 있다면 여기서 전송합니다.
+            sendMessage = RetriveShortMessage(compId);
+
+            if (sendMessage.Equals("0")) return iRet;
+
+            UpdateSystemMessage("Socket Response", sendMessage );
 
             // Send Sample Message To Session
-            byte[] sendData = System.Text.Encoding.UTF8.GetBytes("Data Rcv ::" + compId + " :: " + DateTime.Now.ToLongTimeString());
+            // byte[] sendData = System.Text.Encoding.UTF8.GetBytes("Data Rcv ::" + compId + " :: " + DateTime.Now.ToLongTimeString());
+            byte[] sendData = System.Text.Encoding.UTF8.GetBytes(sendMessage);
 
             cLog.ClientSession.SendData_Client(sendData);
             return iRet;
+        }
+
+        private string RetriveShortMessage(string compId)
+        {
+            string smsMessage = string.Empty;
+            int iRetVal = 0;
+            MySqlCommand dbComm = null;
+
+            try
+            {
+                dbComm = new MySqlCommand();
+                dbComm.Connection = DBReader.GetMySqlConnection();
+
+                // 프로시져를 이용한 업데이트 실행.
+                dbComm.CommandType = CommandType.StoredProcedure;
+
+                dbComm.CommandText = "usp_GetControlMessage_A0"; //  "usp_GetControlMessage_A0";
+                dbComm.CommandType = CommandType.StoredProcedure;
+
+                dbComm.Parameters.Add("V_COMP_ID", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
+                dbComm.Parameters["V_COMP_ID"].Value = compId.Trim();
+                dbComm.Parameters["V_COMP_ID"].Direction = ParameterDirection.Input;
+
+                dbComm.Parameters.Add("V_RESULT", MySql.Data.MySqlClient.MySqlDbType.Int32);
+                dbComm.Parameters["V_RESULT"].Direction = ParameterDirection.Output;
+
+                dbComm.Parameters.Add("V_SENDMESSAGE", MySql.Data.MySqlClient.MySqlDbType.VarChar, 200);
+                dbComm.Parameters["V_SENDMESSAGE"].Direction = ParameterDirection.Output;
+
+                dbComm.ExecuteNonQuery();
+
+                iRetVal = Int32.Parse(dbComm.Parameters["V_RESULT"].Value.ToString());
+
+                smsMessage = dbComm.Parameters["V_SENDMESSAGE"].Value.ToString();
+
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name);
+
+                UEventFileLog?.Invoke(EMFileLogType.DatabaseLog, EMFileLogDepth.Error, ex.Message);
+
+                ex.Data.Clear();
+
+                smsMessage = "-1";
+            }
+            finally
+            {
+                if (dbComm != null)
+                {
+                    dbComm.Dispose();
+                    dbComm = null;
+                }
+            }
+
+            return smsMessage;
         }
 
         private void timerWebCntlSender_Tick(object sender, EventArgs e)
@@ -502,6 +566,7 @@ namespace IOTLManager.UserControls
             sb.Append("\r\n2018.05.01 스봉 온도 데이터 수집.");
             sb.Append("\r\n2018.05.10 TCP/UDP 모드.");
             sb.Append("\r\n2018.05.11 관리자에게 온도데이터 수신 차트 전송.");
+            sb.Append("\r\n2018.07.07 단말에 제어 메시지 회신.");
             MessageBox.Show(sb.ToString(),"About : IOTLink Socket Data Manager");
         }
     }
