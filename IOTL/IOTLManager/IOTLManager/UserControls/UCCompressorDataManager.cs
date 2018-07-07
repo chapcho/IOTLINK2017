@@ -281,7 +281,7 @@ namespace IOTLManager.UserControls
             // 데이터 수신처리는 진행되고 있고, 단말에 보내야할 메시지가 있다면 여기서 전송합니다.
             sendMessage = RetriveShortMessage(compId);
 
-            if (sendMessage.Equals("0")) return iRet;
+            // if (sendMessage.Equals("0")) return iRet;
 
             UpdateSystemMessage("Socket Response", sendMessage );
 
@@ -307,7 +307,7 @@ namespace IOTLManager.UserControls
                 // 프로시져를 이용한 업데이트 실행.
                 dbComm.CommandType = CommandType.StoredProcedure;
 
-                dbComm.CommandText = "usp_GetControlMessage_A0"; //  "usp_GetControlMessage_A0";
+                dbComm.CommandText = "compdata.usp_GetControlMessage_A0"; //  "usp_GetControlMessage_A0";
                 dbComm.CommandType = CommandType.StoredProcedure;
 
                 dbComm.Parameters.Add("V_COMP_ID", MySql.Data.MySqlClient.MySqlDbType.VarChar, 20);
