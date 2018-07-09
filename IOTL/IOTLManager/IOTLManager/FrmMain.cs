@@ -13,6 +13,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Net;
+using System.Net.Mail;
 
 namespace IOTLManager
 {
@@ -225,7 +227,9 @@ namespace IOTLManager
 
             
             // 이 스플레쉬 윈도우의 타이틀을 로딩시에 바꿀수 있도록 해야 겠다.
-            SplashWnd.SplashShow();
+            // SplashWnd.SplashShow();
+
+            // SendTextMessage("야호", "이런게 메시지야", 821064407941);
 
         }
 
@@ -798,6 +802,31 @@ namespace IOTLManager
             }
         }
 
+        public void SendTextMessage(string subject, string message, long telephoneNumber)
+        {
+            const string sender = "iotlinkmonitoring@gmail.com";
+            const string password = "iotlink!23";
+
+            string carrierGateway = "myhelio.com";
+            string recipent = string.Concat(new object[]
+            {
+                telephoneNumber,
+                '@',
+                carrierGateway
+            });
+
+            using (MailMessage textMessage = new MailMessage(sender, recipent, subject, message))
+            {
+                using (SmtpClient textMessageClient = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    textMessageClient.UseDefaultCredentials = false;
+                    textMessageClient.EnableSsl = true;
+                    textMessageClient.Credentials = new NetworkCredential(sender, password);
+                    textMessageClient.Send(textMessage);
+                }
+            }
+        }
+
         private void btnDBBackup_Click(object sender, EventArgs e)
         {
             BackupDataBase("C:\\Log\\BackupTest.SQL");
@@ -937,6 +966,11 @@ namespace IOTLManager
             rptChart.SaveImage(chartImgFileName, ChartImageFormat.Png);
 
             return chartImgFileName;
+        }
+
+        private void NewCompressorInfoRegisterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

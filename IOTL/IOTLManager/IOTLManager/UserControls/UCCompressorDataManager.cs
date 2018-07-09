@@ -275,13 +275,16 @@ namespace IOTLManager.UserControls
                 }
             }
 
-            System.Console.WriteLine("Socket Data Receive & Send Sample");
-
-            // 단말로 보낼 메시지가 있다면 ...
-            // 데이터 수신처리는 진행되고 있고, 단말에 보내야할 메시지가 있다면 여기서 전송합니다.
-            sendMessage = RetriveShortMessage(compId);
-
-            // if (sendMessage.Equals("0")) return iRet;
+            if(string.IsNullOrEmpty(compId))
+            {
+                sendMessage = "0"; // Data 수신을 정상적인 처리로 간주한다.
+            }
+            else
+            {
+                // 단말로 보낼 메시지가 있다면 ...
+                // 데이터 수신처리는 진행되고 있고, 단말에 보내야할 메시지가 있다면 여기서 전송합니다.
+                sendMessage = RetriveShortMessage(compId);
+            }
 
             UpdateSystemMessage("Socket Response", sendMessage );
 

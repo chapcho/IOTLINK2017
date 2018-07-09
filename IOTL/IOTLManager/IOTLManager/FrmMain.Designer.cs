@@ -32,15 +32,15 @@ namespace IOTLManager
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
@@ -118,6 +118,7 @@ namespace IOTLManager
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.ucSystemLogTable = new IOTLManager.UserControls.UCSystemLogTable();
+            this.신규단말정보등록ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -368,7 +369,8 @@ namespace IOTLManager
             // 
             this.도구ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.사용자지정ToolStripMenuItem,
-            this.옵션ToolStripMenuItem});
+            this.옵션ToolStripMenuItem,
+            this.신규단말정보등록ToolStripMenuItem});
             this.도구ToolStripMenuItem.Name = "도구ToolStripMenuItem";
             this.도구ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.도구ToolStripMenuItem.Text = "도구";
@@ -376,13 +378,13 @@ namespace IOTLManager
             // 사용자지정ToolStripMenuItem
             // 
             this.사용자지정ToolStripMenuItem.Name = "사용자지정ToolStripMenuItem";
-            this.사용자지정ToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.사용자지정ToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.사용자지정ToolStripMenuItem.Text = "사용자 지정";
             // 
             // 옵션ToolStripMenuItem
             // 
             this.옵션ToolStripMenuItem.Name = "옵션ToolStripMenuItem";
-            this.옵션ToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.옵션ToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.옵션ToolStripMenuItem.Text = "옵션";
             // 
             // 도움말ToolStripMenuItem
@@ -400,30 +402,30 @@ namespace IOTLManager
             // 내용ToolStripMenuItem
             // 
             this.내용ToolStripMenuItem.Name = "내용ToolStripMenuItem";
-            this.내용ToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.내용ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.내용ToolStripMenuItem.Text = "내용";
             // 
             // 인덱스ToolStripMenuItem
             // 
             this.인덱스ToolStripMenuItem.Name = "인덱스ToolStripMenuItem";
-            this.인덱스ToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.인덱스ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.인덱스ToolStripMenuItem.Text = "인덱스";
             // 
             // 검색ToolStripMenuItem
             // 
             this.검색ToolStripMenuItem.Name = "검색ToolStripMenuItem";
-            this.검색ToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.검색ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.검색ToolStripMenuItem.Text = "검색";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(107, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
             // 
             // InfoToolStripMenuItem
             // 
             this.InfoToolStripMenuItem.Name = "InfoToolStripMenuItem";
-            this.InfoToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.InfoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.InfoToolStripMenuItem.Text = "정보...";
             this.InfoToolStripMenuItem.Click += new System.EventHandler(this.InfoToolStripMenuItem_Click);
             // 
@@ -469,7 +471,7 @@ namespace IOTLManager
             // menuServerConfig
             // 
             this.menuServerConfig.Name = "menuServerConfig";
-            this.menuServerConfig.Size = new System.Drawing.Size(122, 22);
+            this.menuServerConfig.Size = new System.Drawing.Size(152, 22);
             this.menuServerConfig.Text = "환경설정";
             this.menuServerConfig.Click += new System.EventHandler(this.menuServerConfig_Click);
             // 
@@ -710,7 +712,7 @@ namespace IOTLManager
             // 
             this.ucSocketServer1.BackColor = System.Drawing.Color.Aquamarine;
             this.ucSocketServer1.ConnectedClientCount = 0;
-            this.ucSocketServer1.LastReceivedMessage = "20180515055657 : ";
+            this.ucSocketServer1.LastReceivedMessage = "20180709201108 : 20180515055657 : ";
             this.ucSocketServer1.LocalServerTcpPort = ((uint)(3000u));
             this.ucSocketServer1.Location = new System.Drawing.Point(286, 16);
             this.ucSocketServer1.Name = "ucSocketServer1";
@@ -773,17 +775,17 @@ namespace IOTLManager
             // 
             // chartCpuUsage
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartCpuUsage.ChartAreas.Add(chartArea1);
+            chartArea4.Name = "ChartArea1";
+            this.chartCpuUsage.ChartAreas.Add(chartArea4);
             this.chartCpuUsage.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chartCpuUsage.Legends.Add(legend1);
+            legend4.Name = "Legend1";
+            this.chartCpuUsage.Legends.Add(legend4);
             this.chartCpuUsage.Location = new System.Drawing.Point(0, 0);
             this.chartCpuUsage.Name = "chartCpuUsage";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartCpuUsage.Series.Add(series1);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chartCpuUsage.Series.Add(series4);
             this.chartCpuUsage.Size = new System.Drawing.Size(509, 381);
             this.chartCpuUsage.TabIndex = 0;
             this.chartCpuUsage.Text = "Cpu Usage";
@@ -793,17 +795,17 @@ namespace IOTLManager
             // chartMemoryAvailable
             // 
             this.chartMemoryAvailable.BorderSkin.BackSecondaryColor = System.Drawing.Color.Lime;
-            chartArea2.Name = "ChartArea1";
-            this.chartMemoryAvailable.ChartAreas.Add(chartArea2);
+            chartArea5.Name = "ChartArea1";
+            this.chartMemoryAvailable.ChartAreas.Add(chartArea5);
             this.chartMemoryAvailable.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.chartMemoryAvailable.Legends.Add(legend2);
+            legend5.Name = "Legend1";
+            this.chartMemoryAvailable.Legends.Add(legend5);
             this.chartMemoryAvailable.Location = new System.Drawing.Point(0, 0);
             this.chartMemoryAvailable.Name = "chartMemoryAvailable";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartMemoryAvailable.Series.Add(series2);
+            series5.ChartArea = "ChartArea1";
+            series5.Legend = "Legend1";
+            series5.Name = "Series1";
+            this.chartMemoryAvailable.Series.Add(series5);
             this.chartMemoryAvailable.Size = new System.Drawing.Size(495, 381);
             this.chartMemoryAvailable.TabIndex = 1;
             this.chartMemoryAvailable.Text = "chart1";
@@ -847,16 +849,16 @@ namespace IOTLManager
             this.rptChart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.rptChart.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.TopBottom;
             this.rptChart.BorderlineColor = System.Drawing.Color.Black;
-            chartArea3.Name = "ChartArea1";
-            this.rptChart.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.rptChart.Legends.Add(legend3);
+            chartArea6.Name = "ChartArea1";
+            this.rptChart.ChartAreas.Add(chartArea6);
+            legend6.Name = "Legend1";
+            this.rptChart.Legends.Add(legend6);
             this.rptChart.Location = new System.Drawing.Point(18, 43);
             this.rptChart.Name = "rptChart";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.rptChart.Series.Add(series3);
+            series6.ChartArea = "ChartArea1";
+            series6.Legend = "Legend1";
+            series6.Name = "Series1";
+            this.rptChart.Series.Add(series6);
             this.rptChart.Size = new System.Drawing.Size(616, 361);
             this.rptChart.TabIndex = 4;
             this.rptChart.Text = "chart1";
@@ -908,6 +910,13 @@ namespace IOTLManager
             this.ucSystemLogTable.Name = "ucSystemLogTable";
             this.ucSystemLogTable.Size = new System.Drawing.Size(1032, 143);
             this.ucSystemLogTable.TabIndex = 4;
+            // 
+            // 신규단말정보등록ToolStripMenuItem
+            // 
+            this.신규단말정보등록ToolStripMenuItem.Name = "신규단말정보등록ToolStripMenuItem";
+            this.신규단말정보등록ToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.신규단말정보등록ToolStripMenuItem.Text = "신규단말정보등록";
+            this.신규단말정보등록ToolStripMenuItem.Click += new System.EventHandler(this.NewCompressorInfoRegisterToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -1042,5 +1051,6 @@ namespace IOTLManager
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.CheckBox chkSendManagerEMail;
         private System.Windows.Forms.DataVisualization.Charting.Chart rptChart;
+        private System.Windows.Forms.ToolStripMenuItem 신규단말정보등록ToolStripMenuItem;
     }
 }
