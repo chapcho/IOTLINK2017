@@ -29,17 +29,17 @@ BEGIN
 	SELECT @p2 as Result;
 	
 	ROLLBACK;
-	SET V_RESULT = -1;
+	SET V_RESULT = 0;
 END;
 	-- 인증된 단말인지..
 	SELECT 
 		Count(*) INTO recordCnt
-	FROM TBM_COMPRESSOR
+	FROM compdata.TBM_COMPRESSOR
 	WHERE COMP_ID = V_COMP_ID AND REGIST_YN = 'Y';
 
 	-- 해당하는 값이 없다면 RETURN
 	IF recordCnt < 1 THEN
-		SET V_RESULT = 0;
+		SET V_RESULT = -1;
 	ELSE
 	BEGIN
 		-- 세션으로 제어 메시지를 보내는 경우, shortMessage 테이블에 기록되는 모바일 폰번호를 0000000으로 설정해야 합니다.
@@ -49,8 +49,8 @@ END;
 		FROM 
 			compData.tbm_shortmessage 
 		WHERE COMP_ID = V_COMP_ID AND SEND_TIME IS NULL  
-		AND LENGTH(TRIM(REPLACE(MOBILE_PHONE_NO,'0',' '))) < 2
-		AND LENGTH(TRIM(REPLACE(SENDER,'0',' '))) < 2;
+		AND LENGTH(TRIM(REPLACE(IFNULL(MOBILE_PHONE_NO,'00'),'0',' '))) < 2
+		AND LENGTH(TRIM(REPLACE(IFNULL(SENDER,'00'),'0',' '))) < 2;
 	
 		IF recordCnt > 0 Then
 		Begin
@@ -58,8 +58,8 @@ END;
 			(
 				SELECT MSG_SEQ, MOBILE_PHONE_NO, COMP_ID, SEND_MESSAGE, SEND_TIME, SENDER, CREATER FROM compdata.tbm_shortmessage
 				WHERE COMP_ID = V_COMP_ID AND SEND_TIME IS NULL 
-					AND LENGTH(TRIM(REPLACE(MOBILE_PHONE_NO,'0',' '))) < 2
-					AND LENGTH(TRIM(REPLACE(SENDER,'0',' '))) < 2
+					AND LENGTH(TRIM(REPLACE(IFNULL(MOBILE_PHONE_NO,'00'),'0',' '))) < 2
+					AND LENGTH(TRIM(REPLACE(IFNULL(SENDER,'00'),'0',' '))) < 2
 					LIMIT 1
 			) A
 			WHERE A.COMP_ID = V_COMP_ID;
