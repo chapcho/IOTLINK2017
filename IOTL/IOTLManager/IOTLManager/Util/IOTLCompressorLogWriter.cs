@@ -168,9 +168,15 @@ namespace IOTLManager.Util
                         if(iSleepCount > 10000) // 통신이 없는 900초 마다 세션 재시작.
                         {
                             if (LogDBWriter.IsConnected)
+                            {
                                 LogDBWriter.Disconnect();
-
-                            UpdateSystemMessage("Log Writer", "Refresh DB Connection !");
+                                Thread.Sleep(200);
+                                LogDBWriter.Connect();
+                                if(LogDBWriter.IsConnected)
+                                    UpdateSystemMessage("Log Writer", "Refresh DB Connection !");
+                                else
+                                    UpdateSystemMessage("Log Writer", "[Error] DB Connection Fail !!!");
+                            }
 
                             iSleepCount = 0;
                         }
