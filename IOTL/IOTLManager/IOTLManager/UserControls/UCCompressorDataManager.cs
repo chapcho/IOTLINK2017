@@ -149,6 +149,18 @@ namespace IOTLManager.UserControls
                 UEventMessage(sender, message);
         }
 
+        private void RefreshMonitoringState()
+        {
+            if (btnStartStop.Text.ToUpper().Equals("MONITOR STOP"))
+            {
+                UpdateSystemMessage("Server", "DB Session Maintenance : Close Session!");
+                btnStartStop_Click(null, null);
+
+                btnStartStop_Click(null, null);
+                UpdateSystemMessage("Server", "DB Session Maintenance : ReConnect Session!");
+            }
+        }
+
         private void btnStartStop_Click(object sender, EventArgs e)
         {
             if (btnStartStop.Text.ToUpper().Equals("MONITOR START"))
@@ -247,6 +259,8 @@ namespace IOTLManager.UserControls
 
         }
 
+
+
         /// <summary>
         /// 단말로 전송할 제어 메시지가 있다면, 여기서 조회하고 전송한다.
         /// 전송한 것 만으로, 전송 성공 처리를 한다.
@@ -287,6 +301,14 @@ namespace IOTLManager.UserControls
             }
 
             UpdateSystemMessage("Socket Response", sendMessage );
+
+            if(sendMessage.Equals("-1"))
+            {
+                this.RefreshMonitoringState();
+                
+                iRet = 1;
+                return iRet;
+            }
 
             // Send Sample Message To Session
             // byte[] sendData = System.Text.Encoding.UTF8.GetBytes("Data Rcv ::" + compId + " :: " + DateTime.Now.ToLongTimeString());
@@ -562,6 +584,8 @@ namespace IOTLManager.UserControls
         {
             StringBuilder sb = new StringBuilder();
 
+            this.RefreshMonitoringState();
+
             sb.Append("IOTLink Socket DataManager");
             sb.Append("\r\nVersion :2018.05.01");
             sb.Append("\r\n2018.04.20 콤프레샤 상태 데이터 수집.");
@@ -571,6 +595,8 @@ namespace IOTLManager.UserControls
             sb.Append("\r\n2018.05.11 관리자에게 온도데이터 수신 차트 전송.");
             sb.Append("\r\n2018.07.07 단말에 제어 메시지 회신.");
             MessageBox.Show(sb.ToString(),"About : IOTLink Socket Data Manager");
+
+            
         }
     }
 }
