@@ -34,6 +34,8 @@ namespace IOTLManager.UserControls
         private BackgroundWorker logFileReader;
         private string m_ServerTitleCaption = "IOTL Compressor Monitor";
 
+        private int m_iDBConnectionRefreshNeedCheckCnt = 0;
+
         public bool ServerSocketTypeTcp
         {
             get { return ucSocketServer1.SocketModeTcp; }
@@ -376,6 +378,7 @@ namespace IOTLManager.UserControls
 
         private void timerWebCntlSender_Tick(object sender, EventArgs e)
         {
+            
             if(chkWebCntlSendTimer.Checked) 
             {
                 string controlVars = GetWebCntlCmd("compdata.controls");
@@ -597,6 +600,33 @@ namespace IOTLManager.UserControls
             MessageBox.Show(sb.ToString(),"About : IOTLink Socket Data Manager");
 
             
+        }
+
+        private void timerStatusCheck_Tick(object sender, EventArgs e)
+        {
+            string query = string.Format("update compdata.IOTLINKSVRSTATUS set LastCheckTime = '{0}' where ServerName = 'COMPRESSMONITOR';", DateTime.Now.ToString("yyyyMMddHHmmss.fff"));
+
+            if (DBReader != null && DBReader.IsConnected)
+            {
+                try
+                {
+                    if (!DBReader.ExecUpdateQuery(query))
+                    {
+                        UpdateSystemMessage("Compress Manager", "Error!!! Update Server Status");
+                        chkWebCntlSendTimer.Checked = false;
+                        chkWebCntlSendTimer_CheckedChanged(null, null);
+                        WriteMessageToLogfile(EMFileLogType.DatabaseLog, EMFileLogDepth.Error, "Error!!! Update Server Status");
+                    }
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine("Error : {0} [{1}]", ex.Message, System.Reflection.MethodBase.GetCurrentMethod().Name);
+
+                    UEventFileLog?.Invoke(EMFileLogType.DatabaseLog, EMFileLogDepth.Error, ex.Message);
+
+                    ex.Data.Clear();
+                }
+            }
         }
     }
 }

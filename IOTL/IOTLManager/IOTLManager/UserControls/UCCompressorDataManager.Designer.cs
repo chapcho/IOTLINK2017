@@ -30,12 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             this.btnStartStop = new System.Windows.Forms.Button();
-            this.ucSocketServer1 = new IOTL.Common.UserControls.UCSocketServer();
             this.chkWebCntlSendTimer = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.timerWebCntlSender = new System.Windows.Forms.Timer(this.components);
             this.btnImportLog = new System.Windows.Forms.Button();
             this.pictureAbout = new System.Windows.Forms.PictureBox();
+            this.timerStatusCheck = new System.Windows.Forms.Timer(this.components);
+            this.ucSocketServer1 = new IOTL.Common.UserControls.UCSocketServer();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureAbout)).BeginInit();
             this.SuspendLayout();
@@ -49,20 +50,6 @@
             this.btnStartStop.Text = "Monitor Start";
             this.btnStartStop.UseVisualStyleBackColor = true;
             this.btnStartStop.Click += new System.EventHandler(this.btnStartStop_Click);
-            // 
-            // ucSocketServer1
-            // 
-            this.ucSocketServer1.BackColor = System.Drawing.Color.Aquamarine;
-            this.ucSocketServer1.ConnectedClientCount = 0;
-            this.ucSocketServer1.LocalServerTcpPort = ((uint)(3000u));
-            this.ucSocketServer1.Location = new System.Drawing.Point(3, 3);
-            this.ucSocketServer1.Name = "ucSocketServer1";
-            this.ucSocketServer1.ReceivedPacketCount = 0;
-            this.ucSocketServer1.SendPacketCount = 0;
-            this.ucSocketServer1.ServerCaption = "TCP Socket Server";
-            this.ucSocketServer1.Size = new System.Drawing.Size(542, 340);
-            this.ucSocketServer1.SocketServerIsStarted = false;
-            this.ucSocketServer1.TabIndex = 0;
             // 
             // chkWebCntlSendTimer
             // 
@@ -111,6 +98,30 @@
             this.pictureAbout.TabStop = false;
             this.pictureAbout.Click += new System.EventHandler(this.pictureAbout_Click);
             // 
+            // timerStatusCheck
+            // 
+            this.timerStatusCheck.Enabled = true;
+            this.timerStatusCheck.Interval = 60000;
+            this.timerStatusCheck.Tick += new System.EventHandler(this.timerStatusCheck_Tick);
+            // 
+            // ucSocketServer1
+            // 
+            this.ucSocketServer1.BackColor = System.Drawing.Color.Aquamarine;
+            this.ucSocketServer1.ConnectedClientCount = 0;
+            this.ucSocketServer1.LastReceivedMessage = "20180823205202 : 20180823202130 : ";
+            this.ucSocketServer1.LocalServerTcpPort = ((uint)(3000u));
+            this.ucSocketServer1.Location = new System.Drawing.Point(3, 3);
+            this.ucSocketServer1.Name = "ucSocketServer1";
+            this.ucSocketServer1.ReceivedPacketCount = 0;
+            this.ucSocketServer1.SendPacketCount = 0;
+            this.ucSocketServer1.ServerCaption = "TCP Socket Server";
+            this.ucSocketServer1.ServerStartDt = new System.DateTime(((long)(0)));
+            this.ucSocketServer1.ServerStopDt = new System.DateTime(((long)(0)));
+            this.ucSocketServer1.Size = new System.Drawing.Size(542, 340);
+            this.ucSocketServer1.SocketModeTcp = true;
+            this.ucSocketServer1.SocketServerIsStarted = false;
+            this.ucSocketServer1.TabIndex = 0;
+            // 
             // UCCompressorDataManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -141,5 +152,6 @@
         private System.Windows.Forms.Timer timerWebCntlSender;
         private System.Windows.Forms.Button btnImportLog;
         private System.Windows.Forms.PictureBox pictureAbout;
+        private System.Windows.Forms.Timer timerStatusCheck;
     }
 }
