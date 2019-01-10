@@ -15,6 +15,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Net;
 using System.Net.Mail;
+using System.Reflection;
 
 namespace IOTLManager
 {
@@ -972,7 +973,26 @@ namespace IOTLManager
         {
 
         }
+
+        // MDI 창에서 모듈을 여는 로직 구현
+        private void ShowChildModule(string formName, string menuName, string captionText, string checkPrivilege, bool accessFlag)
+        {
+            string assemblyName = formName + ".dll";
+
+            Assembly assembly = Assembly.LoadFrom(AppDomain.CurrentDomain.BaseDirectory + assemblyName);
+            Type type = assembly.GetType(formName);
+
+            Form form = null;
+
+            form = (Form)Activator.CreateInstance(type, true);
+
+            form.WindowState = FormWindowState.Normal;
+            this.Text = formName;
+            form.Text = captionText;
+            form.WindowState = FormWindowState.Maximized;
+            form.MdiParent = this;
+
+            form.Show();
+        }
     }
-
-
 }
