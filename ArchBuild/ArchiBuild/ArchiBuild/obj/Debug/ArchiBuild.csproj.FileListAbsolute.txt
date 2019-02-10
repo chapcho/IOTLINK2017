@@ -1,0 +1,11 @@
+D:\chapcho\IOTLink\GitRoot\ArchBuild\ArchiBuild\ArchiBuild\bin\Debug\ArchiBuild.exe.config
+D:\chapcho\IOTLink\GitRoot\ArchBuild\ArchiBuild\ArchiBuild\bin\Debug\ArchiBuild.exe
+D:\chapcho\IOTLink\GitRoot\ArchBuild\ArchiBuild\ArchiBuild\bin\Debug\ArchiBuild.pdb
+D:\chapcho\IOTLink\GitRoot\ArchBuild\ArchiBuild\ArchiBuild\obj\Debug\ArchiBuild.csprojResolveAssemblyReference.cache
+D:\chapcho\IOTLink\GitRoot\ArchBuild\ArchiBuild\ArchiBuild\obj\Debug\ArchiBuild.Form1.resources
+D:\chapcho\IOTLink\GitRoot\ArchBuild\ArchiBuild\ArchiBuild\obj\Debug\ArchiBuild.Properties.Resources.resources
+D:\chapcho\IOTLink\GitRoot\ArchBuild\ArchiBuild\ArchiBuild\obj\Debug\ArchiBuild.csproj.GenerateResource.Cache
+D:\chapcho\IOTLink\GitRoot\ArchBuild\ArchiBuild\ArchiBuild\obj\Debug\ArchiBuild.csproj.CoreCompileInputs.cache
+D:\chapcho\IOTLink\GitRoot\ArchBuild\ArchiBuild\ArchiBuild\obj\Debug\ArchiBuild.exe
+D:\chapcho\IOTLink\GitRoot\ArchBuild\ArchiBuild\ArchiBuild\obj\Debug\ArchiBuild.pdb
+D:\chapcho\IOTLink\GitRoot\ArchBuild\ArchiBuild\ArchiBuild\obj\Debug\ArchiBuild.UCArchSelector.resources
